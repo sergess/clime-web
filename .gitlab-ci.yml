@@ -1,0 +1,95 @@
+# https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
+
+stages:
+    - build
+    - deploy-image
+    - deploy-cloudrun
+
+default:
+  image: docker:19
+
+before_script:
+  # docker login asks for the password to be passed through stdin for security
+  # we use $CI_JOB_TOKEN here which is a special token provided by GitLab
+  - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
+  - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
+
+.build:
+  stage: build
+  script:
+    # fetches the latest image (not failing if image is not found)
+    - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest || true
+    # builds the project, passing proxy variables, and vcs vars for LABEL
+    # notice the cache-from, which is going to use the image we just pulled locally
+    # the built image is tagged locally with the commit SHA, and then pushed to 
+    # the GitLab registry
+    - >
+      docker build
+      --pull
+      --cache-from $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest
+      --tag $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest
+      --tag $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
+      .
+    - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest
+
+build-dev:
+  extends: .build
+  environment: dev
+  only:
+    - branches
+  except:
+    - master
+
+build-prd:
+  extends: .build
+  environment: prd
+  only:
+    - master
+
+.deploy-to-gar:
+  stage: deploy-image
+  when: manual
+  allow_failure: false
+  script:
+    # fetch the image
+    - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
+    # tag and push to Artifact Registry
+    - docker tag $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA $GAR_REPO:latest
+    - docker push $GAR_REPO:latest
+
+deploy-to-gar-dev:
+  extends: .deploy-to-gar
+  environment: dev
+  only:
+    - branches
+  except:
+    - master
+
+deploy-to-gar-prd:
+  extends: .deploy-to-gar
+  environment: prd
+  only:
+    - master
+
+.deploy-to-cloudrun:
+  stage: deploy-cloudrun
+  image: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+  before_script: []
+  script:
+    - gcloud auth activate-service-account --key-file=$GOOGLE_SA
+    - gcloud --project=$GCP_PROJECT run deploy clime-web --region=us-east1 --image $GAR_REPO:latest --ingress=internal-and-cloud-load-balancing
+
+deploy-to-cloudrun-dev:
+  extends: .deploy-to-cloudrun
+  environment: dev
+  only:
+    - branches
+  except:
+    - master
+
+deploy-to-cloudrun-prd:
+  extends: .deploy-to-cloudrun
+  environment: prd
+  only:
+    - master
