@@ -8,6 +8,9 @@ stages:
 default:
   image: docker:19
 
+variables:
+  DOCKER_BUILDKIT: 1
+
 before_script:
   # docker login asks for the password to be passed through stdin for security
   # we use $CI_JOB_TOKEN here which is a special token provided by GitLab
