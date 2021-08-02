@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
+export const theme = {
   colors: {
     primary: '#0070f3',
   },
