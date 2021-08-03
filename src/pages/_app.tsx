@@ -6,6 +6,10 @@ import { appWithTranslation } from 'next-i18next';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+
   body {
     margin: 0;
     padding: 0;
