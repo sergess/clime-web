@@ -38,11 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [next-i18next](https://github.com/isaachinman/next-i18next) library is used for localization purposes.
 For more detailed description and examples, please read this [doc](https://github.com/isaachinman/next-i18next#serversidetranslations)
 
-## Styling
-
-Generally, we use CSS-in-JS approach for styling and in particular [styled-components](https://styled-components.com/) library.
-Please see it's [documentation](https://styled-components.com/docs) for more info.
-
 ## Commit messages
 
 [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) spec is used to write commit messages.
