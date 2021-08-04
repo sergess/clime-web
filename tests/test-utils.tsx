@@ -1,14 +1,11 @@
 import { FC, ReactElement } from 'react';
 import { render, RenderResult } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { ChakraProvider } from '@chakra-ui/react';
 
-import { GlobalStyle, theme } from 'src/pages/_app';
+import climeTheme from 'src/theme';
 
 const Providers: FC = ({ children }) => (
-  <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
-  </>
+  <ChakraProvider theme={climeTheme}>{children}</ChakraProvider>
 );
 
 const customRender = (ui: ReactElement, options = {}): RenderResult =>

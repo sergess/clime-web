@@ -3,33 +3,14 @@ import type { AppProps } from 'next/app';
 
 import { ReactElement } from 'react';
 import { appWithTranslation } from 'next-i18next';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { ChakraProvider } from '@chakra-ui/react';
 
-export const GlobalStyle = createGlobalStyle`
-  html {
-    font-family: 'Inter', sans-serif;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
-
-export const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-};
+import climeTheme from 'src/theme';
 
 const App = ({ Component, pageProps }: AppProps): ReactElement => (
-  <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  </>
+  <ChakraProvider theme={climeTheme}>
+    <Component {...pageProps} />
+  </ChakraProvider>
 );
 
 export default appWithTranslation(App);
