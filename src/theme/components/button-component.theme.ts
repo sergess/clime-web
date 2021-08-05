@@ -35,6 +35,16 @@ const Button = {
         boxShadow: 'hover-clime-app-link-box',
       },
     },
+    'expand-card': {
+      bg: 'white',
+      borderTopStartRadius: '0',
+      borderTopEndRadius: '0',
+      borderBottomStartRadius: '2xl',
+      borderBottomEndRadius: '2xl',
+      color: 'blue.500',
+      height: '3rem',
+      textStyle: '14-semi-bold',
+    },
     cta: {
       bg: 'blue.500',
       borderRadius: 'xl',
