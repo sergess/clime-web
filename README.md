@@ -38,6 +38,28 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [next-i18next](https://github.com/isaachinman/next-i18next) library is used for localization purposes.
 For more detailed description and examples, please read this [doc](https://github.com/isaachinman/next-i18next#serversidetranslations)
 
+## Color modes
+
+Chakra UI supports color modes out of the box.
+
+[useColorModeValue](https://chakra-ui.com/docs/features/color-mode#usecolormodevalue) hook helps to provide color mode based styles into components in declarative, flexible way.
+
+Another way how color mode styles could be defined, is to change it in the theme config. 'colorMode' is passed as a function argument when theme is extended.
+
+Example:
+
+```
+const YourComponent = {
+  baseStyle: ({ colorMode }: ThemeComponentProps): StyleProps => ({
+    background: colorMode === 'dark' ? 'gray.400' : 'white',
+    ...etc
+  }),
+  ...etc
+};
+```
+
+Full documantation on color modes you can find [here](https://chakra-ui.com/docs/features/color-mode).
+
 ## Commit messages
 
 [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) spec is used to write commit messages.
