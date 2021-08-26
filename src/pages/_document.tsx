@@ -1,13 +1,33 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentInitialProps,
+  DocumentContext,
+} from 'next/document';
 import { ColorModeScript } from '@chakra-ui/react';
 
 import climeTheme from 'src/theme';
+import { detectLanguageDirection } from 'src/utils';
 
-export default class MyDocument extends Document {
+class Document extends NextDocument {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
+    const initialProps = await NextDocument.getInitialProps(ctx);
+
+    return { ...initialProps };
+  }
+
   render(): JSX.Element {
+    // eslint-disable-next-line no-underscore-dangle
+    const { locale } = this.props.__NEXT_DATA__;
+    const direction = detectLanguageDirection(locale);
+
     return (
-      <Html>
+      <Html dir={direction}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
@@ -32,3 +52,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default Document;
