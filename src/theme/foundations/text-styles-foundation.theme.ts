@@ -1,19 +1,24 @@
 const textStyles = {
-  'main-temperature': {
+  '80-main-temperature': {
     fontSize: '5rem',
     fontWeight: 400,
     letterSpacing: '-4px',
     lineHeight: '5rem',
   },
-  'weather-detail': {
+  '16-weather-detail': {
     fontSize: '1rem',
     fontWeight: 500,
     lineHeight: '1.25rem',
   },
-  'feel-like': {
+  '14-feel-like': {
     fontSize: '0.875rem',
     fontWeight: 500,
     lineHeight: '1rem',
+  },
+  '14-text-body': {
+    fontSize: '0.875rem',
+    fontWeight: 400,
+    lineHeight: '1.125rem',
   },
   '16-bold': {
     fontSize: '1rem',
@@ -55,10 +60,20 @@ const textStyles = {
     fontWeight: 600,
     lineHeight: '0.75rem',
   },
+  '12-medium': {
+    fontSize: '0.75rem',
+    fontWeight: 500,
+    lineHeight: '0.75rem',
+  },
   '10-semi-bold': {
     fontSize: '0.625rem',
     fontWeight: 600,
     lineHeight: '0.625rem',
+  },
+  '8-bold': {
+    fontSize: '0.5rem',
+    fontWeight: 700,
+    lineHeight: '0.5rem',
   },
 };
 
