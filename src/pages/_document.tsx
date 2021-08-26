@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ColorModeScript } from '@chakra-ui/react';
+
+import climeTheme from 'src/theme';
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
@@ -19,6 +22,9 @@ export default class MyDocument extends Document {
         </Head>
 
         <body>
+          <ColorModeScript
+            initialColorMode={climeTheme.config.initialColorMode}
+          />
           <Main />
           <NextScript />
         </body>
