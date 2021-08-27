@@ -38,6 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [next-i18next](https://github.com/isaachinman/next-i18next) library is used for localization purposes.
 For more detailed description and examples, please read this [doc](https://github.com/isaachinman/next-i18next#serversidetranslations)
 
+To get RTL system working, we need to write RTL-aware styles, e.g. 'paddingStart' instead of 'paddingLeft', 'marginEnd' instead of 'marginRight', etc.
+More info you can find [here](https://chakra-ui.com/docs/features/rtl-support#using-rtl-aware-style-props).
+
 ## Color modes
 
 Chakra UI supports color modes out of the box.
