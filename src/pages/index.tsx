@@ -9,20 +9,20 @@ export default function Home(): ReactElement {
   const { t } = useTranslation('common');
 
   return (
-    <div>
+    <>
       <Head>
         <title>{t('Clime Web App')}</title>
       </Head>
-
       <main>
         <h1>{t('Hello')}</h1>
       </main>
-    </div>
+    </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
-    ...(!!locale && (await serverSideTranslations(locale, ['common']))),
+    ...(!!locale &&
+      (await serverSideTranslations(locale, ['common', 'footer']))),
   },
 });

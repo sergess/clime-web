@@ -7,6 +7,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import climeTheme from 'src/theme';
 import { detectLanguageDirection } from 'src/utils';
+import { Layout } from 'src/ui/templates';
 
 const App = ({ Component, pageProps }: AppProps): ReactElement => {
   const { locale } = useRouter();
@@ -15,7 +16,9 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ChakraProvider>
   );
 };
