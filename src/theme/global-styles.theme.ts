@@ -3,6 +3,7 @@ const styles = {
     'html, body': {
       fontFamily: 'Inter, sans-serif',
       color: 'blue.800',
+      h: '100%',
     },
   },
 };
