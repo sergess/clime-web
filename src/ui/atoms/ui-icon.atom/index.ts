@@ -23,3 +23,4 @@ export * from './variants/wind-direction-icon.variant';
 export * from './variants/app-store.variant';
 export * from './variants/google-play.variant';
 export * from './variants/clime-logo-dark.variant';
+export * from './variants/clime-logo-white.variant';

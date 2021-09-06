@@ -5,6 +5,11 @@ const styles = {
       color: 'blue.800',
       h: '100%',
     },
+    '#__next': {
+      d: 'flex',
+      flexDirection: 'column',
+      h: '100%',
+    },
   },
 };
 
