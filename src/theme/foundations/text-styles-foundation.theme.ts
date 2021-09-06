@@ -5,6 +5,11 @@ const textStyles = {
     letterSpacing: '-4px',
     lineHeight: '5rem',
   },
+  '42-main-degree': {
+    fontSize: '2.625rem',
+    fontWeight: 600,
+    lineHeight: '3.1875rem',
+  },
   '16-weather-detail': {
     fontSize: '1rem',
     fontWeight: 500,
