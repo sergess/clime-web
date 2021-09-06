@@ -42,6 +42,7 @@ const Button = {
       borderBottomStartRadius: '2xl',
       borderBottomEndRadius: '2xl',
       color: 'blue.500',
+      width: 'full',
       height: '3rem',
       textStyle: '14-semi-bold',
     },
