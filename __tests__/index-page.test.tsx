@@ -1,6 +1,6 @@
 // [TODO] It's just an example. Delete after first real test is added
 import IndexPage from 'src/pages';
-import { render, screen } from 'tests/test-utils';
+import { render, screen } from '__tests__/utils/design-system.util';
 
 describe('Index page', () => {
   it('should render', () => {
