@@ -7,7 +7,7 @@ import { TodayCard } from 'src/ui/organisms';
 
 export default function Home(): ReactElement {
   return (
-    <div>
+    <>
       <main>
         <TodayCard
           locationExact
@@ -31,12 +31,13 @@ export default function Home(): ReactElement {
           uvIndex={3}
         />
       </main>
-    </div>
+    </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
-    ...(!!locale && (await serverSideTranslations(locale, ['today-card']))),
+    ...(!!locale &&
+      (await serverSideTranslations(locale, ['today-card', 'footer']))),
   },
 });
