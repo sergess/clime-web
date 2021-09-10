@@ -10,7 +10,10 @@ const config: Config.InitialOptions = {
   ],
   setupFilesAfterEnv: ['<rootDir>/__tests__/utils/jest-setup.util.ts'],
   moduleNameMapper: {
-    '^src(.*)$': '<rootDir>/src$1',
+    '^pages(.*)$': '<rootDir>/pages$1',
+    '^client(.*)$': '<rootDir>/client$1',
+    '^server(.*)$': '<rootDir>/server$1',
+    '^common(.*)$': '<rootDir>/common$1',
     '^public(.*)$': '<rootDir>/public$1',
     '^__tests__(.*)$': '<rootDir>/__tests__$1',
   },
