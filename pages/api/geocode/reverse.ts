@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import { Location } from 'common/types';
+import { isString } from 'common/utils';
+
 import { Geocode } from 'server/services';
-import { isString, isValidLatitude, isValidLongitude } from 'server/utils';
+import { isLocationValid } from 'server/utils';
 import {
   withApiV3Service,
   withRequestMethod,
@@ -13,21 +16,14 @@ export const reverseHandler = async (
   service: Geocode
 ): Promise<void> => {
   const { latitude, longitude, language } = req.query;
+  const location: Location = { latitude: +latitude, longitude: +longitude };
 
-  if (
-    !latitude ||
-    !longitude ||
-    !language ||
-    !isValidLatitude(+latitude) ||
-    !isValidLongitude(+longitude) ||
-    !isString(language)
-  ) {
+  if (!language || !isLocationValid(location) || !isString(language)) {
     return res.status(400).end('Bad request');
   }
 
   const locationData = await service.getLocationDataByCoordinates({
-    latitude: +latitude,
-    longitude: +longitude,
+    ...location,
     language: language as string,
   });
 

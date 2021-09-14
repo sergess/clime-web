@@ -1,4 +1,4 @@
-import { isString } from '../is-string.util';
+import { isString } from 'common/utils';
 
 export const isNumeric = (value: string | unknown): boolean => {
   if (!isString(value)) return false;

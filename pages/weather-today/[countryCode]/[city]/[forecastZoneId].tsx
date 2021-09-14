@@ -4,12 +4,9 @@ import useSWR from 'swr';
 
 import { withForecastFeed } from 'server/middlewares/get-server-side-props';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 const WeatherToday = (): ReactElement => {
   const { data, error } = useSWR(
-    `/api/feed/forecast?forecastZoneId=1&language=en`,
-    fetcher
+    `/api/feed/forecast?forecastZoneId=1&language=en`
   );
 
   if (error) return <div>Failed to load</div>;

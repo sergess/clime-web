@@ -7,6 +7,8 @@ export class Forecast extends BaseApiV3Service {
     forecastZoneId,
     language,
   }: ForecastFeedArguments): Promise<ForecastFeedResponse | null> {
+    if (!forecastZoneId) return null;
+
     const forecastFeed = await this.callAsync<ForecastFeedResponse>(
       `/feed/forecast/${language}/${forecastZoneId}`
     );

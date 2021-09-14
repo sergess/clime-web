@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { SWRConfig } from 'swr';
 
 import climeTheme from 'client/theme';
-import { detectLanguageDirection } from 'client/utils';
+import { detectLanguageDirection, fetcher } from 'client/utils';
 import { Layout } from 'client/design-system/templates';
 
 const App = ({ Component, pageProps }: AppProps): ReactElement => {
@@ -16,9 +17,11 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <SWRConfig value={{ fetcher }}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SWRConfig>
     </ChakraProvider>
   );
 };

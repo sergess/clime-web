@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import { isString } from 'common/utils';
+
 import { Forecast } from 'server/services';
-import { isString, isNumeric } from 'server/utils';
+import { isNumeric } from 'server/utils';
 import {
   withApiV3Service,
   withRequestMethod,

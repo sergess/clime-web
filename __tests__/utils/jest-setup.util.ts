@@ -13,3 +13,10 @@ jest.mock('next/dynamic', () => () => {
 
   return DynamicComponent;
 });
+
+// eslint-disable-next-line
+// @ts-ignore
+global.navigator.geolocation = {
+  getCurrentPosition: jest.fn(),
+  watchPosition: jest.fn(),
+};

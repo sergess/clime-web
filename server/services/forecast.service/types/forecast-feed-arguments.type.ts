@@ -1,5 +1,5 @@
 export type ForecastFeedArguments = {
-  forecastZoneId: string;
+  forecastZoneId: string | number | null;
   language: string;
 };
 
