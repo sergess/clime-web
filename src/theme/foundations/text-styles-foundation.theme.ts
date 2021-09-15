@@ -25,6 +25,11 @@ const textStyles = {
     fontWeight: 400,
     lineHeight: '1.125rem',
   },
+  '24-bold': {
+    fontSize: '1.5rem',
+    fontWeight: 700,
+    lineHeight: '1.75rem',
+  },
   '16-bold': {
     fontSize: '1rem',
     fontWeight: 700,

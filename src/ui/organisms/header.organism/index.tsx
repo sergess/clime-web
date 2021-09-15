@@ -4,6 +4,7 @@ import { Box, Container, useDisclosure, useMediaQuery } from '@chakra-ui/react';
 import { ClimeLogoWhiteIcon } from 'src/ui/atoms';
 import { Search, SettingsToggler } from 'src/ui/molecules';
 import climeTheme from 'src/theme';
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from 'src/constants';
 
 export const Header = (): ReactElement => {
   const { isOpen: settingsOpened, onToggle: onSettingsOpenedToggle } =
@@ -25,12 +26,17 @@ export const Header = (): ReactElement => {
     <>
       <Box
         as="header"
+        h={[
+          `${MOBILE_HEADER_HEIGHT}px`,
+          `${MOBILE_HEADER_HEIGHT}px`,
+          `${DESKTOP_HEADER_HEIGHT}px`,
+        ]}
         top="0px"
         bg="white"
         w="full"
         boxShadow="header"
-        py={['4', '4', '5']}
         px={['4', '4', '2.5']}
+        d="flex"
         flex="0 0 auto"
       >
         <Container
