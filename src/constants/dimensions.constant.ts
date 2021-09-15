@@ -1,0 +1,2 @@
+export const MOBILE_HEADER_HEIGHT = 56;
+export const DESKTOP_HEADER_HEIGHT = 68;

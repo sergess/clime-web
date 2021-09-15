@@ -24,3 +24,4 @@ export * from './variants/app-store.variant';
 export * from './variants/google-play.variant';
 export * from './variants/clime-logo-dark.variant';
 export * from './variants/clime-logo-white.variant';
+export * from './variants/logo-404-icon.variant';
