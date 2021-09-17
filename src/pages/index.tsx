@@ -1,11 +1,13 @@
-import { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import { GetServerSideProps } from 'next';
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 import { TodayCard } from 'src/ui/organisms';
 
 export default function Home(): ReactElement {
+  const { t } = useTranslation('today-page');
+
   return (
     <>
       <main>
@@ -39,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
     ...(!!locale &&
       (await serverSideTranslations(locale, [
-        'today-card',
+        'today-page',
         'footer',
         'header',
       ]))),
