@@ -22,9 +22,10 @@ import {
   InfoUvIcon,
   InfoHumidityIcon,
   InfoPressureIcon,
- InfoBlocksRow } from 'src/ui/atoms';
+  InfoBlocksRow,
+} from 'src/ui/atoms';
 
-import { InfoBlockWithIcon, MinMaxTemperature } from 'src/ui/molecules';
+import { InfoBlockWithIcon, MinMaxTemperatureRow } from 'src/ui/molecules';
 
 import { TodayCardProps } from './types';
 
@@ -49,7 +50,7 @@ export const TodayCard = ({
   pressure,
   pressureUnit,
 }: TodayCardProps): ReactElement => {
-  const { t } = useTranslation('today-card');
+  const { t } = useTranslation('today-page');
   const { isOpen: cardOpened, onToggle: onCardOpenedToggle } = useDisclosure();
   const [widthSmallerThanMedium, setWidthSmallerThanMedium] = useState(true);
   const [widthLargerThanMedium] = useMediaQuery(
@@ -108,7 +109,7 @@ export const TodayCard = ({
               </Flex>
             </Flex>
 
-            <MinMaxTemperature min={minTemperature} max={maxTemperature} />
+            <MinMaxTemperatureRow min={minTemperature} max={maxTemperature} />
           </Flex>
         </Flex>
 
