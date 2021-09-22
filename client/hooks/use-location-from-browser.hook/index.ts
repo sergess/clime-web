@@ -1,18 +1,19 @@
-import { useState } from 'react';
-
-import { useClientEffect } from 'client/hooks/use-client-effect.hook';
+import { useState, useEffect } from 'react';
 
 import { Location } from 'common/types';
 
 import { UseLocationFromBrowserType } from './types';
 
+import { useHasMounted } from '../use-has-mounted.hook';
+
 export const useLocationFromBrowser = ({
   skip = false,
 }: UseLocationFromBrowserType): Location | null => {
   const [browserLocation, setBrowserLocation] = useState<Location | null>(null);
+  const hasMounted = useHasMounted();
 
-  useClientEffect(() => {
-    if (skip) return;
+  useEffect(() => {
+    if (!hasMounted || skip) return;
 
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
@@ -20,7 +21,7 @@ export const useLocationFromBrowser = ({
 
       setBrowserLocation(location);
     });
-  }, []);
+  }, [hasMounted, skip]);
 
   return browserLocation;
 };

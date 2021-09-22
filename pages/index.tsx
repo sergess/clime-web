@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TodayCard } from 'client/design-system/organisms';
 import {
-  useClientEffect,
+  useHasMounted,
   useCookies,
   useLocationFromBrowser,
   useLocationDataByCoordinates,
@@ -29,9 +29,10 @@ const Index = (): ReactElement => {
     skip: !!forecastZoneIdCookie,
   });
   const { data: locationData } = useLocationDataByCoordinates(browserLocation);
+  const hasMounted = useHasMounted();
 
-  useClientEffect(() => {
-    if (locationData && !forecastZoneIdCookie) {
+  useEffect(() => {
+    if (hasMounted && locationData && !forecastZoneIdCookie) {
       const { countryCode, city, forecastZoneId } = locationData;
 
       setForecastZoneIdCookie(
@@ -44,32 +45,12 @@ const Index = (): ReactElement => {
         encodeURI(`/weather-today/${countryCode}/${city}/${forecastZoneId}`)
       );
     }
-  }, [locationData, forecastZoneIdCookie]);
+  }, [hasMounted, locationData, forecastZoneIdCookie]);
 
   return (
     <>
       <main>
-        <TodayCard
-          locationExact
-          location="Minneapolis, MN"
-          time="7:15pm"
-          weatherStateId="smk:md"
-          currentTemperature={89}
-          feelsLikeTemperature={94}
-          minTemperature={76}
-          maxTemperature={89}
-          stateText="Moderate or heavy rain area with thunder"
-          windDegree={270}
-          windSpeed={25}
-          windSpeedUnit="ms"
-          precipitationChance={50}
-          precipitation={3.44}
-          precipitationUnit="mm"
-          pressure={30.01}
-          pressureUnit="in"
-          humidity={80}
-          uvIndex={3}
-        />
+        <TodayCard locationExact />
       </main>
     </>
   );
@@ -97,7 +78,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      forecastFeed,
+      initialState: {
+        forecastFeed,
+      },
+
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'today-card',

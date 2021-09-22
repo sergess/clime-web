@@ -16,6 +16,7 @@ const config: Config.InitialOptions = {
     '^common(.*)$': '<rootDir>/common$1',
     '^public(.*)$': '<rootDir>/public$1',
     '^__tests__(.*)$': '<rootDir>/__tests__$1',
+    '^__mocks__(.*)$': '<rootDir>/__mocks__$1',
   },
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],

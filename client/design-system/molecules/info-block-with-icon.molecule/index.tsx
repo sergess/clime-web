@@ -24,7 +24,7 @@ export const InfoBlockWithIcon = ({
         {label}
       </Text>
       <Text textStyle="16-semi-bold" color="blue.800">
-        {text || '-'}
+        {text}
       </Text>
     </Flex>
   </Flex>

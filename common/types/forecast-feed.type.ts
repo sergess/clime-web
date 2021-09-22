@@ -1,9 +1,9 @@
 import { CurrentCondition } from './current-condition.type';
 import { DayCondition } from './day-condition.type';
 
-export type ForecastFeedResponse = {
+export type ForecastFeed = {
   cur: CurrentCondition;
   frst: DayCondition[];
 };
 
-export default ForecastFeedResponse;
+export default ForecastFeed;

@@ -1,15 +1,17 @@
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 
-import { ForecastFeedArguments, ForecastFeedResponse } from './types';
+import { ForecastFeed } from 'common/types';
+
+import { ForecastFeedArguments } from './types';
 
 export class Forecast extends BaseApiV3Service {
   public async getForecastFeed({
     forecastZoneId,
     language,
-  }: ForecastFeedArguments): Promise<ForecastFeedResponse | null> {
+  }: ForecastFeedArguments): Promise<ForecastFeed | null> {
     if (!forecastZoneId) return null;
 
-    const forecastFeed = await this.callAsync<ForecastFeedResponse>(
+    const forecastFeed = await this.callAsync<ForecastFeed>(
       `/feed/forecast/${language}/${forecastZoneId}`
     );
 
