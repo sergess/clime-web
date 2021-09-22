@@ -7,5 +7,9 @@
   "Humidity": "Humidity",
   "Pressure": "Pressure",
   "Hide": "Hide",
-  "Show more": "Show more"
+  "Show more": "Show more",
+  "Hourly Forecast": "Hourly Forecast",
+  "Explore hourly forecast": "Explore hourly forecast",
+  "Explore 10-day forecast": "Explore 10-day forecast",
+  "Daily Forecast": "Daily Forecast"
 }

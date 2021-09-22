@@ -3,10 +3,10 @@ import { Flex, Text } from '@chakra-ui/react';
 
 import { Arrow1Icon, ClientOnly } from 'client/design-system/atoms';
 
-import { MinMaxTemperatureProps } from './types';
+import { MinMaxTemperatureRowProps } from './types';
 
-export const MinMaxTemperature = memo(
-  ({ max, min }: MinMaxTemperatureProps): ReactElement => (
+export const MinMaxTemperatureRow = memo(
+  ({ max, min }: MinMaxTemperatureRowProps): ReactElement => (
     <Flex>
       <Flex pr={2} borderRight="1px solid" borderColor="gray.100">
         <Arrow1Icon stroke="orange.400" boxSize="14px" mr={1} />
@@ -29,6 +29,6 @@ export const MinMaxTemperature = memo(
   )
 );
 
-MinMaxTemperature.displayName = 'MinMaxTemperature';
+MinMaxTemperatureRow.displayName = 'MinMaxTemperatureRow';
 
-export default MinMaxTemperature;
+export default MinMaxTemperatureRow;

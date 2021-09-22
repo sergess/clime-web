@@ -28,7 +28,7 @@ import {
 } from 'client/design-system/atoms';
 import {
   InfoBlockWithIcon,
-  MinMaxTemperature,
+  MinMaxTemperatureRow,
 } from 'client/design-system/molecules';
 import {
   pressureUnitAtom,
@@ -63,7 +63,7 @@ export const TodayCard = memo(
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
 
-    const { t } = useTranslation('today-card');
+    const { t } = useTranslation('today-page');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
     const [widthSmallerThanMedium, setWidthSmallerThanMedium] = useState(true);
@@ -122,7 +122,7 @@ export const TodayCard = memo(
                 </Flex>
               </Flex>
 
-              <MinMaxTemperature min={minTemperature} max={maxTemperature} />
+              <MinMaxTemperatureRow min={minTemperature} max={maxTemperature} />
             </Flex>
           </Flex>
 
