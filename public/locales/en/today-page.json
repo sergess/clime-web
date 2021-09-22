@@ -1,7 +1,7 @@
 {
   "Feels like {{feelsLikeTemperature}}°": "Feels like \n{{feelsLikeTemperature}}°",
   "Precipitation chance {{precipitationChance}}%": "Precipitation chance {{precipitationChance}}%",
-  "{{azimuth}} wind at {{windSpeed}}": "{{azimuth}} wind at {{windSpeed}}",
+  "{{azimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{azimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
   "Precipitation": "Precipitation",
   "UV Index": "UV Index",
   "Humidity": "Humidity",
