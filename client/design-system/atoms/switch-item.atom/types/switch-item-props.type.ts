@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 export type SwitchItemProps = {
   content: ReactElement | string;
-  onSelect: () => void;
+  onClick: () => void;
   selected: boolean;
 };
 

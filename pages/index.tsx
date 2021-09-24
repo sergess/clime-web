@@ -30,8 +30,6 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { Forecast } from 'server/services';
 
-import { RenderButtonProps } from 'client/design-system/molecules/switch-selector.molecule/types';
-
 const Index = (): ReactElement => {
   const router = useRouter();
   const { cookies: forecastZoneIdCookie, setCookie: setForecastZoneIdCookie } =
@@ -59,82 +57,22 @@ const Index = (): ReactElement => {
   }, [hasMounted, locationData, forecastZoneIdCookie]);
 
   // [TODO] after review will be removed
-  type DataProps = {
-    text: string;
+  // const data: Array<ReactElement> = [<SummaryTemperatureIcon boxSize="6" />, <SummaryWindIcon boxSize="6" />, <SummaryPrecipitationIcon boxSize="6" />];
+  const pressure: Array<string> = ['inches', 'mm', 'mbar'];
+
+  const currentValue = (item: number) => {
+    console.log(item);
   };
-
-  const data: DataProps[] = [
-    {
-      text: 'inches',
-    },
-    {
-      text: 'mm',
-    },
-    {
-      text: 'mbar',
-    },
-  ];
-
-  type Data2Props = {
-    icon: ReactElement;
-  };
-
-  const data2: Data2Props[] = [
-    {
-      icon: <SummaryTemperatureIcon boxSize="6" />,
-    },
-    {
-      icon: <SummaryPrecipitationIcon boxSize="6" />,
-    },
-    {
-      icon: <SummaryWindIcon boxSize="6" />,
-    },
-  ];
-
-  const textButtons = ({
-    index,
-    onSelect,
-    item,
-    selectedItem,
-  }: RenderButtonProps<DataProps>): ReactElement => (
-    <SwitchItem
-      key={index}
-      onSelect={() => onSelect(index)}
-      selected={selectedItem === index}
-      content={
-        <Text px="2.5" lineHeight="36px">
-          {item.text}
-        </Text>
-      }
-    />
-  );
-
-  const iconButtons = ({
-    index,
-    onSelect,
-    item,
-    selectedItem,
-  }: RenderButtonProps<Data2Props>) => (
-    <SwitchItem
-      key={index}
-      onSelect={() => onSelect(index)}
-      selected={selectedItem === index}
-      content={
-        <Flex align="center" h="28px">
-          {item.icon}
-        </Flex>
-      }
-    />
-  );
 
   return (
     <>
       <main>
         <TodayCard locationExact />
 
-        <SwitchSelector renderButton={textButtons} data={data} />
-
-        <SwitchSelector renderButton={iconButtons} data={data2} />
+        <SwitchSelector
+          data={pressure}
+          onSelect={(item) => currentValue(item)}
+        />
       </main>
     </>
   );

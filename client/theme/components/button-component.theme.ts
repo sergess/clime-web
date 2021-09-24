@@ -73,6 +73,35 @@ const Button = {
         opacity: 1,
       },
     },
+    'switch-item': {
+      borderRadius: 'md',
+      color: 'blue.500',
+      textStyle: '14-bold',
+      p: '0.125rem',
+      bg: 'none',
+
+      _hover: {
+        shadow: 'switch-button',
+        bg: 'white',
+
+        _disabled: {
+          opacity: 1,
+          shadow: 'switch-button',
+          bg: 'white',
+        },
+      },
+
+      _disabled: {
+        bg: 'white',
+        opacity: 1,
+        shadow: 'switch-button',
+      },
+
+      _active: {
+        bg: 'white',
+        shadow: 'switch-button',
+      },
+    },
   },
 };
 

@@ -1,26 +1,16 @@
 import React, { ReactElement } from 'react';
-import { Flex } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 import { SwitchItemProps } from './types';
 
 export const SwitchItem = ({
   selected,
-  onSelect,
   content,
+  onClick,
 }: SwitchItemProps): ReactElement => (
-  <Flex
-    cursor="pointer"
-    alignItems="center"
-    bg={selected ? 'white' : 'none'}
-    borderRadius="md"
-    shadow={selected ? 'switch-button' : 'none'}
-    color="blue.500"
-    p="0.5"
-    textStyle="14-bold"
-    onClick={onSelect}
-  >
+  <Button variant="switch-item" disabled={selected && true} onClick={onClick}>
     {content}
-  </Flex>
+  </Button>
 );
 
 export default SwitchItem;
