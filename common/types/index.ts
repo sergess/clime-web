@@ -5,3 +5,4 @@ export * from './day-summary.type';
 export * from './forecast-feed.type';
 export * from './location.type';
 export * from './tide-condition.type';
+export * from './location-data.type';

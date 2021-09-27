@@ -1,6 +1,5 @@
 export type SearchProps = {
-  onSearch: () => void;
-  active: boolean;
+  onSearchEnd: () => void;
 };
 
 export default SearchProps;

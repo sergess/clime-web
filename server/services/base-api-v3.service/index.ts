@@ -29,7 +29,9 @@ export class BaseApiV3 extends BaseService {
 
   private generateSignature(uri: string, timestamp: string): string {
     return md5(
-      `${uri}${this.userAgent}${timestamp}${process.env.API_SECRET_KEY}`
+      `${encodeURI(uri)}${this.userAgent}${timestamp}${
+        process.env.API_SECRET_KEY
+      }`
     );
   }
 

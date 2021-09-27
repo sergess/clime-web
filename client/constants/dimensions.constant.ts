@@ -1,2 +1,3 @@
 export const MOBILE_HEADER_HEIGHT = 56;
 export const DESKTOP_HEADER_HEIGHT = 68;
+export const LAYOUT_HORIZONTAL_PADDING = [2.5, 4];

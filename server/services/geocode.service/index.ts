@@ -1,8 +1,9 @@
+import { LocationData } from 'common/types';
+
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 
 import {
   LocationDataByCoordinatesArguments,
-  LocationData,
   AutocompleteArguments,
   SearchArguments,
 } from './types';
