@@ -11,5 +11,13 @@
   "Hourly Forecast": "Hourly Forecast",
   "Explore hourly forecast": "Explore hourly forecast",
   "Explore 10-day forecast": "Explore 10-day forecast",
-  "Daily Forecast": "Daily Forecast"
+  "Daily Forecast": "Daily Forecast",
+  "mph": "mph",
+  "kmh": "kmh",
+  "ms": "ms",
+  "inches": "inches",
+  "mm": "mm",
+  "mbar": "mbar",
+  "miles": "miles",
+  "kilometers": "kilometers"
 }

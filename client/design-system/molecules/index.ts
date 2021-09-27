@@ -5,4 +5,4 @@ export * from './search.molecule';
 export * from './settings-toggler.molecule';
 export * from './selectable-column-block.molecule';
 export * from './min-max-temperature-column.molecule';
-export * from './switch-selector.molecule';
+export * from './radio-group.molecule';

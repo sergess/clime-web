@@ -1,18 +1,13 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { Text, Flex } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TodayCard } from 'client/design-system/organisms';
-import { SwitchSelector } from 'client/design-system/molecules';
-import {
-  SwitchItem,
-  SummaryTemperatureIcon,
-  SummaryPrecipitationIcon,
-  SummaryWindIcon,
-} from 'client/design-system/atoms';
+import { RadioGroup } from 'client/design-system/molecules';
 
 import {
   useHasMounted,
@@ -30,6 +25,11 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { Forecast } from 'server/services';
 
+import {
+  SettingsRadioGroupProps,
+  OptionsRadioGroupProps,
+} from 'client/design-system/molecules/radio-group.molecule/types';
+
 const Index = (): ReactElement => {
   const router = useRouter();
   const { cookies: forecastZoneIdCookie, setCookie: setForecastZoneIdCookie } =
@@ -39,6 +39,8 @@ const Index = (): ReactElement => {
   });
   const { data: locationData } = useLocationDataByCoordinates(browserLocation);
   const hasMounted = useHasMounted();
+
+  const { t } = useTranslation('today-page');
 
   useEffect(() => {
     if (hasMounted && locationData && !forecastZoneIdCookie) {
@@ -57,11 +59,39 @@ const Index = (): ReactElement => {
   }, [hasMounted, locationData, forecastZoneIdCookie]);
 
   // [TODO] after review will be removed
-  // const data: Array<ReactElement> = [<SummaryTemperatureIcon boxSize="6" />, <SummaryWindIcon boxSize="6" />, <SummaryPrecipitationIcon boxSize="6" />];
-  const pressure: Array<string> = ['inches', 'mm', 'mbar'];
+  const settings: SettingsRadioGroupProps = {
+    name: 'settingsPressure',
+    defaultValue: 'mm',
+  };
+  const options: Array<OptionsRadioGroupProps> = [
+    {
+      value: 'inches',
+      label: (
+        <Text px="2.5" lineHeight="36px">
+          {t('inches')}
+        </Text>
+      ),
+    },
+    {
+      value: 'mm',
+      label: (
+        <Text px="2.5" lineHeight="36px">
+          {t('mm')}
+        </Text>
+      ),
+    },
+    {
+      value: 'mbar',
+      label: (
+        <Text px="2.5" lineHeight="36px">
+          {t('mbar')}
+        </Text>
+      ),
+    },
+  ];
 
-  const currentValue = (item: number) => {
-    console.log(item);
+  const onSelected = (value: string) => {
+    console.log(value);
   };
 
   return (
@@ -69,9 +99,10 @@ const Index = (): ReactElement => {
       <main>
         <TodayCard locationExact />
 
-        <SwitchSelector
-          data={pressure}
-          onSelect={(item) => currentValue(item)}
+        <RadioGroup
+          options={options}
+          settings={settings}
+          onSelected={onSelected}
         />
       </main>
     </>
