@@ -7,7 +7,8 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TodayCard } from 'client/design-system/organisms';
-import { RadioGroup } from 'client/design-system/molecules';
+import { SwitchSelector } from 'client/design-system/molecules';
+import { ClientOnly } from 'client/design-system/atoms';
 
 import {
   useHasMounted,
@@ -25,10 +26,7 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { Forecast } from 'server/services';
 
-import {
-  SettingsRadioGroupProps,
-  OptionsRadioGroupProps,
-} from 'client/design-system/molecules/radio-group.molecule/types';
+import { OptionsRadioGroupProps } from 'client/design-system/molecules/switch-selector.molecule/types';
 
 const Index = (): ReactElement => {
   const router = useRouter();
@@ -59,10 +57,6 @@ const Index = (): ReactElement => {
   }, [hasMounted, locationData, forecastZoneIdCookie]);
 
   // [TODO] after review will be removed
-  const settings: SettingsRadioGroupProps = {
-    name: 'settingsPressure',
-    defaultValue: 'mm',
-  };
   const options: Array<OptionsRadioGroupProps> = [
     {
       value: 'inches',
@@ -99,11 +93,14 @@ const Index = (): ReactElement => {
       <main>
         <TodayCard locationExact />
 
-        <RadioGroup
-          options={options}
-          settings={settings}
-          onSelected={onSelected}
-        />
+        <ClientOnly>
+          <SwitchSelector
+            options={options}
+            name="settingsPressure"
+            defaultValue="mm"
+            onSelected={onSelected}
+          />
+        </ClientOnly>
       </main>
     </>
   );

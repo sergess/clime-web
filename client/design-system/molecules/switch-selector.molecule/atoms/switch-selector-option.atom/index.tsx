@@ -1,15 +1,15 @@
 import React, { ReactElement } from 'react';
 import { Box, useRadio, UseRadioProps } from '@chakra-ui/react';
 
-import { RadioCardProps } from './types';
+import { SwitchSelectorOptionProps } from './types';
 
-export const RadioCard = (
-  props: UseRadioProps & RadioCardProps
-): ReactElement => {
-  const { getInputProps, getCheckboxProps } = useRadio(props);
+export const SwitchSelectorOption = ({
+  children,
+  ...radioProps
+}: UseRadioProps & SwitchSelectorOptionProps): ReactElement => {
+  const { getInputProps, getCheckboxProps } = useRadio(radioProps);
   const input = getInputProps();
   const checkbox = getCheckboxProps();
-  const { children } = props;
 
   return (
     <Box as="label">
@@ -37,4 +37,4 @@ export const RadioCard = (
   );
 };
 
-export default RadioCard;
+export default SwitchSelectorOption;
