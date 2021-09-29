@@ -1,29 +1,34 @@
 import React, { ReactElement } from 'react';
-import { Box, IconButton, Container, useDisclosure } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
-import { ClimeLogoWhiteIcon, SearchIcon } from 'client/design-system/atoms';
-import { SettingsToggler } from 'client/design-system/molecules';
+import { ClimeLogoWhiteIcon, ClientOnly } from 'client/design-system/atoms';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
   LAYOUT_HORIZONTAL_PADDING,
 } from 'client/constants';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+
+import { useUiState } from './hooks';
 
 const Search = dynamic(
   () => import('client/design-system/organisms/search.organism')
 );
+const Settings = dynamic(
+  () => import('client/design-system/organisms/settings.organism')
+);
 
 export const Header = (): ReactElement => {
-  const { isOpen: settingsOpened, onToggle: onSettingsOpenedToggle } =
-    useDisclosure();
   const {
-    isOpen: searchActive,
-    onOpen: onSearchOpen,
-    onClose: onSearchClose,
-  } = useDisclosure();
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    searchOpened,
+    searchVisible,
+    onSearchClose,
+    onSearchOpen,
+    settingsOpened,
+    settingsVisible,
+    onSettingsOpen,
+    onSettingsClose,
+  } = useUiState();
 
   return (
     <Box
@@ -56,32 +61,25 @@ export const Header = (): ReactElement => {
         />
 
         <Box w="full" d="flex" justifyContent="flex-end" alignItems="center">
-          {!(screenWidthSmallerThanMedium && settingsOpened) &&
-            (searchActive ? (
-              <Search onSearchEnd={onSearchClose} />
-            ) : (
-              <IconButton
-                variant="ghost"
-                borderRadius="full"
-                onClick={onSearchOpen}
-                aria-label="Location search"
-                minW="auto"
-                p="0 0.625em"
-                _hover={{
-                  bg: 'gray.50',
-                }}
-                icon={<SearchIcon boxSize={6} />}
+          <ClientOnly>
+            {searchVisible && (
+              <Search
+                onOpen={onSearchOpen}
+                onClose={onSearchClose}
+                opened={searchOpened}
               />
-            ))}
+            )}
+          </ClientOnly>
 
-          {/* [TOOD] Fix propagation after search is closed on mobile */}
-          {!(screenWidthSmallerThanMedium && searchActive) && (
-            <SettingsToggler
-              onSetting={onSettingsOpenedToggle}
-              active={settingsOpened}
-              temperatureUnit="F"
-            />
-          )}
+          <ClientOnly>
+            {settingsVisible && (
+              <Settings
+                onOpen={onSettingsOpen}
+                onClose={onSettingsClose}
+                opened={settingsOpened}
+              />
+            )}
+          </ClientOnly>
         </Box>
       </Container>
     </Box>

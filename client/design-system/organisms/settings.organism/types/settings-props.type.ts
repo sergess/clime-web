@@ -1,7 +1,7 @@
 export type SettingsTogglerProps = {
-  temperatureUnit: string;
-  onSetting: () => void;
-  active: boolean;
+  opened: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 };
 
 export default SettingsTogglerProps;

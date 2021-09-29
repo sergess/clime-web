@@ -1,14 +1,10 @@
-import React, { ReactElement, ReactNode, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { Text } from '@chakra-ui/react';
-import { useTranslation } from 'next-i18next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TodayCard } from 'client/design-system/organisms';
-import { SwitchSelector } from 'client/design-system/molecules';
-import { ClientOnly } from 'client/design-system/atoms';
 
 import {
   useHasMounted,
@@ -26,8 +22,6 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { Forecast } from 'server/services';
 
-import { OptionsRadioGroupProps } from 'client/design-system/molecules/switch-selector.molecule/types';
-
 const Index = (): ReactElement => {
   const router = useRouter();
   const { cookies: forecastZoneIdCookie, setCookie: setForecastZoneIdCookie } =
@@ -37,8 +31,6 @@ const Index = (): ReactElement => {
   });
   const { data: locationData } = useLocationDataByCoordinates(browserLocation);
   const hasMounted = useHasMounted();
-
-  const { t } = useTranslation('today-page');
 
   useEffect(() => {
     if (hasMounted && locationData && !forecastZoneIdCookie) {
@@ -56,54 +48,7 @@ const Index = (): ReactElement => {
     }
   }, [hasMounted, locationData, forecastZoneIdCookie]);
 
-  // [TODO] after review will be removed
-  const options: Array<OptionsRadioGroupProps> = [
-    {
-      value: 'inches',
-      label: (
-        <Text px="2.5" lineHeight="36px">
-          {t('inches')}
-        </Text>
-      ),
-    },
-    {
-      value: 'mm',
-      label: (
-        <Text px="2.5" lineHeight="36px">
-          {t('mm')}
-        </Text>
-      ),
-    },
-    {
-      value: 'mbar',
-      label: (
-        <Text px="2.5" lineHeight="36px">
-          {t('mbar')}
-        </Text>
-      ),
-    },
-  ];
-
-  const onSelected = (value: string) => {
-    console.log(value);
-  };
-
-  return (
-    <>
-      <main>
-        <TodayCard locationExact />
-
-        <ClientOnly>
-          <SwitchSelector
-            options={options}
-            name="settingsPressure"
-            defaultValue="mm"
-            onSelected={onSelected}
-          />
-        </ClientOnly>
-      </main>
-    </>
-  );
+  return <TodayCard locationExact />;
 };
 
 export default Index;
@@ -134,9 +79,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
       ...(!!locale &&
         (await serverSideTranslations(locale, [
-          'today-page',
-          'footer',
-          'header',
+          'common',
+          'weather-today-page',
         ]))),
     },
   };

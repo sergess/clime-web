@@ -1,9 +1,9 @@
-import { SwitchSelectorOptionsProps } from './switch-selector-options-props.type';
+import { SwitchSelectorOptions } from './switch-selector-options.type';
 
 export type SwitchSelectorProps = {
-  options: SwitchSelectorOptionsProps[];
+  options: SwitchSelectorOptions[];
   name: string;
-  defaultValue: string;
+  value: string;
   onSelected: (value: string) => void;
 };
 

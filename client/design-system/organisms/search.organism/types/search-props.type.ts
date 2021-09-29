@@ -1,5 +1,7 @@
 export type SearchProps = {
-  onSearchEnd: () => void;
+  opened: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 };
 
 export default SearchProps;

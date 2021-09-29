@@ -1,4 +1,10 @@
-import React, { ReactElement, useEffect, useState, useRef } from 'react';
+import React, {
+  ReactElement,
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import Link from 'next/link';
 
 import {
@@ -10,9 +16,12 @@ import {
   Spinner,
   LinkBox,
   LinkOverlay,
-  useOutsideClick,
   IconButton,
   Center,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Portal,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
@@ -20,19 +29,22 @@ import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
 import {
   CloseIcon,
   Arrow2Icon,
+  SearchIcon,
   HeaderCardPopoverRow,
+  HeaderPopoverOverlay,
 } from 'client/design-system/atoms';
-import { HeaderCardPopover } from 'client/design-system/molecules';
 
 import { LocationData } from 'common/types';
 
 import { SearchProps } from './types';
 
-export const Search = ({ onSearchEnd }: SearchProps): ReactElement => {
-  const { t } = useTranslation('header');
+export const Search = ({
+  opened,
+  onOpen,
+  onClose,
+}: SearchProps): ReactElement => {
+  const { t } = useTranslation('common');
 
-  const suggestionsRef = useRef<HTMLDivElement>(null);
-  const searchGroupRef = useRef(null);
   const searchInputRef = useRef(null);
 
   const [location, setLocation] = useState<string>('');
@@ -40,30 +52,24 @@ export const Search = ({ onSearchEnd }: SearchProps): ReactElement => {
 
   const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
-  useOutsideClick({
-    ref: searchInputRef,
-    handler: ({ target }) => {
-      if (
-        suggestionsRef.current &&
-        !suggestionsRef?.current?.contains(target as Node)
-      ) {
-        onSearchEnd();
+  const onLocationChange = useCallback(
+    ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      setLocation(target.value);
+
+      if (target.value.length < 2) {
+        setSuggestions(null);
       }
     },
-  });
-
-  const onLocationChange = ({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setLocation(target.value);
-
-    if (target.value.length < 2) {
-      setSuggestions(null);
-    }
-  };
+    []
+  );
 
   const { data: autocompleteResults, error } = useAutocomplete(location);
   const loading = !!autocompleteResults && !autocompleteResults && !error;
+
+  useEffect(() => {
+    setLocation('');
+    setSuggestions(null);
+  }, [opened]);
 
   useEffect(() => {
     if (autocompleteResults) {
@@ -75,10 +81,17 @@ export const Search = ({ onSearchEnd }: SearchProps): ReactElement => {
     }
   }, [autocompleteResults]);
 
-  return (
-    <HeaderCardPopover
-      trigger={
-        <InputGroup ref={searchGroupRef} maxW={{ base: '100%', md: '380px' }}>
+  return opened ? (
+    <Popover
+      isOpen={opened}
+      placement="bottom"
+      gutter={screenWidthSmallerThanMedium ? 26 : 36}
+      variant="search-card"
+      initialFocusRef={searchInputRef}
+      matchWidth={!screenWidthSmallerThanMedium}
+    >
+      <PopoverTrigger>
+        <InputGroup maxW={{ base: '100%', md: '380px' }}>
           <Input
             autoFocus
             ref={searchInputRef}
@@ -102,10 +115,7 @@ export const Search = ({ onSearchEnd }: SearchProps): ReactElement => {
             <IconButton
               variant="ghost"
               borderRadius="full"
-              onClick={(e) => {
-                e.stopPropagation();
-                onSearchEnd();
-              }}
+              onClick={onClose}
               aria-label="Location search"
               _hover={{
                 bg: 'transparent',
@@ -114,59 +124,76 @@ export const Search = ({ onSearchEnd }: SearchProps): ReactElement => {
             />
           </InputRightElement>
         </InputGroup>
-      }
-      content={
-        <Flex ref={suggestionsRef} direction="column" w="100%">
-          {suggestions &&
-            suggestions.length > 0 &&
-            suggestions.map(
-              (
-                {
-                  city,
-                  country,
-                  countryCode,
-                  forecastZoneId,
-                  latitude,
-                  longitude,
-                },
-                i
-              ) => (
-                <HeaderCardPopoverRow
-                  key={`${forecastZoneId}-${latitude}-${longitude}`}
-                  first={i === 0}
-                >
-                  <LinkBox as={Flex} w="100%" direction="column" px={4}>
-                    <Flex justify="space-between" py="1.125em">
-                      <Text
-                        textStyle="16-medium"
-                        color="blue.800"
-                        display="inline-block"
-                        whiteSpace="nowrap"
-                        noOfLines={1}
-                      >
-                        <Link
-                          passHref
-                          href={encodeURI(
-                            `/weather-today/${countryCode}/${city}/${forecastZoneId}`
-                          )}
+      </PopoverTrigger>
+
+      <Portal>
+        {opened && <HeaderPopoverOverlay onClick={onClose} />}
+
+        <PopoverContent w="full">
+          <Flex direction="column" w="100%">
+            {suggestions &&
+              suggestions.length > 0 &&
+              suggestions.map(
+                (
+                  {
+                    city,
+                    country,
+                    countryCode,
+                    forecastZoneId,
+                    latitude,
+                    longitude,
+                  },
+                  i
+                ) => (
+                  <HeaderCardPopoverRow
+                    key={`${forecastZoneId}-${latitude}-${longitude}`}
+                    first={i === 0}
+                    _hover={{
+                      bg: 'gray.50',
+                    }}
+                  >
+                    <LinkBox as={Flex} w="100%" direction="column" px={4}>
+                      <Flex justify="space-between" py="1.125em">
+                        <Text
+                          textStyle="16-medium"
+                          color="blue.800"
+                          display="inline-block"
+                          whiteSpace="nowrap"
+                          noOfLines={1}
                         >
-                          <LinkOverlay onClick={onSearchEnd}>
-                            {city}, {country}
-                          </LinkOverlay>
-                        </Link>
-                      </Text>
-                      <Arrow2Icon boxSize={5} />
-                    </Flex>
-                  </LinkBox>
-                </HeaderCardPopoverRow>
-              )
-            )}
-        </Flex>
-      }
-      popoverProps={{
-        initialFocusRef: searchInputRef,
-        matchWidth: !screenWidthSmallerThanMedium,
+                          <Link
+                            passHref
+                            href={encodeURI(
+                              `/weather-today/${countryCode}/${city}/${forecastZoneId}`
+                            )}
+                          >
+                            <LinkOverlay onClick={onClose}>
+                              {city}, {country}
+                            </LinkOverlay>
+                          </Link>
+                        </Text>
+                        <Arrow2Icon boxSize={5} />
+                      </Flex>
+                    </LinkBox>
+                  </HeaderCardPopoverRow>
+                )
+              )}
+          </Flex>
+        </PopoverContent>
+      </Portal>
+    </Popover>
+  ) : (
+    <IconButton
+      variant="ghost"
+      borderRadius="full"
+      onClick={onOpen}
+      aria-label="Location search"
+      minW="auto"
+      p="0 0.625em"
+      _hover={{
+        bg: 'gray.50',
       }}
+      icon={<SearchIcon boxSize={6} />}
     />
   );
 };

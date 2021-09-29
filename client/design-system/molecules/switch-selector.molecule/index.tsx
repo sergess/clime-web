@@ -9,11 +9,11 @@ export const SwitchSelector = ({
   options,
   onSelected,
   name,
-  defaultValue,
+  value,
 }: SwitchSelectorProps): ReactElement => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name,
-    defaultValue,
+    value,
     onChange: onSelected,
   });
   const rootProps = getRootProps();
@@ -30,10 +30,11 @@ export const SwitchSelector = ({
       {...rootProps}
     >
       {options.map((item) => {
-        const { value, label } = item;
-        const radio = getRadioProps({ value });
+        const { value: itemValue, label } = item;
+        const radio = getRadioProps({ value: itemValue });
+
         return (
-          <SwitchSelectorOption key={value} {...radio}>
+          <SwitchSelectorOption key={itemValue} {...radio}>
             {label}
           </SwitchSelectorOption>
         );

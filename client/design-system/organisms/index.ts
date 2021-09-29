@@ -3,3 +3,4 @@ export * from './footer.organism';
 export * from './header.organism';
 export * from './forecast-card.organism';
 export * from './search.organism';
+export * from './settings.organism';

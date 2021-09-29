@@ -62,13 +62,13 @@ export const TodayCard = memo(
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
 
-    const { t } = useTranslation('today-page');
+    const { t } = useTranslation('weather-today-page');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
     return (
-      <Card m={5} pt="5" pb={{ md: 2 }} w={{ md: 340 }}>
+      <Card pt="5" pb={{ md: 2 }} w={{ md: 340 }}>
         <Flex w="full" direction="column" px="4">
           <Flex w="full" justify="space-between" mb={5}>
             <Flex>
@@ -81,7 +81,7 @@ export const TodayCard = memo(
 
             <Flex>
               <Text color="gray.500" textStyle="16-medium">
-                {time}
+                <ClientOnly>{time}</ClientOnly>
               </Text>
             </Flex>
           </Flex>
@@ -106,7 +106,7 @@ export const TodayCard = memo(
                     whiteSpace="pre-line"
                   >
                     <ClientOnly>
-                      {t('Feels like {{feelsLikeTemperature}}°', {
+                      {t('Feels like {{feelsLikeTemperature}}', {
                         feelsLikeTemperature,
                       })}
                     </ClientOnly>

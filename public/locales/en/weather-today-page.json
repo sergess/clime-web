@@ -1,5 +1,5 @@
 {
-  "Feels like {{feelsLikeTemperature}}°": "Feels like \n{{feelsLikeTemperature}}°",
+  "Feels like {{feelsLikeTemperature}}": "Feels like \n{{feelsLikeTemperature}}\u00b0",
   "Precipitation chance {{precipitationChance}}%": "Precipitation chance {{precipitationChance}}%",
   "{{azimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{azimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
   "Precipitation": "Precipitation",
