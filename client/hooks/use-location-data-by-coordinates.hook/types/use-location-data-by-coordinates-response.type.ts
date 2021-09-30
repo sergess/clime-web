@@ -1,4 +1,4 @@
-import { LocationData } from 'server/services';
+import { LocationData } from 'common/types';
 
 export type UseLocationDataByCoordinates = {
   data: LocationData;

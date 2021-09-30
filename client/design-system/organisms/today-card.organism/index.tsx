@@ -1,4 +1,4 @@
-import { ReactElement, useState, useEffect, memo } from 'react';
+import { ReactElement, memo } from 'react';
 import {
   Button,
   Divider,
@@ -6,13 +6,11 @@ import {
   Flex,
   Collapse,
   useDisclosure,
-  useMediaQuery,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 
 import { todayCardAtom } from 'client/state/derivatives';
-import climeTheme from 'client/theme';
 import {
   Card,
   WeatherStateIcon,
@@ -35,6 +33,7 @@ import {
   windSpeedUnitAtom,
   precipitationUnitAtom,
 } from 'client/state/atoms';
+import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
 import { TodayCardProps } from './types';
 
@@ -63,20 +62,13 @@ export const TodayCard = memo(
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
 
-    const { t } = useTranslation('today-page');
+    const { t } = useTranslation('weather-today-page');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
-    const [widthSmallerThanMedium, setWidthSmallerThanMedium] = useState(true);
-    const [widthLargerThanMedium] = useMediaQuery(
-      `(min-width: ${climeTheme.breakpoints.md})`
-    );
-
-    useEffect(() => {
-      setWidthSmallerThanMedium(!widthLargerThanMedium);
-    }, [widthLargerThanMedium]);
+    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
     return (
-      <Card m={5} pt="5" pb={{ md: 2 }} w={{ md: 340 }}>
+      <Card pt="5" pb={{ md: 2 }} w={{ md: 340 }}>
         <Flex w="full" direction="column" px="4">
           <Flex w="full" justify="space-between" mb={5}>
             <Flex>
@@ -89,7 +81,7 @@ export const TodayCard = memo(
 
             <Flex>
               <Text color="gray.500" textStyle="16-medium">
-                {time}
+                <ClientOnly>{time}</ClientOnly>
               </Text>
             </Flex>
           </Flex>
@@ -114,7 +106,7 @@ export const TodayCard = memo(
                     whiteSpace="pre-line"
                   >
                     <ClientOnly>
-                      {t('Feels like {{feelsLikeTemperature}}°', {
+                      {t('Feels like {{feelsLikeTemperature}}', {
                         feelsLikeTemperature,
                       })}
                     </ClientOnly>

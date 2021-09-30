@@ -1,15 +1,10 @@
 import React, { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import {
-  Box,
-  Container,
-  Link,
-  Divider,
-  ComponentDefaultProps,
-} from '@chakra-ui/react';
+import { Box, Container, Link, Divider } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { ClimeLogoDarkIcon } from 'client/design-system/atoms';
+import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
 const Download = dynamic(
   () => import('client/design-system/molecules/download.molecule'),
@@ -18,11 +13,8 @@ const Download = dynamic(
   }
 );
 
-export const Footer = ({
-  variant,
-  ...rest
-}: ComponentDefaultProps): ReactElement => {
-  const { t } = useTranslation('footer');
+export const Footer = (): ReactElement => {
+  const { t } = useTranslation('common');
 
   return (
     <Box
@@ -30,7 +22,7 @@ export const Footer = ({
       bg="blue.900"
       w="full"
       py={['9', '9', '12']}
-      px={['5', '5', '2.5']}
+      px={LAYOUT_HORIZONTAL_PADDING}
       flex="0 0 auto"
     >
       <Container

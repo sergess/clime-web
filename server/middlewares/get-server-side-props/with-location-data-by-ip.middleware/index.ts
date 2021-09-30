@@ -1,6 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
 
-import { Geocode, Utility, LocationData } from 'server/services';
+import { LocationData } from 'common/types';
+
+import { Geocode, Utility } from 'server/services';
 
 import { withApiV3Service } from '../with-api-v3-service.middleware';
 

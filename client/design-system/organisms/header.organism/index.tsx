@@ -1,73 +1,88 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { Box, Container, useDisclosure, useMediaQuery } from '@chakra-ui/react';
+import React, { ReactElement } from 'react';
+import { Box, Container } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 
-import { ClimeLogoWhiteIcon } from 'client/design-system/atoms';
-import { Search, SettingsToggler } from 'client/design-system/molecules';
-import climeTheme from 'client/theme';
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from 'client/constants';
+import { ClimeLogoWhiteIcon, ClientOnly } from 'client/design-system/atoms';
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
+  LAYOUT_HORIZONTAL_PADDING,
+} from 'client/constants';
+
+import { useUiState } from './hooks';
+
+const Search = dynamic(
+  () => import('client/design-system/organisms/search.organism')
+);
+const Settings = dynamic(
+  () => import('client/design-system/organisms/settings.organism')
+);
 
 export const Header = (): ReactElement => {
-  const { isOpen: settingsOpened, onToggle: onSettingsOpenedToggle } =
-    useDisclosure();
-  const { isOpen: searchActive, onToggle: onSearchActiveToggle } =
-    useDisclosure();
-  const [widthSmallerThanMedium, setWidthSmallerThanMedium] =
-    useState<boolean>(true);
-
-  const [widthLargerThanMedium] = useMediaQuery(
-    `(min-width: ${climeTheme.breakpoints.md})`
-  );
-
-  useEffect(() => {
-    setWidthSmallerThanMedium(!widthLargerThanMedium);
-  }, [widthLargerThanMedium]);
+  const {
+    searchOpened,
+    searchVisible,
+    onSearchClose,
+    onSearchOpen,
+    settingsOpened,
+    settingsVisible,
+    onSettingsOpen,
+    onSettingsClose,
+  } = useUiState();
 
   return (
-    <>
-      <Box
-        as="header"
-        h={[
-          `${MOBILE_HEADER_HEIGHT}px`,
-          `${MOBILE_HEADER_HEIGHT}px`,
-          `${DESKTOP_HEADER_HEIGHT}px`,
-        ]}
-        top="0px"
-        bg="white"
-        w="full"
-        boxShadow="header"
-        px={['4', '4', '2.5']}
+    <Box
+      as="header"
+      h={[
+        `${MOBILE_HEADER_HEIGHT}px`,
+        `${MOBILE_HEADER_HEIGHT}px`,
+        `${DESKTOP_HEADER_HEIGHT}px`,
+      ]}
+      bg="white"
+      w="full"
+      boxShadow="header"
+      px={LAYOUT_HORIZONTAL_PADDING}
+      d="flex"
+      flex="0 0 auto"
+    >
+      <Container
+        maxW="container.xl"
+        p="0"
         d="flex"
-        flex="0 0 auto"
+        justifyContent="space-between"
+        alignItems="center"
       >
-        <Container
-          maxW="container.xl"
-          p="0"
-          d="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Box flex="none">
-            <ClimeLogoWhiteIcon
-              w={{ base: '90.53px', md: '108px' }}
-              h={{ base: '20px', md: '24px' }}
-              d="block"
-            />
-          </Box>
-          <Box w="full" d="flex" justifyContent="flex-end">
-            {!(widthSmallerThanMedium && settingsOpened) && (
-              <Search onSearch={onSearchActiveToggle} active={searchActive} />
-            )}
-            {!(widthSmallerThanMedium && searchActive) && (
-              <SettingsToggler
-                onSetting={onSettingsOpenedToggle}
-                active={settingsOpened}
-                temperatureUnit="F"
+        {/* [TODO] Add link to weather-today page. What should we render on index page? */}
+        <ClimeLogoWhiteIcon
+          w={{ base: '90.53px', md: '108px' }}
+          h={{ base: '20px', md: '24px' }}
+          d="block"
+          me={5}
+        />
+
+        <Box w="full" d="flex" justifyContent="flex-end" alignItems="center">
+          <ClientOnly>
+            {searchVisible && (
+              <Search
+                onOpen={onSearchOpen}
+                onClose={onSearchClose}
+                opened={searchOpened}
               />
             )}
-          </Box>
-        </Container>
-      </Box>
-    </>
+          </ClientOnly>
+
+          <ClientOnly>
+            {settingsVisible && (
+              <Settings
+                onOpen={onSettingsOpen}
+                onClose={onSettingsClose}
+                opened={settingsOpened}
+              />
+            )}
+          </ClientOnly>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

@@ -4,7 +4,6 @@ const Card = {
     boxShadow: 'card',
     display: 'flex',
     flexDirection: 'column',
-    background: 'white',
     alignItems: 'center',
     position: 'relative',
     borderRadius: '2xl',

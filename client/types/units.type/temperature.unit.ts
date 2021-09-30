@@ -3,4 +3,6 @@ export enum TemperatureUnit {
   F = 'f',
 }
 
+export const TemperatureUnitValues = Object.values(TemperatureUnit);
+
 export default TemperatureUnit;

@@ -20,7 +20,6 @@ export const SwitchSelectorOption = ({
         borderRadius="md"
         color="blue.500"
         textStyle="14-bold"
-        p="0.125rem"
         bg="none"
         _checked={{
           shadow: 'switch-button',
