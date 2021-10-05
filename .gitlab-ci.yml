@@ -40,9 +40,7 @@ build-dev:
   extends: .build
   environment: dev
   only:
-    - branches
-  except:
-    - master
+    - develop
 
 build-prd:
   extends: .build
@@ -65,9 +63,7 @@ deploy-to-gar-dev:
   extends: .deploy-to-gar
   environment: dev
   only:
-    - branches
-  except:
-    - master
+    - develop
 
 deploy-to-gar-prd:
   extends: .deploy-to-gar
@@ -87,9 +83,7 @@ deploy-to-cloudrun-dev:
   extends: .deploy-to-cloudrun
   environment: dev
   only:
-    - branches
-  except:
-    - master
+    - develop
 
 deploy-to-cloudrun-prd:
   extends: .deploy-to-cloudrun
