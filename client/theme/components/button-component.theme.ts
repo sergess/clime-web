@@ -73,6 +73,21 @@ const Button = {
         opacity: 1,
       },
     },
+    'carousel-control': {
+      bg: 'white',
+      minW: 'min',
+      h: 'auto',
+      borderRadius: '0',
+      px: '0',
+
+      _hover: {
+        bg: 'white',
+      },
+
+      _active: {
+        bg: 'white',
+      },
+    },
   },
 };
 

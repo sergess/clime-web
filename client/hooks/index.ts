@@ -4,3 +4,4 @@ export * from './use-has-mounted.hook';
 export * from './use-location-from-browser.hook';
 export * from './use-location-data-by-coordinates.hook';
 export * from './use-screen-width-smaller-than-medium';
+export * from './use-container-width.hook';
