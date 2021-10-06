@@ -4,3 +4,4 @@ export * from './header.organism';
 export * from './forecast-card.organism';
 export * from './search.organism';
 export * from './settings.organism';
+export * from './forecast-carousel-card.organism';
