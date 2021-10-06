@@ -1,4 +1,6 @@
 const currentConditionMock = {
+  night: false,
+  variant: 'WEATHER_STATE',
   dt: '2021-09-21 10:24:44',
   sid: 'rnShw:md:mc',
   st: 'Chance of Rain Showers',

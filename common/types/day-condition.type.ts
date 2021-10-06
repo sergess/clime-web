@@ -1,4 +1,4 @@
-import { CurrentCondition } from './current-condition.type';
+import { Condition } from './condition.type';
 import { DaySummary } from './day-summary.type';
 import { TideCondition } from './tide-condition.type';
 
@@ -23,7 +23,7 @@ export type DayCondition = {
   mr: string | null;
   ms: string | null;
   uv: number | null;
-  hly: CurrentCondition[];
+  hly: Condition[];
   tds: TideCondition[];
   smr: DaySummary;
 };

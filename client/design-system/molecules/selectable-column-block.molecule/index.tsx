@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Flex, Text, Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { SelectableColumnBlockProps } from './types';
 
@@ -24,9 +24,7 @@ export const SelectableColumnBlock = ({
     borderRadius="lg"
     onClick={onSelect}
   >
-    <Text textStyle="12-semi-bold" color={selected ? 'blue.500' : 'blue.800'}>
-      {heading}
-    </Text>
+    {heading}
     {main}
     {footer}
   </Flex>

@@ -11,5 +11,9 @@
   "Hourly Forecast": "Hourly Forecast",
   "Explore hourly forecast": "Explore hourly forecast",
   "Explore 10-day forecast": "Explore 10-day forecast",
-  "Daily Forecast": "Daily Forecast"
+  "Daily Forecast": "Daily Forecast",
+  "Now": "Now",
+  "Today": "Today",
+  "sunset": "sunset",
+  "sunrise": "sunrise"
 }

@@ -1,24 +1,39 @@
 import { atom, Atom } from 'jotai';
 import { splitAtom, selectAtom } from 'jotai/utils';
+import { isWithinInterval } from 'date-fns';
+import { addDays } from 'date-fns/fp';
+import findIndex from 'ramda/src/findIndex';
+import propSatisfies from 'ramda/src/propSatisfies';
 
 import { forecastFeedAtom } from 'client/state/atoms';
+import { convertUtcStringToLocalDate } from 'client/utils';
 import {
-  selectConversionsAwareCurrentConditionAtom,
+  selectConversionsAwareConditionAtom,
   selectConversionsAwareDayConditionAtom,
   selectConversionsAwareDaySummaryConditionAtom,
 } from 'client/state/selectors';
 
-import {
-  CurrentCondition,
-  DayCondition,
-  DaySummaryCondition,
-} from 'common/types';
+import { Condition, DayCondition, DaySummaryCondition } from 'common/types';
 
-const frstAtom = atom<DayCondition[]>(
-  (get) => get(forecastFeedAtom)?.frst ?? []
-);
+const addOneDay = addDays(1);
 
-const forecastAtomsAtom = splitAtom(frstAtom);
+const forecastFromTodayAtom = atom<DayCondition[]>((get) => {
+  const forecastItems = get(forecastFeedAtom)?.frst ?? [];
+  const today = new Date();
+
+  const forecastForTodayIndex = findIndex(
+    propSatisfies((dt: string) => {
+      const date = convertUtcStringToLocalDate(dt);
+
+      return isWithinInterval(today, { start: date, end: addOneDay(date) });
+    }, 'dt'),
+    forecastItems
+  );
+
+  return forecastItems.slice(forecastForTodayIndex);
+});
+
+const forecastAtomsAtom = splitAtom(forecastFromTodayAtom);
 
 export const forecastItemsAtom = atom<DayCondition[]>((get) =>
   get(forecastAtomsAtom).map((forecastAtom) => {
@@ -32,8 +47,8 @@ export const forecastItemsAtom = atom<DayCondition[]>((get) =>
       dayConditionAtom: Atom<DayCondition>
     ) => get(selectConversionsAwareDayConditionAtom(dayConditionAtom));
     const getCurrentConditionConversionsAware = (
-      currentConditionAtom: Atom<CurrentCondition>
-    ) => get(selectConversionsAwareCurrentConditionAtom(currentConditionAtom));
+      currentConditionAtom: Atom<Condition>
+    ) => get(selectConversionsAwareConditionAtom(currentConditionAtom));
     const getDaySummaryConditionConversionsAware = (
       daySummaryConditionAtom: Atom<DaySummaryCondition | null>
     ) =>

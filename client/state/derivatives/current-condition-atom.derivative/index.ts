@@ -1,14 +1,13 @@
 import { atom } from 'jotai';
 
 import { forecastFeedAtom } from 'client/state/atoms';
-import { selectConversionsAwareCurrentConditionAtom } from 'client/state/selectors';
+import { selectConversionsAwareConditionAtom } from 'client/state/selectors';
 
-import { CurrentCondition } from 'common/types';
+import { Condition } from 'common/types';
 
-export const currentConditionAtom = selectConversionsAwareCurrentConditionAtom(
-  atom<CurrentCondition>(
-    (get) => get(forecastFeedAtom)?.cur ?? ({} as CurrentCondition)
-  )
+// [TODO] Cast to HourlyCondition type
+export const currentConditionAtom = selectConversionsAwareConditionAtom(
+  atom<Condition>((get) => get(forecastFeedAtom)?.cur ?? ({} as Condition))
 );
 
 export default currentConditionAtom;

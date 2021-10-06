@@ -42,6 +42,7 @@ export const TodayCard = memo(
     const {
       location,
       time,
+      night,
       weatherStateId,
       currentTemperature,
       feelsLikeTemperature,
@@ -87,7 +88,11 @@ export const TodayCard = memo(
           </Flex>
           <Flex direction="row" align="center" justify="center" mb={5}>
             <Flex me={4}>
-              <WeatherStateIcon stateId={weatherStateId} boxSize="100" />
+              <WeatherStateIcon
+                stateId={weatherStateId}
+                night={night}
+                boxSize="100"
+              />
             </Flex>
 
             <Flex direction="column">

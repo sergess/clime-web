@@ -9,7 +9,7 @@ import { toFixedN } from 'client/utils/to-fixed-n.util';
 
 import { isNumber } from 'common/utils';
 
-const toFixedFour = toFixedN(4);
+const toFixedOne = toFixedN(1);
 
 export const convertMillibarsTo = curry(
   (unit: PressureUnit, value: number | null) => {
@@ -17,11 +17,11 @@ export const convertMillibarsTo = curry(
 
     switch (unit) {
       case PressureUnit.MM:
-        return toFixedFour(millibarsToMillimeters(value as number));
+        return Math.round(millibarsToMillimeters(value as number));
       case PressureUnit.INCH:
-        return toFixedFour(millibarsToInches(value as number));
+        return toFixedOne(millibarsToInches(value as number));
       default:
-        return toFixedFour(value as number);
+        return Math.round(value as number);
     }
   }
 );

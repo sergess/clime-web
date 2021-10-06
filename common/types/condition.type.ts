@@ -1,4 +1,4 @@
-export type CurrentCondition = {
+export type Condition = {
   dt: string;
   sid: string | null;
   st: string | null;
@@ -18,4 +18,4 @@ export type CurrentCondition = {
   tw: number | null;
 };
 
-export default CurrentCondition;
+export default Condition;

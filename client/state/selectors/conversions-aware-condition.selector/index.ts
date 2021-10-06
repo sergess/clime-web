@@ -15,11 +15,11 @@ import {
   convertMillibarsTo,
 } from 'client/utils';
 
-import { CurrentCondition } from 'common/types';
+import { Condition } from 'common/types';
 
-export const selectConversionsAwareCurrentConditionAtom = (
-  currentConditionAtom: Atom<CurrentCondition>
-): Atom<CurrentCondition> =>
+export const selectConversionsAwareConditionAtom = (
+  currentConditionAtom: Atom<Condition>
+): Atom<Condition> =>
   atom((get) => {
     const currentCondition = get(currentConditionAtom);
 
@@ -49,4 +49,4 @@ export const selectConversionsAwareCurrentConditionAtom = (
     };
   });
 
-export default selectConversionsAwareCurrentConditionAtom;
+export default selectConversionsAwareConditionAtom;
