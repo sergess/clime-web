@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useRef, useEffect } from 'react';
 import NextLink from 'next/link';
 import { Flex, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -11,7 +11,7 @@ export const TopNavigationBar = (): ReactElement => {
   const navItems: TopNavigationBarProps[] = [
     {
       label: 'Today',
-      url: '/',
+      url: '/weather-today/',
       type: 'common-nav-link',
     },
     {
@@ -21,7 +21,7 @@ export const TopNavigationBar = (): ReactElement => {
     },
     {
       label: 'Clime App',
-      url: '',
+      url: '/',
       type: 'app-nav-link',
     },
     {
@@ -41,7 +41,13 @@ export const TopNavigationBar = (): ReactElement => {
     },
   ];
 
+  const menuCurrentItem = useRef(null);
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(menuCurrentItem, router.pathname);
+    menuCurrentItem?.current?.scrollIntoView(true);
+  }, []);
 
   return (
     <ClientOnly>
@@ -50,6 +56,7 @@ export const TopNavigationBar = (): ReactElement => {
           <NextLink key={item.label} href={item.url} passHref>
             <Button
               as="a"
+              ref={router.pathname === item.url ? menuCurrentItem : null}
               flexShrink={0}
               aria-current={router.pathname === item.url && 'page'}
               variant={item.type}
