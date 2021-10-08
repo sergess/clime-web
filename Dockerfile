@@ -22,6 +22,8 @@ ENV NODE_ENV production
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -u 1001 -S nextjs
 
+COPY .env ./
+
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/next-i18next.config.js ./
 
