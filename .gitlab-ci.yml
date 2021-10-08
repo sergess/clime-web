@@ -20,6 +20,7 @@ before_script:
 .build:
   stage: build
   script:
+    - cp $dotEnv .env
     # fetches the latest image (not failing if image is not found)
     - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest || true
     # builds the project, passing proxy variables, and vcs vars for LABEL
