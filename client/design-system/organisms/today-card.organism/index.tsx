@@ -10,7 +10,6 @@ import {
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 
-import { todayCardAtom } from 'client/state/derivatives';
 import {
   Card,
   WeatherStateIcon,
@@ -35,6 +34,7 @@ import {
 } from 'client/state/atoms';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
+import { todayCardAtom } from './state/derivatives';
 import { TodayCardProps } from './types';
 
 export const TodayCard = memo(
@@ -43,7 +43,7 @@ export const TodayCard = memo(
       location,
       time,
       night,
-      weatherStateId,
+      stateId,
       currentTemperature,
       feelsLikeTemperature,
       minTemperature,
@@ -53,7 +53,7 @@ export const TodayCard = memo(
       windAzimuth,
       windSpeed,
       precipitationChance,
-      precipitation,
+      precipitationLevel,
       uvIndex,
       humidity,
       pressure,
@@ -88,11 +88,7 @@ export const TodayCard = memo(
           </Flex>
           <Flex direction="row" align="center" justify="center" mb={5}>
             <Flex me={4}>
-              <WeatherStateIcon
-                stateId={weatherStateId}
-                night={night}
-                boxSize="100"
-              />
+              <WeatherStateIcon stateId={stateId} night={night} boxSize="100" />
             </Flex>
 
             <Flex direction="column">
@@ -159,7 +155,7 @@ export const TodayCard = memo(
               icon={<InfoPrecipitationIcon w={8} h={8} />}
               label={t('Precipitation')}
               text={
-                <ClientOnly>{`${precipitation} ${precipitationUnit}`}</ClientOnly>
+                <ClientOnly>{`${precipitationLevel} ${precipitationUnit}`}</ClientOnly>
               }
               flex={1}
             />

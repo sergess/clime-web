@@ -3,8 +3,8 @@ import '@testing-library/jest-dom';
 import { useUpdateAtom } from 'jotai/utils';
 import { renderHook } from '@testing-library/react-hooks';
 
-import { forecastFeedAtom } from 'client/state/atoms';
-import forecastFeedMock from '__mocks__/forecast-feed.mock';
+import { serverForecastFeedAtom } from 'client/state/atoms';
+import serverForecastFeedMock from '__mocks__/server-forecast-feed.mock';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -26,12 +26,20 @@ global.navigator.geolocation = {
   watchPosition: jest.fn(),
 };
 
-// update atoms with mocked data before all tests
 beforeAll(() => {
+  // update atoms with mocked data before all tests
   renderHook(() => {
-    const setForecastFeed = useUpdateAtom(forecastFeedAtom);
+    const setForecastFeed = useUpdateAtom(serverForecastFeedAtom);
     // eslint-disable-next-line
     // @ts-ignore
-    setForecastFeed(forecastFeedMock);
+    setForecastFeed(serverForecastFeedMock);
   });
+
+  // mock current date
+  jest.useFakeTimers('modern');
+  jest.setSystemTime(new Date(2021, 9, 20, 11, 30));
+});
+
+afterAll(() => {
+  jest.useRealTimers();
 });

@@ -19,9 +19,9 @@ export const settingsAtom = atom(
       temperature: get(temperatureUnitAtom),
       windSpeed: get(windSpeedUnitAtom),
     } as Settings),
-  (get, set, updatedSettings) => {
+  (get, set, updatedSettings: Settings) => {
     const { distance, precipitation, pressure, temperature, windSpeed } =
-      updatedSettings as Settings;
+      updatedSettings;
 
     if (distance) {
       set(distanceUnitAtom, distance);

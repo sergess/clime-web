@@ -10,7 +10,7 @@ import { useUpdateAtom, useHydrateAtoms } from 'jotai/utils';
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
 import { Layout } from 'client/design-system/templates';
-import { forecastFeedAtom, locationDataAtom } from 'client/state/atoms';
+import { serverForecastFeedAtom, locationDataAtom } from 'client/state/atoms';
 import { ForecastFeed, LocationData } from 'common/types';
 
 const App = ({ Component, pageProps }: AppProps): ReactElement => {
@@ -21,8 +21,8 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
   const theme = extendTheme(climeTheme, { direction });
 
   useHydrateAtoms([
-    [forecastFeedAtom, initialState?.forecastFeed] as [
-      typeof forecastFeedAtom,
+    [serverForecastFeedAtom, initialState?.forecastFeed] as [
+      typeof serverForecastFeedAtom,
       ForecastFeed
     ],
     [locationDataAtom, initialState?.locationData] as [
@@ -31,11 +31,11 @@ const App = ({ Component, pageProps }: AppProps): ReactElement => {
     ],
   ]);
 
-  const setForecastFeed = useUpdateAtom(forecastFeedAtom);
+  const setServerForecastFeed = useUpdateAtom(serverForecastFeedAtom);
   const setLocationData = useUpdateAtom(locationDataAtom);
 
   useEffect(() => {
-    setForecastFeed(initialState?.forecastFeed);
+    setServerForecastFeed(initialState?.forecastFeed);
     setLocationData(initialState?.locationData);
   }, [initialState]);
 

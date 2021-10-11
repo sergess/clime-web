@@ -38,11 +38,11 @@ export class Geocode extends BaseApiV3Service {
       latitude: 50,
       longitude: 50,
       district: 'test',
-      city: 'Dubai',
+      city: 'Minsk',
       region: 'test',
-      country: 'United Arab Emirates',
-      countryCode: 'ae',
-      timeZone: 'Asia/Dubai',
+      country: 'Belarus',
+      countryCode: 'by',
+      timeZone: 'Europe/Minsk',
     });
   }
 

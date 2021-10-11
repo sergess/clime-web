@@ -1,4 +1,4 @@
-export * from './forecast-feed.atom';
+export * from './server-forecast-feed.atom';
 export * from './distance-unit.atom';
 export * from './location-data.atom';
 export * from './precipitation-unit.atom';

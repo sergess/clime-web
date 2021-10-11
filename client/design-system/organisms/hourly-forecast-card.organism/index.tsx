@@ -3,13 +3,13 @@ import { Button, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 
-import { hourlyForecastCardAtom } from 'client/state/derivatives';
 import { ClientOnly } from 'client/design-system/atoms';
 import {
   ForecastCard,
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
 
+import { hourlyForecastCardAtom } from './state/derivatives';
 import { Icon } from './atoms';
 
 export const HourlyForecastCard = memo((): ReactElement => {
@@ -54,7 +54,7 @@ export const HourlyForecastCard = memo((): ReactElement => {
                 boxSize="10"
                 variant={item.variant}
                 night={item.night}
-                stateId={item.weatherStateId}
+                stateId={item.stateId}
               />
             }
             footer={

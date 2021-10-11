@@ -1,9 +1,9 @@
 import { IconProps as ChakraIconProps } from '@chakra-ui/react';
 
-import { HourlyConditionVariant } from 'client/types';
+import { HourConditionVariant } from 'client/types';
 
 export type IconProps = ChakraIconProps & {
-  variant: HourlyConditionVariant;
+  variant: HourConditionVariant;
   night?: boolean;
   stateId: string | null;
 };
