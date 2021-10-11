@@ -47,7 +47,6 @@ const Index = (): ReactElement => {
       );
     }
   }, [hasMounted, locationData, forecastZoneIdCookie]);
-
   return <TodayCard locationExact />;
 };
 
