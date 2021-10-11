@@ -19,9 +19,9 @@ export const Icon = ({
 
   switch (variant) {
     case SUNRISE:
-      return <SunriseIcon />;
+      return <SunriseIcon {...iconProps} />;
     case SUNSET:
-      return <SunsetIcon />;
+      return <SunsetIcon {...iconProps} />;
     case WEATHER_STATE:
     default:
       return (

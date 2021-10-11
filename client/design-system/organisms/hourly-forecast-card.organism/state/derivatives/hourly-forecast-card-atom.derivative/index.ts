@@ -4,7 +4,7 @@ import { i18n } from 'next-i18next';
 
 import { formatUtcString } from 'client/utils';
 import { locationDataAtom } from 'client/state/atoms';
-import { SUNSET, SUNRISE } from 'client/constants';
+import { SUNSET, SUNRISE, WEATHER_STATE } from 'client/constants';
 import { HourConditionVariant } from 'client/types';
 import { hourConditionsFeedAtom } from 'client/state/derivatives';
 
@@ -37,7 +37,11 @@ export const hourlyForecastCardAtom = atom((get) => {
       heading:
         index === 0
           ? i18n?.t('Now')
-          : formatUtcString(dateTime, 'haaa', locationData?.timeZone),
+          : formatUtcString(
+              dateTime,
+              variant === WEATHER_STATE ? 'haaa' : 'h:mmaaa',
+              locationData?.timeZone
+            ),
     })
   );
 });
