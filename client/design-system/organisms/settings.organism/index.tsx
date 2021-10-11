@@ -95,7 +95,7 @@ export const Settings = ({
   );
 
   const onSave = useCallback(() => {
-    setSettings(updatedSettings);
+    setSettings(updatedSettings as SettingsType);
     onClose();
   }, [updatedSettings]);
 
