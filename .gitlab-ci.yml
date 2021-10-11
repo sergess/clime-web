@@ -51,7 +51,6 @@ build-prd:
 
 .deploy-to-gar:
   stage: deploy-image
-  when: manual
   allow_failure: false
   script:
     # fetch the image
