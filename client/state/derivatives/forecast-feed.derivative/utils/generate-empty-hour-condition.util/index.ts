@@ -22,8 +22,6 @@ export const generateEmptyHourCondition = (
   visibility: null,
   humidity: null,
   pressure: null,
-  swellHeight: null,
-  waterTemperature: null,
 });
 
 export default generateEmptyHourCondition;
