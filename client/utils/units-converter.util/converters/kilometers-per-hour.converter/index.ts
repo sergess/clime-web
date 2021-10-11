@@ -9,7 +9,7 @@ import { toFixedN } from 'client/utils/to-fixed-n.util';
 
 import { isNumber } from 'common/utils';
 
-const toFixedFour = toFixedN(4);
+const toFixedOne = toFixedN(1);
 
 export const convertKilometersPerHourTo = curry(
   (unit: SpeedUnit, value: number | null) => {
@@ -17,11 +17,11 @@ export const convertKilometersPerHourTo = curry(
 
     switch (unit) {
       case SpeedUnit.MPH:
-        return toFixedFour(kilometersToMiles(value as number));
+        return toFixedOne(kilometersToMiles(value as number));
       case SpeedUnit.MS:
-        return toFixedFour(kilometersPerHourToMeterPerSecond(value as number));
+        return toFixedOne(kilometersPerHourToMeterPerSecond(value as number));
       default:
-        return toFixedFour(value as number);
+        return toFixedOne(value as number);
     }
   }
 );

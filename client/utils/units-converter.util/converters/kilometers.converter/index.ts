@@ -6,7 +6,7 @@ import { toFixedN } from 'client/utils/to-fixed-n.util';
 
 import { isNumber } from 'common/utils';
 
-const toFixedFour = toFixedN(4);
+const toFixedOne = toFixedN(1);
 
 export const convertKilometersTo = curry(
   (unit: DistanceUnit, value: number | null) => {
@@ -14,9 +14,9 @@ export const convertKilometersTo = curry(
 
     switch (unit) {
       case DistanceUnit.MI:
-        return toFixedFour(kilometersToMiles(value as number));
+        return toFixedOne(kilometersToMiles(value as number));
       default:
-        return toFixedFour(value as number);
+        return toFixedOne(value as number);
     }
   }
 );

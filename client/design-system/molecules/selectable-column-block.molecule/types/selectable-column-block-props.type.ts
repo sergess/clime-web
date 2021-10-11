@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 export type SelectableColumnBlockProps = {
   main: ReactElement;
   footer?: ReactElement | null;
-  heading?: string;
+  heading?: ReactElement;
   onSelect: () => void;
   selected: boolean;
 };

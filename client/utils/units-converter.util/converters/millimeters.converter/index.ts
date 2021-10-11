@@ -6,7 +6,7 @@ import { toFixedN } from 'client/utils/to-fixed-n.util';
 
 import { isNumber } from 'common/utils';
 
-const toFixedFour = toFixedN(4);
+const toFixedTwo = toFixedN(2);
 
 export const convertMillimetersTo = curry(
   (unit: PrecipitationUnit, value: number | null) => {
@@ -14,9 +14,9 @@ export const convertMillimetersTo = curry(
 
     switch (unit) {
       case PrecipitationUnit.INCH:
-        return toFixedFour(millimetersToInches(value as number));
+        return toFixedTwo(millimetersToInches(value as number));
       default:
-        return toFixedFour(value as number);
+        return toFixedTwo(value as number);
     }
   }
 );

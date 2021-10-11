@@ -3,3 +3,8 @@ export * from './weather-state-id.type';
 export * from './azimuth.type';
 export * from './units.type';
 export * from './settings.type';
+export * from './hour-condition-variant.type';
+export * from './hour-condition.type';
+export * from './day-condition.type';
+export * from './day-summary-condition.type';
+export * from './day-summary.type';

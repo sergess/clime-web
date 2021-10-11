@@ -3,6 +3,7 @@ import { LocationData } from 'common/types';
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 
 import {
+  LocationDataByLocationArguments,
   LocationDataByCoordinatesArguments,
   AutocompleteArguments,
   SearchArguments,
@@ -19,6 +20,30 @@ export class Geocode extends BaseApiV3Service {
     );
 
     return locationData;
+  }
+
+  // [TODO] stubbed for now, implement when api will be ready
+  // eslint-disable-next-line
+  public async getLocationDataByLocation({
+    countryCode,
+    city,
+    forecastZoneId,
+  }: LocationDataByLocationArguments): Promise<LocationData | null> {
+    return Promise.resolve({
+      airZoneId: 1,
+      forecastZoneId: 1,
+      nowcastZoneId: 1,
+      pollenZoneId: 1,
+      warningZoneId: 1,
+      latitude: 50,
+      longitude: 50,
+      district: 'test',
+      city: 'Minsk',
+      region: 'test',
+      country: 'Belarus',
+      countryCode: 'by',
+      timeZone: 'Europe/Minsk',
+    });
   }
 
   public async querySearch({

@@ -1,4 +1,4 @@
-export * from './current-condition.type';
+export * from './condition.type';
 export * from './day-condition.type';
 export * from './day-summary-condition.type';
 export * from './day-summary.type';
