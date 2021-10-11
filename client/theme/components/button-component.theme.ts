@@ -73,6 +73,28 @@ const Button = {
         opacity: 1,
       },
     },
+    'player-button': {
+      h: '6',
+      minW: 'min',
+      bg: 'none',
+      borderRadius: 'none',
+      p: '0',
+
+      _hover: {
+        _disabled: {
+          bg: 'none',
+        },
+      },
+
+      _active: {
+        bg: 'none',
+      },
+
+      _disabled: {
+        bg: 'none',
+        opacity: 1,
+      },
+    },
     'carousel-control': {
       bg: 'white',
       minW: 'min',
