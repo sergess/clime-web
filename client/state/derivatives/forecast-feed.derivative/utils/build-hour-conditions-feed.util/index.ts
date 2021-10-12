@@ -1,7 +1,7 @@
 import reduce from 'ramda/src/reduce';
 import isEmpty from 'ramda/src/isEmpty';
 import last from 'ramda/src/last';
-import { differenceInHours } from 'date-fns';
+import { differenceInHours, parseISO } from 'date-fns';
 
 import { isUtcStringWithinInterval } from 'client/utils';
 import { SUNSET, SUNRISE } from 'client/constants';
@@ -24,8 +24,8 @@ export const buildHourConditionsFeed = reduce<DayCondition, HourCondition[]>(
           const previousHourCondition = last(hourConditions) as HourCondition;
           const intervalIsLessThanAnHour =
             differenceInHours(
-              new Date(hourCondition.dateTime),
-              new Date(previousHourCondition.dateTime)
+              parseISO(hourCondition.dateTime),
+              parseISO(previousHourCondition.dateTime)
             ) < 1;
 
           if (intervalIsLessThanAnHour) {

@@ -3,7 +3,7 @@ import findIndex from 'ramda/src/findIndex';
 import propSatisfies from 'ramda/src/propSatisfies';
 import allPass from 'ramda/src/allPass';
 import propEq from 'ramda/src/propEq';
-import { isWithinInterval } from 'date-fns';
+import { isWithinInterval, parseISO } from 'date-fns';
 
 import { WEATHER_STATE } from 'client/constants';
 import { HourCondition } from 'client/types';
@@ -17,7 +17,7 @@ export const getUpToDateHourConditions = (
   const nextHour = addOneHour(new Date());
 
   const isNextHour = propSatisfies((dateTime: string) => {
-    const date = new Date(dateTime);
+    const date = parseISO(dateTime);
 
     return isWithinInterval(nextHour, { start: date, end: addOneHour(date) });
   }, 'dateTime');

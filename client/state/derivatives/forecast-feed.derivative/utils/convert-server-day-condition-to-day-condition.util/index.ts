@@ -1,5 +1,5 @@
 import { DayCondition } from 'client/types';
-import { convertDateTimeToUtcString } from 'client/utils';
+import { convertDateTimeToISOString } from 'client/utils';
 
 import { DayCondition as ServerDayCondition } from 'common/types';
 
@@ -9,12 +9,11 @@ import { convertServerDaySummaryConditionToDaySummaryCondition } from '../conver
 export const convertServerDayConditionToDayCondition = (
   dayCondition: ServerDayCondition
 ): DayCondition => {
-  const dateTime = convertDateTimeToUtcString(dayCondition.dt) as string;
-  const sunrise = convertDateTimeToUtcString(dayCondition.sr);
-  const sunset = convertDateTimeToUtcString(dayCondition.ss);
+  const sunrise = convertDateTimeToISOString(dayCondition.sr);
+  const sunset = convertDateTimeToISOString(dayCondition.ss);
 
   return {
-    dateTime,
+    dateTime: convertDateTimeToISOString(dayCondition.dt) as string,
     stateId: dayCondition.sid,
     stateText: dayCondition.st,
     stateNightText: dayCondition.stn,
@@ -31,8 +30,8 @@ export const convertServerDayConditionToDayCondition = (
     pressure: dayCondition.p,
     sunrise,
     sunset,
-    moonrise: convertDateTimeToUtcString(dayCondition.mr),
-    moonset: convertDateTimeToUtcString(dayCondition.ms),
+    moonrise: convertDateTimeToISOString(dayCondition.mr),
+    moonset: convertDateTimeToISOString(dayCondition.ms),
     uvIndex: dayCondition.uv,
     hourly: dayCondition.hly.map((hourCondition) =>
       convertServerConditionToHourCondition(hourCondition, sunrise, sunset)

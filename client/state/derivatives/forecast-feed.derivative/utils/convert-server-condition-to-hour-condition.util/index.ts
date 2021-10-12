@@ -1,5 +1,5 @@
 import { HourCondition } from 'client/types';
-import { convertDateTimeToUtcString, isUtcStringNight } from 'client/utils';
+import { convertDateTimeToISOString, isUtcStringNight } from 'client/utils';
 import { WEATHER_STATE } from 'client/constants';
 
 import { Condition as ServerCondition } from 'common/types';
@@ -9,7 +9,7 @@ export const convertServerConditionToHourCondition = (
   sunrise: string | null,
   sunset: string | null
 ): HourCondition => {
-  const dateTime = convertDateTimeToUtcString(condition.dt) as string;
+  const dateTime = convertDateTimeToISOString(condition.dt) as string;
 
   return {
     variant: WEATHER_STATE,
