@@ -25,7 +25,7 @@ const Popover = {
     },
     card: {
       popper: {
-        px: LAYOUT_HORIZONTAL_PADDING,
+        px: [...LAYOUT_HORIZONTAL_PADDING, 0],
         width: { base: '100%', md: 'max-content' },
       },
       content: cardContentStyles,

@@ -1,15 +1,7 @@
-import React, {
-  ReactElement,
-  useCallback,
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { ReactElement, useCallback, useRef, useMemo } from 'react';
 import {
   Flex,
   Text,
-  Button,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -21,7 +13,6 @@ import { useAtom } from 'jotai';
 import {
   CloseIcon,
   SettingsIcon,
-  HeaderCardPopoverRow,
   HeaderPopoverOverlay,
 } from 'client/design-system/atoms';
 import { settingsAtom } from 'client/state/derivatives';
@@ -47,9 +38,7 @@ export const Settings = ({
 }: SettingsTogglerProps): ReactElement => {
   const { t } = useTranslation('common');
   const settingsCardRef = useRef<HTMLDivElement>(null);
-  const [updatedSettings, setUpdatedSettings] = useState<SettingsType | null>(
-    null
-  );
+
   const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
   const [settings, setSettings] = useAtom(settingsAtom);
@@ -84,29 +73,17 @@ export const Settings = ({
     []
   );
 
-  const onUpdatedSettingsChange = useCallback(
+  const onSettingsChange = useCallback(
     (unit: keyof SettingsType) => (value: ValueOf<SettingsType>) => {
-      setUpdatedSettings((previousSettings) => ({
-        ...((!!previousSettings && previousSettings) as SettingsType),
-        [unit]: value,
-      }));
+      setSettings({ [unit]: value } as SettingsType);
     },
     []
   );
 
-  const onSave = useCallback(() => {
-    setSettings(updatedSettings as SettingsType);
-    onClose();
-  }, [updatedSettings]);
-
-  useEffect(() => {
-    setUpdatedSettings(null);
-  }, [opened]);
-
   return (
     <Popover
       isOpen={opened}
-      placement="bottom"
+      placement="bottom-end"
       gutter={screenWidthSmallerThanMedium ? 26 : 36}
       variant="card"
     >
@@ -140,50 +117,33 @@ export const Settings = ({
               first
               title="Temperature:"
               options={temperatureUnitOptions}
-              value={updatedSettings?.temperature || settings.temperature}
-              onValueChange={onUpdatedSettingsChange('temperature')}
+              value={settings.temperature}
+              onValueChange={onSettingsChange('temperature')}
             />
             <SettingsCardSwitcherRow
               title="Wind speed:"
               options={windSpeedUnitOptions}
-              value={updatedSettings?.windSpeed || settings.windSpeed}
-              onValueChange={onUpdatedSettingsChange('windSpeed')}
+              value={settings.windSpeed}
+              onValueChange={onSettingsChange('windSpeed')}
             />
             <SettingsCardSwitcherRow
               title="Precipitation:"
               options={precipitationUnitOptions}
-              value={updatedSettings?.precipitation || settings.precipitation}
-              onValueChange={onUpdatedSettingsChange('precipitation')}
+              value={settings.precipitation}
+              onValueChange={onSettingsChange('precipitation')}
             />
             <SettingsCardSwitcherRow
               title="Pressure:"
               options={pressureUnitOptions}
-              value={updatedSettings?.pressure || settings.pressure}
-              onValueChange={onUpdatedSettingsChange('pressure')}
+              value={settings.pressure}
+              onValueChange={onSettingsChange('pressure')}
             />
             <SettingsCardSwitcherRow
               title="Distance:"
               options={distanceUnitOptions}
-              value={updatedSettings?.distance || settings.distance}
-              onValueChange={onUpdatedSettingsChange('distance')}
+              value={settings.distance}
+              onValueChange={onSettingsChange('distance')}
             />
-
-            <HeaderCardPopoverRow
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Button
-                variant="cta"
-                w="calc(100% - 68px)"
-                my={5}
-                disabled={!updatedSettings}
-                onClick={onSave}
-              >
-                {t('Save')}
-              </Button>
-            </HeaderCardPopoverRow>
           </Flex>
         </PopoverContent>
       </Portal>
