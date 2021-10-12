@@ -73,6 +73,28 @@ const Button = {
         opacity: 1,
       },
     },
+    'legend-detailed': {
+      bg: 'white',
+      borderRadius: 'none',
+      boxSize: '5',
+      minW: 'min',
+      px: '0',
+
+      _hover: {
+        _disabled: {
+          bg: 'white',
+        },
+      },
+
+      _active: {
+        bg: 'white',
+      },
+
+      _disabled: {
+        bg: 'white',
+        opacity: 1,
+      },
+    },
     'player-button': {
       h: '6',
       minW: 'min',
