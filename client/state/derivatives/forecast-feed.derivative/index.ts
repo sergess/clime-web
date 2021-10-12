@@ -30,8 +30,8 @@ export const forecastFeedAtom = atom((get) => {
 
   const currentHourCondition = convertServerConditionToHourCondition(
     serverForecastFeed?.cur ?? ({} as ServerCondition),
-    currentDayCondition.sunrise,
-    currentDayCondition.sunset
+    currentDayCondition?.sunrise ?? null,
+    currentDayCondition?.sunset ?? null
   );
 
   const hourConditionsFeed = buildHourConditionsFeed(convertedDayConditions);

@@ -1,4 +1,4 @@
-import { isWithinInterval } from 'date-fns';
+import { isWithinInterval, parseISO } from 'date-fns';
 import isNil from 'ramda/src/isNil';
 
 export const isUtcStringWithinInterval = (
@@ -8,9 +8,9 @@ export const isUtcStringWithinInterval = (
 ): boolean => {
   if (isNil(dateTime) || isNil(start) || isNil(end)) return false;
 
-  return isWithinInterval(new Date(dateTime), {
-    start: new Date(start),
-    end: new Date(end),
+  return isWithinInterval(parseISO(dateTime), {
+    start: parseISO(start),
+    end: parseISO(end),
   });
 };
 

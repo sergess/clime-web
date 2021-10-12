@@ -1,9 +1,9 @@
-import { isWithinInterval } from 'date-fns';
+import { isWithinInterval, parseISO } from 'date-fns';
 import { addDays } from 'date-fns/fp';
 import findIndex from 'ramda/src/findIndex';
 import propSatisfies from 'ramda/src/propSatisfies';
 
-import { convertDateTimeToUtcString } from 'client/utils';
+import { convertDateTimeToISOString } from 'client/utils';
 
 import { DayCondition } from 'common/types';
 
@@ -16,7 +16,7 @@ export const getUpToDateDayConditions = (
 
   const todayConditionIndex = findIndex(
     propSatisfies((dt: string) => {
-      const date = new Date(convertDateTimeToUtcString(dt) as string);
+      const date = parseISO(convertDateTimeToISOString(dt) as string);
 
       return isWithinInterval(todayDate, {
         start: date,

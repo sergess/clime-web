@@ -1,12 +1,11 @@
 import { HourConditionVariant, HourCondition } from 'client/types';
-import { convertDateTimeToUtcString } from 'client/utils';
 
 export const generateEmptyHourCondition = (
   dateTime: string,
   variant: HourConditionVariant
 ): HourCondition => ({
   variant,
-  dateTime: convertDateTimeToUtcString(dateTime) as string,
+  dateTime,
   night: false,
   stateId: null,
   stateText: null,
