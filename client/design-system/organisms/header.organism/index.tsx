@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import { Box, Container } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
@@ -29,6 +29,20 @@ export const Header = (): ReactElement => {
     onSettingsOpen,
     onSettingsClose,
   } = useUiState();
+
+  const settingsOpen = useCallback(() => {
+    if (searchOpened) {
+      onSearchClose();
+    }
+    onSettingsOpen();
+  }, [searchOpened]);
+
+  const searchOpen = useCallback(() => {
+    if (settingsOpened) {
+      onSettingsClose();
+    }
+    onSearchOpen();
+  }, [settingsOpened]);
 
   return (
     <Box
@@ -64,7 +78,7 @@ export const Header = (): ReactElement => {
           <ClientOnly>
             {searchVisible && (
               <Search
-                onOpen={onSearchOpen}
+                onOpen={searchOpen}
                 onClose={onSearchClose}
                 opened={searchOpened}
               />
@@ -74,7 +88,7 @@ export const Header = (): ReactElement => {
           <ClientOnly>
             {settingsVisible && (
               <Settings
-                onOpen={onSettingsOpen}
+                onOpen={settingsOpen}
                 onClose={onSettingsClose}
                 opened={settingsOpened}
               />
