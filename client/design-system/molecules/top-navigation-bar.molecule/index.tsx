@@ -9,34 +9,34 @@ import { TopNavigationBarProps } from './types';
 const navItems: TopNavigationBarProps[] = [
   {
     label: 'Today',
-    url: `/weather-today`,
-    type: 'common-nav-link',
+    path: `/weather-today`,
+    variant: 'common-nav',
   },
   {
     label: 'Hourly',
-    url: `/hourly-weather`,
-    type: 'common-nav-link',
+    path: `/hourly-weather`,
+    variant: 'common-nav',
   },
   {
     label: 'Clime App',
-    url: 'https://apps.apple.com/us/app/id749133753',
-    type: 'app-nav-link',
+    path: 'https://apps.apple.com/us/app/id749133753',
+    variant: 'app-nav',
     isExternal: true,
   },
   {
     label: '10-day',
-    url: `/ten-day-weather`,
-    type: 'common-nav-link',
+    path: `/ten-day-weather`,
+    variant: 'common-nav',
   },
   {
     label: 'Weather Radar',
-    url: `/weather-radar`,
-    type: 'common-nav-link',
+    path: `/weather-radar`,
+    variant: 'common-nav',
   },
   {
     label: 'Alerts',
-    url: `/alerts`,
-    type: 'alert-nav-link',
+    path: `/alerts`,
+    variant: 'alert-nav',
   },
 ];
 
@@ -54,19 +54,32 @@ export const TopNavigationBar = (): ReactElement => {
 
   return (
     <Flex as="nav" bg="gray.50" py="4" overflowX="auto" ref={navRef}>
-      {navItems.map((item) => (
-        <NextLink key={item.label} href={item.url} passHref>
-          <Link
-            isExternal={item.isExternal}
-            href={item.url}
-            ref={router.pathname === item.url ? menuCurrentItemRef : null}
-            flexShrink={0}
-            aria-current={router.pathname === item.url && 'page'}
-          >
-            {item.label}
-          </Link>
-        </NextLink>
-      ))}
+      {navItems.map((item) => {
+        const isCurrent = router.pathname === item.path;
+        return (
+          <NextLink key={item.label} href={item.path} passHref>
+            <Link
+              bg="white"
+              whiteSpace="nowrap"
+              alignItems="center"
+              borderRadius="3xl"
+              textStyle="16-semi-bold"
+              d="flex"
+              h="38px"
+              px="5"
+              ms={['2', '3']}
+              isExternal={item.isExternal}
+              href={item.path}
+              ref={isCurrent ? menuCurrentItemRef : null}
+              flexShrink={0}
+              aria-current={isCurrent && 'page'}
+              variant={item.variant}
+            >
+              {item.label}
+            </Link>
+          </NextLink>
+        );
+      })}
     </Flex>
   );
 };

@@ -1,7 +1,7 @@
 export type TopNavigationBarProps = {
   label: string;
-  type: string;
-  url: string;
+  variant: string;
+  path: string;
   isExternal?: boolean;
 };
 
