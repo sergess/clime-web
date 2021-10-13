@@ -3,10 +3,6 @@ const Link = {
     'common-nav': {
       color: 'blue.50',
 
-      _first: {
-        ms: { base: '2.5', md: '4' },
-      },
-
       _hover: {
         textDecoration: 'none',
         color: 'blue.500',
@@ -25,10 +21,6 @@ const Link = {
     'alert-nav': {
       color: 'red.50',
 
-      _first: {
-        ms: { base: '2.5', md: '4' },
-      },
-
       _hover: {
         textDecoration: 'none',
         color: 'red.400',
@@ -46,10 +38,6 @@ const Link = {
     },
     'app-nav': {
       color: 'orange.50',
-
-      _first: {
-        ms: { base: '2.5', md: '4' },
-      },
 
       _hover: {
         textDecoration: 'none',

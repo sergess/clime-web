@@ -11,11 +11,13 @@ const navItems: TopNavigationBarProps[] = [
     label: 'Today',
     path: `/weather-today`,
     variant: 'common-nav',
+    isExternal: false,
   },
   {
     label: 'Hourly',
     path: `/hourly-weather`,
     variant: 'common-nav',
+    isExternal: false,
   },
   {
     label: 'Clime App',
@@ -27,16 +29,19 @@ const navItems: TopNavigationBarProps[] = [
     label: '10-day',
     path: `/ten-day-weather`,
     variant: 'common-nav',
+    isExternal: false,
   },
   {
     label: 'Weather Radar',
     path: `/weather-radar`,
     variant: 'common-nav',
+    isExternal: false,
   },
   {
     label: 'Alerts',
     path: `/alerts`,
     variant: 'alert-nav',
+    isExternal: false,
   },
 ];
 
@@ -55,7 +60,7 @@ export const TopNavigationBar = (): ReactElement => {
   return (
     <Flex as="nav" bg="gray.50" py="4" overflowX="auto" ref={navRef}>
       {navItems.map((item) => {
-        const isCurrent = router.pathname === item.path;
+        const current = router.pathname === item.path;
         return (
           <NextLink key={item.label} href={item.path} passHref>
             <Link
@@ -68,11 +73,12 @@ export const TopNavigationBar = (): ReactElement => {
               h="38px"
               px="5"
               ms={['2', '3']}
+              _first={{ ms: ['2.5', '4'] }}
               isExternal={item.isExternal}
               href={item.path}
-              ref={isCurrent ? menuCurrentItemRef : null}
+              ref={current ? menuCurrentItemRef : null}
               flexShrink={0}
-              aria-current={isCurrent && 'page'}
+              aria-current={current && 'page'}
               variant={item.variant}
             >
               {item.label}
