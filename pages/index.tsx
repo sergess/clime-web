@@ -44,11 +44,8 @@ const Index = (): ReactElement => {
     if (hasMounted && locationData && !latitudeCookie && !longitudeCookie) {
       const { countryCode, city, forecastZoneId } = locationData;
 
-      setCookie(EXACT_LATITUDE_COOKIE, locationFromBrowser?.latitude as number);
-      setCookie(
-        EXACT_LONGITUDE_COOKIE,
-        locationFromBrowser?.longitude as number
-      );
+      setCookie(EXACT_LATITUDE_COOKIE, `${locationFromBrowser?.latitude}`);
+      setCookie(EXACT_LONGITUDE_COOKIE, `${locationFromBrowser?.longitude}`);
 
       router.push(
         encodeURI(`/weather-today/${countryCode}/${city}/${forecastZoneId}`)
