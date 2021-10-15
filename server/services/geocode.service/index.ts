@@ -1,4 +1,7 @@
+import isNil from 'ramda/src/isNil';
+
 import { LocationData } from 'common/types';
+import { isString } from 'common/utils';
 
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 
@@ -22,28 +25,22 @@ export class Geocode extends BaseApiV3Service {
     return locationData;
   }
 
-  // [TODO] stubbed for now, implement when api will be ready
-  // eslint-disable-next-line
   public async getLocationDataByLocation({
     countryCode,
     city,
-    forecastZoneId,
+    language,
   }: LocationDataByLocationArguments): Promise<LocationData | null> {
-    return Promise.resolve({
-      airZoneId: 1,
-      forecastZoneId: 1,
-      nowcastZoneId: 1,
-      pollenZoneId: 1,
-      warningZoneId: 1,
-      latitude: 50,
-      longitude: 50,
-      district: 'test',
-      city: 'Minsk',
-      region: 'test',
-      country: 'Belarus',
-      countryCode: 'by',
-      timeZone: 'Europe/Minsk',
-    });
+    if (!isString(countryCode) || !isString(city) || !isString(language)) {
+      return null;
+    }
+
+    const locationData = await this.callAsync<LocationData>(
+      `/geocode/lookup/${language}/${countryCode}:${city}`
+    );
+
+    return Array.isArray(locationData) || isNil(locationData)
+      ? null
+      : locationData;
   }
 
   public async querySearch({

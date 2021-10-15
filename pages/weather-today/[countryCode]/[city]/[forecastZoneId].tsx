@@ -21,18 +21,16 @@ const WeatherToday = (): ReactElement => (
 export default WeatherToday;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const forecastFeed = await withForecastFeed(context);
-  const { locale } = context;
+  const { locale, defaultLocale } = context;
+  const { countryCode, city } = context.query;
 
   const geocodeService = withApiV3Service<Geocode>(context, Geocode);
 
-  const { countryCode, city, forecastZoneId } = context.query;
-  // [TODO] add checks for undefined, error handling
-  // [TODO] Add api route for geocodeService.getLocationDataByLocation
+  const forecastFeed = await withForecastFeed(context);
   const locationData = await geocodeService.getLocationDataByLocation({
     countryCode: countryCode as string,
     city: city as string,
-    forecastZoneId: forecastZoneId as string,
+    language: locale || (defaultLocale as string),
   });
 
   return {

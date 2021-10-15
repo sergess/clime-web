@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { TodayCard } from 'client/design-system/organisms';
+import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
 
 import {
   useHasMounted,
@@ -13,41 +13,61 @@ import {
   useLocationDataByCoordinates,
 } from 'client/hooks';
 
-import { FORECAST_ZONE_ID_COOKIE } from 'common/constants';
+import {
+  EXACT_LATITUDE_COOKIE,
+  EXACT_LONGITUDE_COOKIE,
+} from 'common/constants';
+import { isLocationValid } from 'common/utils';
 
 import {
   withLocationDataByIp,
   withApiV3Service,
   withCookie,
 } from 'server/middlewares/get-server-side-props';
-import { Forecast } from 'server/services';
+import { Forecast, Geocode } from 'server/services';
 
 const Index = (): ReactElement => {
   const router = useRouter();
-  const { cookies: forecastZoneIdCookie, setCookie: setForecastZoneIdCookie } =
-    useCookies(FORECAST_ZONE_ID_COOKIE);
-  const browserLocation = useLocationFromBrowser({
-    skip: !!forecastZoneIdCookie,
+  const { cookies, setCookie } = useCookies([
+    EXACT_LATITUDE_COOKIE,
+    EXACT_LONGITUDE_COOKIE,
+  ]);
+  const [latitudeCookie, longitudeCookie] = cookies as (string | undefined)[];
+  const locationFromBrowser = useLocationFromBrowser({
+    skip: !!latitudeCookie && !!longitudeCookie,
   });
-  const { data: locationData } = useLocationDataByCoordinates(browserLocation);
+  const { data: locationData } =
+    useLocationDataByCoordinates(locationFromBrowser);
   const hasMounted = useHasMounted();
 
   useEffect(() => {
-    if (hasMounted && locationData && !forecastZoneIdCookie) {
+    if (hasMounted && locationData && !latitudeCookie && !longitudeCookie) {
       const { countryCode, city, forecastZoneId } = locationData;
 
-      setForecastZoneIdCookie(
-        FORECAST_ZONE_ID_COOKIE,
-        forecastZoneId.toString()
+      setCookie(EXACT_LATITUDE_COOKIE, locationFromBrowser?.latitude as number);
+      setCookie(
+        EXACT_LONGITUDE_COOKIE,
+        locationFromBrowser?.longitude as number
       );
 
-      // [TODO] Save to app's state flag that location was detected using Browser API
       router.push(
         encodeURI(`/weather-today/${countryCode}/${city}/${forecastZoneId}`)
       );
     }
-  }, [hasMounted, locationData, forecastZoneIdCookie]);
-  return <TodayCard locationExact />;
+  }, [
+    hasMounted,
+    locationData,
+    locationFromBrowser,
+    latitudeCookie,
+    longitudeCookie,
+  ]);
+
+  return (
+    <>
+      <TodayCard />
+      <HourlyForecastCard />
+    </>
+  );
 };
 
 export default Index;
@@ -55,18 +75,25 @@ export default Index;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, defaultLocale } = context;
 
-  const forecastZoneIdFromCookies = withCookie(
-    context,
-    FORECAST_ZONE_ID_COOKIE
-  );
-  const locationData = !forecastZoneIdFromCookies
-    ? await withLocationDataByIp(context)
-    : null;
+  const geocodeService = withApiV3Service<Geocode>(context, Geocode);
+
+  const latitudeFromCookies = withCookie(context, EXACT_LATITUDE_COOKIE);
+  const longitudeFromCookies = withCookie(context, EXACT_LONGITUDE_COOKIE);
+  const locationFromCookies = {
+    latitude: Number(latitudeFromCookies),
+    longitude: Number(longitudeFromCookies),
+  };
+
+  const locationData = isLocationValid(locationFromCookies)
+    ? await geocodeService.getLocationDataByCoordinates({
+        ...locationFromCookies,
+        language: locale || (defaultLocale as string),
+      })
+    : await withLocationDataByIp(context);
 
   const forecastService = withApiV3Service<Forecast>(context, Forecast);
   const forecastFeed = await forecastService.getForecastFeed({
-    forecastZoneId:
-      forecastZoneIdFromCookies || (locationData?.forecastZoneId as number),
+    forecastZoneId: locationData?.forecastZoneId as number,
     language: locale || (defaultLocale as string),
   });
 
@@ -74,6 +101,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       initialState: {
         forecastFeed,
+        locationData,
       },
 
       ...(!!locale &&

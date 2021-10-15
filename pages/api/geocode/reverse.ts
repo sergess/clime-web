@@ -1,10 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { Location } from 'common/types';
-import { isString } from 'common/utils';
+import { isString, isLocationValid } from 'common/utils';
 
 import { Geocode } from 'server/services';
-import { isLocationValid } from 'server/utils';
 import {
   withApiV3Service,
   withRequestMethod,

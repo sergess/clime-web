@@ -5,6 +5,9 @@ import {
   calculateOppositeAngle,
   defaultToDash,
   formatUtcString,
+  isLocationTheSameAsLocationFromBrowser,
+  getExtendedLocationName,
+  getLocationName,
 } from 'client/utils';
 import { locationDataAtom } from 'client/state/atoms';
 
@@ -13,16 +16,24 @@ import {
   dayConditionsFeedAtomFamily,
 } from 'client/state/derivatives';
 
-// [TODO] add 'locationExact'
 export const todayCardAtom = atom((get) => {
   const currentHourCondition = get(hourConditionsFeedAtomFamily(0));
   const todayDayCondition = get(dayConditionsFeedAtomFamily(0));
   const locationData = get(locationDataAtom);
 
   const windDirection = currentHourCondition.windDirection || 0;
+  const locationExact =
+    !!locationData &&
+    isLocationTheSameAsLocationFromBrowser({
+      latitude: locationData?.latitude,
+      longitude: locationData?.longitude,
+    });
 
   return {
-    location: 'Minneapolis, MN',
+    locationExact,
+    location: locationExact
+      ? getExtendedLocationName(locationData)
+      : getLocationName(locationData),
     time: formatUtcString(
       currentHourCondition.dateTime,
       'h:mmaaa',

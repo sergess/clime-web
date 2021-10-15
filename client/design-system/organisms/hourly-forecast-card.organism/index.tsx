@@ -8,6 +8,7 @@ import {
   ForecastCard,
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
+import { SUNSET, SUNRISE, WEATHER_STATE } from 'client/constants';
 
 import { hourlyForecastCardAtom } from './state/derivatives';
 import { Icon } from './atoms';
@@ -44,7 +45,8 @@ export const HourlyForecastCard = memo((): ReactElement => {
                   textStyle={selected ? '12-bold' : '12-semi-bold'}
                   color={selected ? 'blue.500' : 'blue.800'}
                 >
-                  {item.heading}
+                  {index === 0 && t('Now')}
+                  {index !== 0 && item.heading}
                 </Text>
               </ClientOnly>
             }
@@ -63,7 +65,12 @@ export const HourlyForecastCard = memo((): ReactElement => {
                   textStyle={selected ? '12-bold' : '12-semi-bold'}
                   color="blue.800"
                 >
-                  {item.footer}
+                  {SUNSET === item.variant && t('sunset')}
+                  {SUNRISE === item.variant && t('sunrise')}
+                  {WEATHER_STATE === item.variant &&
+                    t('{{temperature}}degree', {
+                      temperature: item.temperature,
+                    })}
                 </Text>
               </ClientOnly>
             }

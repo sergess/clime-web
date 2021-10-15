@@ -15,5 +15,6 @@
   "Now": "Now",
   "Today": "Today",
   "sunset": "sunset",
-  "sunrise": "sunrise"
+  "sunrise": "sunrise",
+  "{{temperature}}degree": "{{temperature}}\u00b0"
 }

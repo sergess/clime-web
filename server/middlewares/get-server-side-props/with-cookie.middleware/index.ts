@@ -3,6 +3,6 @@ import { GetServerSidePropsContext } from 'next';
 export const withCookie = (
   context: GetServerSidePropsContext,
   cookieName: string
-): string | null => context.req.cookies?.[cookieName] ?? null;
+): string | undefined => context.req.cookies?.[cookieName];
 
 export default withCookie;

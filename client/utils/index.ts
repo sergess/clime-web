@@ -11,3 +11,6 @@ export * from './is-utc-string-night.util';
 export * from './is-utc-string-within-interval.util';
 export * from './format-utc-string.util';
 export * from './convert-date-time-to-iso-string.util';
+export * from './is-location-the-same-as-location-from-browser.util';
+export * from './get-location-name.util';
+export * from './get-extended-location-name.util';

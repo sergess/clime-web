@@ -3,7 +3,7 @@ import { CookieAttributes } from 'js-cookie';
 export interface ISetCookie {
   (
     name: string,
-    value: string | { [key: string]: any },
+    value: string | number | { [key: string]: any },
     options?: CookieAttributes
   ): void;
 }
