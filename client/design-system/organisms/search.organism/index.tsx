@@ -26,6 +26,7 @@ import {
 import { useTranslation } from 'next-i18next';
 
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { getLocationName } from 'client/utils';
 import {
   CloseIcon,
   Arrow2Icon,
@@ -36,6 +37,7 @@ import {
 
 import { LocationData } from 'common/types';
 
+import { getValidRedirectUrl } from './utils';
 import { SearchProps } from './types';
 
 export const Search = ({
@@ -133,18 +135,16 @@ export const Search = ({
           <Flex direction="column" w="100%">
             {suggestions &&
               suggestions.length > 0 &&
-              suggestions.map(
-                (
-                  {
-                    city,
-                    country,
-                    countryCode,
-                    forecastZoneId,
-                    latitude,
-                    longitude,
-                  },
-                  i
-                ) => (
+              suggestions.map((locationData, i) => {
+                const {
+                  city,
+                  countryCode,
+                  forecastZoneId,
+                  latitude,
+                  longitude,
+                } = locationData;
+
+                return (
                   <HeaderCardPopoverRow
                     key={`${forecastZoneId}-${latitude}-${longitude}`}
                     first={i === 0}
@@ -163,12 +163,14 @@ export const Search = ({
                         >
                           <Link
                             passHref
-                            href={encodeURI(
-                              `/weather-today/${countryCode}/${city}/${forecastZoneId}`
+                            href={getValidRedirectUrl(
+                              countryCode as string,
+                              city as string,
+                              forecastZoneId
                             )}
                           >
                             <LinkOverlay onClick={onClose}>
-                              {city}, {country}
+                              {getLocationName(locationData)}
                             </LinkOverlay>
                           </Link>
                         </Text>
@@ -176,8 +178,8 @@ export const Search = ({
                       </Flex>
                     </LinkBox>
                   </HeaderCardPopoverRow>
-                )
-              )}
+                );
+              })}
           </Flex>
         </PopoverContent>
       </Portal>

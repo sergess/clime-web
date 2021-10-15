@@ -1,7 +1,7 @@
 export type LocationDataByLocationArguments = {
   countryCode: string;
   city: string;
-  forecastZoneId: string;
+  language: string;
 };
 
 export default LocationDataByLocationArguments;
