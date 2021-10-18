@@ -98,7 +98,6 @@ deploy-to-gar-production:
         of <$CI_PROJECT_URL/-/tree/$CI_COMMIT_REF_NAME|$CI_PROJECT_PATH>.
 
         Commit message: <${CI_PROJECT_URL}/commit/${CI_COMMIT_SHA}|$CI_COMMIT_SHORT_SHA> ${CI_COMMIT_MESSAGE}
-    SlackWebhook: 'https://hooks.slack.com/services/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'
   before_script: []
   script:
     - gcloud auth activate-service-account --key-file=$GOOGLE_SA
@@ -114,12 +113,16 @@ deploy-to-gar-production:
 deploy-to-cloudrun-dev:
   extends: .deploy-to-cloudrun
   environment: dev
+  variables:
+    SlackWebhook: 'https://hooks.slack.com/services/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' #clime-web-builds
   only:
     - develop
 
 deploy-to-cloudrun-staging:
   extends: .deploy-to-cloudrun
   environment: dev-staging
+  variables:
+    SlackWebhook: 'https://hooks.slack.com/services/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' #team-clime-web
   only:
     - master
 
@@ -129,6 +132,6 @@ deploy-to-cloudrun-production:
   environment: production
   when: manual
   variables:
-    SlackWebhook: 'https://hooks.slack.com/services/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'
+    SlackWebhook: 'https://hooks.slack.com/services/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' #team-clime-web
   only:
     - master
