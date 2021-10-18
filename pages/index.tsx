@@ -23,6 +23,7 @@ import {
   withLocationDataByIp,
   withApiV3Service,
   withCookie,
+  withUserAgentInfo,
 } from 'server/middlewares/get-server-side-props';
 import { Forecast, Geocode } from 'server/services';
 
@@ -99,6 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       initialState: {
         forecastFeed,
         locationData,
+        userAgentInfo: withUserAgentInfo(context),
       },
 
       ...(!!locale &&

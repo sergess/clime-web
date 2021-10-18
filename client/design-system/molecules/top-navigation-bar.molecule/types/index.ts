@@ -1,1 +1,1 @@
-export * from './top-navigation-bar-props.type';
+export * from './navigation-option.type';

@@ -1,20 +1,16 @@
 import React, { ReactElement } from 'react';
-import dynamic from 'next/dynamic';
+import { useAtomValue } from 'jotai/utils';
 import { Box, Container, Link, Divider } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { ClimeLogoDarkIcon } from 'client/design-system/atoms';
+import { Download } from 'client/design-system/molecules';
 import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
-
-const Download = dynamic(
-  () => import('client/design-system/molecules/download.molecule'),
-  {
-    ssr: false,
-  }
-);
+import { userAgentInfoAtom } from 'client/state/atoms';
 
 export const Footer = (): ReactElement => {
   const { t } = useTranslation('common');
+  const userAgentInfo = useAtomValue(userAgentInfoAtom);
 
   return (
     <Box
@@ -57,7 +53,7 @@ export const Footer = (): ReactElement => {
             {t('© 2021 Clime. All rights reserved.')}
           </Box>
           <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: '0px' }}>
-            <Download />
+            <Download mobile={userAgentInfo?.mobile} ios={userAgentInfo?.iOS} />
           </Box>
         </Box>
         <Box
