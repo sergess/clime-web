@@ -4,6 +4,7 @@ stages:
     - build
     - deploy-image
     - deploy-cloudrun
+    - build-production
     - deploy-image-production
     - deploy-cloudrun-production
 
@@ -53,7 +54,7 @@ build-staging:
 
 build-production:
   extends: .build
-  stage: deploy-image-production
+  stage: build-production
   environment: production
   when: manual
   only:
