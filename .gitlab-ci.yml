@@ -45,6 +45,7 @@ build:
 
 deploy-to-gar:
   stage: deploy-image
+  environment: dev # we'll copy dev image to production on deploy to production
   script:
     # fetch the image
     - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
