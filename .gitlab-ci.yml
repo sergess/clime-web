@@ -19,9 +19,8 @@ before_script:
   - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
 
-build:
+.build:
   stage: build
-  environment: dev # we'll copy dev image to production on deploy to production
   script:
     - cp $dotEnv .env
     # fetches the latest image (not failing if image is not found)
@@ -39,21 +38,54 @@ build:
       .
     - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest
+
+build-dev:
+  extends: .build
+  environment: dev
   only:
     - develop
+
+build-staging:
+  extends: .build
+  environment: dev-staging
+  only:
     - master
 
-deploy-to-gar:
+build-production:
+  extends: .build
+  stage: deploy-image-production
+  environment: production
+  when: manual
+  only:
+    - master
+
+.deploy-to-gar:
   stage: deploy-image
-  environment: dev # we'll copy dev image to production on deploy to production
   script:
     # fetch the image
     - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
     # tag and push to Artifact Registry
     - docker tag $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA $GAR_REPO:latest
     - docker push $GAR_REPO:latest
+
+deploy-to-gar-dev:
+  extends: .deploy-to-gar
+  environment: dev
   only:
     - develop
+
+deploy-to-gar-staging:
+  extends: .deploy-to-gar
+  environment: dev-staging
+  only:
+    - master
+
+deploy-to-gar-production:
+  extends: .deploy-to-gar
+  stage: deploy-image-production
+  environment: production
+  when: manual
+  only:
     - master
 
 .deploy-to-cloudrun:
@@ -88,14 +120,6 @@ deploy-to-cloudrun-dev:
 deploy-to-cloudrun-staging:
   extends: .deploy-to-cloudrun
   environment: dev-staging
-  only:
-    - master
-
-deploy-to-gar-production:
-  extends: deploy-to-gar
-  stage: deploy-image-production
-  environment: production
-  when: manual
   only:
     - master
 
