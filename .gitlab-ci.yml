@@ -103,6 +103,7 @@ deploy-to-cloudrun-production:
   extends: .deploy-to-cloudrun
   stage: deploy-cloudrun-production
   environment: production
+  when: manual
   variables:
     SlackWebhook: 'https://hooks.slack.com/services/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'
   only:
