@@ -8,6 +8,7 @@ import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
 import {
   withForecastFeed,
   withApiV3Service,
+  withUserAgentInfo,
 } from 'server/middlewares/get-server-side-props';
 import { Geocode } from 'server/services';
 
@@ -38,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       initialState: {
         forecastFeed,
         locationData,
+        userAgentInfo: withUserAgentInfo(context),
       },
 
       ...(!!locale &&
