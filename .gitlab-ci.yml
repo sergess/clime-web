@@ -94,9 +94,8 @@ deploy-to-cloudrun-staging:
 deploy-to-gar-production:
   extends: deploy-to-gar
   stage: deploy-image-production
+  environment: production
   when: manual
-  variables:
-    GAR_REPO: $GAR_REPO_PRODUCTION
   only:
     - master
 
@@ -105,8 +104,6 @@ deploy-to-cloudrun-production:
   stage: deploy-cloudrun-production
   environment: production
   variables:
-    GAR_REPO: $GAR_REPO_PRODUCTION
-    GCP_PROJECT: $GCP_PROJECT_PRODUCTION
     SlackWebhook: 'https://hooks.slack.com/services/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'
   only:
     - master
