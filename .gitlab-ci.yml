@@ -4,6 +4,8 @@ stages:
     - build
     - deploy-image
     - deploy-cloudrun
+    - deploy-image-production
+    - deploy-cloudrun-production
 
 default:
   image: docker:19
@@ -17,7 +19,7 @@ before_script:
   - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
 
-.build:
+build:
   stage: build
   script:
     - cp $dotEnv .env
@@ -36,39 +38,20 @@ before_script:
       .
     - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
     - docker push $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:latest
-
-build-dev:
-  extends: .build
-  environment: dev
   only:
     - develop
-
-build-prd:
-  extends: .build
-  environment: prd
-  only:
     - master
 
-.deploy-to-gar:
+deploy-to-gar:
   stage: deploy-image
-  allow_failure: false
   script:
     # fetch the image
     - docker pull $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
     # tag and push to Artifact Registry
     - docker tag $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA $GAR_REPO:latest
     - docker push $GAR_REPO:latest
-
-deploy-to-gar-dev:
-  extends: .deploy-to-gar
-  environment: dev
   only:
     - develop
-
-deploy-to-gar-prd:
-  extends: .deploy-to-gar
-  environment: prd
-  only:
     - master
 
 .deploy-to-cloudrun:
@@ -85,7 +68,7 @@ deploy-to-gar-prd:
   before_script: []
   script:
     - gcloud auth activate-service-account --key-file=$GOOGLE_SA
-    - gcloud --project=$GCP_PROJECT run deploy clime-web --region=us-east1 --image $GAR_REPO:latest --ingress=internal-and-cloud-load-balancing
+    - gcloud --project=$GCP_PROJECT run deploy $CloudRun_Service --region=us-east1 --image $GAR_REPO:latest --ingress=internal-and-cloud-load-balancing
     - apk add --no-cache jq
     - >-
         jq -n --arg msg "$SlackTemplate" '{text: $msg}'
@@ -100,8 +83,28 @@ deploy-to-cloudrun-dev:
   only:
     - develop
 
-deploy-to-cloudrun-prd:
+deploy-to-cloudrun-staging:
   extends: .deploy-to-cloudrun
-  environment: prd
+  environment: dev-staging
+  only:
+    - master
+
+deploy-to-gar-production:
+  extends: deploy-to-gar
+  stage: deploy-image-production
+  when: manual
+  variables:
+    GAR_REPO: $GAR_REPO_PRODUCTION
+  only:
+    - master
+
+deploy-to-cloudrun-production:
+  extends: .deploy-to-cloudrun
+  stage: deploy-cloudrun-production
+  environment: production
+  variables:
+    GAR_REPO: $GAR_REPO_PRODUCTION
+    GCP_PROJECT: $GCP_PROJECT_PRODUCTION
+    SlackWebhook: 'https://hooks.slack.com/services/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'
   only:
     - master
