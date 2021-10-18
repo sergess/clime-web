@@ -21,6 +21,7 @@ before_script:
 
 build:
   stage: build
+  environment: dev # we'll copy dev image to production on deploy to production
   script:
     - cp $dotEnv .env
     # fetches the latest image (not failing if image is not found)
