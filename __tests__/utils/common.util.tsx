@@ -7,7 +7,9 @@ import { Layout } from 'client/design-system/templates';
 
 const Providers: FC = ({ children }) => (
   <ChakraProvider theme={climeTheme}>
-    <Layout>{children}</Layout>
+    <Layout mobile ios locationData={null}>
+      {children}
+    </Layout>
   </ChakraProvider>
 );
 

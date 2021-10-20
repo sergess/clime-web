@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { SUNSET, SUNRISE, WEATHER_STATE } from 'client/constants';
+import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
 import {
   SunriseIcon,
   SunsetIcon,

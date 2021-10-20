@@ -8,9 +8,7 @@ import {
   MAIN_CONTENT_VERTICAL_PADDING,
 } from 'client/constants';
 
-export const Layout: React.FC = ({
-  children,
-}: ComponentDefaultProps): ReactElement => (
+export const Layout = ({ children }: ComponentDefaultProps): ReactElement => (
   <>
     <Box flex="1 0 auto">
       <Header />

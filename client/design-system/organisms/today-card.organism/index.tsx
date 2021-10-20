@@ -1,4 +1,4 @@
-import { ReactElement, memo } from 'react';
+import { ReactElement, memo, useState, useEffect } from 'react';
 import {
   Button,
   Divider,
@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
+import { useRouter } from 'next/router';
+import toUpper from 'ramda/src/toUpper';
 
 import {
   Card,
@@ -32,18 +34,25 @@ import {
   windSpeedUnitAtom,
   precipitationUnitAtom,
 } from 'client/state/atoms';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
+import {
+  isLocationTheSameAsLocationFromBrowser,
+  getExtendedLocationName,
+  getLocationName,
+  capitalize,
+} from 'client/utils';
 
-import { todayCardAtom } from './state/derivatives';
+import { useTodayCardDataAtomValue } from './hooks';
+import { TodayCardProps } from './types';
 
-export const TodayCard = memo((): ReactElement => {
+export const TodayCard = memo(({ data }: TodayCardProps): ReactElement => {
+  const { query } = useRouter();
+  const todayCardData = useTodayCardDataAtomValue(data);
   const {
-    locationExact,
-    location,
     time,
     night,
     stateId,
-    currentTemperature,
+    temperature,
     feelsLikeTemperature,
     minTemperature,
     maxTemperature,
@@ -56,7 +65,34 @@ export const TodayCard = memo((): ReactElement => {
     uvIndex,
     humidity,
     pressure,
-  } = useAtomValue(todayCardAtom);
+  } = todayCardData;
+
+  const [locationExact, setLocationExact] = useState(false);
+  const [locationName, setLocationName] = useState('');
+
+  const locationData = useLocationData();
+
+  useEffect(() => {
+    const locationTheSameAsLocationFromBrowser =
+      !!locationData &&
+      isLocationTheSameAsLocationFromBrowser({
+        longitude: locationData.longitude,
+        latitude: locationData.latitude,
+      });
+
+    setLocationExact(locationTheSameAsLocationFromBrowser);
+
+    const nextLocationName = locationTheSameAsLocationFromBrowser
+      ? getExtendedLocationName(locationData)
+      : getLocationName(locationData);
+
+    setLocationName(
+      nextLocationName ||
+        `${capitalize((query?.city as string) ?? '')}, ${toUpper(
+          (query?.countryCode as string) ?? ''
+        )}`
+    );
+  }, [locationData, query]);
 
   const pressureUnit = useAtomValue(pressureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -71,10 +107,10 @@ export const TodayCard = memo((): ReactElement => {
       <Flex w="full" direction="column" px="4">
         <Flex w="full" justify="space-between" mb={5}>
           <Flex>
-            <ClientOnly>{locationExact && <PinCardIcon me={2.5} />}</ClientOnly>
+            {locationExact && <PinCardIcon me={2.5} />}
 
             <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
-              {location}
+              {locationName}
             </Text>
           </Flex>
 
@@ -92,7 +128,7 @@ export const TodayCard = memo((): ReactElement => {
           <Flex direction="column">
             <Flex direction="row">
               <Text color="blue.800" textStyle="80-main-temperature">
-                <ClientOnly>{currentTemperature}</ClientOnly>
+                <ClientOnly>{temperature}</ClientOnly>
               </Text>
               <Text color="blue.800" textStyle="42-main-degree">
                 &#176;
@@ -137,8 +173,8 @@ export const TodayCard = memo((): ReactElement => {
 
           <Text color="gray.600" textStyle="16-medium">
             <ClientOnly>
-              {t('{{azimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
-                azimuth: windAzimuth,
+              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+                windAzimuth: windAzimuth.toUpperCase(),
                 windSpeed,
                 windSpeedUnit,
               })}
