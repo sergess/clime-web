@@ -10,17 +10,16 @@ import {
   TEN_DAY_WEATHER,
   WEATHER_RADAR,
 } from 'client/constants';
-import { useUrlSlug, useClimeAppLink } from 'client/hooks';
+import { useUrlSlug, useBrowserInfo } from 'client/hooks';
+import { getClimeAppLink } from 'client/utils';
 
 import { NavigationOption } from './types';
 import { isCurrentRoute } from './utils';
 
 export const TopNavigationBar = (): ReactElement => {
   const router = useRouter();
-
   const urlSlug = useUrlSlug();
-  const climeAppLink = useClimeAppLink();
-
+  const { ios, mobile } = useBrowserInfo();
   const navigationRef = useRef<HTMLDivElement>(null);
 
   const currentRouteRef = useCallback((node) => {
@@ -47,7 +46,7 @@ export const TopNavigationBar = (): ReactElement => {
       },
       {
         label: 'Clime App',
-        path: climeAppLink,
+        path: getClimeAppLink(mobile, ios),
         variant: 'app-nav',
         external: true,
       },
@@ -64,7 +63,7 @@ export const TopNavigationBar = (): ReactElement => {
         external: false,
       },
     ],
-    [urlSlug, climeAppLink]
+    [urlSlug, mobile, ios]
   );
 
   return (

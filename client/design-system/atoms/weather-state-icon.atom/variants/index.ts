@@ -50,7 +50,7 @@ import {
   THUNDERSTORM,
   VOLCANIC_ASH,
   WATERSPOUT,
-} from 'client/constants';
+} from 'common/constants';
 
 const variants = {
   [BLIZZARD]: dynamic(() => import('./blizzard-icon.variant')),

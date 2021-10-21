@@ -1,7 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 
-import { ForecastFeed } from 'common/types';
-
+import { ForecastFeed } from 'server/types';
 import { Forecast } from 'server/services';
 
 import { withApiV3Service } from '../with-api-v3-service.middleware';

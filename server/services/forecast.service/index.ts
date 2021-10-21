@@ -1,24 +1,57 @@
+import isNil from 'ramda/src/isNil';
+
 import BaseApiV3Service from 'server/services/base-api-v3.service';
+import { ForecastFeed } from 'server/types';
 
-import { ForecastFeed } from 'common/types';
-
-import { ForecastFeedArguments } from './types';
+import { ForecastFeedFromApi, GetForecastFeedArguments } from './types';
+import {
+  convertConditionFromApiToHourCondition,
+  convertDayConditionFromApiToDayCondition,
+  getUpToDateHourConditions,
+  getUpToDateDayConditionsFromApi,
+  buildHourConditionsFeed,
+} from './utils';
 
 export class Forecast extends BaseApiV3Service {
   public async getForecastFeed({
     forecastZoneId,
     language,
-  }: ForecastFeedArguments): Promise<ForecastFeed | null> {
+  }: GetForecastFeedArguments): Promise<ForecastFeed | null> {
     if (!forecastZoneId) return null;
 
-    const forecastFeed = await this.callAsync<ForecastFeed>(
+    const forecastFeedFromApi = await this.callAsync<ForecastFeedFromApi>(
       `/feed/forecast/${language}/${forecastZoneId}`
     );
 
-    return forecastFeed;
+    if (isNil(forecastFeedFromApi)) {
+      return null;
+    }
+
+    const upToDateDayConditionsFromApi = getUpToDateDayConditionsFromApi(
+      forecastFeedFromApi.frst
+    );
+
+    const dayConditions = upToDateDayConditionsFromApi.map(
+      convertDayConditionFromApiToDayCondition
+    );
+    const currentDayCondition = dayConditions[0];
+
+    const currentHourCondition = convertConditionFromApiToHourCondition(
+      forecastFeedFromApi.cur,
+      currentDayCondition.sunrise,
+      currentDayCondition.sunset
+    );
+
+    const hourConditionsFeed = buildHourConditionsFeed(dayConditions);
+
+    return {
+      dayConditions,
+      hourConditions: getUpToDateHourConditions(
+        currentHourCondition,
+        hourConditionsFeed
+      ),
+    };
   }
 }
-
-export * from './types';
 
 export default Forecast;

@@ -26,7 +26,8 @@ import {
 import { useTranslation } from 'next-i18next';
 
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
-import { getLocationName } from 'client/utils';
+import { getLocationName, getValidRedirectUrl } from 'client/utils';
+import { WEATHER_TODAY } from 'client/constants';
 import {
   CloseIcon,
   Arrow2Icon,
@@ -37,7 +38,6 @@ import {
 
 import { LocationData } from 'common/types';
 
-import { getValidRedirectUrl } from './utils';
 import { SearchProps } from './types';
 
 export const Search = ({
@@ -164,6 +164,7 @@ export const Search = ({
                           <Link
                             passHref
                             href={getValidRedirectUrl(
+                              WEATHER_TODAY,
                               countryCode as string,
                               city as string,
                               forecastZoneId

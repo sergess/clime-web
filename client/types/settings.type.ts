@@ -4,7 +4,7 @@ import {
   PressureUnit,
   TemperatureUnit,
   SpeedUnit,
-} from './units.type';
+} from './units';
 
 export type Settings = {
   distance: DistanceUnit;

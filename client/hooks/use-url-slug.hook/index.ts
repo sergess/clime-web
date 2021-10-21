@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import { useAtomValue } from 'jotai/utils';
 
-import { locationDataAtom } from 'client/state/atoms';
+import { useLocationData } from '../use-location-data.hook';
 
 export const useUrlSlug = (): string | null => {
   const { query } = useRouter();
-  const locationData = useAtomValue(locationDataAtom);
+  const locationData = useLocationData();
 
   if (
     (!query?.countryCode && !locationData?.countryCode) ||
