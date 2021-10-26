@@ -24,7 +24,7 @@ export const Footer = (): ReactElement => {
         maxW="container.xl"
         p="0"
         d="flex"
-        flexDir={['column', 'column', 'row']}
+        flexDir={['column', 'column', 'column', 'row']}
         alignItems="stretch"
         justifyContent="space-between"
       >
@@ -56,7 +56,7 @@ export const Footer = (): ReactElement => {
           </Box>
         </Box>
         <Box
-          w={['100%', null, '60%']}
+          w={['100%', null, null, '60%']}
           textStyle={{ base: '12-medium', md: '14-text-body' }}
           lineHeight={{ base: '4' }}
         >

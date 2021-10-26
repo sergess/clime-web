@@ -7,3 +7,5 @@ export * from './today-card-data.type';
 export * from './hourly-forecast-card-data.type';
 export * from './hour-condition-variant.type';
 export * from './weather-state-id.type';
+export * from './next-page-with-layout.type';
+export * from './app-props-with-layout';
