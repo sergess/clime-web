@@ -1,5 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Box, Flex, Center, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Center,
+  Text,
+  ComponentDefaultProps,
+} from '@chakra-ui/react';
 
 import { Card } from 'client/design-system/atoms';
 
@@ -10,9 +16,9 @@ export const ForecastCard = <T,>({
   heading,
   footer,
   renderItem,
-}: ForecastCardProps<T>): ReactElement => (
-  // [TODO] remove margin from here to layout
-  <Card mt={4} py="5" w={{ md: 340 }}>
+  ...rest
+}: ForecastCardProps<T> & ComponentDefaultProps): ReactElement => (
+  <Card {...rest}>
     <Box w="full" px="4">
       <Text color="blue.800" textStyle="16-semi-bold" noOfLines={1}>
         {heading}

@@ -1,13 +1,18 @@
 import React, { ReactElement, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
+import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import { Card } from 'client/design-system/atoms';
+import { DefaultLayout } from 'client/design-system/templates';
+
 import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 import { IndexPageProps } from 'client/types';
+
 import {
   useHasMounted,
   useCookies,
@@ -81,13 +86,38 @@ const Index = ({
 
   return (
     <>
-      <TodayCard data={todayCardData} />
-      <HourlyForecastCard data={hourlyForecastCardData} />
+      <TodayCard
+        data={todayCardData}
+        pt="5"
+        pb={{ md: 2 }}
+        maxW={{ xl: 380 }}
+        w="full"
+      />
+      <Card h="260px" w="full" maxW={{ xl: 380 }}>
+        Block 1
+      </Card>
+      <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
+        ads 3
+      </Box>
+      <Card h="260px" w="full" maxW={{ xl: 380 }}>
+        Block 2
+      </Card>
+      <Card h="260px" maxW={{ xl: 380 }} w="full">
+        Block 3
+      </Card>
+      <Card h="260px" maxW={{ xl: 380 }} w="full">
+        Block 4
+      </Card>
+      <HourlyForecastCard data={hourlyForecastCardData} py="5" w="full" />
     </>
   );
 };
 
 export default Index;
+
+Index.getLayout = function getLayout(page: ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, defaultLocale } = context;
