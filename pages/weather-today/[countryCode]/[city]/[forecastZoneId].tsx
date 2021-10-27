@@ -3,7 +3,11 @@ import { GetServerSideProps } from 'next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import {
+  TodayCard,
+  HourlyForecastCard,
+  SummaryCard,
+} from 'client/design-system/organisms';
 import { WeatherTodayPageProps } from 'client/types';
 
 import {
@@ -13,17 +17,20 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import {
   withTodayCard,
+  withSummaryCard,
   withHourlyForecastCard,
-} from 'server/middlewares/data-preparation';
+} from 'server/middlewares/data-mapper';
 import { Geocode } from 'server/services';
 
 const WeatherToday = ({
   todayCardData,
+  summaryCardData,
   hourlyForecastCardData,
 }: WeatherTodayPageProps): ReactElement => (
   <>
     <TodayCard data={todayCardData} />
     <HourlyForecastCard data={hourlyForecastCardData} />
+    <SummaryCard data={summaryCardData} />
   </>
 );
 
@@ -55,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         forecastFeed,
         locationData
       ),
+      summaryCardData: withSummaryCard(forecastFeed),
       locationData,
       browserInfo: withBrowserInfo(context),
 

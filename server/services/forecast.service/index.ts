@@ -10,6 +10,7 @@ import {
   getUpToDateHourConditions,
   getUpToDateDayConditionsFromApi,
   buildHourConditionsFeed,
+  buildDaySummaryConditionsFeed,
 } from './utils';
 
 export class Forecast extends BaseApiV3Service {
@@ -50,6 +51,7 @@ export class Forecast extends BaseApiV3Service {
         currentHourCondition,
         hourConditionsFeed
       ),
+      daySummaryConditions: buildDaySummaryConditionsFeed(dayConditions),
     };
   }
 }

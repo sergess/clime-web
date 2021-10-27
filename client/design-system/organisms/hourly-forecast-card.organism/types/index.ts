@@ -1,2 +1,1 @@
-export * from './hourly-forecast-card-data-atom-value.type';
-export * from './hourly-forecast-card-props.type';
+export * from './use-hourly-forecast-card-data.type';

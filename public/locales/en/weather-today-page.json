@@ -16,5 +16,12 @@
   "Today": "Today",
   "sunset": "sunset",
   "sunrise": "sunrise",
-  "{{temperature}}degree": "{{temperature}}\u00b0"
+  "{{temperature}}degree": "{{temperature}}\u00b0",
+  "morning": "Morning",
+  "day": "Day",
+  "evening": "Evening",
+  "night": "Night",
+  "Temperature Summary": "Temperature Summary",
+  "Precipitation Summary": "Precipitation Summary",
+  "Wind Summary": "Wind Summary"
 }

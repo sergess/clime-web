@@ -1,6 +1,6 @@
 import { WeatherStateId, HourConditionVariant } from 'common/types';
 
-export type HourlyForecastCardDataAtomValue = Array<{
+export type UseHourlyForecastCardData = Array<{
   variant: HourConditionVariant;
   night: boolean;
   stateId: WeatherStateId | null;
@@ -8,4 +8,4 @@ export type HourlyForecastCardDataAtomValue = Array<{
   time: string;
 }>;
 
-export default HourlyForecastCardDataAtomValue;
+export default UseHourlyForecastCardData;

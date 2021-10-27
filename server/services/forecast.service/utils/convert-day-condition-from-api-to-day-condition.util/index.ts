@@ -1,3 +1,5 @@
+import { DayPeriod } from 'common/types';
+
 import { DayCondition } from 'server/types';
 import {
   convertDateTimeToISOString,
@@ -42,18 +44,22 @@ export const convertDayConditionFromApiToDayCondition = (
     summary: {
       morning: convertDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.mrng,
+        DayPeriod.MORNING,
         false
       ),
       day: convertDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.day,
+        DayPeriod.DAY,
         false
       ),
       evening: convertDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.evng,
-        true
+        DayPeriod.EVENING,
+        false
       ),
       night: convertDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.nght,
+        DayPeriod.NIGHT,
         true
       ),
     },

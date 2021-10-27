@@ -4,7 +4,11 @@ import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import {
+  TodayCard,
+  HourlyForecastCard,
+  SummaryCard,
+} from 'client/design-system/organisms';
 import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 import { IndexPageProps } from 'client/types';
@@ -29,12 +33,14 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import {
   withTodayCard,
+  withSummaryCard,
   withHourlyForecastCard,
-} from 'server/middlewares/data-preparation';
+} from 'server/middlewares/data-mapper';
 import { Forecast, Geocode } from 'server/services';
 
 const Index = ({
   todayCardData,
+  summaryCardData,
   hourlyForecastCardData,
 }: IndexPageProps): ReactElement => {
   const router = useRouter();
@@ -83,6 +89,7 @@ const Index = ({
     <>
       <TodayCard data={todayCardData} />
       <HourlyForecastCard data={hourlyForecastCardData} />
+      <SummaryCard data={summaryCardData} />
     </>
   );
 };
@@ -127,6 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         forecastFeed,
         locationData
       ),
+      summaryCardData: withSummaryCard(forecastFeed),
       locationData,
       browserInfo: withBrowserInfo(context),
 
