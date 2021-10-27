@@ -20,7 +20,7 @@ export const ForecastCard = <T,>({
 }: ForecastCardProps<T> & ComponentDefaultProps): ReactElement => (
   <Card {...rest}>
     <Box w="full" px="4">
-      <Text color="blue.800" textStyle="16-semi-bold" noOfLines={1}>
+      <Text color="blue.800" textStyle="16-card-title" noOfLines={1}>
         {heading}
       </Text>
 

@@ -40,6 +40,11 @@ const textStyles = {
     fontWeight: 600,
     lineHeight: '1rem',
   },
+  '16-card-title': {
+    fontSize: '1rem',
+    fontWeight: 600,
+    lineHeight: '1.25rem',
+  },
   '16-medium': {
     fontSize: '1rem',
     fontWeight: 500,
