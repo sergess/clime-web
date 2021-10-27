@@ -115,7 +115,7 @@ export const TodayCard = memo(
             <Flex>
               {locationExact && <PinCardIcon me={2.5} />}
 
-              <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
+              <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
                 {locationName}
               </Text>
             </Flex>
@@ -162,7 +162,7 @@ export const TodayCard = memo(
           <Flex mt={1} justify="center">
             <Text color="blue.800" textStyle="16-weather-detail" align="center">
               {`${stateText ? `${stateText}.` : ''} ${t(
-                'Precipitation chance {{precipitationChance}}%',
+                'Precipitation chance: {{precipitationChance}}%',
                 {
                   precipitationChance,
                 }
