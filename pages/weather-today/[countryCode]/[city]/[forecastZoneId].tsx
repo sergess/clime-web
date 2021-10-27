@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -9,6 +9,7 @@ import {
   SummaryCard,
 } from 'client/design-system/organisms';
 import { WeatherTodayPageProps } from 'client/types';
+import { Card } from 'client/design-system/atoms';
 
 import {
   withForecastFeed,
@@ -28,9 +29,16 @@ const WeatherToday = ({
   hourlyForecastCardData,
 }: WeatherTodayPageProps): ReactElement => (
   <>
-    <TodayCard data={todayCardData} />
-    <HourlyForecastCard data={hourlyForecastCardData} />
-    <SummaryCard data={summaryCardData} />
+    <TodayCard data={todayCardData} w="full" />
+    <Card w="full" h="100px">
+      Block 1
+    </Card>
+    <HourlyForecastCard data={hourlyForecastCardData} w="full" />
+    <SummaryCard data={summaryCardData} w="full" h={{ base: 240, md: 254 }} />
+    <Card w="full">Block 3</Card>
+    <Card h="260px" w="full">
+      Block 4
+    </Card>
   </>
 );
 

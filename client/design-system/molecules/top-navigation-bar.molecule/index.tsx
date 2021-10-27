@@ -1,10 +1,9 @@
 import React, { ReactElement, useRef, useCallback, useMemo } from 'react';
 import NextLink from 'next/link';
-import { Flex, Link } from '@chakra-ui/react';
+import { ComponentDefaultProps, Flex, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import {
-  LAYOUT_HORIZONTAL_PADDING,
   WEATHER_TODAY,
   HOURLY_WEATHER,
   TEN_DAY_WEATHER,
@@ -16,7 +15,9 @@ import { getClimeAppLink } from 'client/utils';
 import { NavigationOption } from './types';
 import { isCurrentRoute } from './utils';
 
-export const TopNavigationBar = (): ReactElement => {
+export const TopNavigationBar = (
+  componentProps: ComponentDefaultProps
+): ReactElement => {
   const router = useRouter();
   const urlSlug = useUrlSlug();
   const { ios, mobile } = useBrowserInfo();
@@ -68,10 +69,9 @@ export const TopNavigationBar = (): ReactElement => {
 
   return (
     <Flex
+      {...componentProps}
       as="nav"
       bg="gray.50"
-      py="4"
-      px={LAYOUT_HORIZONTAL_PADDING}
       overflowX="auto"
       ref={navigationRef}
       css={{

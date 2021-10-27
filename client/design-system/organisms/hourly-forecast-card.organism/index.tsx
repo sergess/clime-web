@@ -1,5 +1,5 @@
 import { ReactElement, memo, useState, useCallback } from 'react';
-import { Button, Text } from '@chakra-ui/react';
+import { Button, Text, ComponentDefaultProps } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
@@ -17,7 +17,11 @@ import { useHourlyForecastCardData } from './hooks';
 import { Icon } from './atoms';
 
 export const HourlyForecastCard = memo(
-  ({ data }: CardWithDataProps<HourlyForecastCardData>): ReactElement => {
+  ({
+    data,
+    ...componentProps
+  }: CardWithDataProps<HourlyForecastCardData> &
+    ComponentDefaultProps): ReactElement => {
     const { t } = useTranslation('weather-today-page');
     const [selectedItem, setSelectedItem] = useState<number>(0);
     const hourlyForecastCardData = useHourlyForecastCardData(data);
@@ -28,6 +32,8 @@ export const HourlyForecastCard = memo(
 
     return (
       <ForecastCard
+        {...componentProps}
+        py="5"
         heading={t('Hourly Forecast')}
         data={hourlyForecastCardData}
         footer={

@@ -1,6 +1,6 @@
 import { ReactElement, useState, useMemo } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Flex, Text, Center } from '@chakra-ui/react';
+import { Flex, Text, Center, ComponentDefaultProps } from '@chakra-ui/react';
 
 import {
   Card,
@@ -49,7 +49,9 @@ const selectorOptions = [
 
 export const SummaryCard = ({
   data,
-}: CardWithDataProps<SummaryCardData>): ReactElement => {
+  ...componentProps
+}: CardWithDataProps<SummaryCardData> &
+  ComponentDefaultProps): ReactElement => {
   const { t } = useTranslation('weather-today-page');
 
   const [activeChart, setActiveChart] = useState<ChartOption>(
@@ -70,7 +72,7 @@ export const SummaryCard = ({
   }, [activeChart]);
 
   return (
-    <Card w={{ md: 380 }} mt="4" h={{ base: 240, md: 254 }} overflow="hidden">
+    <Card {...componentProps} overflow="hidden">
       <Flex
         w="100%"
         px={4}

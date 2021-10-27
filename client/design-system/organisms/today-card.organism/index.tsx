@@ -6,6 +6,7 @@ import {
   Flex,
   Collapse,
   useDisclosure,
+  ComponentDefaultProps,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
@@ -48,7 +49,11 @@ import { TodayCardData } from 'common/types';
 import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
-  ({ data }: CardWithDataProps<TodayCardData>): ReactElement => {
+  ({
+    data,
+    ...componentProps
+  }: CardWithDataProps<TodayCardData> &
+    ComponentDefaultProps): ReactElement => {
     const { query } = useRouter();
     const todayCardData = useTodayCardData(data);
     const {
@@ -107,13 +112,13 @@ export const TodayCard = memo(
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
     return (
-      <Card pt="5" pb={{ md: 2 }} w={{ md: 340 }}>
+      <Card {...componentProps} pt="5" pb={{ md: 2 }}>
         <Flex w="full" direction="column" px="4">
           <Flex w="full" justify="space-between" mb={5}>
             <Flex>
               {locationExact && <PinCardIcon me={2.5} />}
 
-              <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
+              <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
                 {locationName}
               </Text>
             </Flex>
@@ -160,7 +165,7 @@ export const TodayCard = memo(
           <Flex mt={1} justify="center">
             <Text color="blue.800" textStyle="16-weather-detail" align="center">
               {`${stateText ? `${stateText}.` : ''} ${t(
-                'Precipitation chance {{precipitationChance}}%',
+                'Precipitation chance: {{precipitationChance}}%',
                 {
                   precipitationChance,
                 }
