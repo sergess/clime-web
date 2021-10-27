@@ -5,9 +5,12 @@ import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import {
+  TodayCard,
+  HourlyForecastCard,
+  SummaryCard,
+} from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
-import { DefaultLayout } from 'client/design-system/templates';
 
 import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
@@ -34,12 +37,14 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import {
   withTodayCard,
+  withSummaryCard,
   withHourlyForecastCard,
-} from 'server/middlewares/data-preparation';
+} from 'server/middlewares/data-mapper';
 import { Forecast, Geocode } from 'server/services';
 
 const Index = ({
   todayCardData,
+  summaryCardData,
   hourlyForecastCardData,
 }: IndexPageProps): ReactElement => {
   const router = useRouter();
@@ -86,16 +91,12 @@ const Index = ({
 
   return (
     <>
-      <TodayCard
-        data={todayCardData}
-        pt="5"
-        pb={{ md: 2 }}
-        maxW={{ xl: 380 }}
-        w="full"
-      />
+      <TodayCard data={todayCardData} maxW={{ xl: 380 }} w="full" />
       <Card h="260px" w="full" maxW={{ xl: 380 }}>
         Block 1
       </Card>
+      <HourlyForecastCard data={hourlyForecastCardData} w="full" />
+      <SummaryCard data={summaryCardData} w="full" h={{ base: 240, md: 254 }} />
       <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
         ads 3
       </Box>
@@ -108,16 +109,11 @@ const Index = ({
       <Card h="260px" maxW={{ xl: 380 }} w="full">
         Block 4
       </Card>
-      <HourlyForecastCard data={hourlyForecastCardData} py="5" w="full" />
     </>
   );
 };
 
 export default Index;
-
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, defaultLocale } = context;
@@ -157,6 +153,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         forecastFeed,
         locationData
       ),
+      summaryCardData: withSummaryCard(forecastFeed),
       locationData,
       browserInfo: withBrowserInfo(context),
 

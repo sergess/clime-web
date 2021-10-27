@@ -1,13 +1,13 @@
 import {
   TodayCardData,
   HourlyForecastCardData,
-  BrowserInfo,
+  SummaryCardData,
 } from 'common/types';
 
 export type IndexPageProps = {
   todayCardData: TodayCardData;
   hourlyForecastCardData: HourlyForecastCardData;
-  browserInfo: BrowserInfo;
+  summaryCardData: SummaryCardData;
 };
 
 export default IndexPageProps;

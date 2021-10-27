@@ -5,3 +5,4 @@ export * from './convert-day-summary-condition-from-api-to-day-summary-condition
 export * from './generate-empty-hour-condition.util';
 export * from './get-up-to-date-hour-conditions.util';
 export * from './get-up-to-date-day-conditions-from-api.util';
+export * from './build-day-summary-conditions-feed.util';

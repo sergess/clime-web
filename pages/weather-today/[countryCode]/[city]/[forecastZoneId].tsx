@@ -3,10 +3,13 @@ import { GetServerSideProps } from 'next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import {
+  TodayCard,
+  HourlyForecastCard,
+  SummaryCard,
+} from 'client/design-system/organisms';
 import { WeatherTodayPageProps } from 'client/types';
 import { Card } from 'client/design-system/atoms';
-import { DefaultLayout } from 'client/design-system/templates';
 
 import {
   withForecastFeed,
@@ -15,32 +18,31 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import {
   withTodayCard,
+  withSummaryCard,
   withHourlyForecastCard,
-} from 'server/middlewares/data-preparation';
+} from 'server/middlewares/data-mapper';
 import { Geocode } from 'server/services';
 
 const WeatherToday = ({
   todayCardData,
+  summaryCardData,
   hourlyForecastCardData,
 }: WeatherTodayPageProps): ReactElement => (
   <>
-    <TodayCard data={todayCardData} pt="5" pb={{ md: 2 }} w="full" />
+    <TodayCard data={todayCardData} w="full" />
     <Card w="full" h="100px">
       Block 1
     </Card>
+    <HourlyForecastCard data={hourlyForecastCardData} w="full" />
+    <SummaryCard data={summaryCardData} w="full" h={{ base: 240, md: 254 }} />
     <Card w="full">Block 3</Card>
     <Card h="260px" w="full">
       Block 4
     </Card>
-    <HourlyForecastCard data={hourlyForecastCardData} py="5" w="full" />
   </>
 );
 
 export default WeatherToday;
-
-WeatherToday.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale, defaultLocale } = context;
@@ -68,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         forecastFeed,
         locationData
       ),
+      summaryCardData: withSummaryCard(forecastFeed),
       locationData,
       browserInfo: withBrowserInfo(context),
 

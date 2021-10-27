@@ -41,3 +41,5 @@ export * from './variants/pic-map.variant';
 export * from './variants/pic-no-alert.variant';
 export * from './variants/play.variant';
 export * from './variants/plus.variant';
+export * from './variants/drop-icon.variant';
+export * from './variants/wind-icon.variant';

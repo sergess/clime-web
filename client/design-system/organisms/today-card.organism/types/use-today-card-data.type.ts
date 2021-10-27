@@ -1,6 +1,6 @@
 import { Azimuth, WeatherStateId } from 'common/types';
 
-export type TodayCardDataAtomValue = {
+export type UseTodayCardData = {
   time: string;
   night: boolean;
   stateText: string | null;
@@ -19,4 +19,4 @@ export type TodayCardDataAtomValue = {
   windDirectionAngle: number;
 };
 
-export default TodayCardDataAtomValue;
+export default UseTodayCardData;

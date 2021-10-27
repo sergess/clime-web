@@ -36,6 +36,7 @@ import {
   precipitationUnitAtom,
 } from 'client/state/atoms';
 import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
+import { CardWithDataProps } from 'client/types';
 import {
   isLocationTheSameAsLocationFromBrowser,
   getExtendedLocationName,
@@ -43,16 +44,18 @@ import {
   capitalize,
 } from 'client/utils';
 
-import { useTodayCardDataAtomValue } from './hooks';
-import { TodayCardProps } from './types';
+import { TodayCardData } from 'common/types';
+
+import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
   ({
     data,
     ...componentProps
-  }: TodayCardProps & ComponentDefaultProps): ReactElement => {
+  }: CardWithDataProps<TodayCardData> &
+    ComponentDefaultProps): ReactElement => {
     const { query } = useRouter();
-    const todayCardData = useTodayCardDataAtomValue(data);
+    const todayCardData = useTodayCardData(data);
     const {
       time,
       night,
@@ -109,7 +112,7 @@ export const TodayCard = memo(
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
     return (
-      <Card {...componentProps}>
+      <Card {...componentProps} pt="5" pb={{ md: 2 }}>
         <Flex w="full" direction="column" px="4">
           <Flex w="full" justify="space-between" mb={5}>
             <Flex>

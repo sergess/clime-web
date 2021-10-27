@@ -6,6 +6,7 @@ import { SWRConfig } from 'swr';
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
 import { AppConfigContext } from 'client/state/contexts';
+import { DefaultLayout } from 'client/design-system/templates';
 
 import { AppPropsWithLayout } from 'common/types';
 
@@ -24,7 +25,7 @@ const App = ({
   const direction = detectLanguageDirection(locale);
   const theme = extendTheme(climeTheme, { direction });
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? App.getDefaultLayout;
 
   return (
     <AppConfigContext.Provider
@@ -40,6 +41,10 @@ const App = ({
       </ChakraProvider>
     </AppConfigContext.Provider>
   );
+};
+
+App.getDefaultLayout = function getDefaultLayout(page: ReactElement) {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default appWithTranslation(App);
