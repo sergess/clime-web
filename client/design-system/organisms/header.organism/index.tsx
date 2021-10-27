@@ -1,12 +1,15 @@
 import React, { ReactElement, useCallback } from 'react';
-import { Box, Container } from '@chakra-ui/react';
+import { Box, Container, Link } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
+import NextLink from 'next/link';
 
 import { ClimeLogoWhiteIcon, ClientOnly } from 'client/design-system/atoms';
+import { useUrlSlug } from 'client/hooks';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
   LAYOUT_HORIZONTAL_PADDING,
+  WEATHER_TODAY,
 } from 'client/constants';
 
 import { useUiState } from './hooks';
@@ -44,6 +47,8 @@ export const Header = (): ReactElement => {
     onSearchOpen();
   }, [settingsOpened]);
 
+  const urlSlug = useUrlSlug();
+
   return (
     <Box
       as="header"
@@ -66,13 +71,16 @@ export const Header = (): ReactElement => {
         justifyContent="space-between"
         alignItems="center"
       >
-        {/* [TODO] Add link to weather-today page. What should we render on index page? */}
-        <ClimeLogoWhiteIcon
-          w={{ base: '90.53px', md: '108px' }}
-          h={{ base: '20px', md: '24px' }}
-          d="block"
-          me={5}
-        />
+        <NextLink href={`/${WEATHER_TODAY}/${urlSlug}`} passHref>
+          <Link href={`/${WEATHER_TODAY}/${urlSlug}`}>
+            <ClimeLogoWhiteIcon
+              w={{ base: '90.53px', md: '108px' }}
+              h={{ base: '20px', md: '24px' }}
+              d="block"
+              me={5}
+            />
+          </Link>
+        </NextLink>
 
         <Box w="full" d="flex" justifyContent="flex-end" alignItems="center">
           <ClientOnly>

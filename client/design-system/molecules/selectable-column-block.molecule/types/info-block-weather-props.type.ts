@@ -1,4 +1,4 @@
-import { WeatherStateId } from 'client/types';
+import { WeatherStateId } from 'common/types';
 
 export type InfoBlockWeatherProps = {
   weatherStateId: WeatherStateId;

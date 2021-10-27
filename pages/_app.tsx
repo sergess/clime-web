@@ -1,52 +1,44 @@
-import type { AppProps } from 'next/app';
-
-import { useRouter } from 'next/router';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { SWRConfig } from 'swr';
-import { useUpdateAtom, useHydrateAtoms } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
-import { Layout } from 'client/design-system/templates';
-import { serverForecastFeedAtom, locationDataAtom } from 'client/state/atoms';
-import { ForecastFeed, LocationData } from 'common/types';
+import { AppConfigContext } from 'client/state/contexts';
 
-const App = ({ Component, pageProps }: AppProps): ReactElement => {
-  const { initialState, ...restPageProps } = pageProps;
+import { AppPropsWithLayout } from 'common/types';
 
-  const { locale } = useRouter();
+const App = ({
+  Component,
+  pageProps,
+  router,
+}: AppPropsWithLayout): ReactElement => {
+  const { locale } = router;
+  const {
+    locationData = null,
+    browserInfo = null,
+    ...restPageProps
+  } = pageProps;
+
   const direction = detectLanguageDirection(locale);
   const theme = extendTheme(climeTheme, { direction });
 
-  useHydrateAtoms([
-    [serverForecastFeedAtom, initialState?.forecastFeed] as [
-      typeof serverForecastFeedAtom,
-      ForecastFeed
-    ],
-    [locationDataAtom, initialState?.locationData] as [
-      typeof locationDataAtom,
-      LocationData
-    ],
-  ]);
-
-  const setServerForecastFeed = useUpdateAtom(serverForecastFeedAtom);
-  const setLocationData = useUpdateAtom(locationDataAtom);
-
-  useEffect(() => {
-    setServerForecastFeed(initialState?.forecastFeed);
-    setLocationData(initialState?.locationData);
-  }, [initialState]);
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <ChakraProvider theme={theme}>
-      <SWRConfig value={{ fetcher }}>
-        <Layout>
-          <Component {...restPageProps} />
-        </Layout>
-      </SWRConfig>
-    </ChakraProvider>
+    <AppConfigContext.Provider
+      value={{
+        locationData,
+        browserInfo,
+      }}
+    >
+      <ChakraProvider theme={theme}>
+        <SWRConfig value={{ fetcher }}>
+          {getLayout(<Component {...restPageProps} />)}
+        </SWRConfig>
+      </ChakraProvider>
+    </AppConfigContext.Provider>
   );
 };
 

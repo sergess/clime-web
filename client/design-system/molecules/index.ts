@@ -8,3 +8,4 @@ export * from './radar-legend.molecule';
 export * from './forecast-card.molecule';
 export * from './player.molecule';
 export * from './carousel.molecule';
+export * from './top-navigation-bar.molecule';

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.5",
+    "@chakra-ui/theme-tools": "^1.2.2",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@next/bundle-analyzer": "^11.1.0",
@@ -27,7 +28,6 @@
     "next-i18next": "^8.5.5",
     "ramda": "^0.27.1",
     "react": "17.0.2",
-    "react-device-detect": "^1.17.0",
     "react-dom": "17.0.2",
     "swr": "^1.0.0",
     "ua-parser-js": "^0.7.28"
@@ -37,7 +37,6 @@
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "@testing-library/react-hooks": "^7.0.2",
     "@types/js-cookie": "^2.2.7",
     "@types/md5": "^2.3.1",
     "@types/ramda": "^0.27.44",
@@ -57,12 +56,16 @@
     "lint-staged": "^11.1.1",
     "prettier": "2.3.2",
     "ts-node": "^10.1.0",
+    "tsc-files": "^1.1.2",
     "typescript": "4.3.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.{ts,tsx}": [
+      "tsc-files --noEmit"
     ]
   },
   "engines": {

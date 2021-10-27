@@ -1,23 +1,19 @@
 import React, { ReactElement } from 'react';
-import { isIOS, isMobile } from 'react-device-detect';
 import { Link } from '@chakra-ui/react';
 
 import { AppStoreIcon, GooglePlayIcon } from 'client/design-system/atoms';
+import { IOS_STORE_LINK, ANDROID_STORE_LINK } from 'client/constants';
 
-export const Download = (): ReactElement => {
-  if (isMobile) {
-    if (isIOS) {
-      return (
-        <Link href="https://apps.apple.com/app/id749133753?mt=8" isExternal>
-          <AppStoreIcon w="120px" h="40px" />
-        </Link>
-      );
-    }
-    return (
-      <Link
-        href="https://play.google.com/store/apps/details?id=com.apalon.weatherradar.free"
-        isExternal
-      >
+import { DownloadProps } from './types';
+
+export const Download = ({ mobile, ios }: DownloadProps): ReactElement => {
+  if (mobile) {
+    return ios ? (
+      <Link href={IOS_STORE_LINK} isExternal>
+        <AppStoreIcon w="120px" h="40px" />
+      </Link>
+    ) : (
+      <Link href={ANDROID_STORE_LINK} isExternal>
         <GooglePlayIcon w="136px" h="40px" />
       </Link>
     );
@@ -25,17 +21,10 @@ export const Download = (): ReactElement => {
 
   return (
     <>
-      <Link
-        href="https://apps.apple.com/app/id749133753?mt=8"
-        me="5"
-        isExternal
-      >
+      <Link href={IOS_STORE_LINK} me="5" isExternal>
         <AppStoreIcon w="120px" h="40px" />
       </Link>
-      <Link
-        href="https://play.google.com/store/apps/details?id=com.apalon.weatherradar.free"
-        isExternal
-      >
+      <Link href={ANDROID_STORE_LINK} isExternal>
         <GooglePlayIcon w="136px" h="40px" />
       </Link>
     </>
