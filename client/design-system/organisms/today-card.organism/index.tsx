@@ -36,7 +36,6 @@ import {
   precipitationUnitAtom,
 } from 'client/state/atoms';
 import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
-import { CardWithDataProps } from 'client/types';
 import {
   isLocationTheSameAsLocationFromBrowser,
   getExtendedLocationName,
@@ -44,37 +43,11 @@ import {
   capitalize,
 } from 'client/utils';
 
-import { TodayCardData } from 'common/types';
-
 import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
-  ({
-    data,
-    ...componentProps
-  }: CardWithDataProps<TodayCardData> &
-    ComponentDefaultProps): ReactElement => {
+  (props: ComponentDefaultProps): ReactElement | null => {
     const { query } = useRouter();
-    const todayCardData = useTodayCardData(data);
-    const {
-      time,
-      night,
-      stateId,
-      temperature,
-      feelsLikeTemperature,
-      minTemperature,
-      maxTemperature,
-      stateText,
-      windDirectionAngle,
-      windAzimuth,
-      windSpeed,
-      precipitationChance,
-      precipitationLevel,
-      uvIndex,
-      humidity,
-      pressure,
-    } = todayCardData;
-
     const [locationExact, setLocationExact] = useState(false);
     const [locationName, setLocationName] = useState('');
 
@@ -110,9 +83,31 @@ export const TodayCard = memo(
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    const todayCardData = useTodayCardData();
+
+    if (!todayCardData) return null;
+
+    const {
+      time,
+      night,
+      stateId,
+      temperature,
+      feelsLikeTemperature,
+      minTemperature,
+      maxTemperature,
+      stateText,
+      windDirectionAngle,
+      windAzimuth,
+      windSpeed,
+      precipitationChance,
+      precipitationLevel,
+      uvIndex,
+      humidity,
+      pressure,
+    } = todayCardData;
 
     return (
-      <Card {...componentProps} pt="5" pb={{ md: 2 }}>
+      <Card {...props} pt="5" pb={{ md: 2 }}>
         <Flex w="full" direction="column" px="4">
           <Flex w="full" justify="space-between" mb={5}>
             <Flex>

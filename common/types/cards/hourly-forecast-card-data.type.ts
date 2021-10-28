@@ -1,5 +1,5 @@
-import { WeatherStateId } from './weather-state-id.type';
-import { HourConditionVariant } from './hour-condition-variant.type';
+import { WeatherStateId } from '../weather-state-id.type';
+import { HourConditionVariant } from '../hour-condition-variant.type';
 
 export type HourlyForecastCardData = Array<{
   variant: HourConditionVariant;

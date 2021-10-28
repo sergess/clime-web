@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
 import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -14,7 +14,6 @@ import { Card } from 'client/design-system/atoms';
 
 import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
-import { IndexPageProps } from 'client/types';
 
 import {
   useHasMounted,
@@ -42,11 +41,7 @@ import {
 } from 'server/middlewares/data-mapper';
 import { Forecast, Geocode } from 'server/services';
 
-const Index = ({
-  todayCardData,
-  summaryCardData,
-  hourlyForecastCardData,
-}: IndexPageProps): ReactElement => {
+const Index = memo((): ReactElement => {
   const router = useRouter();
   const { cookies, setCookie } = useCookies([
     EXACT_LATITUDE_COOKIE,
@@ -91,12 +86,12 @@ const Index = ({
 
   return (
     <>
-      <TodayCard data={todayCardData} maxW={{ xl: 380 }} w="full" />
+      <TodayCard maxW={{ xl: 380 }} w="full" />
       <Card h="260px" w="full" maxW={{ xl: 380 }}>
         Block 1
       </Card>
-      <HourlyForecastCard data={hourlyForecastCardData} w="full" />
-      <SummaryCard data={summaryCardData} w="full" h={{ base: 240, md: 254 }} />
+      <HourlyForecastCard w="full" />
+      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
       <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
         ads 3
       </Box>
@@ -111,7 +106,9 @@ const Index = ({
       </Card>
     </>
   );
-};
+});
+
+Index.displayName = 'Index';
 
 export default Index;
 
@@ -148,12 +145,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      todayCardData: withTodayCard(forecastFeed, locationData),
-      hourlyForecastCardData: withHourlyForecastCard(
-        forecastFeed,
-        locationData
-      ),
-      summaryCardData: withSummaryCard(forecastFeed),
+      cards: {
+        today: withTodayCard(forecastFeed, locationData),
+        hourlyForecast: withHourlyForecastCard(forecastFeed, locationData),
+        summary: withSummaryCard(forecastFeed),
+      },
       locationData,
       browserInfo: withBrowserInfo(context),
 

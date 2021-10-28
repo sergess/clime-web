@@ -9,7 +9,7 @@ import {
 
 import { ConditionFromApi } from '../../types';
 
-export const convertConditionFromApiToHourCondition = (
+export const mapConditionFromApiToHourCondition = (
   condition: ConditionFromApi,
   sunrise: string | null,
   sunset: string | null
@@ -37,4 +37,4 @@ export const convertConditionFromApiToHourCondition = (
   };
 };
 
-export default convertConditionFromApiToHourCondition;
+export default mapConditionFromApiToHourCondition;

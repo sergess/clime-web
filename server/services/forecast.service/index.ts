@@ -5,8 +5,8 @@ import { ForecastFeed } from 'server/types';
 
 import { ForecastFeedFromApi, GetForecastFeedArguments } from './types';
 import {
-  convertConditionFromApiToHourCondition,
-  convertDayConditionFromApiToDayCondition,
+  mapConditionFromApiToHourCondition,
+  mapDayConditionFromApiToDayCondition,
   getUpToDateHourConditions,
   getUpToDateDayConditionsFromApi,
   buildHourConditionsFeed,
@@ -33,11 +33,11 @@ export class Forecast extends BaseApiV3Service {
     );
 
     const dayConditions = upToDateDayConditionsFromApi.map(
-      convertDayConditionFromApiToDayCondition
+      mapDayConditionFromApiToDayCondition
     );
     const currentDayCondition = dayConditions[0];
 
-    const currentHourCondition = convertConditionFromApiToHourCondition(
+    const currentHourCondition = mapConditionFromApiToHourCondition(
       forecastFeedFromApi.cur,
       currentDayCondition.sunrise,
       currentDayCondition.sunset

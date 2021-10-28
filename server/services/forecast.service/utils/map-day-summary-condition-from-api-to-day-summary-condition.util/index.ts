@@ -5,7 +5,7 @@ import { extractValidWeatherStateId } from 'server/utils';
 
 import { DaySummaryConditionFromApi } from '../../types';
 
-export const convertDaySummaryConditionFromApiToDaySummaryCondition = (
+export const mapDaySummaryConditionFromApiToDaySummaryCondition = (
   daySummaryCondition: DaySummaryConditionFromApi | null,
   period: DayPeriod,
   night: boolean
@@ -21,4 +21,4 @@ export const convertDaySummaryConditionFromApiToDaySummaryCondition = (
     precipitationChance: daySummaryCondition.prc,
   };
 
-export default convertDaySummaryConditionFromApiToDaySummaryCondition;
+export default mapDaySummaryConditionFromApiToDaySummaryCondition;
