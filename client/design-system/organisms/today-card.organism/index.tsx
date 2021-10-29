@@ -192,7 +192,7 @@ export const TodayCard = memo(
             <InfoBlockWithIcon
               icon={<InfoChanceIcon w={8} h={8} />}
               label={t('Chance')}
-              text={<ClientOnly>{`${precipitationChance}%`}</ClientOnly>}
+              text={`${precipitationChance}%`}
               flex={1}
             />
 
@@ -233,7 +233,7 @@ export const TodayCard = memo(
               <InfoBlockWithIcon
                 icon={<InfoPressureIcon w={8} h={8} />}
                 label={t('Pressure')}
-                text={`${pressure} ${pressureUnit}`}
+                text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
                 flex={1}
               />
 
