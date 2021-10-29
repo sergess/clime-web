@@ -13,15 +13,13 @@ import {
   convertKilometersPerHourTo,
   convertMillimetersTo,
 } from 'client/utils';
-
-import { SummaryCardData } from 'common/types';
+import { useCards } from 'client/hooks';
 
 import { ChartOption, ChartPoint } from '../../types';
 
-export const useChartData = (
-  summaryCardData: SummaryCardData,
-  activeChart: ChartOption
-): ChartPoint[] => {
+export const useChartData = (activeChart: ChartOption): ChartPoint[] | null => {
+  const { summary } = useCards();
+
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
   const precipitationUnit = useAtomValue(precipitationUnitAtom);
@@ -33,7 +31,7 @@ export const useChartData = (
 
   const points = useMemo(
     () =>
-      summaryCardData.map(
+      summary?.map(
         ({
           night,
           stateId,
@@ -63,15 +61,11 @@ export const useChartData = (
               y: convertKilometersPerHourToUnit(windSpeed),
             }),
           } as ChartPoint)
-      ),
-    [
-      summaryCardData,
-      activeChart,
-      temperatureUnit,
-      windSpeedUnit,
-      precipitationUnit,
-    ]
+      ) ?? [],
+    [summary, activeChart, temperatureUnit, windSpeedUnit, precipitationUnit]
   );
+
+  if (!summary) return null;
 
   return [
     {

@@ -1,4 +1,4 @@
-import { ReactElement, useState, useMemo } from 'react';
+import { ReactElement, useState, useMemo, memo } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Flex, Text, Center, ComponentDefaultProps } from '@chakra-ui/react';
 
@@ -10,9 +10,6 @@ import {
   ClientOnly,
 } from 'client/design-system/atoms';
 import { SwitchSelector } from 'client/design-system/molecules';
-import { CardWithDataProps } from 'client/types';
-
-import { SummaryCardData } from 'common/types';
 
 import { ChartOption } from './types';
 import { CHART_THEME } from './constants';
@@ -47,60 +44,64 @@ const selectorOptions = [
   };
 });
 
-export const SummaryCard = ({
-  data,
-  ...componentProps
-}: CardWithDataProps<SummaryCardData> &
-  ComponentDefaultProps): ReactElement => {
-  const { t } = useTranslation('weather-today-page');
+export const SummaryCard = memo(
+  (props: ComponentDefaultProps): ReactElement | null => {
+    const { t } = useTranslation('weather-today-page');
 
-  const [activeChart, setActiveChart] = useState<ChartOption>(
-    ChartOption.TEMPERATURE
-  );
-  const points = useChartData(data, activeChart);
+    const [activeChart, setActiveChart] = useState<ChartOption>(
+      ChartOption.TEMPERATURE
+    );
 
-  const Point = useMemo(() => {
-    switch (activeChart) {
-      case ChartOption.PRECIPITATION:
-        return PrecipitationPoint;
-      case ChartOption.WIND_SPEED:
-        return WindPoint;
-      case ChartOption.TEMPERATURE:
-      default:
-        return TemperaturePoint;
-    }
-  }, [activeChart]);
+    const Point = useMemo(() => {
+      switch (activeChart) {
+        case ChartOption.PRECIPITATION:
+          return PrecipitationPoint;
+        case ChartOption.WIND_SPEED:
+          return WindPoint;
+        case ChartOption.TEMPERATURE:
+        default:
+          return TemperaturePoint;
+      }
+    }, [activeChart]);
 
-  return (
-    <Card {...componentProps} overflow="hidden">
-      <Flex
-        w="100%"
-        px={4}
-        pt={3}
-        pb={{ base: 0, md: 3.5 }}
-        justify="space-between"
-        align="center"
-      >
-        <Text color="blue.800" textStyle="16-semi-bold">
-          {activeChart === ChartOption.TEMPERATURE && t('Temperature Summary')}
-          {activeChart === ChartOption.PRECIPITATION &&
-            t('Precipitation Summary')}
-          {activeChart === ChartOption.WIND_SPEED && t('Wind Summary')}
-        </Text>
+    const points = useChartData(activeChart);
 
-        <ClientOnly>
-          <SwitchSelector
-            options={selectorOptions}
-            name="summary"
-            value={activeChart as unknown as string}
-            onSelected={setActiveChart as unknown as (value: string) => void}
-          />
-        </ClientOnly>
-      </Flex>
+    if (!points) return null;
 
-      <Chart theme={CHART_THEME[activeChart]} points={points} Point={Point} />
-    </Card>
-  );
-};
+    return (
+      <Card {...props} overflow="hidden">
+        <Flex
+          w="100%"
+          px={4}
+          pt={3}
+          pb={{ base: 0, md: 3.5 }}
+          justify="space-between"
+          align="center"
+        >
+          <Text color="blue.800" textStyle="16-semi-bold">
+            {activeChart === ChartOption.TEMPERATURE &&
+              t('Temperature Summary')}
+            {activeChart === ChartOption.PRECIPITATION &&
+              t('Precipitation Summary')}
+            {activeChart === ChartOption.WIND_SPEED && t('Wind Summary')}
+          </Text>
+
+          <ClientOnly>
+            <SwitchSelector
+              options={selectorOptions}
+              name="summary"
+              value={activeChart as unknown as string}
+              onSelected={setActiveChart as unknown as (value: string) => void}
+            />
+          </ClientOnly>
+        </Flex>
+
+        <Chart theme={CHART_THEME[activeChart]} points={points} Point={Point} />
+      </Card>
+    );
+  }
+);
+
+SummaryCard.displayName = 'SummaryCard';
 
 export default SummaryCard;

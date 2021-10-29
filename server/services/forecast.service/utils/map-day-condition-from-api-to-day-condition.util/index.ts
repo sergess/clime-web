@@ -6,12 +6,12 @@ import {
   extractValidWeatherStateId,
 } from 'server/utils';
 
-import { convertConditionFromApiToHourCondition } from '../convert-condition-from-api-to-hour-condition.util';
-import { convertDaySummaryConditionFromApiToDaySummaryCondition } from '../convert-day-summary-condition-from-api-to-day-summary-condition.util';
+import { mapConditionFromApiToHourCondition } from '../map-condition-from-api-to-hour-condition.util';
+import { mapDaySummaryConditionFromApiToDaySummaryCondition } from '../map-day-summary-condition-from-api-to-day-summary-condition.util';
 
 import { DayConditionFromApi } from '../../types';
 
-export const convertDayConditionFromApiToDayCondition = (
+export const mapDayConditionFromApiToDayCondition = (
   dayCondition: DayConditionFromApi
 ): DayCondition => {
   const sunrise = convertDateTimeToISOString(dayCondition.sr);
@@ -39,25 +39,25 @@ export const convertDayConditionFromApiToDayCondition = (
     moonset: convertDateTimeToISOString(dayCondition.ms),
     uvIndex: dayCondition.uv,
     hourly: dayCondition.hly.map((hourCondition) =>
-      convertConditionFromApiToHourCondition(hourCondition, sunrise, sunset)
+      mapConditionFromApiToHourCondition(hourCondition, sunrise, sunset)
     ),
     summary: {
-      morning: convertDaySummaryConditionFromApiToDaySummaryCondition(
+      morning: mapDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.mrng,
         DayPeriod.MORNING,
         false
       ),
-      day: convertDaySummaryConditionFromApiToDaySummaryCondition(
+      day: mapDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.day,
         DayPeriod.DAY,
         false
       ),
-      evening: convertDaySummaryConditionFromApiToDaySummaryCondition(
+      evening: mapDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.evng,
         DayPeriod.EVENING,
         false
       ),
-      night: convertDaySummaryConditionFromApiToDaySummaryCondition(
+      night: mapDaySummaryConditionFromApiToDaySummaryCondition(
         dayCondition.smr.nght,
         DayPeriod.NIGHT,
         true
@@ -66,4 +66,4 @@ export const convertDayConditionFromApiToDayCondition = (
   };
 };
 
-export default convertDayConditionFromApiToDayCondition;
+export default mapDayConditionFromApiToDayCondition;
