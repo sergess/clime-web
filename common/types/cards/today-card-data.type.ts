@@ -1,5 +1,5 @@
-import { WeatherStateId } from './weather-state-id.type';
-import { Azimuth } from './azimuth.type';
+import { WeatherStateId } from '../weather-state-id.type';
+import { Azimuth } from '../azimuth.type';
 
 export type TodayCardData = {
   time: string;

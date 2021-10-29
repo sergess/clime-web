@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-import { AppContextValues } from './types';
+import { AppConfigContextData } from './types';
 
-export const AppConfigContext = createContext<AppContextValues>({
+export const AppConfigContext = createContext<AppConfigContextData>({
   locationData: null,
   browserInfo: null,
 });

@@ -5,7 +5,7 @@ import { SWRConfig } from 'swr';
 
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
-import { AppConfigContext } from 'client/state/contexts';
+import { AppConfigContext, CardsContext } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
 
 import { AppPropsWithLayout } from 'common/types';
@@ -17,6 +17,7 @@ const App = ({
 }: AppPropsWithLayout): ReactElement => {
   const { locale } = router;
   const {
+    cards = {},
     locationData = null,
     browserInfo = null,
     ...restPageProps
@@ -34,11 +35,13 @@ const App = ({
         browserInfo,
       }}
     >
-      <ChakraProvider theme={theme}>
-        <SWRConfig value={{ fetcher }}>
-          {getLayout(<Component {...restPageProps} />)}
-        </SWRConfig>
-      </ChakraProvider>
+      <CardsContext.Provider value={cards}>
+        <ChakraProvider theme={theme}>
+          <SWRConfig value={{ fetcher }}>
+            {getLayout(<Component {...restPageProps} />)}
+          </SWRConfig>
+        </ChakraProvider>
+      </CardsContext.Provider>
     </AppConfigContext.Provider>
   );
 };

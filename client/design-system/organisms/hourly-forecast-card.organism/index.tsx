@@ -9,30 +9,26 @@ import {
   ForecastCard,
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
-import { CardWithDataProps } from 'client/types';
-
-import { HourlyForecastCardData } from 'common/types';
 
 import { useHourlyForecastCardData } from './hooks';
 import { Icon } from './atoms';
 
 export const HourlyForecastCard = memo(
-  ({
-    data,
-    ...componentProps
-  }: CardWithDataProps<HourlyForecastCardData> &
-    ComponentDefaultProps): ReactElement => {
+  (props: ComponentDefaultProps): ReactElement | null => {
     const { t } = useTranslation('weather-today-page');
     const [selectedItem, setSelectedItem] = useState<number>(0);
-    const hourlyForecastCardData = useHourlyForecastCardData(data);
 
     const onSelect = useCallback((index: number) => {
       setSelectedItem(index);
     }, []);
 
+    const hourlyForecastCardData = useHourlyForecastCardData();
+
+    if (!hourlyForecastCardData) return null;
+
     return (
       <ForecastCard
-        {...componentProps}
+        {...props}
         py="5"
         heading={t('Hourly Forecast')}
         data={hourlyForecastCardData}
