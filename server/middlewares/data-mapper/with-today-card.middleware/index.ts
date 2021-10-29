@@ -39,6 +39,7 @@ export const withTodayCard = (
     uvIndex: todayDayCondition.uvIndex,
     windAzimuth: convertWindDegreeToAzimuth(windDirection),
     windDirectionAngle: calculateOppositeAngle(windDirection),
+    visibility: currentHourCondition.visibility,
   };
 };
 
