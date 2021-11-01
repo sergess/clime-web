@@ -17,6 +17,7 @@ export type UseTodayCardData = {
   uvIndex: number | string;
   windAzimuth: Azimuth;
   windDirectionAngle: number;
+  visibility: number | string;
 };
 
 export default UseTodayCardData;

@@ -43,3 +43,4 @@ export * from './variants/play.variant';
 export * from './variants/plus.variant';
 export * from './variants/drop-icon.variant';
 export * from './variants/wind-icon.variant';
+export * from './variants/info-visibility-icon.variant';

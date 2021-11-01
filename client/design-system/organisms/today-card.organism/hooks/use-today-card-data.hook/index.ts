@@ -6,12 +6,14 @@ import {
   windSpeedUnitAtom,
   precipitationUnitAtom,
   pressureUnitAtom,
+  distanceUnitAtom,
 } from 'client/state/atoms';
 import {
   convertFahrenheitTo,
   convertKilometersPerHourTo,
   convertMillimetersTo,
   convertMillibarsTo,
+  convertKilometersTo,
   defaultToDash,
 } from 'client/utils';
 import { useCards } from 'client/hooks';
@@ -25,12 +27,14 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
   const precipitationUnit = useAtomValue(precipitationUnitAtom);
   const pressureUnit = useAtomValue(pressureUnitAtom);
+  const distanceUnit = useAtomValue(distanceUnitAtom);
 
   const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
   const convertKilometersPerHourToUnit =
     convertKilometersPerHourTo(windSpeedUnit);
   const convertMillimetersToUnit = convertMillimetersTo(precipitationUnit);
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
+  const convertKilometersToUnit = convertKilometersTo(distanceUnit);
 
   const todayCardData = useMemo(
     () => ({
@@ -57,8 +61,18 @@ export const useTodayCardData = (): UseTodayCardData | null => {
       precipitationChance: defaultToDash(today?.precipitationChance),
       humidity: defaultToDash(today?.humidity),
       uvIndex: defaultToDash(today?.uvIndex),
+      visibility: defaultToDash(
+        convertKilometersToUnit(today?.visibility ?? null)
+      ),
     }),
-    [today, temperatureUnit, windSpeedUnit, precipitationUnit, pressureUnit]
+    [
+      today,
+      temperatureUnit,
+      windSpeedUnit,
+      precipitationUnit,
+      pressureUnit,
+      distanceUnit,
+    ]
   ) as UseTodayCardData;
 
   return today ? todayCardData : null;

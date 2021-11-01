@@ -23,5 +23,7 @@
   "night": "Night",
   "Temperature Summary": "Temperature Summary",
   "Precipitation Summary": "Precipitation Summary",
-  "Wind Summary": "Wind Summary"
+  "Wind Summary": "Wind Summary",
+  "Chance": "Chance",
+  "Visibility": "Visibility"
 }

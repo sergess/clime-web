@@ -25,6 +25,8 @@ import {
   InfoPressureIcon,
   InfoBlocksRow,
   ClientOnly,
+  InfoChanceIcon,
+  InfoVisibilityIcon,
 } from 'client/design-system/atoms';
 import {
   InfoBlockWithIcon,
@@ -34,6 +36,7 @@ import {
   pressureUnitAtom,
   windSpeedUnitAtom,
   precipitationUnitAtom,
+  distanceUnitAtom,
 } from 'client/state/atoms';
 import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
 import {
@@ -78,6 +81,7 @@ export const TodayCard = memo(
     const pressureUnit = useAtomValue(pressureUnitAtom);
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
+    const distanceUnit = useAtomValue(distanceUnitAtom);
 
     const { t } = useTranslation('weather-today-page');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
@@ -104,6 +108,7 @@ export const TodayCard = memo(
       uvIndex,
       humidity,
       pressure,
+      visibility,
     } = todayCardData;
 
     return (
@@ -159,12 +164,7 @@ export const TodayCard = memo(
 
           <Flex mt={1} justify="center">
             <Text color="blue.800" textStyle="16-weather-detail" align="center">
-              {`${stateText ? `${stateText}.` : ''} ${t(
-                'Precipitation chance: {{precipitationChance}}%',
-                {
-                  precipitationChance,
-                }
-              )}`}
+              {`${stateText ? `${stateText}.` : ''}`}
             </Text>
           </Flex>
 
@@ -190,6 +190,13 @@ export const TodayCard = memo(
 
           <InfoBlocksRow>
             <InfoBlockWithIcon
+              icon={<InfoChanceIcon w={8} h={8} />}
+              label={t('Chance')}
+              text={`${precipitationChance}%`}
+              flex={1}
+            />
+
+            <InfoBlockWithIcon
               icon={<InfoPrecipitationIcon w={8} h={8} />}
               label={t('Precipitation')}
               text={
@@ -199,13 +206,6 @@ export const TodayCard = memo(
               }
               flex={1}
             />
-
-            <InfoBlockWithIcon
-              icon={<InfoUvIcon w={8} h={8} />}
-              label={t('UV Index')}
-              text={uvIndex}
-              flex={1}
-            />
           </InfoBlocksRow>
 
           <Divider orientation="horizontal" variant="card-divider" />
@@ -213,16 +213,36 @@ export const TodayCard = memo(
           <Collapse in={cardOpened || !widthSmallerThanMedium} animateOpacity>
             <InfoBlocksRow>
               <InfoBlockWithIcon
+                icon={<InfoUvIcon w={8} h={8} />}
+                label={t('UV Index')}
+                text={uvIndex}
+                flex={1}
+              />
+
+              <InfoBlockWithIcon
                 icon={<InfoHumidityIcon w={8} h={8} />}
                 label={t('Humidity')}
                 text={`${humidity}%`}
                 flex={1}
               />
+            </InfoBlocksRow>
 
+            <Divider orientation="horizontal" variant="card-divider" />
+
+            <InfoBlocksRow>
               <InfoBlockWithIcon
                 icon={<InfoPressureIcon w={8} h={8} />}
                 label={t('Pressure')}
                 text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
+                flex={1}
+              />
+
+              <InfoBlockWithIcon
+                icon={<InfoVisibilityIcon w={8} h={8} />}
+                label={t('Visibility')}
+                text={
+                  <ClientOnly>{`${visibility} ${distanceUnit}`}</ClientOnly>
+                }
                 flex={1}
               />
             </InfoBlocksRow>
