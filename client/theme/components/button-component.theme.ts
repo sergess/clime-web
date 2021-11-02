@@ -132,6 +132,30 @@ const Button = {
         bg: 'white',
       },
     },
+    'search-cancel': {
+      h: 'min',
+      minW: 'min',
+      bg: 'none',
+      borderRadius: 'none',
+      p: '0',
+      color: 'blue.500',
+      textStyle: '16-medium',
+
+      _hover: {
+        _disabled: {
+          bg: 'none',
+        },
+      },
+
+      _active: {
+        bg: 'none',
+      },
+
+      _disabled: {
+        bg: 'none',
+        opacity: 1,
+      },
+    },
   },
 };
 

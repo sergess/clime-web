@@ -47,7 +47,7 @@ export const Search = ({
 }: SearchProps): ReactElement => {
   const { t } = useTranslation('common');
 
-  const searchInputRef = useRef(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const [location, setLocation] = useState<string>('');
   const [suggestions, setSuggestions] = useState<LocationData[] | null>(null);
@@ -64,6 +64,12 @@ export const Search = ({
     },
     []
   );
+
+  const clearSearch = useCallback(() => {
+    setLocation('');
+    setSuggestions(null);
+    searchInputRef.current?.focus();
+  }, []);
 
   const { data: autocompleteResults, error } = useAutocomplete(location);
   const loading = !!autocompleteResults && !autocompleteResults && !error;
@@ -117,7 +123,7 @@ export const Search = ({
             <IconButton
               variant="ghost"
               borderRadius="full"
-              onClick={onClose}
+              onClick={clearSearch}
               aria-label="Location search"
               _hover={{
                 bg: 'transparent',

@@ -18,7 +18,8 @@ export const useUiState = (): UseUiStateReturnValue => {
   const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
   const searchVisible = !(screenWidthSmallerThanMedium && settingsOpened);
-  const settingsVisible = !(screenWidthSmallerThanMedium && searchOpened);
+  const settingsVisible = !searchOpened;
+  const logoVisible = !(screenWidthSmallerThanMedium && searchOpened);
 
   return {
     searchOpened,
@@ -29,6 +30,7 @@ export const useUiState = (): UseUiStateReturnValue => {
     settingsVisible,
     onSettingsOpen,
     onSettingsClose,
+    logoVisible,
   };
 };
 

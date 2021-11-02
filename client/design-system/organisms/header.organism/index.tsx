@@ -1,9 +1,9 @@
 import React, { ReactElement, useCallback } from 'react';
-import { Box, Container, Link } from '@chakra-ui/react';
+import { Box, Container, Link, Button } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 
-import { ClimeLogoWhiteIcon, ClientOnly } from 'client/design-system/atoms';
+import { ClimeLogoDarkIcon, ClientOnly } from 'client/design-system/atoms';
 import { useUrlSlug } from 'client/hooks';
 import {
   DESKTOP_HEADER_HEIGHT,
@@ -31,6 +31,7 @@ export const Header = (): ReactElement => {
     settingsVisible,
     onSettingsOpen,
     onSettingsClose,
+    logoVisible,
   } = useUiState();
 
   const settingsOpen = useCallback(() => {
@@ -71,16 +72,17 @@ export const Header = (): ReactElement => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <NextLink href={`/${WEATHER_TODAY}/${urlSlug}`} passHref>
-          <Link href={`/${WEATHER_TODAY}/${urlSlug}`}>
-            <ClimeLogoWhiteIcon
-              w={{ base: '90.53px', md: '108px' }}
-              h={{ base: '20px', md: '24px' }}
-              d="block"
-              me={5}
-            />
-          </Link>
-        </NextLink>
+        {logoVisible && (
+          <NextLink href={`/${WEATHER_TODAY}/${urlSlug}`} passHref>
+            <Link href={`/${WEATHER_TODAY}/${urlSlug}`}>
+              <ClimeLogoDarkIcon
+                w={{ base: '141px', md: '169.2px' }}
+                h={{ base: '30px', md: '33px' }}
+                d="block"
+              />
+            </Link>
+          </NextLink>
+        )}
 
         <Box w="full" d="flex" justifyContent="flex-end" alignItems="center">
           <ClientOnly>
@@ -90,6 +92,15 @@ export const Header = (): ReactElement => {
                 onClose={onSearchClose}
                 opened={searchOpened}
               />
+            )}
+            {searchOpened && (
+              <Button
+                variant="search-cancel"
+                onClick={onSearchClose}
+                ms={[3, null, null, 8]}
+              >
+                Cancel
+              </Button>
             )}
           </ClientOnly>
 
