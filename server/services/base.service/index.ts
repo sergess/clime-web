@@ -6,7 +6,10 @@ export class Base {
     init?: RequestInit
   ): Promise<T | null> {
     try {
-      const response = await fetch(`${this.baseUrl}${encodeURI(uri)}`, init);
+      const response = await fetch(
+        `${this.baseUrl}${encodeURI(uri).replace(/[!'()*#]/g, escape)}`,
+        init
+      );
       const body = await response.json();
 
       return body;
