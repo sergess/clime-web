@@ -6,7 +6,7 @@ import { Group } from '@visx/group';
 import { useAtomValue } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
-import { WindIcon, ClientOnly } from 'client/design-system/atoms';
+import { WindIcon } from 'client/design-system/atoms';
 import { windSpeedUnitAtom } from 'client/state/atoms';
 
 import { UNIT_LABELS } from './constants';
@@ -41,16 +41,14 @@ export const WindPoint = ({
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 
-      <ClientOnly>
-        <Text
-          fontSize={14}
-          fill={climeTheme.colors.blue[800]}
-          textAnchor="middle"
-          verticalAnchor="start"
-          fontWeight={600}
-          dy={12}
-        >{`${y} ${UNIT_LABELS[windSpeedUnit]}`}</Text>
-      </ClientOnly>
+      <Text
+        fontSize={14}
+        fill={climeTheme.colors.blue[800]}
+        textAnchor="middle"
+        verticalAnchor="start"
+        fontWeight={600}
+        dy={12}
+      >{`${y} ${UNIT_LABELS[windSpeedUnit]}`}</Text>
 
       <Text
         fontSize={10}

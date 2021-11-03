@@ -19,7 +19,7 @@ export const HeaderPopoverOverlay = ({
     bottom={0}
     top={{
       base: `${MOBILE_HEADER_HEIGHT}px`,
-      md: `${DESKTOP_HEADER_HEIGHT}px`,
+      sm: `${DESKTOP_HEADER_HEIGHT}px`,
     }}
     backgroundColor="#0F1527"
   />

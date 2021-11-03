@@ -131,6 +131,11 @@ const Button = {
       _active: {
         bg: 'white',
       },
+
+      _disabled: {
+        opacity: 0,
+        cursor: 'default',
+      },
     },
   },
 };
