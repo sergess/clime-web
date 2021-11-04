@@ -77,6 +77,8 @@ export const Search = ({
   useEffect(() => {
     setLocation('');
     setSuggestions(null);
+    const body = document.querySelector('body') as HTMLBodyElement;
+    body.style.overflow = opened ? 'hidden' : 'auto';
   }, [opened]);
 
   useEffect(() => {

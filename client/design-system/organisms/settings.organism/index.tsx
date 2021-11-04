@@ -1,4 +1,10 @@
-import React, { ReactElement, useCallback, useRef, useMemo } from 'react';
+import React, {
+  ReactElement,
+  useCallback,
+  useRef,
+  useMemo,
+  useEffect,
+} from 'react';
 import {
   Flex,
   Text,
@@ -79,6 +85,11 @@ export const Settings = ({
     },
     []
   );
+
+  useEffect(() => {
+    const body = document.querySelector('body') as HTMLBodyElement;
+    body.style.overflow = opened ? 'hidden' : 'auto';
+  }, [opened]);
 
   return (
     <Popover

@@ -30,7 +30,7 @@ const autocompleteHandler = async (
     language: language as string,
   });
 
-  if (autocompleteSuggestions && 'error' in autocompleteSuggestions) {
+  if (!!autocompleteSuggestions && 'error' in autocompleteSuggestions) {
     return res.status(400).end('Bad request');
   }
 
