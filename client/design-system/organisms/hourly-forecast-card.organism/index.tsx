@@ -4,14 +4,13 @@ import { useTranslation } from 'next-i18next';
 
 import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
 
-import { ClientOnly } from 'client/design-system/atoms';
+import { ClientOnly, HourConditionIcon } from 'client/design-system/atoms';
 import {
   ForecastCard,
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
 
 import { useHourlyForecastCardData } from './hooks';
-import { Icon } from './atoms';
 
 export const HourlyForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
@@ -41,7 +40,7 @@ export const HourlyForecastCard = memo(
               </Text>
             }
             main={
-              <Icon
+              <HourConditionIcon
                 my={2}
                 boxSize="10"
                 variant={item.variant}

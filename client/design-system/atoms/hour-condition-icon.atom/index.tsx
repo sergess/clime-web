@@ -1,20 +1,18 @@
 import { ReactElement } from 'react';
 
 import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
-import {
-  SunriseIcon,
-  SunsetIcon,
-  WeatherStateIcon,
-} from 'client/design-system/atoms';
 
-import { IconProps } from './types';
+import { SunriseIcon, SunsetIcon } from '../ui-icon.atom';
+import { WeatherStateIcon } from '../weather-state-icon.atom';
 
-export const Icon = ({
+import { HourConditionIconProps } from './types';
+
+export const HourConditionIcon = ({
   variant,
   night,
   stateId,
   ...iconProps
-}: IconProps): ReactElement | null => {
+}: HourConditionIconProps): ReactElement | null => {
   if (!variant) return null;
 
   switch (variant) {
@@ -30,4 +28,4 @@ export const Icon = ({
   }
 };
 
-export default Icon;
+export default HourConditionIcon;

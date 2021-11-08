@@ -3,6 +3,8 @@ import { GetServerSideProps } from 'next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { HourlyDetailedForecastCard } from 'client/design-system/organisms';
+
 import {
   withForecastFeed,
   withApiV3Service,
@@ -11,7 +13,13 @@ import {
 import { withHourlyDetailedForecastCard } from 'server/middlewares/data-mapper';
 import { Geocode } from 'server/services';
 
-const HourlyWeather = memo((): ReactElement => <p>Hourly weather</p>);
+const HourlyWeather = memo(
+  (): ReactElement => (
+    <>
+      <HourlyDetailedForecastCard w="full" />
+    </>
+  )
+);
 
 HourlyWeather.displayName = 'HourlyWeather';
 

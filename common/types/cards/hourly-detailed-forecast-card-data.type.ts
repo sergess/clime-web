@@ -1,9 +1,11 @@
 import { Azimuth } from '../azimuth.type';
 import { WeatherStateId } from '../weather-state-id.type';
+import { HourConditionVariant } from '../hour-condition-variant.type';
 
 export type HourlyDetailedForecastCardData = Array<{
   night: boolean;
   stateId: WeatherStateId | null;
+  variant: HourConditionVariant;
   time: string;
   humidity: number | null;
   temperature: number | null;

@@ -8,5 +8,6 @@
   "UV Index": "UV Index",
   "Humidity": "Humidity",
   "Pressure": "Pressure",
-  "Feels like": "Feels like"
+  "Feels like": "Feels like",
+  "{{temperature}}degree": "{{temperature}}\u00b0"
 }

@@ -43,6 +43,7 @@ export const withHourlyDetailedForecastCard = (
       return {
         night,
         stateId,
+        variant,
         time: formatUtcString(
           dateTime,
           variant === WEATHER_STATE ? 'haaa' : 'h:mmaaa',
