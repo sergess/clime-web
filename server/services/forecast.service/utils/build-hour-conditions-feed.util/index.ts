@@ -8,7 +8,7 @@ import { SUNSET, SUNRISE } from 'common/constants';
 import { isUtcStringWithinInterval } from 'server/utils';
 import { HourCondition, DayCondition } from 'server/types';
 
-import { generateEmptyHourCondition } from '../generate-empty-hour-condition.util';
+import { generateHourCondition } from '../generate-hour-condition.util';
 
 export const buildHourConditionsFeed = reduce<DayCondition, HourCondition[]>(
   (hourlyFeed, dayCondition) => {
@@ -42,7 +42,11 @@ export const buildHourConditionsFeed = reduce<DayCondition, HourCondition[]>(
           ) {
             return [
               ...hourConditions,
-              generateEmptyHourCondition(sunrise as string, SUNRISE),
+              generateHourCondition(
+                sunrise as string,
+                SUNRISE,
+                previousHourCondition
+              ),
               hourCondition,
             ];
           }
@@ -56,7 +60,11 @@ export const buildHourConditionsFeed = reduce<DayCondition, HourCondition[]>(
           ) {
             return [
               ...hourConditions,
-              generateEmptyHourCondition(sunset as string, SUNSET),
+              generateHourCondition(
+                sunset as string,
+                SUNSET,
+                previousHourCondition
+              ),
               hourCondition,
             ];
           }

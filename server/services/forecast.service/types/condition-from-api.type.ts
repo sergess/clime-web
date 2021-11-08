@@ -16,6 +16,7 @@ export type ConditionFromApi = {
   p: number | null;
   swh: number | null;
   tw: number | null;
+  uv: number | null;
 };
 
 export default ConditionFromApi;
