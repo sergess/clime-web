@@ -6,3 +6,4 @@ export * from './ui-icon.atom';
 export * from './header-card-popover-row.atom';
 export * from './header-popover-overlay.atom';
 export * from './legend.atom';
+export * from './state-text-row.atom';

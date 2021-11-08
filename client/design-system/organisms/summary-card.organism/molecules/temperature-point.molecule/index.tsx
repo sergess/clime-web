@@ -5,7 +5,7 @@ import { Text } from '@visx/text';
 import { useTranslation } from 'next-i18next';
 
 import climeTheme from 'client/theme';
-import { WeatherStateIcon, ClientOnly } from 'client/design-system/atoms';
+import { WeatherStateIcon } from 'client/design-system/atoms';
 
 import { PointProps } from '../../types';
 import {
@@ -44,18 +44,16 @@ export const TemperaturePoint = ({
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 
-      <ClientOnly>
-        <Text
-          fontSize={14}
-          fill={climeTheme.colors.blue[800]}
-          textAnchor="middle"
-          verticalAnchor="start"
-          fontWeight={600}
-          dy={12}
-        >
-          {temperature}
-        </Text>
-      </ClientOnly>
+      <Text
+        fontSize={14}
+        fill={climeTheme.colors.blue[800]}
+        textAnchor="middle"
+        verticalAnchor="start"
+        fontWeight={600}
+        dy={12}
+      >
+        {temperature}
+      </Text>
     </Glyph>
   );
 };

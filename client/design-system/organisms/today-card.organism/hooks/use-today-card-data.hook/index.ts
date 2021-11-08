@@ -36,46 +36,39 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
   const convertKilometersToUnit = convertKilometersTo(distanceUnit);
 
-  const todayCardData = useMemo(
-    () => ({
+  return useMemo(() => {
+    if (!today) return null;
+
+    return {
       ...today,
-      temperature: defaultToDash(
-        convertFahrenheitToUnit(today?.temperature ?? null)
-      ),
+      temperature: defaultToDash(convertFahrenheitToUnit(today.temperature)),
       feelsLikeTemperature: defaultToDash(
-        convertFahrenheitToUnit(today?.feelsLikeTemperature ?? null)
+        convertFahrenheitToUnit(today.feelsLikeTemperature)
       ),
       maxTemperature: defaultToDash(
-        convertFahrenheitToUnit(today?.maxTemperature ?? null)
+        convertFahrenheitToUnit(today.maxTemperature)
       ),
       minTemperature: defaultToDash(
-        convertFahrenheitToUnit(today?.minTemperature ?? null)
+        convertFahrenheitToUnit(today.minTemperature)
       ),
-      windSpeed: defaultToDash(
-        convertKilometersPerHourToUnit(today?.windSpeed ?? null)
-      ),
+      windSpeed: defaultToDash(convertKilometersPerHourToUnit(today.windSpeed)),
       precipitationLevel: defaultToDash(
-        convertMillimetersToUnit(today?.precipitationLevel ?? null)
+        convertMillimetersToUnit(today.precipitationLevel)
       ),
-      pressure: defaultToDash(convertMillibarsToUnit(today?.pressure ?? null)),
-      precipitationChance: defaultToDash(today?.precipitationChance),
-      humidity: defaultToDash(today?.humidity),
-      uvIndex: defaultToDash(today?.uvIndex),
-      visibility: defaultToDash(
-        convertKilometersToUnit(today?.visibility ?? null)
-      ),
-    }),
-    [
-      today,
-      temperatureUnit,
-      windSpeedUnit,
-      precipitationUnit,
-      pressureUnit,
-      distanceUnit,
-    ]
-  ) as UseTodayCardData;
-
-  return today ? todayCardData : null;
+      pressure: defaultToDash(convertMillibarsToUnit(today.pressure)),
+      precipitationChance: defaultToDash(today.precipitationChance),
+      humidity: defaultToDash(today.humidity),
+      uvIndex: defaultToDash(today.uvIndex),
+      visibility: defaultToDash(convertKilometersToUnit(today.visibility)),
+    };
+  }, [
+    today,
+    temperatureUnit,
+    windSpeedUnit,
+    precipitationUnit,
+    pressureUnit,
+    distanceUnit,
+  ]) as UseTodayCardData;
 };
 
 export default useTodayCardData;

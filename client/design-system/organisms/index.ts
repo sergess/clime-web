@@ -5,5 +5,5 @@ export * from './search.organism';
 export * from './settings.organism';
 export * from './radar-legend-group.organism';
 export * from './hourly-forecast-card.organism';
-export * from './forecast-carousel-card.organism';
 export * from './summary-card.organism';
+export * from './daily-detailed-forecast-card.organism';

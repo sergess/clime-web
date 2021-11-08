@@ -22,6 +22,54 @@ export const HourlyForecastCard = memo(
       setSelectedItem(index);
     }, []);
 
+    const renderHourBlock = useCallback(
+      ({ index, item }) => {
+        const selected = index === selectedItem;
+
+        return (
+          <SelectableColumnBlock
+            key={item.time}
+            selected={selected}
+            onSelect={() => onSelect(index)}
+            heading={
+              <Text
+                textStyle={selected ? '12-bold' : '12-semi-bold'}
+                color={selected ? 'blue.500' : 'blue.800'}
+              >
+                {index === 0 && t('Now')}
+                {index !== 0 && item.time}
+              </Text>
+            }
+            main={
+              <Icon
+                my={2}
+                boxSize="10"
+                variant={item.variant}
+                night={item.night}
+                stateId={item.stateId}
+              />
+            }
+            footer={
+              <ClientOnly>
+                <Text
+                  textStyle={selected ? '12-bold' : '12-semi-bold'}
+                  color="blue.800"
+                >
+                  {SUNSET === item.variant && t('sunset')}
+                  {SUNRISE === item.variant && t('sunrise')}
+                  {WEATHER_STATE === item.variant &&
+                    t('{{temperature}}degree', {
+                      temperature: item.temperature,
+                    })}
+                </Text>
+              </ClientOnly>
+            }
+          />
+        );
+      },
+      [selectedItem, t, onSelect]
+    );
+
     const hourlyForecastCardData = useHourlyForecastCardData();
 
     if (!hourlyForecastCardData) return null;
@@ -37,50 +85,7 @@ export const HourlyForecastCard = memo(
             {t('Explore hourly forecast')}
           </Button>
         }
-        renderItem={({ index, item }) => {
-          const selected = index === selectedItem;
-
-          return (
-            <SelectableColumnBlock
-              key={item.time}
-              selected={selected}
-              onSelect={() => onSelect(index)}
-              heading={
-                <Text
-                  textStyle={selected ? '12-bold' : '12-semi-bold'}
-                  color={selected ? 'blue.500' : 'blue.800'}
-                >
-                  {index === 0 && t('Now')}
-                  {index !== 0 && item.time}
-                </Text>
-              }
-              main={
-                <Icon
-                  my={2}
-                  boxSize="10"
-                  variant={item.variant}
-                  night={item.night}
-                  stateId={item.stateId}
-                />
-              }
-              footer={
-                <ClientOnly>
-                  <Text
-                    textStyle={selected ? '12-bold' : '12-semi-bold'}
-                    color="blue.800"
-                  >
-                    {SUNSET === item.variant && t('sunset')}
-                    {SUNRISE === item.variant && t('sunrise')}
-                    {WEATHER_STATE === item.variant &&
-                      t('{{temperature}}degree', {
-                        temperature: item.temperature,
-                      })}
-                  </Text>
-                </ClientOnly>
-              }
-            />
-          );
-        }}
+        renderItem={renderHourBlock}
       />
     );
   }

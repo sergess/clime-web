@@ -6,7 +6,7 @@ import { Group } from '@visx/group';
 import { useAtomValue } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
-import { DropIcon, ClientOnly } from 'client/design-system/atoms';
+import { DropIcon } from 'client/design-system/atoms';
 import { precipitationUnitAtom } from 'client/state/atoms';
 
 import { UNIT_LABELS } from './constants';
@@ -40,16 +40,14 @@ export const PrecipitationPoint = ({
         dy={12}
       >{`${y}%`}</Text>
 
-      <ClientOnly>
-        <Text
-          fontSize={10}
-          fill={climeTheme.colors.gray[400]}
-          textAnchor="middle"
-          verticalAnchor="start"
-          fontWeight={600}
-          dy={30}
-        >{`${precipitationLevel} ${UNIT_LABELS[precipitationUnit]}`}</Text>
-      </ClientOnly>
+      <Text
+        fontSize={10}
+        fill={climeTheme.colors.gray[400]}
+        textAnchor="middle"
+        verticalAnchor="start"
+        fontWeight={600}
+        dy={30}
+      >{`${precipitationLevel} ${UNIT_LABELS[precipitationUnit]}`}</Text>
     </Glyph>
   );
 };
