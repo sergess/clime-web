@@ -3,6 +3,7 @@ import {
   HourlyForecastCardData,
   SummaryCardData,
   DailyDetailedForecastCardData,
+  DailyForecastCardData,
 } from 'common/types/cards';
 
 export type CardsContextData = {
@@ -10,6 +11,7 @@ export type CardsContextData = {
   hourlyForecast?: HourlyForecastCardData;
   summary?: SummaryCardData;
   dailyDetailedForecast?: DailyDetailedForecastCardData;
+  dailyForecast?: DailyForecastCardData;
 };
 
 export default CardsContextData;
