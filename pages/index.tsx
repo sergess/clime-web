@@ -9,6 +9,7 @@ import {
   TodayCard,
   HourlyForecastCard,
   SummaryCard,
+  DailyForecastCard,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
@@ -38,6 +39,7 @@ import {
   withTodayCard,
   withSummaryCard,
   withHourlyForecastCard,
+  withDailyForecastCard,
 } from 'server/middlewares/data-mapper';
 import { Forecast, Geocode } from 'server/services';
 
@@ -98,9 +100,7 @@ const Index = memo((): ReactElement => {
       <Card h="260px" w="full" maxW={{ xl: 380 }}>
         Block 2
       </Card>
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 3
-      </Card>
+      <DailyForecastCard maxW={{ xl: 380 }} w="full" />
       <Card h="260px" maxW={{ xl: 380 }} w="full">
         Block 4
       </Card>
@@ -149,6 +149,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         today: withTodayCard(forecastFeed, locationData),
         hourlyForecast: withHourlyForecastCard(forecastFeed, locationData),
         summary: withSummaryCard(forecastFeed),
+        dailyForecast: withDailyForecastCard(forecastFeed, locationData),
       },
       locationData,
       browserInfo: withBrowserInfo(context),

@@ -7,6 +7,7 @@ import {
   TodayCard,
   HourlyForecastCard,
   SummaryCard,
+  DailyForecastCard,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
@@ -15,11 +16,14 @@ import {
   withApiV3Service,
   withBrowserInfo,
 } from 'server/middlewares/get-server-side-props';
+
 import {
   withTodayCard,
   withSummaryCard,
   withHourlyForecastCard,
+  withDailyForecastCard,
 } from 'server/middlewares/data-mapper';
+
 import { Geocode } from 'server/services';
 
 const WeatherToday = memo(
@@ -31,10 +35,8 @@ const WeatherToday = memo(
       </Card>
       <HourlyForecastCard w="full" />
       <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <DailyForecastCard maxW={{ xl: 380 }} w="full" />
       <Card w="full">Block 3</Card>
-      <Card h="260px" w="full">
-        Block 4
-      </Card>
     </>
   )
 );
@@ -68,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         today: withTodayCard(forecastFeed, locationData),
         hourlyForecast: withHourlyForecastCard(forecastFeed, locationData),
         summary: withSummaryCard(forecastFeed),
+        dailyForecast: withDailyForecastCard(forecastFeed, locationData),
       },
       locationData,
       browserInfo: withBrowserInfo(context),
