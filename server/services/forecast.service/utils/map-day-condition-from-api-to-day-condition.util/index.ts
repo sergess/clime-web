@@ -29,6 +29,7 @@ export const mapDayConditionFromApiToDayCondition = (
     windSpeed: dayCondition.ws,
     windDirection: dayCondition.wd,
     windGust: dayCondition.wg,
+    precipitationLevel: dayCondition.pr,
     precipitationChance: dayCondition.prc,
     visibility: dayCondition.v,
     humidity: dayCondition.h,

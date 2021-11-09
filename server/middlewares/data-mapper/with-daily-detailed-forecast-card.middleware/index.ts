@@ -27,6 +27,7 @@ export const withDailyDetailedForecastCard = (
         maxTemperature,
         stateText,
         stateNightText,
+        precipitationLevel,
         precipitationChance,
         uvIndex,
         humidity,
@@ -51,8 +52,7 @@ export const withDailyDetailedForecastCard = (
         windSpeed,
         minTemperature,
         maxTemperature,
-        // [TODO] Remove 0 when https://jira.jabodo.com:8443/browse/WT-823 is ready
-        precipitationLevel: 0,
+        precipitationLevel,
         precipitationChance,
         stateText: night ? stateNightText || stateText : stateText,
         day: formatUtcString(dateTime, 'E dd', locationData?.timeZone),
