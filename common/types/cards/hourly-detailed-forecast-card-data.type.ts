@@ -4,6 +4,7 @@ import { HourConditionVariant } from '../hour-condition-variant.type';
 
 export type HourlyDetailedForecastCardData = Array<{
   night: boolean;
+  dateTime: string;
   stateId: WeatherStateId | null;
   variant: HourConditionVariant;
   time: string;

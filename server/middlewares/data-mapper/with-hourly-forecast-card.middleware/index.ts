@@ -12,6 +12,7 @@ export const withHourlyForecastCard = (
 ): HourlyForecastCardData =>
   take(5, forecastFeed.hourConditions).map(
     ({ variant, night, temperature, stateId, dateTime }) => ({
+      dateTime,
       variant,
       night,
       stateId,

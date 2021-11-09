@@ -42,6 +42,7 @@ export const withHourlyDetailedForecastCard = (
 
       return {
         night,
+        dateTime,
         stateId,
         variant,
         time: formatUtcString(

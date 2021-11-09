@@ -1,4 +1,4 @@
-import { ReactElement, memo, useState } from 'react';
+import { ReactElement, memo } from 'react';
 import {
   Flex,
   ComponentDefaultProps,
@@ -10,7 +10,7 @@ import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
-import { useLocationMetaInfo } from 'client/hooks';
+import { useLocationMetaInfo, useSelectedDateTimeIndex } from 'client/hooks';
 import {
   LocationMetaInfoRow,
   WindInfoRow,
@@ -34,7 +34,8 @@ export const HourlyDetailedForecastCard = memo(
     const locationMetaInfo = useLocationMetaInfo();
     const hourlyDetailedForecast = useCardData();
 
-    const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
+    const [selectedDateTimeIndex, setSelectedDateTimeIndex] =
+      useSelectedDateTimeIndex(hourlyDetailedForecast);
 
     if (!hourlyDetailedForecast) return null;
 
@@ -50,7 +51,7 @@ export const HourlyDetailedForecastCard = memo(
       windDirectionAngle,
       windAzimuth,
       windSpeed,
-    } = hourlyDetailedForecast[selectedSlideIndex];
+    } = hourlyDetailedForecast[selectedDateTimeIndex];
 
     return (
       <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
@@ -66,8 +67,8 @@ export const HourlyDetailedForecastCard = memo(
 
         <HoursInfo
           data={hourlyDetailedForecast}
-          selectedSlideIndex={selectedSlideIndex}
-          onSetSelectedSlideIndex={setSelectedSlideIndex}
+          selectedSlideIndex={selectedDateTimeIndex}
+          onSetSelectedSlideIndex={setSelectedDateTimeIndex}
         />
 
         <Flex width="full" px={4} mt={7} direction="column">

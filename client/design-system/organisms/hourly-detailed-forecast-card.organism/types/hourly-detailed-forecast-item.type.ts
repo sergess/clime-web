@@ -2,6 +2,7 @@ import { Azimuth, WeatherStateId, HourConditionVariant } from 'common/types';
 
 export type HourlyDetailedForecastItem = {
   night: boolean;
+  dateTime: string;
   variant: HourConditionVariant;
   stateId: WeatherStateId | null;
   uvIndex: number | string;

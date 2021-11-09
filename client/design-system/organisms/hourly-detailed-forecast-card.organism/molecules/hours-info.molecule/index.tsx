@@ -58,7 +58,7 @@ export const HoursInfo = memo(
                 heading={index === 0 ? t('Now') : item.time}
                 main={
                   <HourConditionIcon
-                    my={2}
+                    mt={2}
                     boxSize="10"
                     variant={item.variant}
                     night={item.night}

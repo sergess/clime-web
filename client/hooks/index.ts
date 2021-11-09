@@ -10,3 +10,4 @@ export * from './use-screen-width-smaller-than-medium';
 export * from './use-container-width.hook';
 export * from './use-url-slug.hook';
 export * from './use-cards.hook';
+export * from './use-selected-date-time-index.util';
