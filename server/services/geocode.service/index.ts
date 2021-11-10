@@ -48,7 +48,10 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: SearchArguments): Promise<LocationData[] | null> {
     const locationData = await this.callAsync<LocationData[]>(
-      `/geocode/search/${language}/${query}`
+      `/geocode/search/${language}/${encodeURI(query).replace(
+        /[!'()*#]/g,
+        escape
+      )}`
     );
 
     return locationData;
@@ -59,7 +62,10 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: AutocompleteArguments): Promise<LocationData[] | null> {
     const locationData = await this.callAsync<LocationData[]>(
-      `/geocode/autocomplete/${language}/${query}`
+      `/geocode/autocomplete/${language}/${encodeURI(query).replace(
+        /[!'()*#]/g,
+        escape
+      )}`
     );
 
     return locationData;
