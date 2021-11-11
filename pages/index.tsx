@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
-import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -89,20 +88,44 @@ const Index = memo((): ReactElement => {
   return (
     <>
       <TodayCard w="full" />
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 1
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
       </Card>
       <HourlyForecastCard w="full" />
-      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
-      <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
-        ads 3
-      </Box>
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 2
+      <Card
+        w="full"
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
       </Card>
+      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
       <DailyForecastCard maxH={270} w="full" />
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 4
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
+      </Card>
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
       </Card>
     </>
   );

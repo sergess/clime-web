@@ -30,13 +30,45 @@ const WeatherToday = memo(
   (): ReactElement => (
     <>
       <TodayCard w="full" />
-      <Card w="full" h="100px">
-        Block 1
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
       </Card>
       <HourlyForecastCard w="full" />
+      <Card
+        w="full"
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
+      </Card>
       <SummaryCard w="full" h={{ base: 240, md: 254 }} />
       <DailyForecastCard maxH={270} w="full" />
-      <Card w="full">Block 3</Card>
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
+      </Card>
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
+      </Card>
     </>
   )
 );
