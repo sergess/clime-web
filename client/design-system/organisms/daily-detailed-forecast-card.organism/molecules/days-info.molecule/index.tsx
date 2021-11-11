@@ -18,7 +18,7 @@ export const DaysInfo = memo(
     selectedSlideIndex,
     onSetSelectedSlideIndex,
   }: DaysInfoProps): ReactElement | null => {
-    const { t } = useTranslation('ten-day-weather-page');
+    const { t } = useTranslation('daily-detailed-forecast-card');
 
     const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 

@@ -8,3 +8,4 @@ export * from './hourly-forecast-card.organism';
 export * from './summary-card.organism';
 export * from './daily-detailed-forecast-card.organism';
 export * from './daily-forecast-card.organism';
+export * from './hourly-detailed-forecast-card.organism';

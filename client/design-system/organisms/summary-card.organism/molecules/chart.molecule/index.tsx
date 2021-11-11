@@ -18,7 +18,7 @@ import { getMinY, getMaxY, isYDefined, getMinMaxYDomain } from './utils';
 const X_DOMAIN_PADDING = 0.5;
 
 export const Chart = ({ points, theme, Point }: ChartProps): ReactElement => {
-  const { t } = useTranslation('weather-today-page');
+  const { t } = useTranslation('summary-card');
 
   const xAxisValues = useMemo(() => points.map((_, i) => i), [points]);
   const minY = useMemo(() => getMinY(points), [points]);

@@ -53,7 +53,7 @@ export const TodayCard = memo(
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
     const distanceUnit = useAtomValue(distanceUnitAtom);
 
-    const { t } = useTranslation('weather-today-page');
+    const { t } = useTranslation('today-card');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();

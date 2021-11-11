@@ -11,6 +11,7 @@ export const withDailyForecastCard = (
 ): DailyForecastCardData =>
   take(5, forecastFeed.dayConditions).map(
     ({ minTemperature, maxTemperature, stateId, dateTime }) => ({
+      dateTime,
       minTemperature,
       maxTemperature,
       stateId,

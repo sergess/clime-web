@@ -88,7 +88,7 @@ const Index = memo((): ReactElement => {
 
   return (
     <>
-      <TodayCard maxW={{ xl: 380 }} w="full" />
+      <TodayCard w="full" />
       <Card h="260px" w="full" maxW={{ xl: 380 }}>
         Block 1
       </Card>
@@ -100,7 +100,7 @@ const Index = memo((): ReactElement => {
       <Card h="260px" w="full" maxW={{ xl: 380 }}>
         Block 2
       </Card>
-      <DailyForecastCard maxW={{ xl: 380 }} w="full" />
+      <DailyForecastCard maxH={270} w="full" />
       <Card h="260px" maxW={{ xl: 380 }} w="full">
         Block 4
       </Card>
@@ -157,7 +157,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'common',
-          'weather-today-page',
+          'today-card',
+          'hourly-forecast-card',
+          'summary-card',
+          'daily-forecast-card',
         ]))),
     },
   };

@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'common',
-          'ten-day-weather-page',
+          'daily-detailed-forecast-card',
         ]))),
     },
   };

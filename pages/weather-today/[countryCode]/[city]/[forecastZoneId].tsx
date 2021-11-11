@@ -35,7 +35,7 @@ const WeatherToday = memo(
       </Card>
       <HourlyForecastCard w="full" />
       <SummaryCard w="full" h={{ base: 240, md: 254 }} />
-      <DailyForecastCard maxW={{ xl: 380 }} w="full" />
+      <DailyForecastCard maxH={270} w="full" />
       <Card w="full">Block 3</Card>
     </>
   )
@@ -78,7 +78,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'common',
-          'weather-today-page',
+          'today-card',
+          'hourly-forecast-card',
+          'summary-card',
+          'daily-forecast-card',
         ]))),
     },
   };

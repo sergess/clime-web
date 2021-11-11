@@ -48,12 +48,12 @@ export const DetailedForecastCarousel = <T,>({
         modules={[Navigation]}
         slidesPerView={slidesPerView}
         slidesPerGroup={slidesPerView}
-        onBeforeInit={onSetActiveSwiperIndex}
         onActiveIndexChange={onSetActiveSwiperIndex}
         navigation={{
           prevEl: '.swiper-prev-control',
           nextEl: '.swiper-next-control',
         }}
+        threshold={20}
       >
         {data.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
