@@ -1,13 +1,10 @@
 {
   "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
-  "Now": "Now",
-  "sunset": "sunset",
-  "sunrise": "sunrise",
-  "Precipitation": "Precipitation",
+  "Today": "Today",
   "Chance": "Chance",
+  "Precipitation": "Precipitation",
   "UV Index": "UV Index",
   "Humidity": "Humidity",
   "Pressure": "Pressure",
-  "Feels like": "Feels like",
-  "{{temperature}}degree": "{{temperature}}\u00b0"
+  "Dew point": "Dew point"
 }

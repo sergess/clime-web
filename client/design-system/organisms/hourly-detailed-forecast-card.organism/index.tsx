@@ -19,6 +19,7 @@ import { windSpeedUnitAtom } from 'client/state/atoms';
 
 import { useCardData } from './hooks';
 import { SelectedHourInfo } from './molecules';
+import { selectedHourAtom } from './state/atoms';
 
 const HoursInfo = dynamic(() => import('./molecules/hours-info.molecule'), {
   loading: () => <Skeleton h="220px" w="full" />,
@@ -27,15 +28,17 @@ const HoursInfo = dynamic(() => import('./molecules/hours-info.molecule'), {
 
 export const HourlyDetailedForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { t } = useTranslation('hourly-weather-page');
+    const { t } = useTranslation('hourly-detailed-forecast-card');
 
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
 
     const locationMetaInfo = useLocationMetaInfo();
     const hourlyDetailedForecast = useCardData();
 
-    const [selectedDateTimeIndex, setSelectedDateTimeIndex] =
-      useSelectedDateTimeIndex(hourlyDetailedForecast);
+    const [selectedHourIndex, setSelectedHourIndex] = useSelectedDateTimeIndex(
+      hourlyDetailedForecast,
+      selectedHourAtom
+    );
 
     if (!hourlyDetailedForecast) return null;
 
@@ -51,7 +54,7 @@ export const HourlyDetailedForecastCard = memo(
       windDirectionAngle,
       windAzimuth,
       windSpeed,
-    } = hourlyDetailedForecast[selectedDateTimeIndex];
+    } = hourlyDetailedForecast[selectedHourIndex];
 
     return (
       <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
@@ -67,8 +70,8 @@ export const HourlyDetailedForecastCard = memo(
 
         <HoursInfo
           data={hourlyDetailedForecast}
-          selectedSlideIndex={selectedDateTimeIndex}
-          onSetSelectedSlideIndex={setSelectedDateTimeIndex}
+          selectedSlideIndex={selectedHourIndex}
+          onSetSelectedSlideIndex={setSelectedHourIndex}
         />
 
         <Flex width="full" px={4} mt={7} direction="column">
@@ -108,5 +111,7 @@ export const HourlyDetailedForecastCard = memo(
 );
 
 HourlyDetailedForecastCard.displayName = 'HourlyDetailedForecastCard';
+
+export * from './state/atoms';
 
 export default HourlyDetailedForecastCard;

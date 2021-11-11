@@ -17,7 +17,7 @@ import {
 } from 'client/design-system/molecules';
 import { HOURLY_WEATHER } from 'client/constants';
 import { useUrlSlug } from 'client/hooks';
-import { selectedDateTimeAtom } from 'client/state/atoms';
+import { selectedHourAtom } from 'client/design-system/organisms/hourly-detailed-forecast-card.organism';
 
 import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
 
@@ -25,9 +25,9 @@ import { useHourlyForecastCardData } from './hooks';
 
 export const HourlyForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { t } = useTranslation('weather-today-page');
+    const { t } = useTranslation('hourly-forecast-card');
     const [selectedItem, setSelectedItem] = useState<number>(0);
-    const setSelectedDateTime = useUpdateAtom(selectedDateTimeAtom);
+    const setSelectedHour = useUpdateAtom(selectedHourAtom);
     const urlSlug = useUrlSlug();
 
     const renderHourBlock = useCallback(
@@ -45,9 +45,7 @@ export const HourlyForecastCard = memo(
                   color={selected ? 'blue.500' : 'blue.800'}
                 >
                   <Link href={`/${HOURLY_WEATHER}/${urlSlug}`} passHref>
-                    <LinkOverlay
-                      onClick={() => setSelectedDateTime(item.dateTime)}
-                    >
+                    <LinkOverlay onClick={() => setSelectedHour(item.dateTime)}>
                       {index === 0 && t('Now')}
                       {index !== 0 && item.time}
                     </LinkOverlay>
@@ -72,9 +70,7 @@ export const HourlyForecastCard = memo(
                     {SUNSET === item.variant && t('sunset')}
                     {SUNRISE === item.variant && t('sunrise')}
                     {WEATHER_STATE === item.variant &&
-                      t('{{temperature}}degree', {
-                        temperature: item.temperature,
-                      })}
+                      `${item.temperature}\u00b0`}
                   </Text>
                 </ClientOnly>
               }

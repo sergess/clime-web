@@ -1,4 +1,4 @@
-import { ReactElement, memo, useState } from 'react';
+import { ReactElement, memo } from 'react';
 import {
   Flex,
   ComponentDefaultProps,
@@ -10,7 +10,7 @@ import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
-import { useLocationMetaInfo } from 'client/hooks';
+import { useLocationMetaInfo, useSelectedDateTimeIndex } from 'client/hooks';
 import {
   LocationMetaInfoRow,
   WindInfoRow,
@@ -19,6 +19,7 @@ import { windSpeedUnitAtom } from 'client/state/atoms';
 
 import { useCardData } from './hooks';
 import { SelectedDayInfo } from './molecules';
+import { selectedDayAtom } from './state/atoms';
 
 const DaysInfo = dynamic(() => import('./molecules/days-info.molecule'), {
   loading: () => <Skeleton h="260px" w="full" />,
@@ -27,14 +28,17 @@ const DaysInfo = dynamic(() => import('./molecules/days-info.molecule'), {
 
 export const DailyDetailedForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { t } = useTranslation('ten-day-weather-page');
+    const { t } = useTranslation('daily-detailed-forecast-card');
 
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
 
     const locationMetaInfo = useLocationMetaInfo();
     const dailyDetailedForecast = useCardData();
 
-    const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
+    const [selectedDayIndex, setSelectedDayIndex] = useSelectedDateTimeIndex(
+      dailyDetailedForecast,
+      selectedDayAtom
+    );
 
     if (!dailyDetailedForecast) return null;
 
@@ -50,7 +54,7 @@ export const DailyDetailedForecastCard = memo(
       windDirectionAngle,
       windAzimuth,
       windSpeed,
-    } = dailyDetailedForecast[selectedSlideIndex];
+    } = dailyDetailedForecast[selectedDayIndex];
 
     return (
       <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
@@ -66,8 +70,8 @@ export const DailyDetailedForecastCard = memo(
 
         <DaysInfo
           data={dailyDetailedForecast}
-          selectedSlideIndex={selectedSlideIndex}
-          onSetSelectedSlideIndex={setSelectedSlideIndex}
+          selectedSlideIndex={selectedDayIndex}
+          onSetSelectedSlideIndex={setSelectedDayIndex}
         />
 
         <Flex width="full" px={4} direction="column">
@@ -107,5 +111,7 @@ export const DailyDetailedForecastCard = memo(
 );
 
 DailyDetailedForecastCard.displayName = 'DailyDetailedForecastCard';
+
+export * from './state/atoms';
 
 export default DailyDetailedForecastCard;

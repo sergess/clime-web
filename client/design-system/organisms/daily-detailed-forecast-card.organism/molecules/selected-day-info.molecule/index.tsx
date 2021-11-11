@@ -27,7 +27,7 @@ export const SelectedDayInfo = memo(
     dewPoint,
     precipitationLevel,
   }: SelectedDayInfoProps): ReactElement | null => {
-    const { t } = useTranslation('ten-day-weather-page');
+    const { t } = useTranslation('daily-detailed-forecast-card');
 
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
     const pressureUnit = useAtomValue(pressureUnitAtom);

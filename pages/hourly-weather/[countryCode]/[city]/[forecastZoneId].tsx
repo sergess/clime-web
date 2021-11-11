@@ -3,20 +3,27 @@ import { GetServerSideProps } from 'next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { HourlyDetailedForecastCard } from 'client/design-system/organisms';
+import {
+  HourlyDetailedForecastCard,
+  DailyForecastCard,
+} from 'client/design-system/organisms';
 
 import {
   withForecastFeed,
   withApiV3Service,
   withBrowserInfo,
 } from 'server/middlewares/get-server-side-props';
-import { withHourlyDetailedForecastCard } from 'server/middlewares/data-mapper';
+import {
+  withHourlyDetailedForecastCard,
+  withDailyForecastCard,
+} from 'server/middlewares/data-mapper';
 import { Geocode } from 'server/services';
 
 const HourlyWeather = memo(
   (): ReactElement => (
     <>
       <HourlyDetailedForecastCard w="full" />
+      <DailyForecastCard maxH={270} w="full" />
     </>
   )
 );
@@ -51,6 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           forecastFeed,
           locationData
         ),
+        dailyForecast: withDailyForecastCard(forecastFeed, locationData),
       },
       locationData,
       browserInfo: withBrowserInfo(context),
@@ -58,7 +66,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'common',
-          'hourly-weather-page',
+          'hourly-detailed-forecast-card',
+          'daily-forecast-card',
         ]))),
     },
   };

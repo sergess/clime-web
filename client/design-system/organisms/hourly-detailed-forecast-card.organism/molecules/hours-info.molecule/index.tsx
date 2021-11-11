@@ -19,7 +19,7 @@ export const HoursInfo = memo(
     selectedSlideIndex,
     onSetSelectedSlideIndex,
   }: HoursInfoProps): ReactElement | null => {
-    const { t } = useTranslation('hourly-weather-page');
+    const { t } = useTranslation('hourly-detailed-forecast-card');
 
     const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 
@@ -70,9 +70,7 @@ export const HoursInfo = memo(
                     {SUNSET === item.variant && t('sunset')}
                     {SUNRISE === item.variant && t('sunrise')}
                     {WEATHER_STATE === item.variant &&
-                      t('{{temperature}}degree', {
-                        temperature: item.temperature,
-                      })}
+                      `${item.temperature}\u00b0`}
                   </Text>
                 }
               />

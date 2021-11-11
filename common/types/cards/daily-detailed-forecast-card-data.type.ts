@@ -3,6 +3,7 @@ import { WeatherStateId } from '../weather-state-id.type';
 
 export type DailyDetailedForecastCardData = Array<{
   night: boolean;
+  dateTime: string;
   stateId: WeatherStateId | null;
   uvIndex: number | null;
   humidity: number | null;

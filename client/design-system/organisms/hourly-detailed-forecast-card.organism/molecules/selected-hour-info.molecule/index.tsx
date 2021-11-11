@@ -27,7 +27,7 @@ export const SelectedHourInfo = memo(
     feelsLikeTemperature,
     precipitationLevel,
   }: SelectedHourInfoProps): ReactElement | null => {
-    const { t } = useTranslation('ten-day-weather-page');
+    const { t } = useTranslation('hourly-detailed-forecast-card');
 
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
     const pressureUnit = useAtomValue(pressureUnitAtom);

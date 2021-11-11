@@ -59,7 +59,7 @@ const selectorOptions = [
 
 export const SummaryCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { t } = useTranslation('weather-today-page');
+    const { t } = useTranslation('summary-card');
 
     const [activeChart, setActiveChart] = useState<ChartOption>(
       ChartOption.TEMPERATURE

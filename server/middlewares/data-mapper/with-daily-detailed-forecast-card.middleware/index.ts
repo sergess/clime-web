@@ -44,6 +44,7 @@ export const withDailyDetailedForecastCard = (
 
       return {
         night,
+        dateTime,
         stateId,
         uvIndex,
         humidity,
