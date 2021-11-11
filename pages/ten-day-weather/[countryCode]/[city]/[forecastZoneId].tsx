@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { DailyDetailedForecastCard } from 'client/design-system/organisms';
+import { Card } from 'client/design-system/atoms';
 
 import {
   withForecastFeed,
@@ -17,6 +18,33 @@ const TenDayWeather = memo(
   (): ReactElement => (
     <>
       <DailyDetailedForecastCard w="full" />
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
+      </Card>
+      <Card
+        w="full"
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
+      </Card>
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
+      </Card>
     </>
   )
 );

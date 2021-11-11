@@ -7,6 +7,7 @@ import {
   HourlyDetailedForecastCard,
   DailyForecastCard,
 } from 'client/design-system/organisms';
+import { Card } from 'client/design-system/atoms';
 
 import {
   withForecastFeed,
@@ -23,7 +24,34 @@ const HourlyWeather = memo(
   (): ReactElement => (
     <>
       <HourlyDetailedForecastCard w="full" />
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
+      </Card>
       <DailyForecastCard maxH={270} w="full" />
+      <Card
+        w="full"
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
+      </Card>
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
+      </Card>
     </>
   )
 );
