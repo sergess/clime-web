@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
-import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -9,6 +8,7 @@ import {
   TodayCard,
   HourlyForecastCard,
   SummaryCard,
+  DailyForecastCard,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
@@ -38,6 +38,7 @@ import {
   withTodayCard,
   withSummaryCard,
   withHourlyForecastCard,
+  withDailyForecastCard,
 } from 'server/middlewares/data-mapper';
 import { Forecast, Geocode } from 'server/services';
 
@@ -86,23 +87,45 @@ const Index = memo((): ReactElement => {
 
   return (
     <>
-      <TodayCard maxW={{ xl: 380 }} w="full" />
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 1
+      <TodayCard w="full" />
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
       </Card>
       <HourlyForecastCard w="full" />
+      <Card
+        w="full"
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
+      </Card>
       <SummaryCard w="full" h={{ base: 240, md: 254 }} />
-      <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
-        ads 3
-      </Box>
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 2
+      <DailyForecastCard maxH={270} w="full" />
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        APP PROMO BANNER
       </Card>
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 3
-      </Card>
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 4
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
       </Card>
     </>
   );
@@ -149,6 +172,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         today: withTodayCard(forecastFeed, locationData),
         hourlyForecast: withHourlyForecastCard(forecastFeed, locationData),
         summary: withSummaryCard(forecastFeed),
+        dailyForecast: withDailyForecastCard(forecastFeed, locationData),
       },
       locationData,
       browserInfo: withBrowserInfo(context),
@@ -156,7 +180,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...(!!locale &&
         (await serverSideTranslations(locale, [
           'common',
-          'weather-today-page',
+          'today-card',
+          'hourly-forecast-card',
+          'summary-card',
+          'daily-forecast-card',
         ]))),
     },
   };

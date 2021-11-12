@@ -1,0 +1,10 @@
+{
+  "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
+  "Today": "Today",
+  "Chance": "Chance",
+  "Precipitation": "Precipitation",
+  "UV Index": "UV Index",
+  "Humidity": "Humidity",
+  "Pressure": "Pressure",
+  "Dew point": "Dew point"
+}

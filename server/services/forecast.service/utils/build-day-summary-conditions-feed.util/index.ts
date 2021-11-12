@@ -1,9 +1,6 @@
-import isNil from 'ramda/src/isNil';
-import complement from 'ramda/src/complement';
+import { isNotNil } from 'common/utils';
 
 import { DayCondition, DaySummaryCondition } from 'server/types';
-
-const isNotNil = complement(isNil);
 
 export const buildDaySummaryConditionsFeed = (
   dayConditions: DayCondition[]

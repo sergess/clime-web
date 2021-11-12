@@ -1,25 +1,38 @@
 import { ReactElement, useState, useMemo, memo } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Flex, Text, Center, ComponentDefaultProps } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+import {
+  Flex,
+  Text,
+  Center,
+  ComponentDefaultProps,
+  Skeleton,
+} from '@chakra-ui/react';
 
 import {
   Card,
   SummaryTemperatureIcon,
   SummaryPrecipitationIcon,
   SummaryWindIcon,
-  ClientOnly,
 } from 'client/design-system/atoms';
-import { SwitchSelector } from 'client/design-system/molecules';
 
 import { ChartOption } from './types';
 import { CHART_THEME } from './constants';
-import {
-  Chart,
-  TemperaturePoint,
-  PrecipitationPoint,
-  WindPoint,
-} from './molecules';
+import { TemperaturePoint, PrecipitationPoint, WindPoint } from './molecules';
 import { useChartData } from './hooks';
+
+const SwitchSelector = dynamic(
+  () => import('client/design-system/molecules/switch-selector.molecule'),
+  {
+    loading: () => <Skeleton h="full" w="115px" />,
+    ssr: false,
+  }
+);
+
+const Chart = dynamic(() => import('./molecules/chart.molecule'), {
+  loading: () => <Skeleton h="full" w="full" mt={2} />,
+  ssr: false,
+});
 
 const SummaryIconMap = {
   [ChartOption.TEMPERATURE]: SummaryTemperatureIcon,
@@ -46,7 +59,7 @@ const selectorOptions = [
 
 export const SummaryCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { t } = useTranslation('weather-today-page');
+    const { t } = useTranslation('summary-card');
 
     const [activeChart, setActiveChart] = useState<ChartOption>(
       ChartOption.TEMPERATURE
@@ -86,14 +99,12 @@ export const SummaryCard = memo(
             {activeChart === ChartOption.WIND_SPEED && t('Wind Summary')}
           </Text>
 
-          <ClientOnly>
-            <SwitchSelector
-              options={selectorOptions}
-              name="summary"
-              value={activeChart as unknown as string}
-              onSelected={setActiveChart as unknown as (value: string) => void}
-            />
-          </ClientOnly>
+          <SwitchSelector
+            options={selectorOptions}
+            name="summary"
+            value={activeChart as unknown as string}
+            onSelected={setActiveChart as unknown as (value: string) => void}
+          />
         </Flex>
 
         <Chart theme={CHART_THEME[activeChart]} points={points} Point={Point} />

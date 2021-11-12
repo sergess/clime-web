@@ -1,4 +1,4 @@
-import { ReactElement, memo, useState, useEffect } from 'react';
+import { ReactElement, memo } from 'react';
 import {
   Button,
   Divider,
@@ -10,15 +10,11 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
-import { useRouter } from 'next/router';
-import toUpper from 'ramda/src/toUpper';
 
 import {
   Card,
   WeatherStateIcon,
-  PinCardIcon,
   Arrow2Icon,
-  WindDirectionIcon,
   InfoPrecipitationIcon,
   InfoUvIcon,
   InfoHumidityIcon,
@@ -27,10 +23,13 @@ import {
   ClientOnly,
   InfoChanceIcon,
   InfoVisibilityIcon,
+  StateTextRow,
 } from 'client/design-system/atoms';
 import {
   InfoBlockWithIcon,
   MinMaxTemperatureRow,
+  LocationMetaInfoRow,
+  WindInfoRow,
 } from 'client/design-system/molecules';
 import {
   pressureUnitAtom,
@@ -38,52 +37,23 @@ import {
   precipitationUnitAtom,
   distanceUnitAtom,
 } from 'client/state/atoms';
-import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
 import {
-  isLocationTheSameAsLocationFromBrowser,
-  getExtendedLocationName,
-  getLocationName,
-  capitalize,
-} from 'client/utils';
+  useScreenWidthSmallerThanMedium,
+  useLocationMetaInfo,
+} from 'client/hooks';
 
 import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const { query } = useRouter();
-    const [locationExact, setLocationExact] = useState(false);
-    const [locationName, setLocationName] = useState('');
-
-    const locationData = useLocationData();
-
-    useEffect(() => {
-      const locationTheSameAsLocationFromBrowser =
-        !!locationData &&
-        isLocationTheSameAsLocationFromBrowser({
-          longitude: locationData.longitude,
-          latitude: locationData.latitude,
-        });
-
-      setLocationExact(locationTheSameAsLocationFromBrowser);
-
-      const nextLocationName = locationTheSameAsLocationFromBrowser
-        ? getExtendedLocationName(locationData)
-        : getLocationName(locationData);
-
-      setLocationName(
-        nextLocationName ||
-          `${capitalize((query?.city as string) ?? '')}, ${toUpper(
-            (query?.countryCode as string) ?? ''
-          )}`
-      );
-    }, [locationData, query]);
+    const locationMetaInfo = useLocationMetaInfo();
 
     const pressureUnit = useAtomValue(pressureUnitAtom);
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
     const distanceUnit = useAtomValue(distanceUnitAtom);
 
-    const { t } = useTranslation('weather-today-page');
+    const { t } = useTranslation('today-card');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
@@ -112,23 +82,17 @@ export const TodayCard = memo(
     } = todayCardData;
 
     return (
-      <Card {...props} pt="5" pb={{ md: 2 }}>
+      <Card {...props} pt="5">
         <Flex w="full" direction="column" px="4">
-          <Flex w="full" justify="space-between" mb={5}>
-            <Flex>
-              {locationExact && <PinCardIcon me={2.5} />}
+          <LocationMetaInfoRow
+            exact={locationMetaInfo.exact}
+            name={locationMetaInfo.name}
+            time={time}
+            componentStyles={{
+              mb: 5,
+            }}
+          />
 
-              <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
-                {locationName}
-              </Text>
-            </Flex>
-
-            <Flex>
-              <Text color="gray.500" textStyle="16-medium">
-                <ClientOnly>{time}</ClientOnly>
-              </Text>
-            </Flex>
-          </Flex>
           <Flex direction="row" align="center" justify="center" mb={5}>
             <Flex me={4}>
               <WeatherStateIcon stateId={stateId} night={night} boxSize="100" />
@@ -162,33 +126,26 @@ export const TodayCard = memo(
             </Flex>
           </Flex>
 
-          <Flex mt={1} justify="center">
-            <Text color="blue.800" textStyle="16-weather-detail" align="center">
-              {`${stateText ? `${stateText}.` : ''}`}
-            </Text>
-          </Flex>
+          <StateTextRow mt={1}>{stateText}</StateTextRow>
 
-          <Flex my={4} justify="center">
-            <WindDirectionIcon
-              fill="gray.600"
-              me={2}
-              transform={`rotate(${windDirectionAngle}deg)`}
-            />
-
-            <Text color="gray.600" textStyle="16-medium">
-              <ClientOnly>
-                {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
-                  windAzimuth: windAzimuth.toUpperCase(),
-                  windSpeed,
-                  windSpeedUnit,
-                })}
-              </ClientOnly>
-            </Text>
-          </Flex>
+          <WindInfoRow
+            directionAngle={windDirectionAngle}
+            componentStyles={{
+              my: '1.125em',
+            }}
+          >
+            <ClientOnly>
+              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+                windAzimuth: windAzimuth.toUpperCase(),
+                windSpeed,
+                windSpeedUnit,
+              })}
+            </ClientOnly>
+          </WindInfoRow>
 
           <Divider orientation="horizontal" variant="card-divider" />
 
-          <InfoBlocksRow>
+          <InfoBlocksRow my={3}>
             <InfoBlockWithIcon
               icon={<InfoChanceIcon w={8} h={8} />}
               label={t('Chance')}
@@ -211,7 +168,7 @@ export const TodayCard = memo(
           <Divider orientation="horizontal" variant="card-divider" />
 
           <Collapse in={cardOpened || !widthSmallerThanMedium} animateOpacity>
-            <InfoBlocksRow>
+            <InfoBlocksRow my={3}>
               <InfoBlockWithIcon
                 icon={<InfoUvIcon w={8} h={8} />}
                 label={t('UV Index')}
@@ -229,7 +186,7 @@ export const TodayCard = memo(
 
             <Divider orientation="horizontal" variant="card-divider" />
 
-            <InfoBlocksRow>
+            <InfoBlocksRow mt={3} mb={widthSmallerThanMedium ? 3 : '1.125em'}>
               <InfoBlockWithIcon
                 icon={<InfoPressureIcon w={8} h={8} />}
                 label={t('Pressure')}

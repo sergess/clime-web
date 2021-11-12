@@ -34,6 +34,7 @@ export const mapConditionFromApiToHourCondition = (
     visibility: condition.v,
     humidity: condition.h,
     pressure: condition.p,
+    uvIndex: condition.uv,
   };
 };
 

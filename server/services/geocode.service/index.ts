@@ -47,6 +47,7 @@ export class Geocode extends BaseApiV3Service {
     query,
     language,
   }: SearchArguments): Promise<LocationData[] | null> {
+    // [TODO] Think about better way how it could be done
     const locationData = await this.callAsync<LocationData[]>(
       `/geocode/search/${language}/${encodeURI(query).replace(
         /[!'()*#]/g,
@@ -61,6 +62,7 @@ export class Geocode extends BaseApiV3Service {
     query,
     language,
   }: AutocompleteArguments): Promise<LocationData[] | null> {
+    // [TODO] Think about better way how it could be done
     const locationData = await this.callAsync<LocationData[]>(
       `/geocode/autocomplete/${language}/${encodeURI(query).replace(
         /[!'()*#]/g,

@@ -1,12 +1,11 @@
 import { ReactElement } from 'react';
-import { Flex } from '@chakra-ui/react';
-
-import { InfoBlocksRowProps } from './types';
+import { Flex, ComponentDefaultProps } from '@chakra-ui/react';
 
 export const InfoBlocksRow = ({
   children,
-}: InfoBlocksRowProps): ReactElement => (
-  <Flex w="full" direction="row" my={3}>
+  ...componentStyles
+}: ComponentDefaultProps): ReactElement => (
+  <Flex {...componentStyles} w="full" direction="row">
     {children}
   </Flex>
 );

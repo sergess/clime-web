@@ -15,6 +15,7 @@ export type DayCondition = {
   windSpeed: number | null;
   windDirection: number | null;
   windGust: number | null;
+  precipitationLevel: number | null;
   precipitationChance: number | null;
   visibility: number | null;
   humidity: number | null;
