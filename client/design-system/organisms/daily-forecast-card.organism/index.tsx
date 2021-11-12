@@ -53,7 +53,12 @@ export const DailyForecastCard = memo(
                 </Text>
               }
               main={
-                <WeatherStateIcon stateId={item.stateId} my={2} boxSize="10" />
+                <WeatherStateIcon
+                  night={item.night}
+                  stateId={item.stateId}
+                  my={2}
+                  boxSize="10"
+                />
               }
               footer={
                 <ClientOnly>

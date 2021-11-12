@@ -6,6 +6,7 @@ export type DailyForecastCardData = Array<{
   minTemperature: number | null;
   maxTemperature: number | null;
   time: string;
+  night: boolean;
 }>;
 
 export default DailyForecastCardData;
