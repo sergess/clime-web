@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import isNil from 'ramda/src/isNil';
 
 import { isString } from 'common/utils';
 
@@ -29,6 +30,10 @@ const autocompleteHandler = async (
     query: query as string,
     language: language as string,
   });
+
+  if (isNil(autocompleteSuggestions) || 'error' in autocompleteSuggestions) {
+    return res.status(400).end('Bad request');
+  }
 
   return res.status(200).json(autocompleteSuggestions);
 };
