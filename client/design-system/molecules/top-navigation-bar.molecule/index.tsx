@@ -78,6 +78,7 @@ export const TopNavigationBar = (
         '&::-webkit-scrollbar': {
           width: 0,
           height: 0,
+          display: 'none',
         },
       }}
       sx={{
