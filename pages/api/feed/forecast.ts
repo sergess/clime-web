@@ -4,15 +4,11 @@ import { isString } from 'common/utils';
 
 import { Forecast } from 'server/services';
 import { isNumeric } from 'server/utils';
-import {
-  withApiV3Service,
-  withRequestMethod,
-} from 'server/middlewares/api-handler';
+import { withRequestMethod } from 'server/middlewares/api-handler';
 
 export const forecastHandler = async (
   req: NextApiRequest,
-  res: NextApiResponse,
-  service: Forecast
+  res: NextApiResponse
 ): Promise<void> => {
   const { forecastZoneId, language } = req.query;
 
@@ -20,14 +16,15 @@ export const forecastHandler = async (
     return res.status(400).end('Bad request');
   }
 
-  const forecastFeed = await service.getForecastFeed({
-    forecastZoneId: forecastZoneId as string,
+  const forecastService = new Forecast({
+    userAgentHeader: req.headers['user-agent'],
+  });
+  const forecastFeed = await forecastService.getForecastFeed({
+    forecastZoneId: Number(forecastZoneId),
     language: language as string,
   });
 
   return res.status(200).json(forecastFeed);
 };
 
-export default withRequestMethod('GET')(
-  withApiV3Service<Forecast>(Forecast)(forecastHandler)
-);
+export default withRequestMethod('GET')(forecastHandler);

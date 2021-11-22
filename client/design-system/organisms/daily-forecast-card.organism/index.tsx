@@ -18,16 +18,16 @@ import {
 } from 'client/design-system/molecules';
 import { TEN_DAY_WEATHER } from 'client/constants';
 import { selectedDayAtom } from 'client/design-system/organisms/daily-detailed-forecast-card.organism';
-import { useUrlSlug } from 'client/hooks';
+import { usePageUrl } from 'client/hooks';
 
-import { useDailyForecastCardData } from './hooks';
+import { useCardData } from './hooks';
 
 export const DailyForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
     const { t } = useTranslation('daily-forecast-card');
     const [selectedItem, setSelectedItem] = useState<number>(0);
     const setSelectedDay = useUpdateAtom(selectedDayAtom);
-    const urlSlug = useUrlSlug();
+    const pageUrl = usePageUrl(TEN_DAY_WEATHER);
 
     const renderDailyBlock = useCallback(
       ({ index, item }) => {
@@ -44,7 +44,7 @@ export const DailyForecastCard = memo(
                   textStyle={selected ? '12-bold' : '12-semi-bold'}
                   color={selected ? 'blue.500' : 'blue.800'}
                 >
-                  <Link href={`/${TEN_DAY_WEATHER}/${urlSlug}`} passHref>
+                  <Link href={pageUrl} passHref>
                     <LinkOverlay onClick={() => setSelectedDay(item.dateTime)}>
                       {index === 0 && t('Today')}
                       {index !== 0 && item.time}
@@ -75,18 +75,18 @@ export const DailyForecastCard = memo(
       [selectedItem, t]
     );
 
-    const dailyForecastCardData = useDailyForecastCardData();
+    const dailyForecast = useCardData();
 
-    if (!dailyForecastCardData) return null;
+    if (!dailyForecast) return null;
 
     return (
       <ForecastCard
         {...props}
         py="5"
         heading={t('Daily Forecast')}
-        data={dailyForecastCardData}
+        data={dailyForecast}
         footer={
-          <Link href={`/${TEN_DAY_WEATHER}/${urlSlug}`} passHref>
+          <Link href={pageUrl} passHref>
             <Button as="a" w="full" variant="cta" mx={3.5}>
               {t('Explore 10-day forecast')}
             </Button>

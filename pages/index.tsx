@@ -2,8 +2,6 @@ import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import {
   TodayCard,
   HourlyForecastCard,
@@ -12,7 +10,6 @@ import {
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
-import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 
 import {
@@ -26,21 +23,17 @@ import {
   EXACT_LATITUDE_COOKIE,
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
-import { isLocationValid } from 'common/utils';
+import { ForecastCard } from 'common/types';
 
 import {
-  withLocationDataByIp,
-  withApiV3Service,
-  withCookie,
-  withBrowserInfo,
+  mapDailyCard,
+  mapHourlyCard,
+  mapSummaryCard,
+  mapTodayCard,
+  withForecastCards,
+  withLocationData,
+  withTranslations,
 } from 'server/middlewares/get-server-side-props';
-import {
-  withTodayCard,
-  withSummaryCard,
-  withHourlyForecastCard,
-  withDailyForecastCard,
-} from 'server/middlewares/data-mapper';
-import { Forecast, Geocode } from 'server/services';
 
 const Index = memo((): ReactElement => {
   const router = useRouter();
@@ -63,19 +56,12 @@ const Index = memo((): ReactElement => {
       !latitudeCookie &&
       !longitudeCookie
     ) {
-      const { countryCode, city, forecastZoneId } = exactLocationData;
+      const { slug } = exactLocationData;
 
       setCookie(EXACT_LATITUDE_COOKIE, `${locationFromBrowser?.latitude}`);
       setCookie(EXACT_LONGITUDE_COOKIE, `${locationFromBrowser?.longitude}`);
 
-      const redirectUrl = getValidRedirectUrl(
-        WEATHER_TODAY,
-        countryCode as string,
-        city as string,
-        forecastZoneId
-      );
-
-      router.push(redirectUrl);
+      router.push(`${WEATHER_TODAY}/${slug}`);
     }
   }, [
     hasMounted,
@@ -136,31 +122,32 @@ Index.displayName = 'Index';
 export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale, defaultLocale } = context;
+  const locationData = await withLocationData({ autolocation: true })(context);
 
-  const geocodeService = withApiV3Service<Geocode>(context, Geocode);
+  if (!locationData) {
+    return {
+      notFound: true,
+    };
+  }
 
-  const latitudeFromCookies = withCookie(context, EXACT_LATITUDE_COOKIE);
-  const longitudeFromCookies = withCookie(context, EXACT_LONGITUDE_COOKIE);
-  const locationFromCookies = {
-    latitude: Number(latitudeFromCookies),
-    longitude: Number(longitudeFromCookies),
-  };
+  const forecastCards = await withForecastCards(
+    {
+      [ForecastCard.TODAY]: mapTodayCard,
+      [ForecastCard.HOURLY]: mapHourlyCard,
+      [ForecastCard.SUMMARY]: mapSummaryCard,
+      [ForecastCard.DAILY]: mapDailyCard,
+    },
+    locationData
+  )(context);
 
-  const locationData = isLocationValid(locationFromCookies)
-    ? await geocodeService.getLocationDataByCoordinates({
-        ...locationFromCookies,
-        language: locale || (defaultLocale as string),
-      })
-    : await withLocationDataByIp(context);
+  const withWeatherTodayTranslations = withTranslations(
+    'today-card',
+    'hourly-forecast-card',
+    'summary-card',
+    'daily-forecast-card'
+  );
 
-  const forecastService = withApiV3Service<Forecast>(context, Forecast);
-  const forecastFeed = await forecastService.getForecastFeed({
-    forecastZoneId: locationData?.forecastZoneId as number,
-    language: locale || (defaultLocale as string),
-  });
-
-  if (!forecastFeed) {
+  if (!forecastCards) {
     return {
       notFound: true,
     };
@@ -168,23 +155,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      cards: {
-        today: withTodayCard(forecastFeed, locationData),
-        hourlyForecast: withHourlyForecastCard(forecastFeed, locationData),
-        summary: withSummaryCard(forecastFeed),
-        dailyForecast: withDailyForecastCard(forecastFeed, locationData),
-      },
       locationData,
-      browserInfo: withBrowserInfo(context),
+      forecastCards,
 
-      ...(!!locale &&
-        (await serverSideTranslations(locale, [
-          'common',
-          'today-card',
-          'hourly-forecast-card',
-          'summary-card',
-          'daily-forecast-card',
-        ]))),
+      ...(await withWeatherTodayTranslations(context)),
     },
   };
 };

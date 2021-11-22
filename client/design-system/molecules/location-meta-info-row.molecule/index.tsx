@@ -7,13 +7,13 @@ import { LocationMetaInfoRowProps } from './types';
 
 export const LocationMetaInfoRow = memo(
   ({
-    exact,
-    name,
     time,
     componentStyles,
+    exact = false,
+    name = '',
   }: LocationMetaInfoRowProps): ReactElement => (
     <Flex {...componentStyles} w="full" justify="space-between">
-      <Flex>
+      <Flex align="center">
         {exact && <PinCardIcon me={2.5} />}
 
         <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>

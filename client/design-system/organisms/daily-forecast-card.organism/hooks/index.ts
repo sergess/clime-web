@@ -1,1 +1,1 @@
-export * from './use-daily-forecast-card-data.hook';
+export * from './use-card-data.hook';

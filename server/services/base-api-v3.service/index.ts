@@ -50,4 +50,6 @@ export class BaseApiV3 extends BaseService {
   }
 }
 
+export * from './types';
+
 export default BaseApiV3;

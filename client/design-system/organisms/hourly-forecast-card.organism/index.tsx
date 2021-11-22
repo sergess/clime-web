@@ -16,7 +16,7 @@ import {
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
 import { HOURLY_WEATHER } from 'client/constants';
-import { useUrlSlug } from 'client/hooks';
+import { usePageUrl } from 'client/hooks';
 import { selectedHourAtom } from 'client/design-system/organisms/hourly-detailed-forecast-card.organism';
 
 import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
@@ -28,7 +28,7 @@ export const HourlyForecastCard = memo(
     const { t } = useTranslation('hourly-forecast-card');
     const [selectedItem, setSelectedItem] = useState<number>(0);
     const setSelectedHour = useUpdateAtom(selectedHourAtom);
-    const urlSlug = useUrlSlug();
+    const pageUrl = usePageUrl(HOURLY_WEATHER);
 
     const renderHourBlock = useCallback(
       ({ index, item }) => {
@@ -44,7 +44,7 @@ export const HourlyForecastCard = memo(
                   textStyle={selected ? '12-bold' : '12-semi-bold'}
                   color={selected ? 'blue.500' : 'blue.800'}
                 >
-                  <Link href={`/${HOURLY_WEATHER}/${urlSlug}`} passHref>
+                  <Link href={pageUrl} passHref>
                     <LinkOverlay onClick={() => setSelectedHour(item.dateTime)}>
                       {index === 0 && t('Now')}
                       {index !== 0 && item.time}
@@ -92,7 +92,7 @@ export const HourlyForecastCard = memo(
         heading={t('Hourly Forecast')}
         data={hourlyForecastCardData}
         footer={
-          <Link href={`/${HOURLY_WEATHER}/${urlSlug}`} passHref>
+          <Link href={pageUrl} passHref>
             <Button as="a" w="full" variant="cta" mx={3.5}>
               {t('Explore hourly forecast')}
             </Button>

@@ -10,7 +10,7 @@ import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
-import { useLocationMetaInfo, useSelectedDateTimeIndex } from 'client/hooks';
+import { useSelectedDateTimeIndex, useLocationData } from 'client/hooks';
 import {
   LocationMetaInfoRow,
   WindInfoRow,
@@ -32,7 +32,7 @@ export const DailyDetailedForecastCard = memo(
 
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
 
-    const locationMetaInfo = useLocationMetaInfo();
+    const locationData = useLocationData();
     const dailyDetailedForecast = useCardData();
 
     const [selectedDayIndex, setSelectedDayIndex] = useSelectedDateTimeIndex(
@@ -59,8 +59,8 @@ export const DailyDetailedForecastCard = memo(
     return (
       <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
         <LocationMetaInfoRow
-          exact={locationMetaInfo.exact}
-          name={locationMetaInfo.name}
+          exact={locationData?.exact}
+          name={locationData?.name}
           time={day}
           componentStyles={{
             mb: 5,

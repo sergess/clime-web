@@ -4,15 +4,12 @@ import isNil from 'ramda/src/isNil';
 import { isString } from 'common/utils';
 
 import { Geocode } from 'server/services';
-import {
-  withApiV3Service,
-  withRequestMethod,
-} from 'server/middlewares/api-handler';
+import { withRequestMethod } from 'server/middlewares/api-handler';
+import { getExactLocationFromCookies } from 'server/utils';
 
 const autocompleteHandler = async (
   req: NextApiRequest,
-  res: NextApiResponse,
-  service: Geocode
+  res: NextApiResponse
 ): Promise<void> => {
   const { query, language } = req.query;
 
@@ -26,7 +23,11 @@ const autocompleteHandler = async (
     return res.status(400).end('Bad request');
   }
 
-  const autocompleteSuggestions = await service.queryAutocomplete({
+  const geocodeService = new Geocode({
+    userAgentHeader: req.headers['user-agent'],
+    locationFromCookies: getExactLocationFromCookies(req.cookies),
+  });
+  const autocompleteSuggestions = await geocodeService.queryAutocomplete({
     query: query as string,
     language: language as string,
   });
@@ -38,6 +39,4 @@ const autocompleteHandler = async (
   return res.status(200).json(autocompleteSuggestions);
 };
 
-export default withRequestMethod('GET')(
-  withApiV3Service<Geocode>(Geocode)(autocompleteHandler)
-);
+export default withRequestMethod('GET')(autocompleteHandler);

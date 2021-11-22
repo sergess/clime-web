@@ -3,24 +3,24 @@ import { useAtomValue } from 'jotai/utils';
 
 import { temperatureUnitAtom } from 'client/state/atoms';
 import { convertFahrenheitTo, defaultToDash } from 'client/utils';
-import { useCards } from 'client/hooks';
+import { useForecastCards } from 'client/hooks';
 
 import { UseHourlyForecastCardData } from '../../types';
 
 export const useHourlyForecastCardData =
   (): UseHourlyForecastCardData | null => {
-    const { hourlyForecast } = useCards();
+    const { hourly } = useForecastCards();
     const temperatureUnit = useAtomValue(temperatureUnitAtom);
     const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
 
     return useMemo(() => {
-      if (!hourlyForecast) return null;
+      if (!hourly) return null;
 
-      return hourlyForecast.map((item) => ({
+      return hourly.map((item) => ({
         ...item,
         temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
       }));
-    }, [hourlyForecast, temperatureUnit]);
+    }, [hourly, temperatureUnit]);
   };
 
 export default useHourlyForecastCardData;

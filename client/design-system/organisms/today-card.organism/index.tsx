@@ -37,16 +37,13 @@ import {
   precipitationUnitAtom,
   distanceUnitAtom,
 } from 'client/state/atoms';
-import {
-  useScreenWidthSmallerThanMedium,
-  useLocationMetaInfo,
-} from 'client/hooks';
+import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
 
 import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const locationMetaInfo = useLocationMetaInfo();
+    const locationData = useLocationData();
 
     const pressureUnit = useAtomValue(pressureUnitAtom);
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -85,8 +82,8 @@ export const TodayCard = memo(
       <Card {...props} pt="5">
         <Flex w="full" direction="column" px="4">
           <LocationMetaInfoRow
-            exact={locationMetaInfo.exact}
-            name={locationMetaInfo.name}
+            exact={locationData?.exact}
+            name={locationData?.name}
             time={time}
             componentStyles={{
               mb: 5,

@@ -16,12 +16,12 @@ import {
   convertKilometersTo,
   defaultToDash,
 } from 'client/utils';
-import { useCards } from 'client/hooks';
+import { useForecastCards } from 'client/hooks';
 
 import { UseTodayCardData } from '../../types';
 
 export const useTodayCardData = (): UseTodayCardData | null => {
-  const { today } = useCards();
+  const { today } = useForecastCards();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);

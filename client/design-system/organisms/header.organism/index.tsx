@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 
 import { ClimeLogoDarkIcon, ClientOnly } from 'client/design-system/atoms';
-import { useUrlSlug } from 'client/hooks';
+import { usePageUrl } from 'client/hooks';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
@@ -48,7 +48,7 @@ export const Header = (): ReactElement => {
     onSearchOpen();
   }, [settingsOpened]);
 
-  const urlSlug = useUrlSlug();
+  const pageUrl = usePageUrl(WEATHER_TODAY);
 
   return (
     <Box
@@ -73,8 +73,8 @@ export const Header = (): ReactElement => {
         alignItems="center"
       >
         {logoVisible && (
-          <NextLink href={`/${WEATHER_TODAY}/${urlSlug}`} passHref>
-            <Link href={`/${WEATHER_TODAY}/${urlSlug}`}>
+          <NextLink href={pageUrl} passHref>
+            <Link href={pageUrl}>
               <ClimeLogoDarkIcon
                 w={{ base: '141px', md: '169.2px' }}
                 h={{ base: '30px', md: '33px' }}
