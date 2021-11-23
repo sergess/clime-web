@@ -31,22 +31,22 @@ export const WindPoint = ({
 
   return (
     <Glyph key={`${left}-${top}`} left={left} top={top}>
-      <foreignObject
-        width={ICON_WIDTH}
-        height={ICON_HEIGHT}
-        transform={`translate(-${HALF_ICON_WIDTH} -${
+      <g
+        transform={`translate(-${HALF_ICON_WIDTH}, -${
           ICON_HEIGHT + 10
-        }), rotate(${windDirectionAngle} ${HALF_ICON_WIDTH} ${HALF_ICON_HEIGHT})`}
+        }), rotate(${windDirectionAngle}, ${HALF_ICON_WIDTH}, ${HALF_ICON_HEIGHT})`}
       >
-        <div style={{ position: 'fixed' }}>
-          <Image
-            src="/icons/wind.svg"
-            width={ICON_WIDTH}
-            height={ICON_HEIGHT}
-            alt="wind"
-          />
-        </div>
-      </foreignObject>
+        <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
+          <div style={{ position: 'fixed' }}>
+            <Image
+              src="/icons/wind.svg"
+              width={ICON_WIDTH}
+              height={ICON_HEIGHT}
+              alt="wind"
+            />
+          </div>
+        </foreignObject>
+      </g>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 

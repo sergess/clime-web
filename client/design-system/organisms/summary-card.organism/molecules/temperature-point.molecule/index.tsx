@@ -23,20 +23,18 @@ export const TemperaturePoint = ({
   top,
 }: PointProps): ReactElement => (
   <Glyph key={`${left}-${top}`} left={left} top={top}>
-    <foreignObject
-      width={ICON_WIDTH}
-      height={ICON_HEIGHT}
-      transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}
-    >
-      <div style={{ position: 'fixed' }}>
-        <WeatherStateIcon
-          night={night}
-          stateId={stateId}
-          width={ICON_WIDTH}
-          height={ICON_WIDTH}
-        />
-      </div>
-    </foreignObject>
+    <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
+      <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
+        <div style={{ position: 'fixed' }}>
+          <WeatherStateIcon
+            night={night}
+            stateId={stateId}
+            width={ICON_WIDTH}
+            height={ICON_WIDTH}
+          />
+        </div>
+      </foreignObject>
+    </g>
 
     <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 

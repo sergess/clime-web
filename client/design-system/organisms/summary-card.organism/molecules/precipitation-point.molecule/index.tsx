@@ -29,19 +29,17 @@ export const PrecipitationPoint = ({
 
   return (
     <Glyph key={`${left}-${top}`} left={left} top={top}>
-      <foreignObject
-        width={ICON_WIDTH}
-        height={ICON_HEIGHT}
-        transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}
-      >
-        <div style={{ position: 'fixed' }}>
-          <PrecipitationImage
-            chance={y as number}
-            width={ICON_WIDTH}
-            height={ICON_HEIGHT}
-          />
-        </div>
-      </foreignObject>
+      <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
+        <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
+          <div style={{ position: 'fixed' }}>
+            <PrecipitationImage
+              chance={y as number}
+              width={ICON_WIDTH}
+              height={ICON_HEIGHT}
+            />
+          </div>
+        </foreignObject>
+      </g>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 
