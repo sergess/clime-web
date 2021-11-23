@@ -31,7 +31,8 @@ export const TemperaturePoint = ({
       <WeatherStateIcon
         night={night}
         stateId={stateId}
-        boxSize={`${ICON_WIDTH}px`}
+        width={ICON_WIDTH}
+        height={ICON_WIDTH}
       />
     </foreignObject>
 

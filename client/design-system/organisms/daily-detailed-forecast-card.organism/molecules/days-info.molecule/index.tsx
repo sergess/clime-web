@@ -1,5 +1,5 @@
 import { ReactElement, memo, useState, useCallback, useMemo } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { WeatherStateIcon } from 'client/design-system/atoms';
@@ -56,12 +56,12 @@ export const DaysInfo = memo(
                 onSelect={() => onSetSelectedSlideIndex(index)}
                 heading={index === 0 ? t('Today') : item.day}
                 main={
-                  <WeatherStateIcon
-                    mt={2}
-                    boxSize="10"
-                    night={item.night}
-                    stateId={item.stateId}
-                  />
+                  <Box mt={2}>
+                    <WeatherStateIcon
+                      night={item.night}
+                      stateId={item.stateId}
+                    />
+                  </Box>
                 }
                 upperLabel={
                   <Text textStyle="14-semi-bold" color="blue.800" mt={2}>

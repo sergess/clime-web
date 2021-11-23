@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   InputGroup,
@@ -29,9 +30,7 @@ import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
 import { getLocationName, getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 import {
-  CloseIcon,
   Arrow2Icon,
-  SearchIcon,
   HeaderCardPopoverRow,
   HeaderPopoverOverlay,
 } from 'client/design-system/atoms';
@@ -128,7 +127,9 @@ export const Search = ({
               _hover={{
                 bg: 'transparent',
               }}
-              icon={<CloseIcon boxSize={6} />}
+              icon={
+                <Image src="/icons/close.svg" width={24} height={24} alt="" />
+              }
             />
           </InputRightElement>
         </InputGroup>
@@ -202,7 +203,7 @@ export const Search = ({
       _hover={{
         bg: 'gray.50',
       }}
-      icon={<SearchIcon boxSize={6} />}
+      icon={<Image src="/icons/search.svg" width={24} height={24} alt="" />}
     />
   );
 };
