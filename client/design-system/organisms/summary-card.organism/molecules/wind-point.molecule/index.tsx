@@ -38,12 +38,14 @@ export const WindPoint = ({
           ICON_HEIGHT + 10
         }), rotate(${windDirectionAngle} ${HALF_ICON_WIDTH} ${HALF_ICON_HEIGHT})`}
       >
-        <Image
-          src="/icons/wind.svg"
-          width={ICON_WIDTH}
-          height={ICON_HEIGHT}
-          alt="wind"
-        />
+        <div style={{ position: 'fixed' }}>
+          <Image
+            src="/icons/wind.svg"
+            width={ICON_WIDTH}
+            height={ICON_HEIGHT}
+            alt="wind"
+          />
+        </div>
       </foreignObject>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />

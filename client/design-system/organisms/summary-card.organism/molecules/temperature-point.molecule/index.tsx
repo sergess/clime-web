@@ -28,12 +28,14 @@ export const TemperaturePoint = ({
       height={ICON_HEIGHT}
       transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}
     >
-      <WeatherStateIcon
-        night={night}
-        stateId={stateId}
-        width={ICON_WIDTH}
-        height={ICON_WIDTH}
-      />
+      <div style={{ position: 'fixed' }}>
+        <WeatherStateIcon
+          night={night}
+          stateId={stateId}
+          width={ICON_WIDTH}
+          height={ICON_WIDTH}
+        />
+      </div>
     </foreignObject>
 
     <Circle r={POINT_RADIUS} fill={theme.pointFill} />

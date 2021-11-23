@@ -34,11 +34,13 @@ export const PrecipitationPoint = ({
         height={ICON_HEIGHT}
         transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}
       >
-        <PrecipitationImage
-          chance={y as number}
-          width={ICON_WIDTH}
-          height={ICON_HEIGHT}
-        />
+        <div style={{ position: 'fixed' }}>
+          <PrecipitationImage
+            chance={y as number}
+            width={ICON_WIDTH}
+            height={ICON_HEIGHT}
+          />
+        </div>
       </foreignObject>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
