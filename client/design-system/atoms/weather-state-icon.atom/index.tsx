@@ -1,22 +1,34 @@
 import { ReactElement } from 'react';
+import Image from 'next/image';
 
-import { WeatherStateIconProps, weatherStateIconDefaultProps } from './types';
-import variants from './variants';
+import { ICONS_NAMES_MAP } from './constants';
+import { doesHaveNightIconName } from './utils';
+import { WeatherStateIconProps } from './types';
 
 export const WeatherStateIcon = ({
   stateId,
   night,
-  ...iconProps
+  width = 40,
+  height = 40,
 }: WeatherStateIconProps): ReactElement | null => {
   if (!stateId) return null;
 
-  const IconComponent = variants[stateId];
+  const iconName = ICONS_NAMES_MAP[stateId];
 
-  if (!IconComponent) return null;
+  if (!iconName) return null;
 
-  return <IconComponent night={night} {...iconProps} />;
+  const nightIconName = doesHaveNightIconName(stateId)
+    ? `${iconName}-night`
+    : iconName;
+
+  return (
+    <Image
+      src={`/icons/${night ? nightIconName : iconName}.svg`}
+      width={width}
+      height={height}
+      alt={iconName}
+    />
+  );
 };
-
-WeatherStateIcon.defaultProps = weatherStateIconDefaultProps;
 
 export default WeatherStateIcon;

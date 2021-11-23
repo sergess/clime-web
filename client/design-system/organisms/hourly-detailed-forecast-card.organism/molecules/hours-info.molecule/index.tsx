@@ -1,5 +1,5 @@
 import { ReactElement, memo, useState, useCallback, useMemo } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { HourConditionIcon } from 'client/design-system/atoms';
@@ -57,13 +57,13 @@ export const HoursInfo = memo(
                 onSelect={() => onSetSelectedSlideIndex(index)}
                 heading={index === 0 ? t('Now') : item.time}
                 main={
-                  <HourConditionIcon
-                    mt={2}
-                    boxSize="10"
-                    variant={item.variant}
-                    night={item.night}
-                    stateId={item.stateId}
-                  />
+                  <Box mt={2}>
+                    <HourConditionIcon
+                      variant={item.variant}
+                      night={item.night}
+                      stateId={item.stateId}
+                    />
+                  </Box>
                 }
                 upperLabel={
                   <Text textStyle="14-semi-bold" color="blue.800" mt={2}>

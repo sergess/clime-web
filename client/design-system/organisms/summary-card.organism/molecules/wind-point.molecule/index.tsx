@@ -2,11 +2,10 @@ import { ReactElement } from 'react';
 import { Circle } from '@visx/shape';
 import { Glyph } from '@visx/glyph';
 import { Text } from '@visx/text';
-import { Group } from '@visx/group';
 import { useAtomValue } from 'jotai/utils';
+import Image from 'next/image';
 
 import climeTheme from 'client/theme';
-import { WindIcon } from 'client/design-system/atoms';
 import { windSpeedUnitAtom } from 'client/state/atoms';
 
 import { UNIT_LABELS } from './constants';
@@ -17,6 +16,7 @@ import {
   HALF_ICON_WIDTH,
   HALF_ICON_HEIGHT,
   POINT_RADIUS,
+  ICON_WIDTH,
 } from '../../constants';
 
 export const WindPoint = ({
@@ -31,13 +31,20 @@ export const WindPoint = ({
 
   return (
     <Glyph key={`${left}-${top}`} left={left} top={top}>
-      <Group
+      <foreignObject
+        width={ICON_WIDTH}
+        height={ICON_HEIGHT}
         transform={`translate(-${HALF_ICON_WIDTH} -${
           ICON_HEIGHT + 10
         }), rotate(${windDirectionAngle} ${HALF_ICON_WIDTH} ${HALF_ICON_HEIGHT})`}
       >
-        <WindIcon />
-      </Group>
+        <Image
+          src="/icons/wind.svg"
+          width={ICON_WIDTH}
+          height={ICON_HEIGHT}
+          alt="wind"
+        />
+      </foreignObject>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 

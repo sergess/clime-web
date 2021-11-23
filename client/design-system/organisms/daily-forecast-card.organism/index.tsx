@@ -1,5 +1,6 @@
 import React, { ReactElement, memo, useState, useCallback } from 'react';
 import {
+  Box,
   Button,
   Text,
   ComponentDefaultProps,
@@ -53,12 +54,9 @@ export const DailyForecastCard = memo(
                 </Text>
               }
               main={
-                <WeatherStateIcon
-                  night={item.night}
-                  stateId={item.stateId}
-                  my={2}
-                  boxSize="10"
-                />
+                <Box my={2}>
+                  <WeatherStateIcon night={item.night} stateId={item.stateId} />
+                </Box>
               }
               footer={
                 <ClientOnly>

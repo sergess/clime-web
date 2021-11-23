@@ -5,6 +5,7 @@ import {
   ComponentDefaultProps,
   LinkBox,
   LinkOverlay,
+  Box,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
@@ -53,13 +54,13 @@ export const HourlyForecastCard = memo(
                 </Text>
               }
               main={
-                <HourConditionIcon
-                  my={2}
-                  boxSize="10"
-                  variant={item.variant}
-                  night={item.night}
-                  stateId={item.stateId}
-                />
+                <Box my={2}>
+                  <HourConditionIcon
+                    variant={item.variant}
+                    night={item.night}
+                    stateId={item.stateId}
+                  />
+                </Box>
               }
               footer={
                 <ClientOnly>

@@ -1,1 +1,1 @@
-export * from './omit-unused-icon-props.util';
+export * from './does-have-night-icon-name.util';

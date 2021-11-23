@@ -50,7 +50,7 @@ import {
   WATERSPOUT,
 } from 'common/constants';
 
-const variants = {
+export const ICONS_NAMES_MAP = {
   [BLIZZARD]: 'blizzard',
   [BLOWING_DUST]: 'blowing-dust',
   [BLOWING_SAND]: 'blowing-sand',
@@ -102,4 +102,4 @@ const variants = {
   [WATERSPOUT]: 'waterspout',
 };
 
-export default variants;
+export default ICONS_NAMES_MAP;

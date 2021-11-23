@@ -1,11 +1,11 @@
-import { IconProps as ChakraIconProps } from '@chakra-ui/react';
-
 import { HourConditionVariant, WeatherStateId } from 'common/types';
 
-export type HourConditionIconProps = ChakraIconProps & {
+export type HourConditionIconProps = {
   variant: HourConditionVariant;
   night?: boolean;
   stateId: WeatherStateId | null;
+  height?: number;
+  width?: number;
 };
 
 export default HourConditionIconProps;

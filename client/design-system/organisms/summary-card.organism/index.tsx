@@ -8,13 +8,9 @@ import {
   ComponentDefaultProps,
   Skeleton,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import {
-  Card,
-  SummaryTemperatureIcon,
-  SummaryPrecipitationIcon,
-  SummaryWindIcon,
-} from 'client/design-system/atoms';
+import { Card } from 'client/design-system/atoms';
 
 import { ChartOption } from './types';
 import { CHART_THEME } from './constants';
@@ -35,9 +31,9 @@ const Chart = dynamic(() => import('./molecules/chart.molecule'), {
 });
 
 const SummaryIconMap = {
-  [ChartOption.TEMPERATURE]: SummaryTemperatureIcon,
-  [ChartOption.PRECIPITATION]: SummaryPrecipitationIcon,
-  [ChartOption.WIND_SPEED]: SummaryWindIcon,
+  [ChartOption.TEMPERATURE]: 'summary-temperature',
+  [ChartOption.PRECIPITATION]: 'summary-precipitation',
+  [ChartOption.WIND_SPEED]: 'summary-wind',
 };
 
 const selectorOptions = [
@@ -51,7 +47,7 @@ const selectorOptions = [
     value: option,
     label: (
       <Center mx={1} p={0.5}>
-        <SummaryIcon boxSize={6} />
+        <Image src={`/icons/${SummaryIcon}.svg`} width={24} height={24} />
       </Center>
     ),
   };

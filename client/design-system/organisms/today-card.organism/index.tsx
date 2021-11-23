@@ -1,4 +1,4 @@
-import { ReactElement, memo } from 'react';
+import React, { ReactElement, memo } from 'react';
 import {
   Button,
   Divider,
@@ -10,19 +10,14 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
+import Image from 'next/image';
 
 import {
   Card,
   WeatherStateIcon,
   Arrow2Icon,
-  InfoPrecipitationIcon,
-  InfoUvIcon,
-  InfoHumidityIcon,
-  InfoPressureIcon,
   InfoBlocksRow,
   ClientOnly,
-  InfoChanceIcon,
-  InfoVisibilityIcon,
   StateTextRow,
 } from 'client/design-system/atoms';
 import {
@@ -95,7 +90,12 @@ export const TodayCard = memo(
 
           <Flex direction="row" align="center" justify="center" mb={5}>
             <Flex me={4}>
-              <WeatherStateIcon stateId={stateId} night={night} boxSize="100" />
+              <WeatherStateIcon
+                stateId={stateId}
+                night={night}
+                width={100}
+                height={100}
+              />
             </Flex>
 
             <Flex direction="column">
@@ -147,14 +147,28 @@ export const TodayCard = memo(
 
           <InfoBlocksRow my={3}>
             <InfoBlockWithIcon
-              icon={<InfoChanceIcon w={8} h={8} />}
+              icon={
+                <Image
+                  src="/icons/info-chance.svg"
+                  width={32}
+                  height={32}
+                  alt={t('Chance')}
+                />
+              }
               label={t('Chance')}
               text={`${precipitationChance}%`}
               flex={1}
             />
 
             <InfoBlockWithIcon
-              icon={<InfoPrecipitationIcon w={8} h={8} />}
+              icon={
+                <Image
+                  src="/icons/info-precipitation.svg"
+                  width={32}
+                  height={32}
+                  alt={t('Precipitation')}
+                />
+              }
               label={t('Precipitation')}
               text={
                 <ClientOnly>
@@ -170,14 +184,28 @@ export const TodayCard = memo(
           <Collapse in={cardOpened || !widthSmallerThanMedium} animateOpacity>
             <InfoBlocksRow my={3}>
               <InfoBlockWithIcon
-                icon={<InfoUvIcon w={8} h={8} />}
+                icon={
+                  <Image
+                    src="/icons/info-uv.svg"
+                    width={32}
+                    height={32}
+                    alt={t('UV Index')}
+                  />
+                }
                 label={t('UV Index')}
                 text={uvIndex}
                 flex={1}
               />
 
               <InfoBlockWithIcon
-                icon={<InfoHumidityIcon w={8} h={8} />}
+                icon={
+                  <Image
+                    src="/icons/info-humidity.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Humidity')}
+                  />
+                }
                 label={t('Humidity')}
                 text={`${humidity}%`}
                 flex={1}
@@ -188,14 +216,28 @@ export const TodayCard = memo(
 
             <InfoBlocksRow mt={3} mb={widthSmallerThanMedium ? 3 : '1.125em'}>
               <InfoBlockWithIcon
-                icon={<InfoPressureIcon w={8} h={8} />}
+                icon={
+                  <Image
+                    src="/icons/info-pressure.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Pressure')}
+                  />
+                }
                 label={t('Pressure')}
                 text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
                 flex={1}
               />
 
               <InfoBlockWithIcon
-                icon={<InfoVisibilityIcon w={8} h={8} />}
+                icon={
+                  <Image
+                    src="/icons/info-visibility.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Visibility')}
+                  />
+                }
                 label={t('Visibility')}
                 text={
                   <ClientOnly>{`${visibility} ${distanceUnit}`}</ClientOnly>
