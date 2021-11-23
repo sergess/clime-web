@@ -31,13 +31,11 @@ export const PrecipitationPoint = ({
     <Glyph key={`${left}-${top}`} left={left} top={top}>
       <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
         <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
-          <div style={{ position: 'fixed' }}>
-            <PrecipitationImage
-              chance={y as number}
-              width={ICON_WIDTH}
-              height={ICON_HEIGHT}
-            />
-          </div>
+          <PrecipitationImage
+            chance={y as number}
+            width={ICON_WIDTH}
+            height={ICON_HEIGHT}
+          />
         </foreignObject>
       </g>
 

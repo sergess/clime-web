@@ -25,14 +25,12 @@ export const TemperaturePoint = ({
   <Glyph key={`${left}-${top}`} left={left} top={top}>
     <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
       <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
-        <div style={{ position: 'fixed' }}>
-          <WeatherStateIcon
-            night={night}
-            stateId={stateId}
-            width={ICON_WIDTH}
-            height={ICON_WIDTH}
-          />
-        </div>
+        <WeatherStateIcon
+          night={night}
+          stateId={stateId}
+          width={ICON_WIDTH}
+          height={ICON_WIDTH}
+        />
       </foreignObject>
     </g>
 

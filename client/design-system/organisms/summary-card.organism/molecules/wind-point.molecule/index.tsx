@@ -37,14 +37,12 @@ export const WindPoint = ({
         }), rotate(${windDirectionAngle}, ${HALF_ICON_WIDTH}, ${HALF_ICON_HEIGHT})`}
       >
         <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
-          <div style={{ position: 'fixed' }}>
-            <Image
-              src="/icons/wind.svg"
-              width={ICON_WIDTH}
-              height={ICON_HEIGHT}
-              alt="wind"
-            />
-          </div>
+          <Image
+            src="/icons/wind.svg"
+            width={ICON_WIDTH}
+            height={ICON_HEIGHT}
+            alt="wind"
+          />
         </foreignObject>
       </g>
 
