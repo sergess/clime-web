@@ -1,6 +1,6 @@
 export type MinMaxTemperatureColumnProps = {
-  max?: number | null;
-  min?: number | null;
+  max?: number | string;
+  min?: number | string;
 };
 
 export default MinMaxTemperatureColumnProps;
