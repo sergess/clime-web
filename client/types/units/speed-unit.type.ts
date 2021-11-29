@@ -4,6 +4,6 @@ export enum SpeedUnit {
   MS = 'ms',
 }
 
-export const SpeedUnitValues = Object.values(SpeedUnit);
+export const SpeedUnitValues = [SpeedUnit.MPH, SpeedUnit.KMH, SpeedUnit.MS];
 
 export default SpeedUnit;

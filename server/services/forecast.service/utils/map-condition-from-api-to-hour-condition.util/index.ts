@@ -12,7 +12,8 @@ import { ConditionFromApi } from '../../types';
 export const mapConditionFromApiToHourCondition = (
   condition: ConditionFromApi,
   sunrise: string | null,
-  sunset: string | null
+  sunset: string | null,
+  dayConditionIndex: number
 ): HourCondition => {
   const dateTime = convertDateTimeToISOString(condition.dt) as string;
 
@@ -21,6 +22,7 @@ export const mapConditionFromApiToHourCondition = (
     night: isUtcStringNight(dateTime, sunrise, sunset),
     dateTime,
     stateId: extractValidWeatherStateId(condition.sid),
+    relatedDayConditionIndex: dayConditionIndex,
     stateText: condition.st,
     stateNightText: condition.stn,
     temperature: condition.t,

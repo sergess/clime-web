@@ -5,7 +5,7 @@ export type DailyForecastCardData = Array<{
   stateId: WeatherStateId | null;
   minTemperature: number | null;
   maxTemperature: number | null;
-  time: string;
+  date: string;
   night: boolean;
 }>;
 

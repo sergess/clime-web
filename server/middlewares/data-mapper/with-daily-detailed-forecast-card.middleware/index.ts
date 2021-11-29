@@ -56,7 +56,7 @@ export const withDailyDetailedForecastCard = (
         precipitationLevel,
         precipitationChance,
         stateText: night ? stateNightText || stateText : stateText,
-        day: formatUtcString(dateTime, 'E dd', locationData?.timeZone),
+        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
         windAzimuth: convertWindDegreeToAzimuth(degree),
         windDirectionAngle: calculateOppositeAngle(degree),
       };

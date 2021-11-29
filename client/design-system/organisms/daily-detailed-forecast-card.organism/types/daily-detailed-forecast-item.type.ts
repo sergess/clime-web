@@ -14,7 +14,7 @@ export type DailyDetailedForecastItem = {
   precipitationLevel: number | string;
   precipitationChance: number | string;
   stateText: string | null;
-  day: string;
+  date: string;
   windAzimuth: Azimuth;
   windDirectionAngle: number;
 };

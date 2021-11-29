@@ -8,5 +8,9 @@
   "Feels like": "Feels like",
   "Now": "Now",
   "sunset": "sunset",
-  "sunrise": "sunrise"
+  "sunrise": "sunrise",
+  "{{uvIndex}} of 11": "{{uvIndex}} of 11",
+  "Today, {{time}}": "Today, {{time}}",
+  "Tomorrow, {{time}}": "Tomorrow, {{time}}",
+  "{{date}}, {{time}}": "{{date}}, {{time}}"
 }
