@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
-import Image from 'next/image';
-import { PrecipitationImageProps } from './types';
 
-export const PrecipitationImage = ({
+import { DropIconProps } from './types';
+
+export const DropIcon = ({
   chance,
   width,
   height,
-}: PrecipitationImageProps): ReactElement => {
+}: DropIconProps): ReactElement => {
   let src = '/icons/drop-100.svg';
   switch (true) {
     case chance <= 20:
@@ -24,14 +24,7 @@ export const PrecipitationImage = ({
     default:
       src = '/icons/drop-100.svg';
   }
-  return (
-    <Image
-      src={src}
-      width={width}
-      height={height}
-      alt={`Precipitation ${chance}%`}
-    />
-  );
+  return <image href={src} width={width} height={height} />;
 };
 
-export default PrecipitationImage;
+export default DropIcon;

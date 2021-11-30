@@ -48,7 +48,7 @@ import {
   THUNDERSTORM,
   VOLCANIC_ASH,
   WATERSPOUT,
-} from 'common/constants';
+} from './weather-state-ids.constant';
 
 export const ICONS_NAMES_MAP = {
   [BLIZZARD]: 'blizzard',
