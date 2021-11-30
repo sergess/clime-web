@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import Image from 'next/image';
 
 import { ICONS_NAMES_MAP } from 'client/constants';
 import { doesHaveNightIconName } from 'client/utils';
@@ -23,11 +22,10 @@ export const WeatherStateIcon = ({
     : iconName;
 
   return (
-    <Image
-      src={`/icons/${night ? nightIconName : iconName}.svg`}
+    <image
+      href={`/icons/${night ? nightIconName : iconName}.svg`}
       width={width}
       height={height}
-      alt={iconName}
     />
   );
 };

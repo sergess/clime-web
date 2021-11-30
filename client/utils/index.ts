@@ -10,3 +10,4 @@ export * from './get-extended-location-name.util';
 export * from './get-clime-app-link.hook';
 export * from './get-valid-redirect-url.util';
 export * from './capitalize.util';
+export * from './does-have-night-icon-name.util';

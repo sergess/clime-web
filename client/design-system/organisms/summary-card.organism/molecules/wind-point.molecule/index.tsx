@@ -3,7 +3,6 @@ import { Circle } from '@visx/shape';
 import { Glyph } from '@visx/glyph';
 import { Text } from '@visx/text';
 import { useAtomValue } from 'jotai/utils';
-import Image from 'next/image';
 
 import climeTheme from 'client/theme';
 import { windSpeedUnitAtom } from 'client/state/atoms';
@@ -36,14 +35,7 @@ export const WindPoint = ({
           ICON_HEIGHT + 10
         }), rotate(${windDirectionAngle}, ${HALF_ICON_WIDTH}, ${HALF_ICON_HEIGHT})`}
       >
-        <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
-          <Image
-            src="/icons/wind.svg"
-            width={ICON_WIDTH}
-            height={ICON_HEIGHT}
-            alt="wind"
-          />
-        </foreignObject>
+        <image href="/icons/wind.svg" width={ICON_WIDTH} height={ICON_HEIGHT} />
       </g>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />

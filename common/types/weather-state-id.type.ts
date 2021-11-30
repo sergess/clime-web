@@ -48,7 +48,7 @@ import {
   THUNDERSTORM,
   VOLCANIC_ASH,
   WATERSPOUT,
-} from 'common/constants';
+} from 'client/constants';
 
 export type WeatherStateId =
   | typeof BLIZZARD

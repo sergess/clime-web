@@ -26,7 +26,7 @@ import {
   SNOW,
   SUNNY,
   THUNDERSTORM,
-} from 'common/constants';
+} from './weather-state-ids.constant';
 
 export const NIGHT_ICONS = [
   FREEZING_RAIN,

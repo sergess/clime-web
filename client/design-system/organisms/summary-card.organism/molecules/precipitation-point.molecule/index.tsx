@@ -7,7 +7,7 @@ import { useAtomValue } from 'jotai/utils';
 import climeTheme from 'client/theme';
 import { precipitationUnitAtom } from 'client/state/atoms';
 
-import { PrecipitationImage } from './atoms';
+import { DropIcon } from './atoms';
 import { UNIT_LABELS } from './constants';
 
 import { PointProps } from '../../types';
@@ -30,13 +30,11 @@ export const PrecipitationPoint = ({
   return (
     <Glyph key={`${left}-${top}`} left={left} top={top}>
       <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
-        <foreignObject width={ICON_WIDTH} height={ICON_HEIGHT}>
-          <PrecipitationImage
-            chance={y as number}
-            width={ICON_WIDTH}
-            height={ICON_HEIGHT}
-          />
-        </foreignObject>
+        <DropIcon
+          chance={y as number}
+          width={ICON_WIDTH}
+          height={ICON_HEIGHT}
+        />
       </g>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />

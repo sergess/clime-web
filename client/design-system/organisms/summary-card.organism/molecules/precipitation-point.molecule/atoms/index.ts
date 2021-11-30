@@ -1,1 +1,1 @@
-export * from './precipitation-image.atom';
+export * from './drop-icon.atom';
