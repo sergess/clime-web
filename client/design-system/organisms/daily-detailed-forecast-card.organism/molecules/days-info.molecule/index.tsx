@@ -1,13 +1,23 @@
-import { ReactElement, memo, useState, useCallback, useMemo } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import {
+  ReactElement,
+  memo,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+} from 'react';
+import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { WeatherStateIcon } from 'client/design-system/atoms';
 import {
-  DetailedForecastChart,
   DetailedForecastCarousel,
   DetailedForecastCarouselSlide,
 } from 'client/design-system/molecules';
+import {
+  DetailedForecastChart,
+  useDomain,
+} from 'client/design-system/molecules/detailed-forecast-chart.molecule';
 
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
 import { DaysInfoProps } from './types';
@@ -24,7 +34,6 @@ export const DaysInfo = memo(
 
     const onActiveSlideIndexChange = useCallback((index: number) => {
       setActiveSlideIndex(index);
-      onSetSelectedSlideIndex(index);
     }, []);
 
     const isChartItemSelected = useCallback(
@@ -38,15 +47,24 @@ export const DaysInfo = memo(
       [data, activeSlideIndex]
     );
 
+    const yDomain = useDomain(data, Y_VALUE_CONFIG);
+
+    useEffect(() => {
+      if (selectedSlideIndex < activeSlideIndex) {
+        onSetSelectedSlideIndex(activeSlideIndex);
+      }
+
+      if (selectedSlideIndex >= activeSlideIndex + SLIDES_PER_VIEW) {
+        onSetSelectedSlideIndex(activeSlideIndex - 1 + SLIDES_PER_VIEW);
+      }
+    }, [activeSlideIndex, selectedSlideIndex]);
+
     return (
       <Flex width="full" position="relative" direction="column" px={5}>
         <DetailedForecastCarousel
           data={data}
           slidesPerView={SLIDES_PER_VIEW}
           onActiveIndexChange={onActiveSlideIndexChange}
-          componentStyles={{
-            pb: 4,
-          }}
           renderItem={({ index, item }) => {
             const selected = index === selectedSlideIndex;
 
@@ -54,14 +72,14 @@ export const DaysInfo = memo(
               <DetailedForecastCarouselSlide
                 selected={selected}
                 onSelect={() => onSetSelectedSlideIndex(index)}
-                heading={index === 0 ? t('Today') : item.day}
+                heading={index === 0 ? t('Today') : item.date}
                 main={
-                  <WeatherStateIcon
-                    mt={2}
-                    boxSize="10"
-                    night={item.night}
-                    stateId={item.stateId}
-                  />
+                  <Box mt={2}>
+                    <WeatherStateIcon
+                      night={item.night}
+                      stateId={item.stateId}
+                    />
+                  </Box>
                 }
                 upperLabel={
                   <Text textStyle="14-semi-bold" color="blue.800" mt={2}>
@@ -80,13 +98,14 @@ export const DaysInfo = memo(
 
         <DetailedForecastChart
           data={chartData}
+          yDomain={yDomain}
           xValueConfig={X_VALUE_CONFIG}
           yValueConfigs={Y_VALUE_CONFIG}
           isValueDefined={isChartValueDefined}
           isItemSelected={isChartItemSelected}
           styles={{
             position: 'absolute',
-            top: '115px',
+            top: '123px',
           }}
         />
       </Flex>

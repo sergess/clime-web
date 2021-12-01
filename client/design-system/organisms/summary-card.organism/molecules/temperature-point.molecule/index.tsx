@@ -4,8 +4,7 @@ import { Glyph } from '@visx/glyph';
 import { Text } from '@visx/text';
 
 import climeTheme from 'client/theme';
-import { WeatherStateIcon } from 'client/design-system/atoms';
-
+import { WeatherStateIcon } from './atoms';
 import { PointProps } from '../../types';
 import {
   ICON_HEIGHT,
@@ -23,17 +22,14 @@ export const TemperaturePoint = ({
   top,
 }: PointProps): ReactElement => (
   <Glyph key={`${left}-${top}`} left={left} top={top}>
-    <foreignObject
-      width={ICON_WIDTH}
-      height={ICON_HEIGHT}
-      transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}
-    >
+    <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
       <WeatherStateIcon
         night={night}
         stateId={stateId}
-        boxSize={`${ICON_WIDTH}px`}
+        width={ICON_WIDTH}
+        height={ICON_WIDTH}
       />
-    </foreignObject>
+    </g>
 
     <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 

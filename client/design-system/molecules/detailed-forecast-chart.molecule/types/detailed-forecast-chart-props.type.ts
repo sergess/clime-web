@@ -4,6 +4,7 @@ import { ValueConfig } from './value-config.type';
 
 export type DetailedForecastChartProps<T> = {
   data: T[];
+  yDomain: [number, number];
   styles?: CSSProperties;
   xValueConfig: ValueConfig;
   yValueConfigs: ValueConfig[];

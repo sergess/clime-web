@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "analyze-bundle-size": "ANALYZE=true npm run build",
+    "analyze-bundle-size": "npx cross-env ANALYZE=true yarn build",
     "prepare": "husky install"
   },
   "dependencies": {

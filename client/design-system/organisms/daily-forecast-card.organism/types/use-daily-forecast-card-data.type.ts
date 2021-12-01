@@ -4,7 +4,7 @@ export type UseDailyForecastCardData = Array<{
   stateId: WeatherStateId | null;
   minTemperature: number | string;
   maxTemperature: number | string;
-  time: string;
+  date: string;
 }>;
 
 export default UseDailyForecastCardData;

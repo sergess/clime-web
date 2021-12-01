@@ -49,7 +49,7 @@ export const DailyDetailedForecastCard = memo(
       humidity,
       pressure,
       dewPoint,
-      day,
+      date,
       stateText,
       windDirectionAngle,
       windAzimuth,
@@ -61,7 +61,13 @@ export const DailyDetailedForecastCard = memo(
         <LocationMetaInfoRow
           exact={locationData?.exact}
           name={locationData?.name}
-          time={day}
+          date={
+            <>
+              {selectedDayIndex === 0 && t('Today')}
+              {selectedDayIndex === 1 && t('Tomorrow')}
+              {selectedDayIndex > 1 && date}
+            </>
+          }
           componentStyles={{
             mb: 5,
             px: 4,
@@ -74,7 +80,7 @@ export const DailyDetailedForecastCard = memo(
           onSetSelectedSlideIndex={setSelectedDayIndex}
         />
 
-        <Flex width="full" px={4} direction="column">
+        <Flex width="full" px={4} mt={4} direction="column">
           <Divider orientation="horizontal" variant="card-divider" />
 
           <StateTextRow mt={3}>{stateText}</StateTextRow>

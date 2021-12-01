@@ -3,6 +3,9 @@ export enum PrecipitationUnit {
   MM = 'mm',
 }
 
-export const PrecipitationUnitValues = Object.values(PrecipitationUnit);
+export const PrecipitationUnitValues = [
+  PrecipitationUnit.INCH,
+  PrecipitationUnit.MM,
+];
 
 export default PrecipitationUnit;

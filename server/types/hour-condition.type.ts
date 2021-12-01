@@ -19,6 +19,7 @@ export type HourCondition = {
   humidity: number | null;
   pressure: number | null;
   uvIndex: number | null;
+  relatedDayConditionIndex: number;
 };
 
 export default HourCondition;

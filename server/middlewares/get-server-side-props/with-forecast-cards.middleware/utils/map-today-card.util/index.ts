@@ -17,7 +17,7 @@ export const mapTodayCard = (
   const windDirection = currentHourCondition.windDirection || 0;
 
   return {
-    time: formatUtcString(
+    date: formatUtcString(
       currentHourCondition.dateTime,
       'h:mmaaa',
       locationData?.timeZone

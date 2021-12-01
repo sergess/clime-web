@@ -2,9 +2,10 @@ import React, { ReactElement, useCallback } from 'react';
 import { Box, Container, Link, Button } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
+import Image from 'next/image';
 
-import { ClimeLogoDarkIcon, ClientOnly } from 'client/design-system/atoms';
 import { usePageUrl } from 'client/hooks';
+import { ClientOnly } from 'client/design-system/atoms';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
@@ -74,11 +75,12 @@ export const Header = (): ReactElement => {
       >
         {logoVisible && (
           <NextLink href={pageUrl} passHref>
-            <Link href={pageUrl}>
-              <ClimeLogoDarkIcon
-                w={{ base: '141px', md: '169.2px' }}
-                h={{ base: '30px', md: '33px' }}
-                d="block"
+            <Link flex="none" d="flex" href={pageUrl}>
+              <Image
+                src="/icons/clime-logo-dark.svg"
+                width={141}
+                height={30}
+                alt="Clime"
               />
             </Link>
           </NextLink>

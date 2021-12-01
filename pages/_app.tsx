@@ -27,7 +27,6 @@ const App = ({
   const getLayout = Component.getLayout ?? App.getDefaultLayout;
 
   return (
-    // [TODO] Maybe we should move ForecastCardsProvider to pages?
     <ForecastCardsProvider value={forecastCards}>
       <LocationDataProvider value={locationData}>
         <ChakraProvider theme={theme}>

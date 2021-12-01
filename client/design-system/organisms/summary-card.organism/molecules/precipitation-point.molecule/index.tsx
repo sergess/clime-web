@@ -2,17 +2,21 @@ import { ReactElement } from 'react';
 import { Circle } from '@visx/shape';
 import { Glyph } from '@visx/glyph';
 import { Text } from '@visx/text';
-import { Group } from '@visx/group';
 import { useAtomValue } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
-import { DropIcon } from 'client/design-system/atoms';
 import { precipitationUnitAtom } from 'client/state/atoms';
 
+import { DropIcon } from './atoms';
 import { UNIT_LABELS } from './constants';
 
 import { PointProps } from '../../types';
-import { ICON_HEIGHT, HALF_ICON_WIDTH, POINT_RADIUS } from '../../constants';
+import {
+  ICON_HEIGHT,
+  HALF_ICON_WIDTH,
+  POINT_RADIUS,
+  ICON_WIDTH,
+} from '../../constants';
 
 export const PrecipitationPoint = ({
   y,
@@ -25,9 +29,13 @@ export const PrecipitationPoint = ({
 
   return (
     <Glyph key={`${left}-${top}`} left={left} top={top}>
-      <Group transform={`translate(-${HALF_ICON_WIDTH} -${ICON_HEIGHT + 10})`}>
-        <DropIcon chance={y as number} />
-      </Group>
+      <g transform={`translate(-${HALF_ICON_WIDTH}, -${ICON_HEIGHT + 10})`}>
+        <DropIcon
+          chance={y as number}
+          width={ICON_WIDTH}
+          height={ICON_HEIGHT}
+        />
+      </g>
 
       <Circle r={POINT_RADIUS} fill={theme.pointFill} />
 

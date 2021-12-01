@@ -17,13 +17,14 @@ export const mapDailyCard = (
     ) => {
       const night =
         index === 0 ? isUtcStringNight(now, sunrise, sunset) : false;
+
       return {
         night,
         dateTime,
         minTemperature,
         maxTemperature,
         stateId,
-        time: formatUtcString(dateTime, 'eee d', locationData?.timeZone),
+        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
       };
     }
   );

@@ -40,7 +40,8 @@ export class Forecast extends BaseApiV3Service {
     const currentHourCondition = mapConditionFromApiToHourCondition(
       forecastFeedFromApi.cur,
       currentDayCondition.sunrise,
-      currentDayCondition.sunset
+      currentDayCondition.sunset,
+      0
     );
 
     const hourConditionsFeed = buildHourConditionsFeed(dayConditions);

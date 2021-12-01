@@ -2,7 +2,7 @@ import { WeatherStateId } from '../weather-state-id.type';
 import { Azimuth } from '../azimuth.type';
 
 export type Today = {
-  time: string;
+  date: string;
   night: boolean;
   stateText: string | null;
   temperature: number | null;

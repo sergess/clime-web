@@ -7,7 +7,7 @@ import { LocationMetaInfoRowProps } from './types';
 
 export const LocationMetaInfoRow = memo(
   ({
-    time,
+    date,
     componentStyles,
     exact = false,
     name = '',
@@ -23,7 +23,7 @@ export const LocationMetaInfoRow = memo(
 
       <Flex>
         <Text color="gray.500" textStyle="16-medium">
-          {time}
+          {date}
         </Text>
       </Flex>
     </Flex>

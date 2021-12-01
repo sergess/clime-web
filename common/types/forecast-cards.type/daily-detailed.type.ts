@@ -15,7 +15,7 @@ export type DailyDetailed = Array<{
   precipitationLevel: number | null;
   precipitationChance: number | null;
   stateText: string | null;
-  day: string;
+  date: string;
   windAzimuth: Azimuth;
   windDirectionAngle: number;
 }>;

@@ -23,6 +23,9 @@ export const SelectableColumnBlock = ({
     borderColor={selected ? 'blue.50' : 'white'}
     borderRadius="lg"
     onClick={onSelect}
+    _active={{
+      bg: 'gray.50',
+    }}
   >
     {heading}
     {main}

@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { Box, Container, Link, Divider } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
-import { ClimeLogoWhiteIcon } from 'client/design-system/atoms';
 import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
 const Download = dynamic(
@@ -42,7 +42,12 @@ export const Footer = (): ReactElement => {
           justifyContent="space-between"
         >
           <Box order={1}>
-            <ClimeLogoWhiteIcon w="126px" h="28px" />
+            <Image
+              src="/icons/clime-logo-white.svg"
+              width={126}
+              height={28}
+              alt="Clime"
+            />
           </Box>
           <Box
             as="span"

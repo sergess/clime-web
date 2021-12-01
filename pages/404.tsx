@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 
-import { Logo404Icon } from 'client/design-system/atoms';
 import { NotFoundPageLayout } from 'client/design-system/templates';
 import { useLocationDataByIp, usePageUrl } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';
@@ -36,7 +36,7 @@ const NotFoundPage = () => {
         bgSize="cover"
         bgPosition="center center"
       >
-        <Logo404Icon w="180px" h="94px" />
+        <Image src="/icons/404.svg" width={180} height={94} alt="404" />
         <Text textStyle="24-bold" my="4">
           {t('Page not found')}
         </Text>
