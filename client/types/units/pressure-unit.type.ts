@@ -4,6 +4,10 @@ export enum PressureUnit {
   MBAR = 'mbar',
 }
 
-export const PressureUnitValues = Object.values(PressureUnit);
+export const PressureUnitValues = [
+  PressureUnit.INCH,
+  PressureUnit.MM,
+  PressureUnit.MBAR,
+];
 
 export default PressureUnit;

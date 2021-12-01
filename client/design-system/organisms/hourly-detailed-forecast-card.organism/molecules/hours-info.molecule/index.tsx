@@ -1,13 +1,24 @@
-import { ReactElement, memo, useState, useCallback, useMemo } from 'react';
+import {
+  ReactElement,
+  memo,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+} from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import { HourConditionIcon } from 'client/design-system/atoms';
 import {
-  DetailedForecastChart,
   DetailedForecastCarousel,
   DetailedForecastCarouselSlide,
 } from 'client/design-system/molecules';
+import {
+  DetailedForecastChart,
+  useDomain,
+} from 'client/design-system/molecules/detailed-forecast-chart.molecule';
+
 import { WEATHER_STATE, SUNRISE, SUNSET } from 'common/constants';
 
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
@@ -25,7 +36,6 @@ export const HoursInfo = memo(
 
     const onActiveSlideIndexChange = useCallback((index: number) => {
       setActiveSlideIndex(index);
-      onSetSelectedSlideIndex(index);
     }, []);
 
     const isChartItemSelected = useCallback(
@@ -39,15 +49,24 @@ export const HoursInfo = memo(
       [data, activeSlideIndex]
     );
 
+    const yDomain = useDomain(data, Y_VALUE_CONFIG);
+
+    useEffect(() => {
+      if (selectedSlideIndex < activeSlideIndex) {
+        onSetSelectedSlideIndex(activeSlideIndex);
+      }
+
+      if (selectedSlideIndex >= activeSlideIndex + SLIDES_PER_VIEW) {
+        onSetSelectedSlideIndex(activeSlideIndex - 1 + SLIDES_PER_VIEW);
+      }
+    }, [activeSlideIndex, selectedSlideIndex]);
+
     return (
       <Flex width="full" position="relative" direction="column" px={5}>
         <DetailedForecastCarousel
           data={data}
           slidesPerView={SLIDES_PER_VIEW}
           onActiveIndexChange={onActiveSlideIndexChange}
-          componentStyles={{
-            pb: 3,
-          }}
           renderItem={({ index, item }) => {
             const selected = index === selectedSlideIndex;
 
@@ -66,7 +85,12 @@ export const HoursInfo = memo(
                   </Box>
                 }
                 upperLabel={
-                  <Text textStyle="14-semi-bold" color="blue.800" mt={2}>
+                  <Text
+                    textStyle="14-semi-bold"
+                    color="blue.800"
+                    mt={2}
+                    mb={112}
+                  >
                     {SUNSET === item.variant && t('sunset')}
                     {SUNRISE === item.variant && t('sunrise')}
                     {WEATHER_STATE === item.variant &&
@@ -82,8 +106,13 @@ export const HoursInfo = memo(
           data={chartData}
           xValueConfig={X_VALUE_CONFIG}
           yValueConfigs={Y_VALUE_CONFIG}
+          yDomain={yDomain}
           isValueDefined={isChartValueDefined}
           isItemSelected={isChartItemSelected}
+          styles={{
+            position: 'absolute',
+            top: '123px',
+          }}
         />
       </Flex>
     );

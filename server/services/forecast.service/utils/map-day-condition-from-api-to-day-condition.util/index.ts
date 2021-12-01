@@ -12,7 +12,8 @@ import { mapDaySummaryConditionFromApiToDaySummaryCondition } from '../map-day-s
 import { DayConditionFromApi } from '../../types';
 
 export const mapDayConditionFromApiToDayCondition = (
-  dayCondition: DayConditionFromApi
+  dayCondition: DayConditionFromApi,
+  dayConditionIndex: number
 ): DayCondition => {
   const sunrise = convertDateTimeToISOString(dayCondition.sr);
   const sunset = convertDateTimeToISOString(dayCondition.ss);
@@ -40,7 +41,12 @@ export const mapDayConditionFromApiToDayCondition = (
     moonset: convertDateTimeToISOString(dayCondition.ms),
     uvIndex: dayCondition.uv,
     hourly: dayCondition.hly.map((hourCondition) =>
-      mapConditionFromApiToHourCondition(hourCondition, sunrise, sunset)
+      mapConditionFromApiToHourCondition(
+        hourCondition,
+        sunrise,
+        sunset,
+        dayConditionIndex
+      )
     ),
     summary: {
       morning: mapDaySummaryConditionFromApiToDaySummaryCondition(

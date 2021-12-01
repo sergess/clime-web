@@ -73,7 +73,7 @@ export const SelectedDayInfo = memo(
               />
             }
             label={t('UV Index')}
-            text={uvIndex}
+            text={t('{{uvIndex}} of 11', { uvIndex })}
             flex={1}
           />
 

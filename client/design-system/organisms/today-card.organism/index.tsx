@@ -57,7 +57,7 @@ export const TodayCard = memo(
     if (!todayCardData) return null;
 
     const {
-      time,
+      date,
       night,
       stateId,
       temperature,
@@ -82,7 +82,7 @@ export const TodayCard = memo(
           <LocationMetaInfoRow
             exact={locationMetaInfo.exact}
             name={locationMetaInfo.name}
-            time={time}
+            date={date}
             componentStyles={{
               mb: 5,
             }}
@@ -193,7 +193,7 @@ export const TodayCard = memo(
                   />
                 }
                 label={t('UV Index')}
-                text={uvIndex}
+                text={t('{{uvIndex}} of 11', { uvIndex })}
                 flex={1}
               />
 

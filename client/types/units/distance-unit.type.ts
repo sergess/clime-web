@@ -3,6 +3,6 @@ export enum DistanceUnit {
   KM = 'km',
 }
 
-export const DistanceUnitValues = Object.values(DistanceUnit);
+export const DistanceUnitValues = [DistanceUnit.MI, DistanceUnit.KM];
 
 export default DistanceUnit;

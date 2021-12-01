@@ -9,7 +9,7 @@ export const LocationMetaInfoRow = memo(
   ({
     exact,
     name,
-    time,
+    date,
     componentStyles,
   }: LocationMetaInfoRowProps): ReactElement => (
     <Flex {...componentStyles} w="full" justify="space-between">
@@ -23,7 +23,7 @@ export const LocationMetaInfoRow = memo(
 
       <Flex>
         <Text color="gray.500" textStyle="16-medium">
-          {time}
+          {date}
         </Text>
       </Flex>
     </Flex>

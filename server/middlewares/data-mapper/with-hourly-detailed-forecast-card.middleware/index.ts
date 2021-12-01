@@ -37,6 +37,7 @@ export const withHourlyDetailedForecastCard = (
       windDirection,
       windSpeed,
       uvIndex,
+      relatedDayConditionIndex,
     }) => {
       const degree = windDirection || 0;
 
@@ -50,6 +51,8 @@ export const withHourlyDetailedForecastCard = (
           variant === WEATHER_STATE ? 'haaa' : 'h:mmaaa',
           locationData?.timeZone
         ),
+        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
+        relatedDayConditionIndex,
         humidity,
         temperature,
         feelsLikeTemperature,

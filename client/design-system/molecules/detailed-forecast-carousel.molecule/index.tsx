@@ -14,16 +14,16 @@ import 'swiper/css/navigation';
 export const DetailedForecastCarousel = <T,>({
   data,
   slidesPerView,
+  slidesPerGroup = 1,
   renderItem,
   onActiveIndexChange,
-  componentStyles,
 }: ForecastCarouselProps<T>): ReactElement => {
   const onSetActiveSwiperIndex = useCallback(({ activeIndex }: SwiperClass) => {
     onActiveIndexChange(activeIndex);
   }, []);
 
   return (
-    <Flex {...componentStyles} width="full">
+    <Flex width="full">
       <IconButton
         className="swiper-prev-control"
         variant="carousel-control"
@@ -47,7 +47,7 @@ export const DetailedForecastCarousel = <T,>({
       <Swiper
         modules={[Navigation]}
         slidesPerView={slidesPerView}
-        slidesPerGroup={slidesPerView}
+        slidesPerGroup={slidesPerGroup}
         onActiveIndexChange={onSetActiveSwiperIndex}
         navigation={{
           prevEl: '.swiper-prev-control',
