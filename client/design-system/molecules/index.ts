@@ -8,7 +8,7 @@ export * from './radar-legend.molecule';
 export * from './forecast-card.molecule';
 export * from './player.molecule';
 export * from './top-navigation-bar.molecule';
-export * from './location-meta-info-row.molecule';
+export * from './location-info-row.molecule';
 export * from './wind-info-row.molecule';
 export * from './detailed-forecast-carousel-slide.molecule';
 export * from './detailed-forecast-carousel.molecule';

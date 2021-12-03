@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import { Geocode } from 'server/services';
 import { withRequestMethod } from 'server/middlewares/api-handler';
-import { getExactLocationFromCookies } from 'server/utils';
 
 export const lookupHandler = async (
   req: NextApiRequest,
@@ -16,7 +15,6 @@ export const lookupHandler = async (
 
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
-    locationFromCookies: getExactLocationFromCookies(req.cookies),
   });
   const locationData = await geocodeService.getLocationDataBySlug({
     slug: slug as string,

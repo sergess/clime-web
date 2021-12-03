@@ -23,7 +23,7 @@ import {
 import {
   InfoBlockWithIcon,
   MinMaxTemperatureRow,
-  LocationMetaInfoRow,
+  LocationInfoRow,
   WindInfoRow,
 } from 'client/design-system/molecules';
 import {
@@ -32,14 +32,12 @@ import {
   precipitationUnitAtom,
   distanceUnitAtom,
 } from 'client/state/atoms';
-import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
+import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
 import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
-    const locationData = useLocationData();
-
     const pressureUnit = useAtomValue(pressureUnitAtom);
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
@@ -76,9 +74,7 @@ export const TodayCard = memo(
     return (
       <Card {...props} pt="5">
         <Flex w="full" direction="column" px="4">
-          <LocationMetaInfoRow
-            exact={locationData?.exact}
-            name={locationData?.name}
+          <LocationInfoRow
             date={date}
             componentStyles={{
               mb: 5,
@@ -92,6 +88,7 @@ export const TodayCard = memo(
                 night={night}
                 width={100}
                 height={100}
+                priority
               />
             </Flex>
 

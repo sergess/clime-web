@@ -4,7 +4,6 @@ import { Location } from 'common/types';
 import { isString, isLocationValid } from 'common/utils';
 
 import { Geocode } from 'server/services';
-import { getExactLocationFromCookies } from 'server/utils';
 import { withRequestMethod } from 'server/middlewares/api-handler';
 
 export const reverseHandler = async (
@@ -20,7 +19,6 @@ export const reverseHandler = async (
 
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
-    locationFromCookies: getExactLocationFromCookies(req.cookies),
   });
   const locationData = await geocodeService.getLocationDataByCoordinates({
     ...location,

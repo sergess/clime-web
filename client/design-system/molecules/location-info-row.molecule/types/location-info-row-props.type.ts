@@ -1,11 +1,9 @@
 import { ReactNode } from 'react';
 import { ComponentDefaultProps } from '@chakra-ui/react';
 
-export type LocationMetaInfoRowProps = {
-  exact?: boolean;
-  name?: string;
+export type LocationInfoRowProps = {
   date: ReactNode;
   componentStyles: ComponentDefaultProps;
 };
 
-export default LocationMetaInfoRowProps;
+export default LocationInfoRowProps;

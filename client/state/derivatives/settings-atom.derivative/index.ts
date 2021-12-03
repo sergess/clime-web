@@ -19,7 +19,7 @@ export const settingsAtom = atom(
       temperature: get(temperatureUnitAtom),
       windSpeed: get(windSpeedUnitAtom),
     } as Settings),
-  (get, set, updatedSettings: Settings) => {
+  (get, set, updatedSettings: Partial<Settings>) => {
     const { distance, precipitation, pressure, temperature, windSpeed } =
       updatedSettings;
 

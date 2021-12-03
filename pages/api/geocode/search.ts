@@ -4,7 +4,6 @@ import { isString } from 'common/utils';
 
 import { Geocode } from 'server/services';
 import { withRequestMethod } from 'server/middlewares/api-handler';
-import { getExactLocationFromCookies } from 'server/utils';
 
 const searchHandler = async (
   req: NextApiRequest,
@@ -24,7 +23,6 @@ const searchHandler = async (
 
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
-    locationFromCookies: getExactLocationFromCookies(req.cookies),
   });
   const searchSuggestions = await geocodeService.querySearch({
     query: query as string,

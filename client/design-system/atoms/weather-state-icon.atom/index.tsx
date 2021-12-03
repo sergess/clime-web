@@ -11,6 +11,7 @@ export const WeatherStateIcon = ({
   night,
   width = 40,
   height = 40,
+  ...imageProps
 }: WeatherStateIconProps): ReactElement | null => {
   if (!stateId) return null;
 
@@ -24,6 +25,7 @@ export const WeatherStateIcon = ({
 
   return (
     <Image
+      {...imageProps}
       src={`/icons/${night ? nightIconName : iconName}.svg`}
       width={width}
       height={height}

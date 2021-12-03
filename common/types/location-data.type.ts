@@ -13,8 +13,6 @@ export type LocationData = {
   countryCode: string | null;
   timeZone: string | null;
   slug: string;
-  exact: boolean;
-  name: string;
 };
 
 export default LocationData;

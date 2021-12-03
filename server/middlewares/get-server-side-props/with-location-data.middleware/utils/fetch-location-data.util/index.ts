@@ -12,7 +12,7 @@ export const fetchLocationData = async ({
   locationFromCookies,
   slug,
 }: FetchLocationDataArguments): Promise<LocationData | null> => {
-  const geocodeService = new Geocode({ userAgentHeader, locationFromCookies });
+  const geocodeService = new Geocode({ userAgentHeader });
 
   if (autolocation) {
     if (isLocationValid(locationFromCookies)) {

@@ -10,6 +10,7 @@ import {
   ForecastCardsProvider,
 } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
+import { useInitialSettings } from 'client/hooks';
 
 import { AppPropsWithLayout } from 'common/types';
 
@@ -25,6 +26,8 @@ const App = ({
   const theme = extendTheme(climeTheme, { direction });
 
   const getLayout = Component.getLayout ?? App.getDefaultLayout;
+
+  useInitialSettings();
 
   return (
     <ForecastCardsProvider value={forecastCards}>

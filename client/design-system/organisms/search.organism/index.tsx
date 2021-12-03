@@ -26,6 +26,7 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
+import { getLocationName } from 'client/utils';
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';
 import {
@@ -138,7 +139,7 @@ export const Search = ({
             {suggestions &&
               suggestions.length > 0 &&
               suggestions.map((locationData, i) => {
-                const { slug, latitude, longitude, name } = locationData;
+                const { slug, latitude, longitude } = locationData;
 
                 return (
                   <HeaderCardPopoverRow
@@ -158,7 +159,9 @@ export const Search = ({
                           noOfLines={1}
                         >
                           <Link passHref href={`${WEATHER_TODAY}/${slug}`}>
-                            <LinkOverlay onClick={onClose}>{name}</LinkOverlay>
+                            <LinkOverlay onClick={onClose}>
+                              {getLocationName(locationData)}
+                            </LinkOverlay>
                           </Link>
                         </Text>
                         <Arrow2Icon boxSize={5} />

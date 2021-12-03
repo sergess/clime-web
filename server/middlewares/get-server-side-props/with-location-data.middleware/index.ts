@@ -1,11 +1,10 @@
 import { GetServerSidePropsContext } from 'next';
 
 import { LocationData } from 'common/types';
-
 import {
-  getExactLocationFromCookies,
-  getExtendedLocationName,
-} from 'server/utils';
+  EXACT_LATITUDE_COOKIE,
+  EXACT_LONGITUDE_COOKIE,
+} from 'common/constants';
 
 import { fetchLocationData } from './utils';
 import { WithLocationDataArguments } from './types';
@@ -19,7 +18,10 @@ export const withLocationData =
     const language = locale || (defaultLocale as string);
     const cookies = req?.cookies;
 
-    const locationFromCookies = getExactLocationFromCookies(cookies);
+    const locationFromCookies = {
+      latitude: Number(cookies?.[EXACT_LATITUDE_COOKIE]),
+      longitude: Number(cookies?.[EXACT_LONGITUDE_COOKIE]),
+    };
 
     const locationData = await fetchLocationData({
       userAgentHeader,
@@ -33,10 +35,7 @@ export const withLocationData =
       return null;
     }
 
-    return {
-      ...locationData,
-      name: getExtendedLocationName(locationData),
-    };
+    return locationData;
   };
 
 export default withLocationData;

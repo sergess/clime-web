@@ -10,11 +10,8 @@ import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
-import { useSelectedDateTimeIndex, useLocationData } from 'client/hooks';
-import {
-  LocationMetaInfoRow,
-  WindInfoRow,
-} from 'client/design-system/molecules';
+import { useSelectedDateTimeIndex } from 'client/hooks';
+import { LocationInfoRow, WindInfoRow } from 'client/design-system/molecules';
 import { windSpeedUnitAtom } from 'client/state/atoms';
 
 import { useCardData } from './hooks';
@@ -32,7 +29,6 @@ export const HourlyDetailedForecastCard = memo(
 
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
 
-    const locationData = useLocationData();
     const hourlyDetailedForecast = useCardData();
 
     const [selectedHourIndex, setSelectedHourIndex] = useSelectedDateTimeIndex(
@@ -60,9 +56,7 @@ export const HourlyDetailedForecastCard = memo(
 
     return (
       <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
-        <LocationMetaInfoRow
-          exact={locationData?.exact}
-          name={locationData?.name}
+        <LocationInfoRow
           date={
             <>
               {relatedDayConditionIndex === 0 && t('Today, {{time}}', { time })}

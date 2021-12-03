@@ -5,7 +5,6 @@ import { isString } from 'common/utils';
 
 import { Geocode } from 'server/services';
 import { withRequestMethod } from 'server/middlewares/api-handler';
-import { getExactLocationFromCookies } from 'server/utils';
 
 const autocompleteHandler = async (
   req: NextApiRequest,
@@ -25,7 +24,6 @@ const autocompleteHandler = async (
 
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
-    locationFromCookies: getExactLocationFromCookies(req.cookies),
   });
   const autocompleteSuggestions = await geocodeService.queryAutocomplete({
     query: query as string,

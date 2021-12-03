@@ -12,3 +12,4 @@ export * from './use-selected-date-time-index.util';
 export * from './use-location-data.hook';
 export * from './use-location-data-by-ip.hook';
 export * from './use-page-url.hook';
+export * from './use-initial-settings.hook';

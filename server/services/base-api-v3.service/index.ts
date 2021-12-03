@@ -40,12 +40,13 @@ export class BaseApiV3 extends BaseService {
     const { timestamp } = BaseApiV3;
 
     return super.callAsync(uri, {
+      ...init,
       headers: {
+        ...init?.headers,
         'X-Timestamp': timestamp,
         'User-Agent': this.userAgent,
         'X-Signature': this.generateSignature(uri, timestamp),
       },
-      ...init,
     });
   }
 }

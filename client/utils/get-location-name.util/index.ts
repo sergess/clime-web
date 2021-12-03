@@ -1,10 +1,10 @@
 import toUpper from 'ramda/src/toUpper';
 
-import { CountryCode, LocationDataFromApi } from 'server/types';
+import { CountryCode } from 'client/types';
 
-export const getLocationName = (
-  locationData: LocationDataFromApi | null
-): string => {
+import { LocationData } from 'common/types';
+
+export const getLocationName = (locationData: LocationData | null): string => {
   let locationName = '';
 
   if (!locationData) return locationName;
@@ -13,7 +13,10 @@ export const getLocationName = (
     locationName += locationData?.city;
   }
 
-  if (locationData?.countryCode === CountryCode.US && locationData?.region) {
+  if (
+    locationData?.countryCode?.toLowerCase() === CountryCode.US &&
+    locationData?.region
+  ) {
     return `${locationName}, ${toUpper(locationData?.region)}`;
   }
 
