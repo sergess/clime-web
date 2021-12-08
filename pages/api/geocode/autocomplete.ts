@@ -1,7 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import isNil from 'ramda/src/isNil';
-
-import { isString } from 'common/utils';
 
 import { Geocode } from 'server/services';
 import { withRequestMethod } from 'server/middlewares/api-handler';
@@ -12,16 +9,6 @@ const autocompleteHandler = async (
 ): Promise<void> => {
   const { query, language } = req.query;
 
-  if (
-    !query ||
-    !language ||
-    !isString(query) ||
-    !isString(language) ||
-    query.length < 2
-  ) {
-    return res.status(400).end('Bad request');
-  }
-
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
   });
@@ -30,7 +17,7 @@ const autocompleteHandler = async (
     language: language as string,
   });
 
-  if (isNil(autocompleteSuggestions) || 'error' in autocompleteSuggestions) {
+  if (!autocompleteSuggestions) {
     return res.status(400).end('Bad request');
   }
 

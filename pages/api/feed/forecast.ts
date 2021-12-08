@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import isNil from 'ramda/src/isNil';
 
 import { isString } from 'common/utils';
 
@@ -23,6 +24,10 @@ export const forecastHandler = async (
     forecastZoneId: Number(forecastZoneId),
     language: language as string,
   });
+
+  if (isNil(forecastFeed)) {
+    return res.status(400).end('Bad request');
+  }
 
   return res.status(200).json(forecastFeed);
 };

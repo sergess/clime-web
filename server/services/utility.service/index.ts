@@ -1,21 +1,40 @@
-import BaseService from 'server/services/base.service';
 import { Location } from 'common/types';
+import { CallAsyncResult } from 'server/types';
+
+import { isResponseOk, request } from 'server/utils/request.util';
 
 import { NowResponse } from './types';
 
-export class Utility extends BaseService {
-  protected baseUrl: string | undefined = process.env.UTILITY_SERVICES_BASE_URL;
+export class Utility {
+  private baseUrl = process.env.UTILITY_SERVICES_BASE_URL;
 
   public async getLocation(): Promise<Location | null> {
-    const location = await this.callAsync<Location>('/location');
+    const { ok, data } = await this.callAsync<Location>('/location');
 
-    return location;
+    if (!ok) return null;
+
+    return data;
   }
 
   public async getNow(): Promise<number | null> {
-    const now = await this.callAsync<NowResponse>('/now');
+    const { ok, data } = await this.callAsync<NowResponse>('/now');
 
-    return now?.t ?? null;
+    if (!ok) return null;
+
+    return data?.t as number;
+  }
+
+  private async callAsync<T>(
+    uri: string,
+    init?: RequestInit
+  ): Promise<CallAsyncResult<T>> {
+    const response = await request<T>(`${this.baseUrl}${uri}`, init);
+    const ok = isResponseOk(response);
+
+    return {
+      ok,
+      data: ok ? (response as T) : null,
+    };
   }
 }
 

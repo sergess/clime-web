@@ -9,10 +9,6 @@ export const lookupHandler = async (
 ): Promise<void> => {
   const { slug, language } = req.query;
 
-  if (!language || !slug) {
-    return res.status(400).end('Bad request');
-  }
-
   const geocodeService = new Geocode({
     userAgentHeader: req.headers['user-agent'],
   });
@@ -20,6 +16,10 @@ export const lookupHandler = async (
     slug: slug as string,
     language: language as string,
   });
+
+  if (!locationData) {
+    return res.status(400).end('Bad request');
+  }
 
   return res.status(200).json(locationData);
 };

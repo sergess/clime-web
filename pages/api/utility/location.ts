@@ -10,6 +10,10 @@ export const locationHandler = async (
   const utilityService = new Utility();
   const location = await utilityService.getLocation();
 
+  if (!location) {
+    return res.status(400).end('Bad request');
+  }
+
   return res.status(200).json(location);
 };
 

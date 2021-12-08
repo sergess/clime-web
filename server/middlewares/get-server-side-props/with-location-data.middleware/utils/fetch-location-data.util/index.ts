@@ -1,5 +1,4 @@
 import { LocationData } from 'common/types';
-import { isLocationValid } from 'common/utils';
 
 import { Geocode, Utility } from 'server/services';
 
@@ -15,14 +14,13 @@ export const fetchLocationData = async ({
   const geocodeService = new Geocode({ userAgentHeader });
 
   if (autolocation) {
-    if (isLocationValid(locationFromCookies)) {
-      const locationDataFromCookies =
-        await geocodeService.getLocationDataByCoordinates({
-          latitude: locationFromCookies.latitude,
-          longitude: locationFromCookies.longitude,
-          language,
-        });
+    const locationDataFromCookies =
+      await geocodeService.getLocationDataByCoordinates({
+        location: locationFromCookies,
+        language,
+      });
 
+    if (locationDataFromCookies) {
       return locationDataFromCookies;
     }
 
@@ -32,8 +30,7 @@ export const fetchLocationData = async ({
     if (!locationByIp) return null;
 
     const locationDataByIp = await geocodeService.getLocationDataByCoordinates({
-      latitude: locationByIp.latitude,
-      longitude: locationByIp.longitude,
+      location: locationByIp,
       language,
     });
 

@@ -1,5 +1,3 @@
-import isNil from 'ramda/src/isNil';
-
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 import { ForecastFeed } from 'server/types';
 
@@ -13,6 +11,10 @@ import {
   buildDaySummaryConditionsFeed,
 } from './utils';
 
+/**
+ * Forecast service.
+ * @see https://confluence.jabodo.com:8443/display/AWS/Forecast+Feed
+ */
 export class Forecast extends BaseApiV3Service {
   public async getForecastFeed({
     forecastZoneId,
@@ -20,11 +22,12 @@ export class Forecast extends BaseApiV3Service {
   }: GetForecastFeedArguments): Promise<ForecastFeed | null> {
     if (!forecastZoneId) return null;
 
-    const forecastFeedFromApi = await this.callAsync<ForecastFeedFromApi>(
-      `/feed/forecast/${language}/${forecastZoneId}`
-    );
+    const { ok, data: forecastFeedFromApi } =
+      await this.callAsync<ForecastFeedFromApi>(
+        `/feed/forecast/${language}/${forecastZoneId}`
+      );
 
-    if (isNil(forecastFeedFromApi)) {
+    if (!ok || !forecastFeedFromApi) {
       return null;
     }
 
