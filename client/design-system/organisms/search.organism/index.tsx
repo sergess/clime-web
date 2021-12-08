@@ -158,7 +158,7 @@ export const Search = ({
                           whiteSpace="nowrap"
                           noOfLines={1}
                         >
-                          <Link passHref href={`${WEATHER_TODAY}/${slug}`}>
+                          <Link passHref href={`/${WEATHER_TODAY}/${slug}`}>
                             <LinkOverlay onClick={onClose}>
                               {getLocationName(locationData)}
                             </LinkOverlay>

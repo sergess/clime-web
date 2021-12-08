@@ -1,4 +1,10 @@
-import { createContext, ProviderProps, ReactElement, useState } from 'react';
+import {
+  createContext,
+  ProviderProps,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react';
 
 import { LocationData } from 'common/types';
 
@@ -14,6 +20,10 @@ export const LocationDataProvider = ({
   value,
 }: ProviderProps<LocationData>): ReactElement => {
   const [locationData, setLocationData] = useState(value);
+
+  useEffect(() => {
+    setLocationData(value);
+  }, [value]);
 
   return (
     <LocationDataContext.Provider
