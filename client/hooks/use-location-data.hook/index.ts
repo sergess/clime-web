@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 
-import { AppConfigContext } from 'client/state/contexts';
+import { LocationDataContext } from 'client/state/contexts';
 
 import { LocationData } from 'common/types';
 
 export const useLocationData = (): LocationData | null => {
-  const { locationData } = useContext(AppConfigContext);
+  const { locationData } = useContext(LocationDataContext);
 
   return locationData;
 };

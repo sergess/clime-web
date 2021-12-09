@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@chakra-ui/react';
+import { isMobile as mobile, isIOS as ios } from 'react-device-detect';
 import Image from 'next/image';
 
 import { IOS_STORE_LINK, ANDROID_STORE_LINK } from 'client/constants';
 
-import { DownloadProps } from './types';
-
-export const Download = ({ mobile, ios }: DownloadProps): ReactElement => {
+export const Download = (): ReactElement => {
   if (mobile) {
     return ios ? (
       <Link href={IOS_STORE_LINK} isExternal>

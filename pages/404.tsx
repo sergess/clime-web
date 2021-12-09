@@ -1,14 +1,27 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext, useEffect } from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
 import { NotFoundPageLayout } from 'client/design-system/templates';
+import { useLocationDataByIp, usePageUrl } from 'client/hooks';
+import { WEATHER_TODAY } from 'client/constants';
+import { LocationDataContext } from 'client/state/contexts';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
+  const { setLocationData } = useContext(LocationDataContext);
+  const { locationData } = useLocationDataByIp();
+  const pageUrl = usePageUrl(WEATHER_TODAY);
+
+  useEffect(() => {
+    if (locationData) {
+      setLocationData(locationData);
+    }
+  }, [locationData]);
 
   return (
     <>
@@ -30,9 +43,17 @@ const NotFoundPage = () => {
         <Text textStyle="16-medium" align="center">
           {t("There's nothing but wind here. Let's go to the home page.")}
         </Text>
-        <Button variant="cta" as="a" href="/" mt="10" fontSize="14px">
-          {t("Explore today's weather")}
-        </Button>
+        <Link href={pageUrl} passHref>
+          <Button
+            variant="cta"
+            as="a"
+            mt="10"
+            fontSize="14px"
+            disabled={!locationData}
+          >
+            {t("Explore today's weather")}
+          </Button>
+        </Link>
       </Flex>
       <Box bg="gray.300" w="full" h="200px">
         ads

@@ -13,12 +13,12 @@ import {
   convertKilometersPerHourTo,
   convertMillimetersTo,
 } from 'client/utils';
-import { useCards } from 'client/hooks';
+import { useForecastCards } from 'client/hooks';
 
 import { ChartOption, ChartPoint } from '../../types';
 
 export const useChartData = (activeChart: ChartOption): ChartPoint[] | null => {
-  const { summary } = useCards();
+  const { summary } = useForecastCards();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);

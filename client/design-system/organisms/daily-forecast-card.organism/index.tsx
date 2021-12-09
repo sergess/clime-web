@@ -13,16 +13,16 @@ import {
 } from 'client/design-system/molecules';
 import { TEN_DAY_WEATHER } from 'client/constants';
 import { selectedDayAtom } from 'client/design-system/organisms/daily-detailed-forecast-card.organism';
-import { useUrlSlug } from 'client/hooks';
+import { usePageUrl } from 'client/hooks';
 
-import { useDailyForecastCardData } from './hooks';
+import { useCardData } from './hooks';
 
 export const DailyForecastCard = memo(
   (props: ComponentDefaultProps): ReactElement | null => {
     const router = useRouter();
     const { t } = useTranslation('daily-forecast-card');
     const setSelectedDay = useUpdateAtom(selectedDayAtom);
-    const urlSlug = useUrlSlug();
+    const pageUrl = usePageUrl(TEN_DAY_WEATHER);
 
     const renderDailyBlock = useCallback(({ index, item }) => {
       const selected = index === 0;
@@ -33,7 +33,7 @@ export const DailyForecastCard = memo(
           selected={selected}
           onSelect={() => {
             setSelectedDay(item.dateTime);
-            router.push(`/${TEN_DAY_WEATHER}/${urlSlug}`);
+            router.push(pageUrl);
           }}
           heading={
             <Text
@@ -61,18 +61,18 @@ export const DailyForecastCard = memo(
       );
     }, []);
 
-    const dailyForecastCardData = useDailyForecastCardData();
+    const dailyForecast = useCardData();
 
-    if (!dailyForecastCardData) return null;
+    if (!dailyForecast) return null;
 
     return (
       <ForecastCard
         {...props}
         py="5"
         heading={t('Daily Forecast')}
-        data={dailyForecastCardData}
+        data={dailyForecast}
         footer={
-          <Link href={`/${TEN_DAY_WEATHER}/${urlSlug}`} passHref>
+          <Link href={pageUrl} passHref>
             <Button as="a" w="full" variant="cta" mx={3.5}>
               {t('Explore 10-day forecast')}
             </Button>

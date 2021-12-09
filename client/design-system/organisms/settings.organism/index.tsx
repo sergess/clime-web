@@ -72,7 +72,7 @@ export const Settings = ({
 
   const onSettingsChange = useCallback(
     (unit: keyof SettingsType) => (value: ValueOf<SettingsType>) => {
-      setSettings({ [unit]: value } as SettingsType);
+      setSettings({ [unit]: value });
     },
     []
   );

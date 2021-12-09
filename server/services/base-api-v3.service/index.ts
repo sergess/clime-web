@@ -1,20 +1,29 @@
 import parser from 'ua-parser-js';
 import md5 from 'md5';
 
-import BaseService from 'server/services/base.service';
+import { request, isResponseOk } from 'server/utils/request.util';
+import { CallAsyncResult } from 'server/types';
 
 import { BaseApiV3ServiceParams } from './types';
 
-export class BaseApiV3 extends BaseService {
+/**
+ * Base API 3.0 service.
+ * Each API call should include the following HTTP headers: 'X-Timestamp', 'User-Agent', 'X-Signature'
+ * More info could be found below:
+ * @see https://confluence.jabodo.com:8443/pages/viewpage.action?spaceKey=AWS&title=X-Timestamp+HTTP+Header
+ * @see https://confluence.jabodo.com:8443/pages/viewpage.action?spaceKey=AWS&title=User-Agent+HTTP+Header
+ * @see https://confluence.jabodo.com:8443/pages/viewpage.action?spaceKey=AWS&title=X-Signature+HTTP+Header
+ */
+export class BaseApiV3 {
+  private baseUrl = process.env.API_BASE_URL;
+
+  private userAgentHeader: string | undefined;
+
   private static get timestamp(): string {
     return `${Math.floor(new Date().getTime() / 1000)}`;
   }
 
-  private userAgentHeader: string | undefined;
-
   constructor({ userAgentHeader }: BaseApiV3ServiceParams) {
-    super();
-
     this.userAgentHeader = userAgentHeader;
   }
 
@@ -36,17 +45,23 @@ export class BaseApiV3 extends BaseService {
   protected async callAsync<T>(
     uri: string,
     init?: RequestInit
-  ): Promise<T | null> {
+  ): Promise<CallAsyncResult<T>> {
     const { timestamp } = BaseApiV3;
-
-    return super.callAsync(uri, {
+    const response = await request<T>(`${this.baseUrl}${uri}`, {
+      ...init,
       headers: {
+        ...init?.headers,
         'X-Timestamp': timestamp,
         'User-Agent': this.userAgent,
         'X-Signature': this.generateSignature(uri, timestamp),
       },
-      ...init,
     });
+    const ok = isResponseOk(response);
+
+    return {
+      ok,
+      data: ok ? (response as T) : null,
+    };
   }
 }
 

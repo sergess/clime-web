@@ -13,7 +13,10 @@ export const getLocationName = (locationData: LocationData | null): string => {
     locationName += locationData?.city;
   }
 
-  if (locationData?.countryCode === CountryCode.US && locationData?.region) {
+  if (
+    locationData?.countryCode?.toLowerCase() === CountryCode.US &&
+    locationData?.region
+  ) {
     return `${locationName}, ${toUpper(locationData?.region)}`;
   }
 

@@ -26,8 +26,8 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
+import { getLocationName } from 'client/utils';
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
-import { getLocationName, getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 import {
   Arrow2Icon,
@@ -80,11 +80,7 @@ export const Search = ({
 
   useEffect(() => {
     if (autocompleteResults) {
-      setSuggestions(
-        autocompleteResults.filter(
-          ({ countryCode, city }) => !!countryCode && !!city
-        )
-      );
+      setSuggestions(autocompleteResults.filter(({ slug }) => !!slug));
     }
   }, [autocompleteResults]);
 
@@ -143,17 +139,11 @@ export const Search = ({
             {suggestions &&
               suggestions.length > 0 &&
               suggestions.map((locationData, i) => {
-                const {
-                  city,
-                  countryCode,
-                  forecastZoneId,
-                  latitude,
-                  longitude,
-                } = locationData;
+                const { slug, latitude, longitude } = locationData;
 
                 return (
                   <HeaderCardPopoverRow
-                    key={`${forecastZoneId}-${latitude}-${longitude}`}
+                    key={`${slug}-${latitude}-${longitude}`}
                     first={i === 0}
                     _hover={{
                       bg: 'gray.50',
@@ -168,15 +158,7 @@ export const Search = ({
                           whiteSpace="nowrap"
                           noOfLines={1}
                         >
-                          <Link
-                            passHref
-                            href={getValidRedirectUrl(
-                              WEATHER_TODAY,
-                              countryCode as string,
-                              city as string,
-                              forecastZoneId
-                            )}
-                          >
+                          <Link passHref href={`/${WEATHER_TODAY}/${slug}`}>
                             <LinkOverlay onClick={onClose}>
                               {getLocationName(locationData)}
                             </LinkOverlay>

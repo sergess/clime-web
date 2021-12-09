@@ -10,6 +10,10 @@ export const nowHandler = async (
   const utilityService = new Utility();
   const now = await utilityService.getNow();
 
+  if (!now) {
+    return res.status(400).end('Bad request');
+  }
+
   return res.status(200).json(now);
 };
 

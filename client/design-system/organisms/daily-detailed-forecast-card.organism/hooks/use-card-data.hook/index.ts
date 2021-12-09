@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useAtomValue } from 'jotai/utils';
 
-import { useCards } from 'client/hooks';
+import { useForecastCards } from 'client/hooks';
 import {
   temperatureUnitAtom,
   windSpeedUnitAtom,
@@ -19,7 +19,7 @@ import {
 import { DailyDetailedForecastItem } from '../../types';
 
 export const useCardData = (): DailyDetailedForecastItem[] | null => {
-  const { dailyDetailedForecast } = useCards();
+  const { dailyDetailed } = useForecastCards();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -33,9 +33,9 @@ export const useCardData = (): DailyDetailedForecastItem[] | null => {
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
 
   return useMemo(() => {
-    if (!dailyDetailedForecast) return null;
+    if (!dailyDetailed) return null;
 
-    return dailyDetailedForecast.map((item) => ({
+    return dailyDetailed.map((item) => ({
       ...item,
       dewPoint: defaultToDash(convertFahrenheitToUnit(item.dewPoint)),
       maxTemperature: defaultToDash(
@@ -54,7 +54,7 @@ export const useCardData = (): DailyDetailedForecastItem[] | null => {
       uvIndex: defaultToDash(item.uvIndex),
     }));
   }, [
-    dailyDetailedForecast,
+    dailyDetailed,
     temperatureUnit,
     windSpeedUnit,
     precipitationUnit,
