@@ -47,6 +47,7 @@ describe('Checking if base api v3 service', () => {
     expect(fetch).toBeCalledTimes(1);
     expect(fetch).toBeCalledWith('url/uri', {
       headers: {
+        Accept: 'application/json',
         'X-Timestamp': 100,
         'User-Agent': USER_AGENT,
         'X-Signature': GENERATED_SIGNATURE,
@@ -98,6 +99,7 @@ describe('Checking if base api v3 service', () => {
       // @ts-ignore
       headers: {
         test: 700,
+        Accept: 'application/json',
         'X-Timestamp': 500,
       },
     });
@@ -105,6 +107,7 @@ describe('Checking if base api v3 service', () => {
     expect(fetch).toBeCalledWith('url/uri', {
       headers: {
         test: 700,
+        Accept: 'application/json',
         'X-Timestamp': 100,
         'User-Agent': USER_AGENT,
         'X-Signature': GENERATED_SIGNATURE,

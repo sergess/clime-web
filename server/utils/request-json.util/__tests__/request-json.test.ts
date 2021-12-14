@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { request } from 'server/utils/request.util';
+import { requestJson } from 'server/utils/request-json.util';
 
 describe('Checking if request method returns', () => {
   beforeAll(() => {
@@ -14,7 +14,7 @@ describe('Checking if request method returns', () => {
   });
 
   test('"success" if promise resolves', async () => {
-    const response = await request('/test/url');
+    const response = await requestJson('/test/url');
 
     expect(response).toBe('success');
     expect(fetch).toHaveBeenCalledTimes(1);
@@ -24,7 +24,7 @@ describe('Checking if request method returns', () => {
     // @ts-ignore
     fetch.mockRejectedValueOnce(new Error('API is down'));
 
-    const response = await request('/test/url');
+    const response = await requestJson('/test/url');
 
     expect(response).toEqual({ ok: false });
   });

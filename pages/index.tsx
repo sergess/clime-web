@@ -9,9 +9,7 @@ import {
   DailyForecastCard,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
-
 import { WEATHER_TODAY } from 'client/constants';
-
 import {
   useHasMounted,
   useCookies,
@@ -122,43 +120,51 @@ Index.displayName = 'Index';
 export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locationData = await withLocationData({ autolocation: true })(context);
+  try {
+    const locationData = await withLocationData({ autolocation: true })(
+      context
+    );
 
-  if (!locationData) {
+    if (!locationData) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const forecastCards = await withForecastCards(
+      {
+        [ForecastCard.TODAY]: mapTodayCard,
+        [ForecastCard.HOURLY]: mapHourlyCard,
+        [ForecastCard.SUMMARY]: mapSummaryCard,
+        [ForecastCard.DAILY]: mapDailyCard,
+      },
+      locationData
+    )(context);
+
+    const withWeatherTodayTranslations = withTranslations(
+      'today-card',
+      'hourly-forecast-card',
+      'summary-card',
+      'daily-forecast-card'
+    );
+
+    if (!forecastCards) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      props: {
+        locationData,
+        forecastCards,
+
+        ...(await withWeatherTodayTranslations(context)),
+      },
     };
+  } catch (error) {
+    console.error('[index page]: ', error);
+
+    return { notFound: true };
   }
-
-  const forecastCards = await withForecastCards(
-    {
-      [ForecastCard.TODAY]: mapTodayCard,
-      [ForecastCard.HOURLY]: mapHourlyCard,
-      [ForecastCard.SUMMARY]: mapSummaryCard,
-      [ForecastCard.DAILY]: mapDailyCard,
-    },
-    locationData
-  )(context);
-
-  const withWeatherTodayTranslations = withTranslations(
-    'today-card',
-    'hourly-forecast-card',
-    'summary-card',
-    'daily-forecast-card'
-  );
-
-  if (!forecastCards) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      locationData,
-      forecastCards,
-
-      ...(await withWeatherTodayTranslations(context)),
-    },
-  };
 };
