@@ -59,9 +59,13 @@ export default HourlyWeather;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const locationData = await withLocationData({ autolocation: false })(
-      context
-    );
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: false })(context),
+      withTranslations(
+        'hourly-detailed-forecast-card',
+        'daily-forecast-card'
+      )(context),
+    ]);
 
     if (!locationData) {
       return {
@@ -83,17 +87,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
-    const withHourlyWeatherTranslations = withTranslations(
-      'hourly-detailed-forecast-card',
-      'daily-forecast-card'
-    );
-
     return {
       props: {
         locationData,
         forecastCards,
-
-        ...(await withHourlyWeatherTranslations(context)),
+        ...translations,
       },
     };
   } catch (error) {

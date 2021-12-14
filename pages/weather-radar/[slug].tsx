@@ -12,9 +12,10 @@ export default WeatherRadar;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const locationData = await withLocationData({ autolocation: false })(
-      context
-    );
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: false })(context),
+      withTranslations()(context),
+    ]);
 
     if (!locationData) {
       return {
@@ -22,13 +23,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
-    const withWeatherRadarTranslations = withTranslations();
-
     return {
       props: {
         locationData,
-
-        ...(await withWeatherRadarTranslations(context)),
+        ...translations,
       },
     };
   } catch (error) {

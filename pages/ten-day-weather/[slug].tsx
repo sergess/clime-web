@@ -54,9 +54,10 @@ export default TenDayWeather;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const locationData = await withLocationData({ autolocation: false })(
-      context
-    );
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: false })(context),
+      withTranslations('daily-detailed-forecast-card')(context),
+    ]);
 
     if (!locationData) {
       return {
@@ -77,16 +78,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
-    const withTenDayWeatherTranslations = withTranslations(
-      'daily-detailed-forecast-card'
-    );
-
     return {
       props: {
         locationData,
         forecastCards,
-
-        ...(await withTenDayWeatherTranslations(context)),
+        ...translations,
       },
     };
   } catch (error) {

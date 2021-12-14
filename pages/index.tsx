@@ -121,9 +121,15 @@ export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const locationData = await withLocationData({ autolocation: true })(
-      context
-    );
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: true })(context),
+      withTranslations(
+        'today-card',
+        'hourly-forecast-card',
+        'summary-card',
+        'daily-forecast-card'
+      )(context),
+    ]);
 
     if (!locationData) {
       return {
@@ -141,13 +147,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       locationData
     )(context);
 
-    const withWeatherTodayTranslations = withTranslations(
-      'today-card',
-      'hourly-forecast-card',
-      'summary-card',
-      'daily-forecast-card'
-    );
-
     if (!forecastCards) {
       return {
         notFound: true,
@@ -158,8 +157,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         locationData,
         forecastCards,
-
-        ...(await withWeatherTodayTranslations(context)),
+        ...translations,
       },
     };
   } catch (error) {

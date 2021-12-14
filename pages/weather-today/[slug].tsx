@@ -74,9 +74,15 @@ export default WeatherToday;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const locationData = await withLocationData({ autolocation: false })(
-      context
-    );
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: false })(context),
+      withTranslations(
+        'today-card',
+        'hourly-forecast-card',
+        'summary-card',
+        'daily-forecast-card'
+      )(context),
+    ]);
 
     if (!locationData) {
       return {
@@ -100,19 +106,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
-    const withWeatherTodayTranslations = withTranslations(
-      'today-card',
-      'hourly-forecast-card',
-      'summary-card',
-      'daily-forecast-card'
-    );
-
     return {
       props: {
         locationData,
         forecastCards,
-
-        ...(await withWeatherTodayTranslations(context)),
+        ...translations,
       },
     };
   } catch (error) {
