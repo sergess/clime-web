@@ -1,7 +1,7 @@
 import parser from 'ua-parser-js';
 import md5 from 'md5';
 
-import { request, isResponseOk } from 'server/utils/request.util';
+import { requestJson, isResponseOk } from 'server/utils/request-json.util';
 import { CallAsyncResult } from 'server/types';
 
 import { BaseApiV3ServiceParams } from './types';
@@ -47,7 +47,7 @@ export class BaseApiV3 {
     init?: RequestInit
   ): Promise<CallAsyncResult<T>> {
     const { timestamp } = BaseApiV3;
-    const response = await request<T>(`${this.baseUrl}${uri}`, {
+    const response = await requestJson<T>(`${this.baseUrl}${uri}`, {
       ...init,
       headers: {
         ...init?.headers,

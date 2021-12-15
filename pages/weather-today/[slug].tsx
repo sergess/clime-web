@@ -73,43 +73,49 @@ WeatherToday.displayName = 'WeatherToday';
 export default WeatherToday;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const locationData = await withLocationData({ autolocation: false })(context);
+  try {
+    const [locationData, translations] = await Promise.all([
+      withLocationData({ autolocation: false })(context),
+      withTranslations(
+        'today-card',
+        'hourly-forecast-card',
+        'summary-card',
+        'daily-forecast-card'
+      )(context),
+    ]);
 
-  if (!locationData) {
+    if (!locationData) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const forecastCards = await withForecastCards(
+      {
+        [ForecastCard.TODAY]: mapTodayCard,
+        [ForecastCard.HOURLY]: mapHourlyCard,
+        [ForecastCard.SUMMARY]: mapSummaryCard,
+        [ForecastCard.DAILY]: mapDailyCard,
+      },
+      locationData
+    )(context);
+
+    if (!forecastCards) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      props: {
+        locationData,
+        forecastCards,
+        ...translations,
+      },
     };
+  } catch (error) {
+    console.error('[weather-today page]: ', error);
+
+    return { notFound: true };
   }
-
-  const forecastCards = await withForecastCards(
-    {
-      [ForecastCard.TODAY]: mapTodayCard,
-      [ForecastCard.HOURLY]: mapHourlyCard,
-      [ForecastCard.SUMMARY]: mapSummaryCard,
-      [ForecastCard.DAILY]: mapDailyCard,
-    },
-    locationData
-  )(context);
-
-  if (!forecastCards) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const withWeatherTodayTranslations = withTranslations(
-    'today-card',
-    'hourly-forecast-card',
-    'summary-card',
-    'daily-forecast-card'
-  );
-
-  return {
-    props: {
-      locationData,
-      forecastCards,
-
-      ...(await withWeatherTodayTranslations(context)),
-    },
-  };
 };

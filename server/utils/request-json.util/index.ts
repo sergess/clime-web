@@ -1,11 +1,17 @@
 import { NotOk } from './types';
 
-export const request = async <T>(
+export const requestJson = async <T>(
   url: string,
   init?: RequestInit
 ): Promise<T | NotOk> => {
   try {
-    const response = await fetch(url, init);
+    const response = await fetch(url, {
+      ...init,
+      headers: {
+        ...init?.headers,
+        Accept: 'application/json',
+      },
+    });
     const body = await response.json();
 
     return body;
@@ -17,4 +23,4 @@ export const request = async <T>(
 
 export * from './utils';
 
-export default request;
+export default requestJson;

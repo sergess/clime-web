@@ -1,7 +1,7 @@
 import { Location } from 'common/types';
 import { CallAsyncResult } from 'server/types';
 
-import { isResponseOk, request } from 'server/utils/request.util';
+import { isResponseOk, requestJson } from 'server/utils/request-json.util';
 
 import { NowResponse } from './types';
 
@@ -28,7 +28,7 @@ export class Utility {
     uri: string,
     init?: RequestInit
   ): Promise<CallAsyncResult<T>> {
-    const response = await request<T>(`${this.baseUrl}${uri}`, init);
+    const response = await requestJson<T>(`${this.baseUrl}${uri}`, init);
     const ok = isResponseOk(response);
 
     return {
