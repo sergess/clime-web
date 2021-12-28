@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next';
 import {
   HourlyDetailedForecastCard,
   DailyForecastCard,
+  PromoBanner,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
@@ -21,15 +22,7 @@ const HourlyWeather = memo(
   (): ReactElement => (
     <>
       <HourlyDetailedForecastCard w="full" />
-      <Card
-        w="full"
-        h="200px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        APP PROMO BANNER
-      </Card>
+      <PromoBanner spotId="hourlyOne" />
       <DailyForecastCard maxH={270} w="full" />
       <Card
         w="full"
@@ -63,7 +56,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       withLocationData({ autolocation: false })(context),
       withTranslations(
         'hourly-detailed-forecast-card',
-        'daily-forecast-card'
+        'daily-forecast-card',
+        'banners'
       )(context),
     ]);
 

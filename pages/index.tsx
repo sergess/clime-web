@@ -7,6 +7,7 @@ import {
   HourlyForecastCard,
   SummaryCard,
   DailyForecastCard,
+  PromoBanner,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 import { WEATHER_TODAY } from 'client/constants';
@@ -72,15 +73,7 @@ const Index = memo((): ReactElement => {
   return (
     <>
       <TodayCard w="full" />
-      <Card
-        w="full"
-        h="200px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        APP PROMO BANNER
-      </Card>
+      <PromoBanner spotId="homeOne" />
       <HourlyForecastCard w="full" />
       <Card
         w="full"
@@ -93,15 +86,7 @@ const Index = memo((): ReactElement => {
       </Card>
       <SummaryCard w="full" h={{ base: 240, md: 254 }} />
       <DailyForecastCard maxH={270} w="full" />
-      <Card
-        w="full"
-        h="200px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        APP PROMO BANNER
-      </Card>
+      <PromoBanner spotId="homeTwo" />
       <Card
         w="full"
         h="200px"
@@ -127,7 +112,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         'today-card',
         'hourly-forecast-card',
         'summary-card',
-        'daily-forecast-card'
+        'daily-forecast-card',
+        'banners'
       )(context),
     ]);
 

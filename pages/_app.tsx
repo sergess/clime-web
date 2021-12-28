@@ -8,6 +8,7 @@ import { detectLanguageDirection, fetcher } from 'client/utils';
 import {
   LocationDataProvider,
   ForecastCardsProvider,
+  AppConfigProvider,
 } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
 import { useInitialSettings } from 'client/hooks';
@@ -30,15 +31,17 @@ const App = ({
   useInitialSettings();
 
   return (
-    <ForecastCardsProvider value={forecastCards}>
-      <LocationDataProvider value={locationData}>
-        <ChakraProvider theme={theme}>
-          <SWRConfig value={{ fetcher }}>
-            {getLayout(<Component {...restPageProps} />)}
-          </SWRConfig>
-        </ChakraProvider>
-      </LocationDataProvider>
-    </ForecastCardsProvider>
+    <AppConfigProvider>
+      <ForecastCardsProvider value={forecastCards}>
+        <LocationDataProvider value={locationData}>
+          <ChakraProvider theme={theme}>
+            <SWRConfig value={{ fetcher }}>
+              {getLayout(<Component {...restPageProps} />)}
+            </SWRConfig>
+          </ChakraProvider>
+        </LocationDataProvider>
+      </ForecastCardsProvider>
+    </AppConfigProvider>
   );
 };
 
