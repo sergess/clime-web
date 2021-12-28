@@ -1,5 +1,6 @@
-import { ComponentType } from 'react';
+import React, { ComponentType } from 'react';
 import dynamic from 'next/dynamic';
+import { Skeleton } from '@chakra-ui/react';
 
 import { ResponsiveBannerProps, ResponsiveBannerId } from './types';
 
@@ -8,10 +9,16 @@ const responsiveBanners: Record<
   ComponentType<{ wide: boolean }>
 > = {
   [ResponsiveBannerId.bannerOne]: dynamic(
-    () => import('./variants/first.variant')
+    () => import('./variants/first.variant'),
+    {
+      loading: () => <Skeleton h="full" w="full" />,
+    }
   ),
   [ResponsiveBannerId.bannerTwo]: dynamic(
-    () => import('./variants/second.variant')
+    () => import('./variants/second.variant'),
+    {
+      loading: () => <Skeleton h="full" w="full" />,
+    }
   ),
 };
 

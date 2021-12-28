@@ -7,6 +7,8 @@ export const useParsedPromoBanner = (
 ): ParsedPromoBanner | null => {
   const { listOfBanners } = useAppConfig();
 
+  if (!listOfBanners) return null;
+
   const config: Record<string, string> = JSON.parse(listOfBanners.toString());
 
   const banner = config[spotId];

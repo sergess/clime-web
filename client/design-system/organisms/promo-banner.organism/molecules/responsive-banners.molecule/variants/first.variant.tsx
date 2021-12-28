@@ -39,6 +39,7 @@ export const ResponsiveBannerFirst = ({
         <Image
           src="/banner-one-phone.png"
           layout="fill"
+          priority
           alt="Keep your weather forecast at hand!"
         />
       </Box>
@@ -71,7 +72,12 @@ export const ResponsiveBannerFirst = ({
             mb={!wide ? 1.5 : 0}
             me={!wide ? 0 : 3}
           >
-            <Image src="/icons/app-store.svg" layout="fill" alt="App Store" />
+            <Image
+              src="/icons/app-store.svg"
+              layout="fill"
+              priority
+              alt="App Store"
+            />
           </Box>
           <Box
             w={!wide ? '120px' : '135px'}
@@ -81,6 +87,7 @@ export const ResponsiveBannerFirst = ({
             <Image
               src="/icons/google-play.svg"
               layout="fill"
+              priority
               alt="Google Play"
             />
           </Box>

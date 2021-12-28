@@ -79,6 +79,7 @@ export const MarketingBannerSeventh = (
               src="/icons/keep-track-fire-ico.svg"
               layout="fill"
               alt="fire"
+              priority
             />
           </Box>
         </Flex>
