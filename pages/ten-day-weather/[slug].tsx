@@ -1,7 +1,10 @@
 import React, { ReactElement, memo } from 'react';
 import { GetServerSideProps } from 'next';
 
-import { DailyDetailedForecastCard } from 'client/design-system/organisms';
+import {
+  DailyDetailedForecastCard,
+  PromoBanner,
+} from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
 
 import { ForecastCard } from 'common/types';
@@ -17,15 +20,7 @@ const TenDayWeather = memo(
   (): ReactElement => (
     <>
       <DailyDetailedForecastCard w="full" />
-      <Card
-        w="full"
-        h="200px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        APP PROMO BANNER
-      </Card>
+      <PromoBanner spotId="tenDayOne" />
       <Card
         w="full"
         h="100px"
@@ -56,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const [locationData, translations] = await Promise.all([
       withLocationData({ autolocation: false })(context),
-      withTranslations('daily-detailed-forecast-card')(context),
+      withTranslations('daily-detailed-forecast-card', 'banners')(context),
     ]);
 
     if (!locationData) {

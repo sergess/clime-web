@@ -161,6 +161,31 @@ const Button = {
         opacity: 1,
       },
     },
+    'marketing-banner-button': {
+      h: '38px',
+      w: '140px',
+      bgGradient: 'linear(to-b, #FFD139 -0.18%, #FFC404 99.82%)',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+      borderRadius: 'md',
+      p: '0',
+      color: 'black',
+      fontSize: '0.875rem',
+      fontWeight: 700,
+      lineHeight: '0.875rem',
+      textTransform: 'uppercase',
+
+      _hover: {
+        bgGradient: 'linear(to-b, #FFEA31 -0.18%, #FF9B04 99.82%)',
+        _disabled: {
+          bgGradient: 'linear(to-b, #FFEA31 -0.18%, #FF9B04 99.82%)',
+        },
+      },
+
+      _active: {
+        bg: '#FAC310',
+        color: '#FB7F04',
+      },
+    },
   },
 };
 
