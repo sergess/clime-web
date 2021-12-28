@@ -25,7 +25,7 @@ export const AppConfigProvider = ({
   children,
 }: PropsWithChildren<ReactNode>): JSX.Element => {
   const defaultConfig: RemoteConfig['defaultConfig'] = APP_DEFAULT_CONFIG;
-  const [config, setConfig] = useState(defaultConfig);
+  const [config, setConfig] = useState<RemoteConfig['defaultConfig']>({});
 
   useEffect(() => {
     const remoteConfig = getRemoteConfig(app);
@@ -64,6 +64,7 @@ export const AppConfigProvider = ({
         });
       })
       .catch((err) => {
+        setConfig(defaultConfig);
         // [TODO] error handling
         console.error(err);
       });

@@ -72,6 +72,7 @@ export const MarketingBannerEleventh = (
             src="/icons/graphic.svg"
             width={329}
             height={109}
+            priority
             alt="Moderate rain"
           />
         </Box>
