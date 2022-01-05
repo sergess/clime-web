@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import Image from 'next/image';
 
-import { usePageUrl } from 'client/hooks';
+import { usePageUrl, useScreenWidthSmallerThanMedium } from 'client/hooks';
 import { ClientOnly } from 'client/design-system/atoms';
 import {
   DESKTOP_HEADER_HEIGHT,
@@ -14,6 +14,8 @@ import {
 } from 'client/constants';
 
 import { useUiState } from './hooks';
+
+import { HeaderBanner } from './molecules';
 
 const Search = dynamic(
   () => import('client/design-system/organisms/search.organism')
@@ -50,6 +52,8 @@ export const Header = (): ReactElement => {
   }, [settingsOpened]);
 
   const pageUrl = usePageUrl(WEATHER_TODAY);
+
+  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
   return (
     <Box
@@ -115,6 +119,7 @@ export const Header = (): ReactElement => {
               />
             )}
           </ClientOnly>
+          {!widthSmallerThanMedium && <HeaderBanner />}
         </Box>
       </Container>
     </Box>
