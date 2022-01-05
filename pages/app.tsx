@@ -97,7 +97,7 @@ const AppPage = () => {
               color="#2DE886"
               fontSize={{ base: '14px', lg: '24px' }}
               lineHeight={{ base: '24px', lg: '32px' }}
-              fontWeight="500"
+              fontWeight="600"
             >
               Scan the QR code
             </Text>

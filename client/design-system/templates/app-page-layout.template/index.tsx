@@ -14,6 +14,7 @@ export const AppPageLayout: React.FC = ({
         bg="#0F1527 url('/bg-app-page.jpg')"
         bgPosition="center top"
         bgRepeat="no-repeat"
+        bgSize="2560px 1440px"
         justify="center"
         overflow="hidden"
         px={{ base: '2.5', lg: '0' }}
