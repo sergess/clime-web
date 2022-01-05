@@ -28,7 +28,7 @@ export const MarketingBannerEleventh = (
       overflow="hidden"
       h={250}
       alignItems="center"
-      bg="#107EFF"
+      bg="blue.500"
       {...props}
     >
       <Flex
