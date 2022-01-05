@@ -81,7 +81,7 @@ export const MarketingBannerEighth = (
         </Flex>
       </Flex>
       <NextLink href={climeAppLink} passHref>
-        <LinkOverlay as="a">
+        <LinkOverlay as="a" isExternal>
           <Button w="140px" variant="marketing-banner-button" mb={4} mx={4}>
             {t('Get Clime App')}
           </Button>

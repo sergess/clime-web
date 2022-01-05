@@ -32,7 +32,7 @@ export const BaseNativeBanner = ({
         </Text>
       </Box>
       <NextLink href={climeAppLink} passHref>
-        <LinkOverlay as="a">
+        <LinkOverlay as="a" isExternal>
           <Button w="280px" variant="cta" mb={5}>
             {buttonText}
           </Button>
