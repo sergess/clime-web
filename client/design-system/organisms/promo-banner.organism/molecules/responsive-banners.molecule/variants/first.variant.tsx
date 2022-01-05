@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Text, Box, LinkBox, LinkOverlay, Flex } from '@chakra-ui/react';
+import { Text, Box, LinkBox, LinkOverlay, Flex, Link } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
+import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 
 export const ResponsiveBannerFirst = ({
   wide,
@@ -61,36 +62,44 @@ export const ResponsiveBannerFirst = ({
           pb={!wide ? 10 : 4}
         >
           <NextLink href={climeAppLink} passHref>
-            <LinkOverlay>{t('Download the Clime app.')}</LinkOverlay>
+            <LinkOverlay isExternal>{t('Download the Clime app.')}</LinkOverlay>
           </NextLink>
         </Text>
         <Flex flexDirection={!wide ? 'column' : 'row'}>
-          <Box
-            w="120px"
-            h="40px"
-            position="relative"
-            mb={!wide ? 1.5 : 0}
-            me={!wide ? 0 : 3}
-          >
-            <Image
-              src="/icons/app-store.svg"
-              layout="fill"
-              priority
-              alt="App Store"
-            />
-          </Box>
-          <Box
-            w={!wide ? '120px' : '135px'}
-            h={!wide ? '37px' : '40px'}
-            position="relative"
-          >
-            <Image
-              src="/icons/google-play.svg"
-              layout="fill"
-              priority
-              alt="Google Play"
-            />
-          </Box>
+          <NextLink href={IOS_STORE_LINK} passHref>
+            <Link href={IOS_STORE_LINK} isExternal>
+              <Box
+                w="120px"
+                h="40px"
+                position="relative"
+                mb={!wide ? 1.5 : 0}
+                me={!wide ? 0 : 3}
+              >
+                <Image
+                  src="/icons/app-store.svg"
+                  layout="fill"
+                  priority
+                  alt="App Store"
+                />
+              </Box>
+            </Link>
+          </NextLink>
+          <NextLink href={ANDROID_STORE_LINK} passHref>
+            <Link href={ANDROID_STORE_LINK} isExternal>
+              <Box
+                w={!wide ? '120px' : '135px'}
+                h={!wide ? '37px' : '40px'}
+                position="relative"
+              >
+                <Image
+                  src="/icons/google-play.svg"
+                  layout="fill"
+                  priority
+                  alt="Google Play"
+                />
+              </Box>
+            </Link>
+          </NextLink>
         </Flex>
       </Box>
     </LinkBox>
