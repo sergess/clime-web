@@ -11,27 +11,21 @@ const WeatherRadar = (): ReactElement => <p>Weather radar</p>;
 export default WeatherRadar;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const [locationData, translations] = await Promise.all([
-      withLocationData({ autolocation: false })(context),
-      withTranslations()(context),
-    ]);
+  const [locationData, translations] = await Promise.all([
+    withLocationData({ autolocation: false })(context),
+    withTranslations()(context),
+  ]);
 
-    if (!locationData) {
-      return {
-        notFound: true,
-      };
-    }
-
+  if (!locationData) {
     return {
-      props: {
-        locationData,
-        ...translations,
-      },
+      notFound: true,
     };
-  } catch (error) {
-    console.error('[weather-radar page]: ', error);
-
-    return { notFound: true };
   }
+
+  return {
+    props: {
+      locationData,
+      ...translations,
+    },
+  };
 };
