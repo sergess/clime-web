@@ -7,7 +7,7 @@ import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
 import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
-export const NotFoundPageLayout: React.FC = ({
+export const ErrorPageLayout: React.FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
   const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
@@ -48,4 +48,4 @@ export const NotFoundPageLayout: React.FC = ({
   );
 };
 
-export default NotFoundPageLayout;
+export default ErrorPageLayout;
