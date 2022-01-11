@@ -105,50 +105,44 @@ Index.displayName = 'Index';
 export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const [locationData, translations] = await Promise.all([
-      withLocationData({ autolocation: true })(context),
-      withTranslations(
-        'today-card',
-        'hourly-forecast-card',
-        'summary-card',
-        'daily-forecast-card',
-        'banners'
-      )(context),
-    ]);
+  const [locationData, translations] = await Promise.all([
+    withLocationData({ autolocation: true })(context),
+    withTranslations(
+      'today-card',
+      'hourly-forecast-card',
+      'summary-card',
+      'daily-forecast-card',
+      'banners'
+    )(context),
+  ]);
 
-    if (!locationData) {
-      return {
-        notFound: true,
-      };
-    }
-
-    const forecastCards = await withForecastCards(
-      {
-        [ForecastCard.TODAY]: mapTodayCard,
-        [ForecastCard.HOURLY]: mapHourlyCard,
-        [ForecastCard.SUMMARY]: mapSummaryCard,
-        [ForecastCard.DAILY]: mapDailyCard,
-      },
-      locationData
-    )(context);
-
-    if (!forecastCards) {
-      return {
-        notFound: true,
-      };
-    }
-
+  if (!locationData) {
     return {
-      props: {
-        locationData,
-        forecastCards,
-        ...translations,
-      },
+      notFound: true,
     };
-  } catch (error) {
-    console.error('[index page]: ', error);
-
-    return { notFound: true };
   }
+
+  const forecastCards = await withForecastCards(
+    {
+      [ForecastCard.TODAY]: mapTodayCard,
+      [ForecastCard.HOURLY]: mapHourlyCard,
+      [ForecastCard.SUMMARY]: mapSummaryCard,
+      [ForecastCard.DAILY]: mapDailyCard,
+    },
+    locationData
+  )(context);
+
+  if (!forecastCards) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      locationData,
+      forecastCards,
+      ...translations,
+    },
+  };
 };

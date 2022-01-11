@@ -48,41 +48,35 @@ TenDayWeather.displayName = 'TenDayWeather';
 export default TenDayWeather;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const [locationData, translations] = await Promise.all([
-      withLocationData({ autolocation: false })(context),
-      withTranslations('daily-detailed-forecast-card', 'banners')(context),
-    ]);
+  const [locationData, translations] = await Promise.all([
+    withLocationData({ autolocation: false })(context),
+    withTranslations('daily-detailed-forecast-card', 'banners')(context),
+  ]);
 
-    if (!locationData) {
-      return {
-        notFound: true,
-      };
-    }
-
-    const forecastCards = await withForecastCards(
-      {
-        [ForecastCard.DAILY_DETAILED]: mapDailyDetailedCard,
-      },
-      locationData
-    )(context);
-
-    if (!forecastCards) {
-      return {
-        notFound: true,
-      };
-    }
-
+  if (!locationData) {
     return {
-      props: {
-        locationData,
-        forecastCards,
-        ...translations,
-      },
+      notFound: true,
     };
-  } catch (error) {
-    console.error('[ten-day-weather page]: ', error);
-
-    return { notFound: true };
   }
+
+  const forecastCards = await withForecastCards(
+    {
+      [ForecastCard.DAILY_DETAILED]: mapDailyDetailedCard,
+    },
+    locationData
+  )(context);
+
+  if (!forecastCards) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      locationData,
+      forecastCards,
+      ...translations,
+    },
+  };
 };
