@@ -20,4 +20,18 @@ module.exports = withBundleAnalyzer({
 
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|png|ico|txt)',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=300, must-revalidate',
+          },
+        ],
+      },
+    ];
+  },
 });
