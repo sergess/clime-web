@@ -4,13 +4,25 @@ import Image from 'next/image';
 import { Flex, LinkBox, LinkOverlay, Text, Link } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
+import climeTheme from 'client/theme';
 import { useClimeAppLink } from 'client/hooks';
 
 export const HeaderBanner = (): ReactElement => {
   const { t } = useTranslation('banners');
   const climeAppLink = useClimeAppLink();
+
   return (
-    <Flex w="full" maxW="400px" justifyContent="flex-end" alignItems="flex-end">
+    <Flex
+      sx={{
+        [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]: {
+          display: 'none',
+        },
+      }}
+      w="full"
+      maxW="400px"
+      justifyContent="flex-end"
+      alignItems="flex-end"
+    >
       <LinkBox display="flex">
         <Flex
           pe={3}

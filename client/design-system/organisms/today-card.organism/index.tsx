@@ -12,6 +12,7 @@ import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 import Image from 'next/image';
 
+import climeTheme from 'client/theme';
 import {
   Card,
   WeatherStateIcon,
@@ -208,7 +209,14 @@ export const TodayCard = memo(
 
             <Divider orientation="horizontal" variant="card-divider" />
 
-            <InfoBlocksRow mt={3} mb={widthSmallerThanMedium ? 3 : '1.125em'}>
+            <InfoBlocksRow
+              mt={3}
+              mb="1.125em"
+              sx={{
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { mb: 3 },
+              }}
+            >
               <InfoBlockWithIcon
                 icon={
                   <Image
@@ -240,24 +248,35 @@ export const TodayCard = memo(
               />
             </InfoBlocksRow>
 
-            {widthSmallerThanMedium && (
-              <Divider orientation="horizontal" variant="card-divider" />
-            )}
+            <Divider
+              sx={{
+                [`@media screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { display: 'none' },
+              }}
+              orientation="horizontal"
+              variant="card-divider"
+            />
           </Collapse>
         </Flex>
 
-        {widthSmallerThanMedium && (
-          <Button variant="expand-card" onClick={onCardOpenedToggle}>
-            <Text color="blue.500" textStyle="14-semi-bold" me={1}>
-              {cardOpened ? t('Hide') : t('Show more')}
-            </Text>
-            <Arrow2Icon
-              transform={cardOpened ? 'rotate(270deg)' : 'rotate(90deg)'}
-              w={5}
-              h={5}
-            />
-          </Button>
-        )}
+        <Button
+          sx={{
+            [`@media screen and (min-width: ${climeTheme.breakpoints.md})`]: {
+              display: 'none',
+            },
+          }}
+          variant="expand-card"
+          onClick={onCardOpenedToggle}
+        >
+          <Text color="blue.500" textStyle="14-semi-bold" me={1}>
+            {cardOpened ? t('Hide') : t('Show more')}
+          </Text>
+          <Arrow2Icon
+            transform={cardOpened ? 'rotate(270deg)' : 'rotate(90deg)'}
+            w={5}
+            h={5}
+          />
+        </Button>
       </Card>
     );
   }
