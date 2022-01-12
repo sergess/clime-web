@@ -15,8 +15,9 @@ export const requestJson = async <T>(
     const body = await response.json();
 
     return body;
-  } catch (error) {
-    // [TODO] add logging here
+  } catch (err) {
+    console.error('[requestJson]: ', err);
+
     return { ok: false };
   }
 };
