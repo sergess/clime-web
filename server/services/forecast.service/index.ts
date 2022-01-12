@@ -1,17 +1,20 @@
-import isNil from 'ramda/src/isNil';
-
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 import { ForecastFeed } from 'server/types';
 
 import { ForecastFeedFromApi, GetForecastFeedArguments } from './types';
 import {
-  convertConditionFromApiToHourCondition,
-  convertDayConditionFromApiToDayCondition,
+  mapConditionFromApiToHourCondition,
+  mapDayConditionFromApiToDayCondition,
   getUpToDateHourConditions,
   getUpToDateDayConditionsFromApi,
   buildHourConditionsFeed,
+  buildDaySummaryConditionsFeed,
 } from './utils';
 
+/**
+ * Forecast service.
+ * @see https://confluence.jabodo.com:8443/display/AWS/Forecast+Feed
+ */
 export class Forecast extends BaseApiV3Service {
   public async getForecastFeed({
     forecastZoneId,
@@ -19,11 +22,12 @@ export class Forecast extends BaseApiV3Service {
   }: GetForecastFeedArguments): Promise<ForecastFeed | null> {
     if (!forecastZoneId) return null;
 
-    const forecastFeedFromApi = await this.callAsync<ForecastFeedFromApi>(
-      `/feed/forecast/${language}/${forecastZoneId}`
-    );
+    const { ok, data: forecastFeedFromApi } =
+      await this.callAsync<ForecastFeedFromApi>(
+        `/feed/forecast/${language}/${forecastZoneId}`
+      );
 
-    if (isNil(forecastFeedFromApi)) {
+    if (!ok || !forecastFeedFromApi) {
       return null;
     }
 
@@ -32,14 +36,15 @@ export class Forecast extends BaseApiV3Service {
     );
 
     const dayConditions = upToDateDayConditionsFromApi.map(
-      convertDayConditionFromApiToDayCondition
+      mapDayConditionFromApiToDayCondition
     );
     const currentDayCondition = dayConditions[0];
 
-    const currentHourCondition = convertConditionFromApiToHourCondition(
+    const currentHourCondition = mapConditionFromApiToHourCondition(
       forecastFeedFromApi.cur,
       currentDayCondition.sunrise,
-      currentDayCondition.sunset
+      currentDayCondition.sunset,
+      0
     );
 
     const hourConditionsFeed = buildHourConditionsFeed(dayConditions);
@@ -50,6 +55,7 @@ export class Forecast extends BaseApiV3Service {
         currentHourCondition,
         hourConditionsFeed
       ),
+      daySummaryConditions: buildDaySummaryConditionsFeed(dayConditions),
     };
   }
 }

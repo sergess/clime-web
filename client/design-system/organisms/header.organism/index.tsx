@@ -1,10 +1,11 @@
 import React, { ReactElement, useCallback } from 'react';
-import { Box, Container, Link } from '@chakra-ui/react';
+import { Box, Container, Link, Button } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
+import Image from 'next/image';
 
-import { ClimeLogoWhiteIcon, ClientOnly } from 'client/design-system/atoms';
-import { useUrlSlug } from 'client/hooks';
+import { usePageUrl, useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { ClientOnly } from 'client/design-system/atoms';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
@@ -13,6 +14,8 @@ import {
 } from 'client/constants';
 
 import { useUiState } from './hooks';
+
+import { HeaderBanner } from './molecules';
 
 const Search = dynamic(
   () => import('client/design-system/organisms/search.organism')
@@ -31,6 +34,7 @@ export const Header = (): ReactElement => {
     settingsVisible,
     onSettingsOpen,
     onSettingsClose,
+    logoVisible,
   } = useUiState();
 
   const settingsOpen = useCallback(() => {
@@ -47,7 +51,9 @@ export const Header = (): ReactElement => {
     onSearchOpen();
   }, [settingsOpened]);
 
-  const urlSlug = useUrlSlug();
+  const pageUrl = usePageUrl(WEATHER_TODAY);
+
+  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
 
   return (
     <Box
@@ -71,16 +77,18 @@ export const Header = (): ReactElement => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <NextLink href={`/${WEATHER_TODAY}/${urlSlug}`} passHref>
-          <Link href={`/${WEATHER_TODAY}/${urlSlug}`}>
-            <ClimeLogoWhiteIcon
-              w={{ base: '90.53px', md: '108px' }}
-              h={{ base: '20px', md: '24px' }}
-              d="block"
-              me={5}
-            />
-          </Link>
-        </NextLink>
+        {logoVisible && (
+          <NextLink href={pageUrl} passHref>
+            <Link flex="none" d="flex" href={pageUrl}>
+              <Image
+                src="/icons/clime-logo-dark.svg"
+                width={141}
+                height={30}
+                alt="Clime"
+              />
+            </Link>
+          </NextLink>
+        )}
 
         <Box w="full" d="flex" justifyContent="flex-end" alignItems="center">
           <ClientOnly>
@@ -90,6 +98,15 @@ export const Header = (): ReactElement => {
                 onClose={onSearchClose}
                 opened={searchOpened}
               />
+            )}
+            {searchOpened && (
+              <Button
+                variant="search-cancel"
+                onClick={onSearchClose}
+                ms={[3, null, null, 8]}
+              >
+                Cancel
+              </Button>
             )}
           </ClientOnly>
 
@@ -102,6 +119,7 @@ export const Header = (): ReactElement => {
               />
             )}
           </ClientOnly>
+          {!widthSmallerThanMedium && <HeaderBanner />}
         </Box>
       </Container>
     </Box>

@@ -1,18 +1,16 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
-import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
-import { TodayCard, HourlyForecastCard } from 'client/design-system/organisms';
+import {
+  TodayCard,
+  HourlyForecastCard,
+  SummaryCard,
+  DailyForecastCard,
+  PromoBanner,
+} from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
-import { DefaultLayout } from 'client/design-system/templates';
-
-import { getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
-import { IndexPageProps } from 'client/types';
-
 import {
   useHasMounted,
   useCookies,
@@ -24,24 +22,19 @@ import {
   EXACT_LATITUDE_COOKIE,
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
-import { isLocationValid } from 'common/utils';
+import { ForecastCard } from 'common/types';
 
 import {
-  withLocationDataByIp,
-  withApiV3Service,
-  withCookie,
-  withBrowserInfo,
+  mapDailyCard,
+  mapHourlyCard,
+  mapSummaryCard,
+  mapTodayCard,
+  withForecastCards,
+  withLocationData,
+  withTranslations,
 } from 'server/middlewares/get-server-side-props';
-import {
-  withTodayCard,
-  withHourlyForecastCard,
-} from 'server/middlewares/data-preparation';
-import { Forecast, Geocode } from 'server/services';
 
-const Index = ({
-  todayCardData,
-  hourlyForecastCardData,
-}: IndexPageProps): ReactElement => {
+const Index = memo((): ReactElement => {
   const router = useRouter();
   const { cookies, setCookie } = useCookies([
     EXACT_LATITUDE_COOKIE,
@@ -62,19 +55,12 @@ const Index = ({
       !latitudeCookie &&
       !longitudeCookie
     ) {
-      const { countryCode, city, forecastZoneId } = exactLocationData;
+      const { slug } = exactLocationData;
 
       setCookie(EXACT_LATITUDE_COOKIE, `${locationFromBrowser?.latitude}`);
       setCookie(EXACT_LONGITUDE_COOKIE, `${locationFromBrowser?.longitude}`);
 
-      const redirectUrl = getValidRedirectUrl(
-        WEATHER_TODAY,
-        countryCode as string,
-        city as string,
-        forecastZoneId
-      );
-
-      router.push(redirectUrl);
+      router.push(`${WEATHER_TODAY}/${slug}`);
     }
   }, [
     hasMounted,
@@ -86,65 +72,67 @@ const Index = ({
 
   return (
     <>
-      <TodayCard
-        data={todayCardData}
-        pt="5"
-        pb={{ md: 2 }}
-        maxW={{ xl: 380 }}
+      <TodayCard w="full" />
+      <PromoBanner spotId="homeOne" />
+      <HourlyForecastCard w="full" />
+      <Card
         w="full"
-      />
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 1
+        h="100px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        ADS
       </Card>
-      <Box bg="gray.400" w="full" h="260px" gridColumn={{ xl: 'span 2' }}>
-        ads 3
-      </Box>
-      <Card h="260px" w="full" maxW={{ xl: 380 }}>
-        Block 2
+      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <DailyForecastCard maxH={270} w="full" />
+      <PromoBanner spotId="homeTwo" />
+      <Card
+        w="full"
+        h="200px"
+        bg="gray.400"
+        color="white"
+        justifyContent="center"
+      >
+        RADAR SNAPSHOT
       </Card>
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 3
-      </Card>
-      <Card h="260px" maxW={{ xl: 380 }} w="full">
-        Block 4
-      </Card>
-      <HourlyForecastCard data={hourlyForecastCardData} py="5" w="full" />
     </>
   );
-};
+});
+
+Index.displayName = 'Index';
 
 export default Index;
 
-Index.getLayout = function getLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { locale, defaultLocale } = context;
+  const [locationData, translations] = await Promise.all([
+    withLocationData({ autolocation: true })(context),
+    withTranslations(
+      'today-card',
+      'hourly-forecast-card',
+      'summary-card',
+      'daily-forecast-card',
+      'banners'
+    )(context),
+  ]);
 
-  const geocodeService = withApiV3Service<Geocode>(context, Geocode);
+  if (!locationData) {
+    return {
+      notFound: true,
+    };
+  }
 
-  const latitudeFromCookies = withCookie(context, EXACT_LATITUDE_COOKIE);
-  const longitudeFromCookies = withCookie(context, EXACT_LONGITUDE_COOKIE);
-  const locationFromCookies = {
-    latitude: Number(latitudeFromCookies),
-    longitude: Number(longitudeFromCookies),
-  };
+  const forecastCards = await withForecastCards(
+    {
+      [ForecastCard.TODAY]: mapTodayCard,
+      [ForecastCard.HOURLY]: mapHourlyCard,
+      [ForecastCard.SUMMARY]: mapSummaryCard,
+      [ForecastCard.DAILY]: mapDailyCard,
+    },
+    locationData
+  )(context);
 
-  const locationData = isLocationValid(locationFromCookies)
-    ? await geocodeService.getLocationDataByCoordinates({
-        ...locationFromCookies,
-        language: locale || (defaultLocale as string),
-      })
-    : await withLocationDataByIp(context);
-
-  const forecastService = withApiV3Service<Forecast>(context, Forecast);
-  const forecastFeed = await forecastService.getForecastFeed({
-    forecastZoneId: locationData?.forecastZoneId as number,
-    language: locale || (defaultLocale as string),
-  });
-
-  if (!forecastFeed) {
+  if (!forecastCards) {
     return {
       notFound: true,
     };
@@ -152,19 +140,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      todayCardData: withTodayCard(forecastFeed, locationData),
-      hourlyForecastCardData: withHourlyForecastCard(
-        forecastFeed,
-        locationData
-      ),
       locationData,
-      browserInfo: withBrowserInfo(context),
-
-      ...(!!locale &&
-        (await serverSideTranslations(locale, [
-          'common',
-          'weather-today-page',
-        ]))),
+      forecastCards,
+      ...translations,
     },
   };
 };

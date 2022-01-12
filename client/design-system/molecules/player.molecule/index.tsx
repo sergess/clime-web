@@ -15,8 +15,8 @@ import {
   SliderThumb,
   IconButton,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { PauseIcon, PlayIcon } from 'client/design-system/atoms';
 import { useContainerWidth } from 'client/hooks';
 
 import { PlayerProps } from './types';
@@ -50,7 +50,14 @@ export const Player = ({
         <IconButton
           variant="player-button"
           aria-label="Pause"
-          icon={paused ? <PauseIcon boxSize={6} /> : <PlayIcon boxSize={6} />}
+          icon={
+            <Image
+              src={paused ? '/icons/pause.svg' : '/icons/play.svg'}
+              width={24}
+              height={24}
+              alt={paused ? 'Pause' : 'Play'}
+            />
+          }
           onClick={onTogglePaused}
         />
       </Flex>

@@ -7,6 +7,7 @@ export type UseUiStateReturnValue = {
   settingsVisible: boolean;
   onSettingsOpen: () => void;
   onSettingsClose: () => void;
+  logoVisible: boolean;
 };
 
 export default UseUiStateReturnValue;

@@ -3,6 +3,6 @@ export enum TemperatureUnit {
   F = 'f',
 }
 
-export const TemperatureUnitValues = Object.values(TemperatureUnit);
+export const TemperatureUnitValues = [TemperatureUnit.F, TemperatureUnit.C];
 
 export default TemperatureUnit;

@@ -1,55 +1,79 @@
-import isNil from 'ramda/src/isNil';
+import isEmpty from 'ramda/src/isEmpty';
 
 import { LocationData } from 'common/types';
-import { isString } from 'common/utils';
+import { isLocationValid, isString } from 'common/utils';
 
 import BaseApiV3Service from 'server/services/base-api-v3.service';
 
 import {
-  LocationDataByLocationArguments,
+  LocationDataBySlugArguments,
   LocationDataByCoordinatesArguments,
   AutocompleteArguments,
   SearchArguments,
 } from './types';
 
+/**
+ * Geocoding service.
+ * @see https://confluence.jabodo.com:8443/pages/viewpage.action?pageId=91099149
+ */
 export class Geocode extends BaseApiV3Service {
   public async getLocationDataByCoordinates({
-    latitude,
-    longitude,
+    location,
     language,
   }: LocationDataByCoordinatesArguments): Promise<LocationData | null> {
-    const locationData = await this.callAsync<LocationData>(
-      `/geocode/reverse/${language}/${latitude}/${longitude}`
+    if (!isLocationValid(location) || !isString(language)) {
+      return null;
+    }
+
+    const { ok, data: locationData } = await this.callAsync<LocationData>(
+      `/geocode/reverse/${language}/${location?.latitude}/${location?.longitude}`
     );
+
+    if (!ok || isEmpty(locationData)) {
+      return null;
+    }
 
     return locationData;
   }
 
-  public async getLocationDataByLocation({
-    countryCode,
-    city,
+  public async getLocationDataBySlug({
+    slug,
     language,
-  }: LocationDataByLocationArguments): Promise<LocationData | null> {
-    if (!isString(countryCode) || !isString(city) || !isString(language)) {
+  }: LocationDataBySlugArguments): Promise<LocationData | null> {
+    if (!isString(slug) || !isString(language)) {
       return null;
     }
 
-    const locationData = await this.callAsync<LocationData>(
-      `/geocode/lookup/${language}/${countryCode}:${city}`
+    const { ok, data: locationData } = await this.callAsync<LocationData>(
+      `/geocode/lookup/${language}/${slug}`
     );
 
-    return Array.isArray(locationData) || isNil(locationData)
-      ? null
-      : locationData;
+    if (!ok || isEmpty(locationData)) {
+      return null;
+    }
+
+    return locationData;
   }
 
   public async querySearch({
     query,
     language,
   }: SearchArguments): Promise<LocationData[] | null> {
-    const locationData = await this.callAsync<LocationData[]>(
-      `/geocode/search/${language}/${query}`
+    if (!isString(query) || !isString(language) || query.length < 2) {
+      return null;
+    }
+
+    // [TODO] Think about better way how it could be done
+    const { ok, data: locationData } = await this.callAsync<LocationData[]>(
+      `/geocode/search/${language}/${encodeURI(query).replace(
+        /[!'()*#]/g,
+        escape
+      )}`
     );
+
+    if (!ok) {
+      return null;
+    }
 
     return locationData;
   }
@@ -58,14 +82,24 @@ export class Geocode extends BaseApiV3Service {
     query,
     language,
   }: AutocompleteArguments): Promise<LocationData[] | null> {
-    const locationData = await this.callAsync<LocationData[]>(
-      `/geocode/autocomplete/${language}/${query}`
+    if (!isString(query) || !isString(language) || query.length < 2) {
+      return null;
+    }
+
+    // [TODO] Think about better way how it could be done
+    const { ok, data: locationData } = await this.callAsync<LocationData[]>(
+      `/geocode/autocomplete/${language}/${encodeURI(query).replace(
+        /[!'()*#]/g,
+        escape
+      )}`
     );
+
+    if (!ok) {
+      return null;
+    }
 
     return locationData;
   }
 }
-
-export * from './types';
 
 export default Geocode;

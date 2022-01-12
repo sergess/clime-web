@@ -9,12 +9,9 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
+import Image from 'next/image';
 
-import {
-  CloseIcon,
-  SettingsIcon,
-  HeaderPopoverOverlay,
-} from 'client/design-system/atoms';
+import { HeaderPopoverOverlay } from 'client/design-system/atoms';
 import { settingsAtom } from 'client/state/derivatives';
 import {
   DistanceUnitValues,
@@ -75,7 +72,7 @@ export const Settings = ({
 
   const onSettingsChange = useCallback(
     (unit: keyof SettingsType) => (value: ValueOf<SettingsType>) => {
-      setSettings({ [unit]: value } as SettingsType);
+      setSettings({ [unit]: value });
     },
     []
   );
@@ -104,7 +101,12 @@ export const Settings = ({
         >
           <Text textStyle="16-medium">{t(settings.temperature)}</Text>
 
-          {opened ? <CloseIcon boxSize={6} /> : <SettingsIcon boxSize={6} />}
+          <Image
+            src={opened ? '/icons/close.svg' : '/icons/settings.svg'}
+            width={24}
+            height={24}
+            alt=""
+          />
         </Flex>
       </PopoverTrigger>
 

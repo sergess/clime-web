@@ -14,6 +14,7 @@ export type DayConditionFromApi = {
   ws: number | null;
   wd: number | null;
   wg: number | null;
+  pr: number | null;
   prc: number | null;
   v: number | null;
   h: number | null;

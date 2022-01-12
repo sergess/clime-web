@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   InputGroup,
@@ -25,13 +26,11 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
+import { getLocationName } from 'client/utils';
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
-import { getLocationName, getValidRedirectUrl } from 'client/utils';
 import { WEATHER_TODAY } from 'client/constants';
 import {
-  CloseIcon,
   Arrow2Icon,
-  SearchIcon,
   HeaderCardPopoverRow,
   HeaderPopoverOverlay,
 } from 'client/design-system/atoms';
@@ -47,7 +46,7 @@ export const Search = ({
 }: SearchProps): ReactElement => {
   const { t } = useTranslation('common');
 
-  const searchInputRef = useRef(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const [location, setLocation] = useState<string>('');
   const [suggestions, setSuggestions] = useState<LocationData[] | null>(null);
@@ -65,6 +64,12 @@ export const Search = ({
     []
   );
 
+  const clearSearch = useCallback(() => {
+    setLocation('');
+    setSuggestions(null);
+    searchInputRef.current?.focus();
+  }, []);
+
   const { data: autocompleteResults, error } = useAutocomplete(location);
   const loading = !!autocompleteResults && !autocompleteResults && !error;
 
@@ -75,11 +80,7 @@ export const Search = ({
 
   useEffect(() => {
     if (autocompleteResults) {
-      setSuggestions(
-        autocompleteResults.filter(
-          ({ countryCode, city }) => !!countryCode && !!city
-        )
-      );
+      setSuggestions(autocompleteResults.filter(({ slug }) => !!slug));
     }
   }, [autocompleteResults]);
 
@@ -117,12 +118,14 @@ export const Search = ({
             <IconButton
               variant="ghost"
               borderRadius="full"
-              onClick={onClose}
+              onClick={clearSearch}
               aria-label="Location search"
               _hover={{
                 bg: 'transparent',
               }}
-              icon={<CloseIcon boxSize={6} />}
+              icon={
+                <Image src="/icons/close.svg" width={24} height={24} alt="" />
+              }
             />
           </InputRightElement>
         </InputGroup>
@@ -136,17 +139,11 @@ export const Search = ({
             {suggestions &&
               suggestions.length > 0 &&
               suggestions.map((locationData, i) => {
-                const {
-                  city,
-                  countryCode,
-                  forecastZoneId,
-                  latitude,
-                  longitude,
-                } = locationData;
+                const { slug, latitude, longitude } = locationData;
 
                 return (
                   <HeaderCardPopoverRow
-                    key={`${forecastZoneId}-${latitude}-${longitude}`}
+                    key={`${slug}-${latitude}-${longitude}`}
                     first={i === 0}
                     _hover={{
                       bg: 'gray.50',
@@ -161,15 +158,7 @@ export const Search = ({
                           whiteSpace="nowrap"
                           noOfLines={1}
                         >
-                          <Link
-                            passHref
-                            href={getValidRedirectUrl(
-                              WEATHER_TODAY,
-                              countryCode as string,
-                              city as string,
-                              forecastZoneId
-                            )}
-                          >
+                          <Link passHref href={`/${WEATHER_TODAY}/${slug}`}>
                             <LinkOverlay onClick={onClose}>
                               {getLocationName(locationData)}
                             </LinkOverlay>
@@ -196,7 +185,7 @@ export const Search = ({
       _hover={{
         bg: 'gray.50',
       }}
-      icon={<SearchIcon boxSize={6} />}
+      icon={<Image src="/icons/search.svg" width={24} height={24} alt="" />}
     />
   );
 };

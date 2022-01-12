@@ -7,3 +7,6 @@ export * from './extract-valid-weather-state-id.util';
 export * from './format-utc-string.util';
 export * from './convert-wind-degree-to-azimuth.util';
 export * from './calculate-opposite-angle.util';
+export * from './is-object.util';
+export * from './request-json.util';
+export * from './is-boolean.util';

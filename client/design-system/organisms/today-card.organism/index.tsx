@@ -1,4 +1,4 @@
-import { ReactElement, memo, useState, useEffect } from 'react';
+import React, { ReactElement, memo } from 'react';
 import {
   Button,
   Divider,
@@ -10,51 +10,49 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
-import { useRouter } from 'next/router';
-import toUpper from 'ramda/src/toUpper';
+import Image from 'next/image';
 
 import {
   Card,
   WeatherStateIcon,
-  PinCardIcon,
   Arrow2Icon,
-  WindDirectionIcon,
-  InfoPrecipitationIcon,
-  InfoUvIcon,
-  InfoHumidityIcon,
-  InfoPressureIcon,
   InfoBlocksRow,
   ClientOnly,
+  StateTextRow,
 } from 'client/design-system/atoms';
 import {
   InfoBlockWithIcon,
   MinMaxTemperatureRow,
+  LocationInfoRow,
+  WindInfoRow,
 } from 'client/design-system/molecules';
 import {
   pressureUnitAtom,
   windSpeedUnitAtom,
   precipitationUnitAtom,
+  distanceUnitAtom,
 } from 'client/state/atoms';
-import { useScreenWidthSmallerThanMedium, useLocationData } from 'client/hooks';
-import {
-  isLocationTheSameAsLocationFromBrowser,
-  getExtendedLocationName,
-  getLocationName,
-  capitalize,
-} from 'client/utils';
+import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
-import { useTodayCardDataAtomValue } from './hooks';
-import { TodayCardProps } from './types';
+import { useTodayCardData } from './hooks';
 
 export const TodayCard = memo(
-  ({
-    data,
-    ...componentProps
-  }: TodayCardProps & ComponentDefaultProps): ReactElement => {
-    const { query } = useRouter();
-    const todayCardData = useTodayCardDataAtomValue(data);
+  (props: ComponentDefaultProps): ReactElement | null => {
+    const pressureUnit = useAtomValue(pressureUnitAtom);
+    const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
+    const precipitationUnit = useAtomValue(precipitationUnitAtom);
+    const distanceUnit = useAtomValue(distanceUnitAtom);
+
+    const { t } = useTranslation('today-card');
+    const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
+      useDisclosure();
+    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    const todayCardData = useTodayCardData();
+
+    if (!todayCardData) return null;
+
     const {
-      time,
+      date,
       night,
       stateId,
       temperature,
@@ -70,65 +68,28 @@ export const TodayCard = memo(
       uvIndex,
       humidity,
       pressure,
+      visibility,
     } = todayCardData;
 
-    const [locationExact, setLocationExact] = useState(false);
-    const [locationName, setLocationName] = useState('');
-
-    const locationData = useLocationData();
-
-    useEffect(() => {
-      const locationTheSameAsLocationFromBrowser =
-        !!locationData &&
-        isLocationTheSameAsLocationFromBrowser({
-          longitude: locationData.longitude,
-          latitude: locationData.latitude,
-        });
-
-      setLocationExact(locationTheSameAsLocationFromBrowser);
-
-      const nextLocationName = locationTheSameAsLocationFromBrowser
-        ? getExtendedLocationName(locationData)
-        : getLocationName(locationData);
-
-      setLocationName(
-        nextLocationName ||
-          `${capitalize((query?.city as string) ?? '')}, ${toUpper(
-            (query?.countryCode as string) ?? ''
-          )}`
-      );
-    }, [locationData, query]);
-
-    const pressureUnit = useAtomValue(pressureUnitAtom);
-    const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
-    const precipitationUnit = useAtomValue(precipitationUnitAtom);
-
-    const { t } = useTranslation('weather-today-page');
-    const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
-      useDisclosure();
-    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
-
     return (
-      <Card {...componentProps}>
+      <Card {...props} pt="5">
         <Flex w="full" direction="column" px="4">
-          <Flex w="full" justify="space-between" mb={5}>
-            <Flex>
-              {locationExact && <PinCardIcon me={2.5} />}
+          <LocationInfoRow
+            date={date}
+            componentStyles={{
+              mb: 5,
+            }}
+          />
 
-              <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
-                {locationName}
-              </Text>
-            </Flex>
-
-            <Flex>
-              <Text color="gray.500" textStyle="16-medium">
-                <ClientOnly>{time}</ClientOnly>
-              </Text>
-            </Flex>
-          </Flex>
           <Flex direction="row" align="center" justify="center" mb={5}>
             <Flex me={4}>
-              <WeatherStateIcon stateId={stateId} night={night} boxSize="100" />
+              <WeatherStateIcon
+                stateId={stateId}
+                night={night}
+                width={100}
+                height={100}
+                priority
+              />
             </Flex>
 
             <Flex direction="column">
@@ -159,40 +120,49 @@ export const TodayCard = memo(
             </Flex>
           </Flex>
 
-          <Flex mt={1} justify="center">
-            <Text color="blue.800" textStyle="16-weather-detail" align="center">
-              {`${stateText ? `${stateText}.` : ''} ${t(
-                'Precipitation chance: {{precipitationChance}}%',
-                {
-                  precipitationChance,
-                }
-              )}`}
-            </Text>
-          </Flex>
+          <StateTextRow mt={1}>{stateText}</StateTextRow>
 
-          <Flex my={4} justify="center">
-            <WindDirectionIcon
-              fill="gray.600"
-              me={2}
-              transform={`rotate(${windDirectionAngle}deg)`}
-            />
-
-            <Text color="gray.600" textStyle="16-medium">
-              <ClientOnly>
-                {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
-                  windAzimuth: windAzimuth.toUpperCase(),
-                  windSpeed,
-                  windSpeedUnit,
-                })}
-              </ClientOnly>
-            </Text>
-          </Flex>
+          <WindInfoRow
+            directionAngle={windDirectionAngle}
+            componentStyles={{
+              my: '1.125em',
+            }}
+          >
+            <ClientOnly>
+              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+                windAzimuth: windAzimuth.toUpperCase(),
+                windSpeed,
+                windSpeedUnit,
+              })}
+            </ClientOnly>
+          </WindInfoRow>
 
           <Divider orientation="horizontal" variant="card-divider" />
 
-          <InfoBlocksRow>
+          <InfoBlocksRow my={3}>
             <InfoBlockWithIcon
-              icon={<InfoPrecipitationIcon w={8} h={8} />}
+              icon={
+                <Image
+                  src="/icons/info-chance.svg"
+                  width={32}
+                  height={32}
+                  alt={t('Chance')}
+                />
+              }
+              label={t('Chance')}
+              text={`${precipitationChance}%`}
+              flex={1}
+            />
+
+            <InfoBlockWithIcon
+              icon={
+                <Image
+                  src="/icons/info-precipitation.svg"
+                  width={32}
+                  height={32}
+                  alt={t('Precipitation')}
+                />
+              }
               label={t('Precipitation')}
               text={
                 <ClientOnly>
@@ -201,30 +171,71 @@ export const TodayCard = memo(
               }
               flex={1}
             />
-
-            <InfoBlockWithIcon
-              icon={<InfoUvIcon w={8} h={8} />}
-              label={t('UV Index')}
-              text={uvIndex}
-              flex={1}
-            />
           </InfoBlocksRow>
 
           <Divider orientation="horizontal" variant="card-divider" />
 
           <Collapse in={cardOpened || !widthSmallerThanMedium} animateOpacity>
-            <InfoBlocksRow>
+            <InfoBlocksRow my={3}>
               <InfoBlockWithIcon
-                icon={<InfoHumidityIcon w={8} h={8} />}
-                label={t('Humidity')}
-                text={`${humidity}%`}
+                icon={
+                  <Image
+                    src="/icons/info-uv.svg"
+                    width={32}
+                    height={32}
+                    alt={t('UV Index')}
+                  />
+                }
+                label={t('UV Index')}
+                text={t('{{uvIndex}} of 11', { uvIndex })}
                 flex={1}
               />
 
               <InfoBlockWithIcon
-                icon={<InfoPressureIcon w={8} h={8} />}
+                icon={
+                  <Image
+                    src="/icons/info-humidity.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Humidity')}
+                  />
+                }
+                label={t('Humidity')}
+                text={`${humidity}%`}
+                flex={1}
+              />
+            </InfoBlocksRow>
+
+            <Divider orientation="horizontal" variant="card-divider" />
+
+            <InfoBlocksRow mt={3} mb={widthSmallerThanMedium ? 3 : '1.125em'}>
+              <InfoBlockWithIcon
+                icon={
+                  <Image
+                    src="/icons/info-pressure.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Pressure')}
+                  />
+                }
                 label={t('Pressure')}
                 text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
+                flex={1}
+              />
+
+              <InfoBlockWithIcon
+                icon={
+                  <Image
+                    src="/icons/info-visibility.svg"
+                    width={32}
+                    height={32}
+                    alt={t('Visibility')}
+                  />
+                }
+                label={t('Visibility')}
+                text={
+                  <ClientOnly>{`${visibility} ${distanceUnit}`}</ClientOnly>
+                }
                 flex={1}
               />
             </InfoBlocksRow>

@@ -2,6 +2,7 @@ import { Location } from 'common/types';
 
 export type LocationDataByCoordinatesArguments = {
   language: string;
-} & Location;
+  location: Location;
+};
 
 export default LocationDataByCoordinatesArguments;

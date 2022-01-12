@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
     '<rootDir>/.next/',
     '<rootDir>/__tests__/utils',
   ],
+  setupFiles: ['<rootDir>/__tests__/utils/setup-env-vars.util.ts'],
   setupFilesAfterEnv: ['<rootDir>/__tests__/utils/jest-setup.util.ts'],
   moduleNameMapper: {
     '^pages(.*)$': '<rootDir>/pages$1',

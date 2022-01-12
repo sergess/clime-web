@@ -13,7 +13,7 @@ export const MinMaxTemperatureColumn = ({
     <Flex mb="1">
       <Arrow1Icon stroke="blue.800" boxSize="12px" mr="0.5" />
       <Text textStyle="12-semi-bold" color="blue.800">
-        {max ? `${max}°` : '-'}
+        {max}&#176;
       </Text>
     </Flex>
     <Flex>
@@ -24,7 +24,7 @@ export const MinMaxTemperatureColumn = ({
         transform="rotate(180deg)"
       />
       <Text textStyle="12-semi-bold" color="gray.500">
-        {min ? `${min}°` : '-'}
+        {min}&#176;
       </Text>
     </Flex>
   </Flex>

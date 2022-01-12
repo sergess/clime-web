@@ -1,15 +1,10 @@
-import { IconProps } from '@chakra-ui/react';
+import { ImageProps } from 'next/image';
 
 import { WeatherStateId } from 'common/types';
 
-export const weatherStateIconDefaultProps = {
-  night: false,
-};
-
-export type WeatherStateIconProps = {
+export type WeatherStateIconProps = Omit<ImageProps, 'src'> & {
   night?: boolean;
   stateId: WeatherStateId | null;
-} & IconProps &
-  typeof weatherStateIconDefaultProps;
+};
 
 export default WeatherStateIconProps;

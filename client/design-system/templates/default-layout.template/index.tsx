@@ -33,12 +33,13 @@ export const DefaultLayout: React.FC = ({
             <SimpleGrid
               w="full"
               pe={[null, null, null, 5]}
-              pb={5}
+              py={5}
               columns={[1, 1, 1, 1, 2]}
               spacing={[4, 5]}
             >
               <TopNavigationBar
-                pt="5"
+                p="3px"
+                m="-3px"
                 gridColumn={[null, null, null, null, 'span 2']}
               />
               {children}

@@ -1,86 +1,93 @@
-import { ReactElement, memo, useState, useCallback } from 'react';
-import { Button, Text, ComponentDefaultProps } from '@chakra-ui/react';
+import { ReactElement, memo, useCallback } from 'react';
+import { Button, Text, ComponentDefaultProps, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useUpdateAtom } from 'jotai/utils';
 
-import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
-
-import { ClientOnly } from 'client/design-system/atoms';
+import { ClientOnly, HourConditionIcon } from 'client/design-system/atoms';
 import {
   ForecastCard,
   SelectableColumnBlock,
 } from 'client/design-system/molecules';
+import { HOURLY_WEATHER } from 'client/constants';
+import { usePageUrl } from 'client/hooks';
+import { selectedHourAtom } from 'client/design-system/organisms/hourly-detailed-forecast-card.organism';
 
-import { useHourlyForecastCardDataAtomValue } from './hooks';
-import { HourlyForecastCardProps } from './types';
-import { Icon } from './atoms';
+import { SUNSET, SUNRISE, WEATHER_STATE } from 'common/constants';
+
+import { useHourlyForecastCardData } from './hooks';
 
 export const HourlyForecastCard = memo(
-  ({
-    data,
-    ...componentProps
-  }: HourlyForecastCardProps & ComponentDefaultProps): ReactElement => {
-    const { t } = useTranslation('weather-today-page');
-    const [selectedItem, setSelectedItem] = useState<number>(0);
-    const hourlyForecastCardData = useHourlyForecastCardDataAtomValue(data);
+  (props: ComponentDefaultProps): ReactElement | null => {
+    const router = useRouter();
+    const { t } = useTranslation('hourly-forecast-card');
+    const setSelectedHour = useUpdateAtom(selectedHourAtom);
+    const pageUrl = usePageUrl(HOURLY_WEATHER);
 
-    const onSelect = useCallback((index: number) => {
-      setSelectedItem(index);
+    const renderHourBlock = useCallback(({ index, item }) => {
+      const selected = index === 0;
+
+      return (
+        <SelectableColumnBlock
+          key={item.dateTime}
+          selected={selected}
+          onSelect={() => {
+            setSelectedHour(item.dateTime);
+            router.push(pageUrl);
+          }}
+          heading={
+            <Text
+              textStyle={selected ? '12-bold' : '12-semi-bold'}
+              color={selected ? 'blue.500' : 'blue.800'}
+            >
+              {index === 0 && t('Now')}
+              {index !== 0 && item.time}
+            </Text>
+          }
+          main={
+            <Box my={2}>
+              <HourConditionIcon
+                variant={item.variant}
+                night={item.night}
+                stateId={item.stateId}
+              />
+            </Box>
+          }
+          footer={
+            <ClientOnly>
+              <Text
+                textStyle={selected ? '12-bold' : '12-semi-bold'}
+                color="blue.800"
+              >
+                {SUNSET === item.variant && t('sunset')}
+                {SUNRISE === item.variant && t('sunrise')}
+                {WEATHER_STATE === item.variant && `${item.temperature}\u00b0`}
+              </Text>
+            </ClientOnly>
+          }
+        />
+      );
     }, []);
+
+    const hourlyForecastCardData = useHourlyForecastCardData();
+
+    if (!hourlyForecastCardData) return null;
 
     return (
       <ForecastCard
-        {...componentProps}
+        {...props}
+        py="5"
         heading={t('Hourly Forecast')}
         data={hourlyForecastCardData}
         footer={
-          <Button w="full" variant="cta" mx={3.5}>
-            {t('Explore hourly forecast')}
-          </Button>
+          <Link href={pageUrl} passHref>
+            <Button as="a" w="full" variant="cta" mx={3.5}>
+              {t('Explore hourly forecast')}
+            </Button>
+          </Link>
         }
-        renderItem={({ index, item }) => {
-          const selected = index === selectedItem;
-
-          return (
-            <SelectableColumnBlock
-              key={item.time}
-              selected={selected}
-              onSelect={() => onSelect(index)}
-              heading={
-                <Text
-                  textStyle={selected ? '12-bold' : '12-semi-bold'}
-                  color={selected ? 'blue.500' : 'blue.800'}
-                >
-                  {index === 0 && t('Now')}
-                  {index !== 0 && item.time}
-                </Text>
-              }
-              main={
-                <Icon
-                  my={2}
-                  boxSize="10"
-                  variant={item.variant}
-                  night={item.night}
-                  stateId={item.stateId}
-                />
-              }
-              footer={
-                <ClientOnly>
-                  <Text
-                    textStyle={selected ? '12-bold' : '12-semi-bold'}
-                    color="blue.800"
-                  >
-                    {SUNSET === item.variant && t('sunset')}
-                    {SUNRISE === item.variant && t('sunrise')}
-                    {WEATHER_STATE === item.variant &&
-                      t('{{temperature}}degree', {
-                        temperature: item.temperature,
-                      })}
-                  </Text>
-                </ClientOnly>
-              }
-            />
-          );
-        }}
+        renderItem={renderHourBlock}
       />
     );
   }

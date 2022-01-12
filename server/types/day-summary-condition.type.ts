@@ -1,13 +1,12 @@
-import { WeatherStateId } from 'common/types';
+import { WeatherStateId, DayPeriod } from 'common/types';
 
 export type DaySummaryCondition = {
   night: boolean;
   stateId: WeatherStateId | null;
-  stateText: string | null;
-  stateNightText: string | null;
+  period: DayPeriod;
   temperature: number | null;
   windSpeed: number | null;
-  windDirectionwd: number | null;
+  windDirection: number | null;
   precipitationLevel: number | null;
   precipitationChance: number | null;
 };
