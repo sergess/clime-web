@@ -63,6 +63,7 @@ NotFoundPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(!!locale && (await serverSideTranslations(locale, ['page-404']))),
+    ...(!!locale &&
+      (await serverSideTranslations(locale, ['common', 'page-404']))),
   },
 });

@@ -7,7 +7,6 @@ import {
   WEATHER_TODAY,
   HOURLY_WEATHER,
   TEN_DAY_WEATHER,
-  WEATHER_RADAR,
 } from 'client/constants';
 import { useUrlSlug, useClimeAppLink } from 'client/hooks';
 
@@ -54,12 +53,6 @@ export const TopNavigationBar = (
       {
         label: '10-day',
         path: urlSlug && `/${TEN_DAY_WEATHER}/${urlSlug}`,
-        variant: 'common-nav',
-        external: false,
-      },
-      {
-        label: 'Weather Radar',
-        path: urlSlug && `/${WEATHER_RADAR}/${urlSlug}`,
         variant: 'common-nav',
         external: false,
       },

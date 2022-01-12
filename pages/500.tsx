@@ -46,7 +46,7 @@ const InternalServerErrorPage = () => {
             disabled={!locationData}
             as="a"
           >
-            {t('Go Back')}
+            {t("Explore today's weather")}
           </Button>
         </Link>
       </Flex>
@@ -65,6 +65,7 @@ InternalServerErrorPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(!!locale && (await serverSideTranslations(locale, ['page-500']))),
+    ...(!!locale &&
+      (await serverSideTranslations(locale, ['common', 'page-500']))),
   },
 });

@@ -1,8 +1,8 @@
 export const parseJsonSafely = <T>(json: string): T | null => {
   try {
     return JSON.parse(json);
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error('[parseJsonSafely]: ', err);
 
     return null;
   }

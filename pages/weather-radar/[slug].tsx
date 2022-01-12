@@ -11,6 +11,8 @@ const WeatherRadar = (): ReactElement => <p>Weather radar</p>;
 export default WeatherRadar;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  return { notFound: true };
+
   const [locationData, translations] = await Promise.all([
     withLocationData({ autolocation: false })(context),
     withTranslations()(context),
