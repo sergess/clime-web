@@ -6,9 +6,9 @@ import { useAtomValue } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
 import { precipitationUnitAtom } from 'client/state/atoms';
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 
 import { DropIcon } from './atoms';
-import { UNIT_LABELS } from './constants';
 
 import { PointProps } from '../../types';
 import {
@@ -55,7 +55,7 @@ export const PrecipitationPoint = ({
         verticalAnchor="start"
         fontWeight={600}
         dy={30}
-      >{`${precipitationLevel} ${UNIT_LABELS[precipitationUnit]}`}</Text>
+      >{`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}</Text>
     </Glyph>
   );
 };

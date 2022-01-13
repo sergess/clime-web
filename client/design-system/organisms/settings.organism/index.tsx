@@ -10,22 +10,24 @@ import {
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
+import includes from 'ramda/src/includes';
 
 import { HeaderPopoverOverlay } from 'client/design-system/atoms';
 import { settingsAtom } from 'client/state/derivatives';
 import {
-  DistanceUnitValues,
-  PrecipitationUnitValues,
-  PressureUnitValues,
-  TemperatureUnitValues,
-  SpeedUnitValues,
-  Settings as SettingsType,
-} from 'client/types';
+  DISTANCE_UNIT_VALUES,
+  PRECIPITATION_UNIT_VALUES,
+  PRESSURE_UNIT_VALUES,
+  TEMPERATURE_UNIT_VALUES,
+  SPEED_UNIT_VALUES,
+} from 'client/constants/measurement-units';
+import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
 import { ValueOf } from 'common/types';
 
 import { SettingsCardSwitcherRow } from './molecules';
+import { MEASUREMENT_UNIT_LABELS } from './constants';
 import { SettingsTogglerProps } from './types';
 
 export const Settings = ({
@@ -41,32 +43,38 @@ export const Settings = ({
   const [settings, setSettings] = useAtom(settingsAtom);
 
   const getSwitcherOptions = useCallback(
-    (unitValues: string[]) =>
-      unitValues.map((value) => ({
-        value,
-        label: t(value),
-      })),
+    (unitValues: ValueOf<SettingsType>[]) =>
+      unitValues.map((value) => {
+        const label = t(MEASUREMENT_UNIT_LABELS[value]);
+
+        return {
+          value,
+          label: includes(value, TEMPERATURE_UNIT_VALUES)
+            ? `\u00b0${label}`
+            : label,
+        };
+      }),
     []
   );
 
   const temperatureUnitOptions = useMemo(
-    () => getSwitcherOptions(TemperatureUnitValues),
+    () => getSwitcherOptions(TEMPERATURE_UNIT_VALUES),
     []
   );
   const windSpeedUnitOptions = useMemo(
-    () => getSwitcherOptions(SpeedUnitValues),
+    () => getSwitcherOptions(SPEED_UNIT_VALUES),
     []
   );
   const precipitationUnitOptions = useMemo(
-    () => getSwitcherOptions(PrecipitationUnitValues),
+    () => getSwitcherOptions(PRECIPITATION_UNIT_VALUES),
     []
   );
   const pressureUnitOptions = useMemo(
-    () => getSwitcherOptions(PressureUnitValues),
+    () => getSwitcherOptions(PRESSURE_UNIT_VALUES),
     []
   );
   const distanceUnitOptions = useMemo(
-    () => getSwitcherOptions(DistanceUnitValues),
+    () => getSwitcherOptions(DISTANCE_UNIT_VALUES),
     []
   );
 
@@ -99,7 +107,9 @@ export const Settings = ({
           pe="1.5"
           onClick={opened ? onClose : onOpen}
         >
-          <Text textStyle="16-medium">{t(settings.temperature)}</Text>
+          <Text textStyle="16-medium">
+            &#176;{t(MEASUREMENT_UNIT_LABELS[settings.temperature])}
+          </Text>
 
           <Image
             src={opened ? '/icons/close.svg' : '/icons/settings.svg'}

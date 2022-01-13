@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 import Image from 'next/image';
 
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 import { ClientOnly, InfoBlocksRow } from 'client/design-system/atoms';
 import { precipitationUnitAtom, pressureUnitAtom } from 'client/state/atoms';
 import { InfoBlockWithIcon } from 'client/design-system/molecules';
@@ -53,7 +54,7 @@ export const SelectedDayInfo = memo(
             label={t('Precipitation')}
             text={
               <ClientOnly>
-                {`${precipitationLevel} ${precipitationUnit}`}
+                {`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}
               </ClientOnly>
             }
             flex={1}
@@ -105,7 +106,9 @@ export const SelectedDayInfo = memo(
               />
             }
             label={t('Pressure')}
-            text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
+            text={
+              <ClientOnly>{`${pressure} ${MEASUREMENT_UNIT_LABELS[pressureUnit]}`}</ClientOnly>
+            }
             flex={1}
           />
 

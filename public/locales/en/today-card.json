@@ -1,6 +1,6 @@
 {
   "Feels like {{feelsLikeTemperature}}": "Feels like \n{{feelsLikeTemperature}}\u00b0",
-  "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
+  "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}",
   "Chance": "Chance",
   "Precipitation": "Precipitation",
   "UV Index": "UV Index",

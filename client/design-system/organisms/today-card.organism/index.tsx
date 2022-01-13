@@ -13,6 +13,7 @@ import { useAtomValue } from 'jotai/utils';
 import Image from 'next/image';
 
 import climeTheme from 'client/theme';
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 import {
   Card,
   WeatherStateIcon,
@@ -130,10 +131,10 @@ export const TodayCard = memo(
             }}
           >
             <ClientOnly>
-              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+              {t('{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}', {
                 windAzimuth: windAzimuth.toUpperCase(),
                 windSpeed,
-                windSpeedUnit,
+                windSpeedUnit: MEASUREMENT_UNIT_LABELS[windSpeedUnit],
               })}
             </ClientOnly>
           </WindInfoRow>
@@ -167,7 +168,7 @@ export const TodayCard = memo(
               label={t('Precipitation')}
               text={
                 <ClientOnly>
-                  {`${precipitationLevel} ${precipitationUnit}`}
+                  {`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}
                 </ClientOnly>
               }
               flex={1}
@@ -227,7 +228,9 @@ export const TodayCard = memo(
                   />
                 }
                 label={t('Pressure')}
-                text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
+                text={
+                  <ClientOnly>{`${pressure} ${MEASUREMENT_UNIT_LABELS[pressureUnit]}`}</ClientOnly>
+                }
                 flex={1}
               />
 
@@ -242,7 +245,7 @@ export const TodayCard = memo(
                 }
                 label={t('Visibility')}
                 text={
-                  <ClientOnly>{`${visibility} ${distanceUnit}`}</ClientOnly>
+                  <ClientOnly>{`${visibility} ${MEASUREMENT_UNIT_LABELS[distanceUnit]}`}</ClientOnly>
                 }
                 flex={1}
               />

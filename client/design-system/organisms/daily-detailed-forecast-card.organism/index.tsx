@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
 import { useSelectedDateTimeIndex } from 'client/hooks';
 import { LocationInfoRow, WindInfoRow } from 'client/design-system/molecules';
@@ -86,10 +87,10 @@ export const DailyDetailedForecastCard = memo(
             }}
           >
             <ClientOnly>
-              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+              {t('{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}', {
                 windAzimuth: windAzimuth.toUpperCase(),
                 windSpeed,
-                windSpeedUnit,
+                windSpeedUnit: MEASUREMENT_UNIT_LABELS[windSpeedUnit],
               })}
             </ClientOnly>
           </WindInfoRow>

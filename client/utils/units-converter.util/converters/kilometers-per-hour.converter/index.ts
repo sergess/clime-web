@@ -1,5 +1,6 @@
 import curry from 'ramda/src/curry';
 
+import { SPEED_UNITS } from 'client/constants/measurement-units/speed.constant';
 import { SpeedUnit } from 'client/types';
 import {
   kilometersToMiles,
@@ -16,9 +17,9 @@ export const convertKilometersPerHourTo = curry(
     if (!isNumber(value)) return value;
 
     switch (unit) {
-      case SpeedUnit.MPH:
+      case SPEED_UNITS.MPH:
         return toFixedOne(kilometersToMiles(value as number));
-      case SpeedUnit.MS:
+      case SPEED_UNITS.MS:
         return toFixedOne(kilometersPerHourToMeterPerSecond(value as number));
       default:
         return toFixedOne(value as number);

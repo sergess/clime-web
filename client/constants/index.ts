@@ -7,3 +7,4 @@ export * from './weather-state-ids.constant';
 export * from './night-icons.constant';
 export * from './icons-names-map.constant';
 export * from './language-codes.constant';
+export * from './measurement-units';

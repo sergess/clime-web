@@ -10,7 +10,7 @@ import { ErrorPageLayout } from 'client/design-system/templates';
 import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';
 
-const InternalServerErrorPage = () => {
+const InternalServerErrorPage = (): ReactElement => {
   const { t } = useTranslation('page-500');
 
   const pageUrl = usePageUrl(WEATHER_TODAY);
