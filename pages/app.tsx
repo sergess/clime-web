@@ -1,18 +1,28 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
+import { Box, Flex, Text, Link, Heading } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import Head from 'next/head';
 
 import { AppPageLayout } from 'client/design-system/templates';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 
 const AppPage = () => {
-  const { t } = useTranslation('clime-app');
+  const { t } = useTranslation(['clime-app', 'meta-tags']);
   return (
     <>
+      <Head>
+        <title>{t('Weather Radar App | Clime')}</title>
+        <meta
+          name="description"
+          content={t(
+            'Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app.'
+          )}
+        />
+      </Head>
       <Flex
         pb={{ base: '5', lg: '10' }}
         pt={14}
@@ -35,7 +45,8 @@ const AppPage = () => {
         />
       </Flex>
       <Trans i18nKey="preciseWeather" t={t}>
-        <Text
+        <Heading
+          as="h1"
           color="white"
           fontSize={{ base: '30px', lg: '52px' }}
           lineHeight={{ base: '42px', lg: '64px' }}
@@ -65,7 +76,7 @@ const AppPage = () => {
           <Text as="span" fontSize={{ base: '28px', lg: '48px' }}>
             for you
           </Text>
-        </Text>
+        </Heading>
       </Trans>
       <Flex
         pt={{ base: '10', lg: '14' }}
@@ -153,6 +164,7 @@ AppPage.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(!!locale && (await serverSideTranslations(locale, ['clime-app']))),
+    ...(!!locale &&
+      (await serverSideTranslations(locale, ['clime-app', 'meta-tags']))),
   },
 });
