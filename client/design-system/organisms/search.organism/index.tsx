@@ -94,10 +94,11 @@ export const Search = ({
       matchWidth={!screenWidthSmallerThanMedium}
     >
       <PopoverTrigger>
-        <InputGroup maxW={{ base: '100%', md: '380px' }}>
+        <InputGroup maxW={{ base: '100%', md: '340px' }}>
           <Input
             autoFocus
             ref={searchInputRef}
+            _placeholder={{ color: 'blue.50' }}
             h={9}
             bg="gray.50"
             w="full"
@@ -105,7 +106,7 @@ export const Search = ({
             borderRadius="2xl"
             border="0px"
             onChange={onLocationChange}
-            placeholder={t('Search Location')}
+            placeholder={t('Enter City or Zip Code')}
             value={location}
           />
           <InputRightElement cursor="pointer" h="36px" w="auto">
@@ -119,12 +120,19 @@ export const Search = ({
               variant="ghost"
               borderRadius="full"
               onClick={clearSearch}
-              aria-label="Location search"
+              aria-label="Enter City or Zip Code"
               _hover={{
                 bg: 'transparent',
               }}
               icon={
-                <Image src="/icons/close.svg" width={24} height={24} alt="" />
+                <Image
+                  src={`/icons/${
+                    location.length >= 1 ? 'close' : 'search'
+                  }.svg`}
+                  width={24}
+                  height={24}
+                  alt={location.length >= 1 ? 'Close' : 'Search'}
+                />
               }
             />
           </InputRightElement>
@@ -170,23 +178,46 @@ export const Search = ({
                   </HeaderCardPopoverRow>
                 );
               })}
+            {suggestions && suggestions.length === 0 && (
+              <Flex p={4}>
+                <Flex bg="gray.50" boxSize="40px" p={2} borderRadius="xl">
+                  <Image
+                    src="/icons/no-result.svg"
+                    width={24}
+                    height={24}
+                    alt="No result"
+                  />
+                </Flex>
+                <Flex flexDirection="column" ps={4}>
+                  <Text textStyle="16-bold" color="blue.800">
+                    {t('No results')}
+                  </Text>
+                  <Text textStyle="14-medium" color="blue.800" pt={2}>
+                    {t('Try another location or zip code.')}
+                  </Text>
+                </Flex>
+              </Flex>
+            )}
           </Flex>
         </PopoverContent>
       </Portal>
     </Popover>
   ) : (
-    <IconButton
-      variant="ghost"
-      borderRadius="full"
-      onClick={onOpen}
-      aria-label="Location search"
-      minW="auto"
-      p="0 0.625em"
-      _hover={{
-        bg: 'gray.50',
-      }}
-      icon={<Image src="/icons/search.svg" width={24} height={24} alt="" />}
-    />
+    <InputGroup onClick={onOpen} w={{ base: '128px', md: '340px' }}>
+      <Input
+        h={9}
+        bg="gray.50"
+        _placeholder={{ color: 'blue.50' }}
+        w="full"
+        textStyle="16-medium"
+        borderRadius="2xl"
+        border="0px"
+        placeholder={t('Search')}
+      />
+      <InputRightElement h="36px">
+        <Image src="/icons/search.svg" width={24} height={24} alt="Search" />
+      </InputRightElement>
+    </InputGroup>
   );
 };
 

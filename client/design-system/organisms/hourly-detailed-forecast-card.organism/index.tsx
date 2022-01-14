@@ -1,9 +1,10 @@
-import { ReactElement, memo } from 'react';
+import React, { ReactElement, memo } from 'react';
 import {
   Flex,
   ComponentDefaultProps,
   Divider,
   Skeleton,
+  Heading,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
@@ -65,6 +66,17 @@ export const HourlyDetailedForecastCard = memo(
               {relatedDayConditionIndex > 1 &&
                 t('{{date}}, {{time}}', { date, time })}
             </>
+          }
+          heading={
+            <Heading
+              as="h1"
+              color="gray.500"
+              fontSize="16px"
+              fontWeight="500"
+              lineHeight="16px"
+            >
+              {t('Hourly Weather')}
+            </Heading>
           }
           componentStyles={{
             mb: 5,

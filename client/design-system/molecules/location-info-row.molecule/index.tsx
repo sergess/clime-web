@@ -14,8 +14,9 @@ import { LocationInfoRowProps } from './types';
 import { getFullLocationName } from './utils';
 
 export const LocationInfoRow = memo(
-  ({ date, componentStyles }: LocationInfoRowProps): ReactElement => {
+  ({ date, componentStyles, heading }: LocationInfoRowProps): ReactElement => {
     const locationData = useLocationData();
+
     const name = useMemo(
       () => getFullLocationName(locationData),
       [locationData]
@@ -51,20 +52,22 @@ export const LocationInfoRow = memo(
     }, [locationData, cookies, exact]);
 
     return (
-      <Flex {...componentStyles} w="full" justify="space-between">
-        <Flex align="center">
+      <Flex
+        {...componentStyles}
+        w="full"
+        justify="space-between"
+        flexWrap={heading ? 'wrap' : 'nowrap'}
+      >
+        <Flex w="full" pb={2}>
           {exact && <PinCardIcon me={2.5} />}
-
-          <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
+          <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
             {name}
           </Text>
         </Flex>
-
-        <Flex>
-          <Text color="gray.500" textStyle="16-medium">
-            {date}
-          </Text>
-        </Flex>
+        {heading}
+        <Text color="gray.500" textStyle="16-medium">
+          {date}
+        </Text>
       </Flex>
     );
   }

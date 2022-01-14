@@ -96,7 +96,7 @@ const Index = memo((): ReactElement => {
       >
         ADS
       </Card>
-      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <SummaryCard w="full" h={{ base: 260, md: 270 }} />
       <DailyForecastCard maxH={270} w="full" />
       <PromoBanner spotId="homeTwo" />
       <Card

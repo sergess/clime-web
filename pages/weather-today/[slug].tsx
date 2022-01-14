@@ -1,7 +1,8 @@
 import React, { ReactElement, memo } from 'react';
 import { GetServerSideProps } from 'next';
-import Head from 'next/head';
+import { Heading } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
 
 import {
   TodayCard,
@@ -30,7 +31,7 @@ const WeatherToday = memo((): ReactElement => {
   const locationData = useLocationData();
 
   const locationName = getLocationName(locationData);
-  const { t } = useTranslation('meta-tags');
+  const { t } = useTranslation(['meta-tags', 'today-card']);
   return (
     <>
       <Head>
@@ -47,7 +48,20 @@ const WeatherToday = memo((): ReactElement => {
           )}
         />
       </Head>
-      <TodayCard w="full" />
+      <TodayCard
+        heading={
+          <Heading
+            as="h1"
+            color="gray.500"
+            fontSize="16px"
+            fontWeight="500"
+            lineHeight="16px"
+          >
+            {t('Today Weather')}
+          </Heading>
+        }
+        w="full"
+      />
       <PromoBanner spotId="todayOne" />
       <HourlyForecastCard w="full" />
       <Card
@@ -59,7 +73,7 @@ const WeatherToday = memo((): ReactElement => {
       >
         ADS
       </Card>
-      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <SummaryCard w="full" h={{ base: 260, md: 270 }} />
       <DailyForecastCard maxH={270} w="full" />
       <PromoBanner spotId="todayTwo" />
       <Card
