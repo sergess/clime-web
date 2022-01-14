@@ -7,7 +7,8 @@
   "Humidity": "Humidity",
   "Pressure": "Pressure",
   "Visibility": "Visibility",
-  "Show more": "Show more",
-  "Hide": "Hide",
-  "{{uvIndex}} of 11": "{{uvIndex}} of 11"
+  "Show more details": "Show more details",
+  "Hide details": "Hide details",
+  "{{uvIndex}} of 11": "{{uvIndex}} of 11",
+  "Today Weather": "Today Weather"
 }

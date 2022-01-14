@@ -1,5 +1,7 @@
 import React, { ReactElement, memo } from 'react';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
 import {
   HourlyDetailedForecastCard,
@@ -7,6 +9,8 @@ import {
   PromoBanner,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
+import { useLocationData } from 'client/hooks';
+import { getLocationName } from 'client/utils';
 
 import { ForecastCard } from 'common/types';
 
@@ -18,9 +22,28 @@ import {
   mapDailyCard,
 } from 'server/middlewares/get-server-side-props';
 
-const HourlyWeather = memo(
-  (): ReactElement => (
+const HourlyWeather = memo((): ReactElement => {
+  const locationData = useLocationData();
+
+  const locationName = getLocationName(locationData);
+
+  const { t } = useTranslation('meta-tags');
+  return (
     <>
+      <Head>
+        <title>
+          {t('{{locationName}} - Hourly Weather Forecast | Clime', {
+            locationName,
+          })}
+        </title>
+        <meta
+          name="description"
+          content={t(
+            'Hourly weather forecast for {{locationName}}: temps, chance & amount of precip, wind speed & direction, humidity, & UV index.',
+            { locationName }
+          )}
+        />
+      </Head>
       <HourlyDetailedForecastCard w="full" />
       <PromoBanner spotId="hourlyOne" />
       <DailyForecastCard maxH={270} w="full" />
@@ -43,8 +66,8 @@ const HourlyWeather = memo(
         RADAR SNAPSHOT
       </Card>
     </>
-  )
-);
+  );
+});
 
 HourlyWeather.displayName = 'HourlyWeather';
 
@@ -56,7 +79,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     withTranslations(
       'hourly-detailed-forecast-card',
       'daily-forecast-card',
-      'banners'
+      'banners',
+      'meta-tags'
     )(context),
   ]);
 

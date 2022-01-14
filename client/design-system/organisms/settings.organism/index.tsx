@@ -24,6 +24,8 @@ import {
 import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
+import climeTheme from 'client/theme';
+
 import { ValueOf } from 'common/types';
 
 import { SettingsCardSwitcherRow } from './molecules';
@@ -97,17 +99,24 @@ export const Settings = ({
           align="center"
           justify="space-between"
           cursor="pointer"
-          ms={[1.5, 1.5, 5]}
-          h="36px"
-          w="80px"
+          ms={[4, 4, 5]}
+          h={{ md: '36px' }}
+          w={{ md: '80px' }}
           flex="none"
-          bg="gray.50"
+          bg={{ md: 'gray.50' }}
           borderRadius="2xl"
-          ps="3.5"
-          pe="1.5"
+          ps={{ md: '3.5' }}
+          pe={{ md: '1.5' }}
           onClick={opened ? onClose : onOpen}
         >
-          <Text textStyle="16-medium">
+          <Text
+            sx={{
+              [`@media screen and (max-width: ${climeTheme.breakpoints.md})`]: {
+                display: 'none',
+              },
+            }}
+            textStyle="16-medium"
+          >
             &#176;{t(MEASUREMENT_UNIT_LABELS[settings.temperature])}
           </Text>
 

@@ -1,6 +1,8 @@
 import React, { ReactElement, useEffect, memo } from 'react';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import {
   TodayCard,
@@ -69,9 +71,19 @@ const Index = memo((): ReactElement => {
     latitudeCookie,
     longitudeCookie,
   ]);
+  const { t } = useTranslation('meta-tags');
 
   return (
     <>
+      <Head>
+        <title>{t('Local & World Weather Forecast and Radar | Clime')}</title>
+        <meta
+          name="description"
+          content={t(
+            'Prepare for weather surprises with Clime! Check current weather in multiple locations, get precise 10-day forecasts, and explore the weather radar map.'
+          )}
+        />
+      </Head>
       <TodayCard w="full" />
       <PromoBanner spotId="homeOne" />
       <HourlyForecastCard w="full" />
@@ -84,7 +96,7 @@ const Index = memo((): ReactElement => {
       >
         ADS
       </Card>
-      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <SummaryCard w="full" h={{ base: 260, md: 270 }} />
       <DailyForecastCard maxH={270} w="full" />
       <PromoBanner spotId="homeTwo" />
       <Card
@@ -112,7 +124,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       'hourly-forecast-card',
       'summary-card',
       'daily-forecast-card',
-      'banners'
+      'banners',
+      'meta-tags'
     )(context),
   ]);
 

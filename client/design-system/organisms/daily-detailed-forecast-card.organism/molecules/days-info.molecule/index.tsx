@@ -9,7 +9,7 @@ import {
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
-import { WeatherStateIcon } from 'client/design-system/atoms';
+import { Arrow2Icon, WeatherStateIcon } from 'client/design-system/atoms';
 import {
   DetailedForecastCarousel,
   DetailedForecastCarouselSlide,
@@ -18,6 +18,7 @@ import {
   DetailedForecastChart,
   useDomain,
 } from 'client/design-system/molecules/detailed-forecast-chart.molecule';
+import { CarouselButton } from 'client/design-system/molecules/detailed-forecast-carousel.molecule/atoms';
 
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
 import { DaysInfoProps } from './types';
@@ -95,7 +96,23 @@ export const DaysInfo = memo(
             );
           }}
         />
+        <CarouselButton
+          direction="Left"
+          icon={<Arrow2Icon w={5} h={130} transform="rotate(180deg)" />}
+          top={100}
+          left={0}
+          position="absolute"
+          w={30}
+        />
 
+        <CarouselButton
+          direction="Right"
+          icon={<Arrow2Icon w={5} h={130} />}
+          top={100}
+          right={0}
+          position="absolute"
+          w={30}
+        />
         <DetailedForecastChart
           data={chartData}
           yDomain={yDomain}

@@ -12,5 +12,6 @@
   "{{uvIndex}} of 11": "{{uvIndex}} of 11",
   "Today, {{time}}": "Today, {{time}}",
   "Tomorrow, {{time}}": "Tomorrow, {{time}}",
-  "{{date}}, {{time}}": "{{date}}, {{time}}"
+  "{{date}}, {{time}}": "{{date}}, {{time}}",
+  "Hourly Weather": "Hourly Weather"
 }

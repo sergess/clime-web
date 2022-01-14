@@ -1,5 +1,8 @@
 import React, { ReactElement, memo } from 'react';
 import { GetServerSideProps } from 'next';
+import { Heading } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
 
 import {
   TodayCard,
@@ -9,6 +12,8 @@ import {
   PromoBanner,
 } from 'client/design-system/organisms';
 import { Card } from 'client/design-system/atoms';
+import { useLocationData } from 'client/hooks';
+import { getLocationName } from 'client/utils';
 
 import { ForecastCard } from 'common/types';
 
@@ -22,10 +27,41 @@ import {
   mapDailyCard,
 } from 'server/middlewares/get-server-side-props';
 
-const WeatherToday = memo(
-  (): ReactElement => (
+const WeatherToday = memo((): ReactElement => {
+  const locationData = useLocationData();
+
+  const locationName = getLocationName(locationData);
+  const { t } = useTranslation(['meta-tags', 'today-card']);
+  return (
     <>
-      <TodayCard w="full" />
+      <Head>
+        <title>
+          {t("{{locationName}} - Today's Weather Forecast | Clime", {
+            locationName,
+          })}
+        </title>
+        <meta
+          name="description"
+          content={t(
+            "See today's weather for {{locationName}}: temps, chance & amount of precipitation, wind speed & direction, UV index & more.",
+            { locationName }
+          )}
+        />
+      </Head>
+      <TodayCard
+        heading={
+          <Heading
+            as="h1"
+            color="gray.500"
+            fontSize="16px"
+            fontWeight="500"
+            lineHeight="16px"
+          >
+            {t('Today Weather')}
+          </Heading>
+        }
+        w="full"
+      />
       <PromoBanner spotId="todayOne" />
       <HourlyForecastCard w="full" />
       <Card
@@ -37,7 +73,7 @@ const WeatherToday = memo(
       >
         ADS
       </Card>
-      <SummaryCard w="full" h={{ base: 240, md: 254 }} />
+      <SummaryCard w="full" h={{ base: 260, md: 270 }} />
       <DailyForecastCard maxH={270} w="full" />
       <PromoBanner spotId="todayTwo" />
       <Card
@@ -50,8 +86,8 @@ const WeatherToday = memo(
         RADAR SNAPSHOT
       </Card>
     </>
-  )
-);
+  );
+});
 
 WeatherToday.displayName = 'WeatherToday';
 
@@ -65,7 +101,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       'hourly-forecast-card',
       'summary-card',
       'daily-forecast-card',
-      'banners'
+      'banners',
+      'meta-tags'
     )(context),
   ]);
 

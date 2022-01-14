@@ -38,8 +38,13 @@ import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
 import { useTodayCardData } from './hooks';
 
+import { TodayCardProps } from './types';
+
 export const TodayCard = memo(
-  (props: ComponentDefaultProps): ReactElement | null => {
+  ({
+    heading = null,
+    ...componentStyles
+  }: TodayCardProps & ComponentDefaultProps): ReactElement | null => {
     const pressureUnit = useAtomValue(pressureUnitAtom);
     const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
     const precipitationUnit = useAtomValue(precipitationUnitAtom);
@@ -74,10 +79,11 @@ export const TodayCard = memo(
     } = todayCardData;
 
     return (
-      <Card {...props} pt="5">
+      <Card {...componentStyles} pt="5">
         <Flex w="full" direction="column" px="4">
           <LocationInfoRow
             date={date}
+            heading={heading}
             componentStyles={{
               mb: 5,
             }}
@@ -272,7 +278,7 @@ export const TodayCard = memo(
           onClick={onCardOpenedToggle}
         >
           <Text color="blue.500" textStyle="14-semi-bold" me={1}>
-            {cardOpened ? t('Hide') : t('Show more')}
+            {cardOpened ? t('Hide details') : t('Show more details')}
           </Text>
           <Arrow2Icon
             transform={cardOpened ? 'rotate(270deg)' : 'rotate(90deg)'}
