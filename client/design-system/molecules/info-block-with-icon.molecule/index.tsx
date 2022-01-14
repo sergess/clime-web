@@ -10,12 +10,7 @@ export const InfoBlockWithIcon = ({
   flex,
 }: InfoBlockWithIconProps & StyleProps): ReactElement => (
   <Flex flex={flex}>
-    <Center
-      bgGradient="linear(to-b, #3C83E800, #3C83E814)"
-      borderRadius={12}
-      me={2}
-      p={1}
-    >
+    <Center me={2} p={1}>
       {icon}
     </Center>
 

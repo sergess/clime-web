@@ -16,5 +16,9 @@
   "mm": "mm",
   "mbar": "mbar",
   "mi": "miles",
-  "km": "kilometers"
+  "km": "kilometers",
+  "Search": "Search",
+  "Enter City or Zip Code": "Enter City or Zip Code",
+  "No results": "No results",
+  "Try another location or zip code.": "Try another location or zip code."
 }
