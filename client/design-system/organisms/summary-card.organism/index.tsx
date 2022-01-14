@@ -47,7 +47,12 @@ const selectorOptions = [
     value: option,
     label: (
       <Center mx={1} p={0.5}>
-        <Image src={`/icons/${SummaryIcon}.svg`} width={24} height={24} />
+        <Image
+          alt="Chart switch selector"
+          src={`/icons/${SummaryIcon}.svg`}
+          width={24}
+          height={24}
+        />
       </Center>
     ),
   };

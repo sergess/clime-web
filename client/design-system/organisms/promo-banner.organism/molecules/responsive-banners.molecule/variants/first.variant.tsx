@@ -40,7 +40,6 @@ export const ResponsiveBannerFirst = ({
         <Image
           src="/banner-one-phone.png"
           layout="fill"
-          priority
           alt="Keep your weather forecast at hand!"
         />
       </Box>
@@ -78,7 +77,6 @@ export const ResponsiveBannerFirst = ({
                 <Image
                   src="/icons/app-store.svg"
                   layout="fill"
-                  priority
                   alt="App Store"
                 />
               </Box>
@@ -94,7 +92,6 @@ export const ResponsiveBannerFirst = ({
                 <Image
                   src="/icons/google-play.svg"
                   layout="fill"
-                  priority
                   alt="Google Play"
                 />
               </Box>

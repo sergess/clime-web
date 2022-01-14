@@ -43,7 +43,7 @@ export const MarketingBannerFifth = (
       >
         <Flex align="center" mb={2.5}>
           <Box me={3.5} boxSize="6" pos="relative">
-            <Image src="/icons/ic_map.svg" layout="fill" priority alt="map" />
+            <Image src="/icons/ic_map.svg" layout="fill" alt="map" />
           </Box>
           <Text color="white" fontSize={14} lineHeight="14px" fontWeight="600">
             {t('Advanced Precipitation Forecast Map')}
@@ -54,7 +54,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_hurricane.svg"
               layout="fill"
-              priority
               alt="hurricane"
             />
           </Box>
@@ -67,7 +66,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_lightning.svg"
               layout="fill"
-              priority
               alt="lightning"
             />
           </Box>
@@ -80,7 +78,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_rainscope.svg"
               layout="fill"
-              priority
               alt="rainscope"
             />
           </Box>
@@ -93,7 +90,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_wildfires.svg"
               layout="fill"
-              priority
               alt="wildfires"
             />
           </Box>

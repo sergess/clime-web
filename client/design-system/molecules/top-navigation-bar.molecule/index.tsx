@@ -105,13 +105,7 @@ export const TopNavigationBar = (
           transform="matrix(-1, 0, 0, 1, 0, 0)"
           onClick={swipeLeft}
         >
-          <Image
-            src="/icons/arrow-100.svg"
-            width={20}
-            height={20}
-            alt="Left"
-            priority
-          />
+          <Image src="/icons/arrow-100.svg" width={20} height={20} alt="Left" />
         </Flex>
       )}
       <Flex
@@ -179,7 +173,6 @@ export const TopNavigationBar = (
             width={20}
             height={20}
             alt="Right"
-            priority
           />
         </Flex>
       )}

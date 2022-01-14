@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 
 import climeTheme from 'client/theme';
 import { useClimeAppLink } from 'client/hooks';
+import { DEFAULT_BLUR_DATA_URL } from 'client/constants/blur-data-urls.constant';
 
 export const HeaderBanner = (): ReactElement => {
   const { t } = useTranslation('banners');
@@ -54,10 +55,11 @@ export const HeaderBanner = (): ReactElement => {
         <NextLink href={climeAppLink} passHref>
           <Link href={climeAppLink} isExternal h="68px">
             <Image
+              placeholder="blur"
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
               src="/header-banner-phones.png"
               width={140}
               height={68}
-              priority
               alt="Clime Mobile App"
             />
           </Link>
