@@ -64,7 +64,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
         setCookie(EXACT_LATITUDE_COOKIE, `${locationFromBrowser?.latitude}`);
         setCookie(EXACT_LONGITUDE_COOKIE, `${locationFromBrowser?.longitude}`);
 
-        router.push(`${WEATHER_TODAY}/${slug}`);
+        router.push(`/${WEATHER_TODAY}/${slug}`);
       }
     }, [
       hasMounted,
