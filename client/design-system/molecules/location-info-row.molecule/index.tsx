@@ -59,10 +59,10 @@ export const LocationInfoRow = memo(
         flexWrap={heading ? 'wrap' : 'nowrap'}
       >
         <Flex w="full" pb={2}>
-          {exact && <PinCardIcon me={2.5} />}
           <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
             {name}
           </Text>
+          {exact && <PinCardIcon ms={2.5} />}
         </Flex>
         {heading}
         <Text color="gray.500" textStyle="16-medium">

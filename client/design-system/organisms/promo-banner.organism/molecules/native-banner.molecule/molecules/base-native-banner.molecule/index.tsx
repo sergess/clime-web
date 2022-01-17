@@ -3,6 +3,8 @@ import { Box, Button, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
+import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
+
 import { BaseNativeBannerProps } from './types';
 
 export const BaseNativeBanner = ({
@@ -14,7 +16,7 @@ export const BaseNativeBanner = ({
 
   return (
     <LinkBox
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"

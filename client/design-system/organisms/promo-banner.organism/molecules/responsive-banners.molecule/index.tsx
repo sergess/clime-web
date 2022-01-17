@@ -1,8 +1,11 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import { Skeleton } from '@chakra-ui/react';
+
+import { Skeleton } from 'client/design-system/organisms/promo-banner.organism/atoms';
 
 import { ResponsiveBannerProps, ResponsiveBannerId } from './types';
+
+const loading = (): ReactElement => <Skeleton h="full" />;
 
 const responsiveBanners: Record<
   ResponsiveBannerId,
@@ -10,15 +13,11 @@ const responsiveBanners: Record<
 > = {
   [ResponsiveBannerId.bannerOne]: dynamic(
     () => import('./variants/first.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [ResponsiveBannerId.bannerTwo]: dynamic(
     () => import('./variants/second.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
 };
 

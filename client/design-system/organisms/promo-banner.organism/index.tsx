@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import { Skeleton } from '@chakra-ui/react';
 
+import { Skeleton } from './atoms';
 import { BannerType, PromoBannerProps } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -10,7 +10,7 @@ import { ResponsiveBanner } from './molecules/responsive-banners.molecule';
 const NativeBanner = dynamic(
   () => import('./molecules/native-banner.molecule'),
   {
-    loading: () => <Skeleton h="full" w="full" />,
+    loading: () => <Skeleton minH={340} />,
   }
 );
 
@@ -19,7 +19,7 @@ export const PromoBanner = ({
 }: PromoBannerProps): ReactElement | null => {
   const banner = useParsedPromoBanner(spotId);
 
-  if (!banner) return null;
+  if (!banner) return <Skeleton />;
 
   const { type, id } = banner;
 

@@ -11,24 +11,30 @@ import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
 
 import { useClimeAppLink } from 'client/hooks';
+import {
+  DEFAULT_BANNER_HEIGHT,
+  DEFAULT_BANNER_BORDER_RADIUS,
+} from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const MarketingBannerFourth = (
   props: ComponentDefaultProps
 ): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
     <LinkBox
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
       bgSize="cover"
       bgPosition="center center"
-      h={250}
+      h={DEFAULT_BANNER_HEIGHT}
       alignItems="flex-start"
       bgImage="url('/img_11.jpg')"
+      bgColor="rgb(0, 50, 50)"
       {...props}
     >
       <Flex

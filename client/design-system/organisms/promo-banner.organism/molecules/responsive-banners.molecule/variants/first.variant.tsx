@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
+import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const ResponsiveBannerFirst = ({
   wide,
@@ -18,14 +19,14 @@ export const ResponsiveBannerFirst = ({
   return (
     <LinkBox
       d="flex"
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
       alignItems="flex-start"
       bgGradient="linear(115deg, #FFFFFF 40%, #D3E3FA 100%)"
       boxShadow="0 4px 8px rgba(26, 96, 179, 0.1), inset 0px -2px 0px rgba(60, 131, 232, 0.1)"
-      h={!wide ? '260px' : '200px'}
+      h={!wide ? '270px' : '200px'}
       px={5}
       pt={!wide ? 6 : 5}
       pb={5}

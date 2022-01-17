@@ -10,23 +10,28 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 import { useClimeAppLink } from 'client/hooks';
-import Image from 'next/image';
+import {
+  DEFAULT_BANNER_HEIGHT,
+  DEFAULT_BANNER_BORDER_RADIUS,
+} from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const MarketingBannerEleventh = (
   props: ComponentDefaultProps
 ): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
     <LinkBox
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
-      h={250}
+      h={DEFAULT_BANNER_HEIGHT}
       alignItems="center"
       bg="blue.500"
       {...props}
