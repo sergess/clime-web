@@ -6,9 +6,9 @@ import { useTranslation } from 'next-i18next';
 import { ForecastCardsProvider } from 'client/state/contexts/forecast-cards.context';
 import {
   DailyDetailedForecastCard,
+  HourlyForecastCard,
   PromoBanner,
 } from 'client/design-system/organisms';
-import { Card } from 'client/design-system/atoms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
 
@@ -20,6 +20,7 @@ import {
   withForecastCards,
   withLocationData,
   withTranslations,
+  mapHourlyCard,
 } from 'server/middlewares/get-server-side-props';
 
 const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
@@ -47,24 +48,7 @@ const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
         </Head>
         <DailyDetailedForecastCard w="full" />
         <PromoBanner spotId="tenDayOne" />
-        <Card
-          w="full"
-          h="100px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          ADS
-        </Card>
-        <Card
-          w="full"
-          h="200px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          RADAR SNAPSHOT
-        </Card>
+        <HourlyForecastCard w="full" />
       </ForecastCardsProvider>
     );
   }
@@ -93,6 +77,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const forecastCards = await withForecastCards(
     {
       [ForecastCard.DAILY_DETAILED]: mapDailyDetailedCard,
+      [ForecastCard.HOURLY]: mapHourlyCard,
     },
     locationData
   )(context);

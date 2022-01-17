@@ -55,9 +55,6 @@ export const DefaultLayout: React.FC = ({
             <Box bg="red.50" w="full" h="640px">
               ads
             </Box>
-            <Box bg="gray.300" w="full" h="320px" mt="10">
-              ads 2
-            </Box>
           </Flex>
         </Flex>
       </Flex>

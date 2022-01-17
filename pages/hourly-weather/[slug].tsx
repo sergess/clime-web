@@ -9,7 +9,6 @@ import {
   DailyForecastCard,
   PromoBanner,
 } from 'client/design-system/organisms';
-import { Card } from 'client/design-system/atoms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
 
@@ -50,24 +49,6 @@ const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
         <HourlyDetailedForecastCard w="full" />
         <PromoBanner spotId="hourlyOne" />
         <DailyForecastCard maxH={270} w="full" />
-        <Card
-          w="full"
-          h="100px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          ADS
-        </Card>
-        <Card
-          w="full"
-          h="200px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          RADAR SNAPSHOT
-        </Card>
       </ForecastCardsProvider>
     );
   }

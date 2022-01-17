@@ -12,7 +12,6 @@ import {
   DailyForecastCard,
   PromoBanner,
 } from 'client/design-system/organisms';
-import { Card } from 'client/design-system/atoms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
 
@@ -68,27 +67,9 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
         />
         <PromoBanner spotId="todayOne" />
         <HourlyForecastCard w="full" />
-        <Card
-          w="full"
-          h="100px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          ADS
-        </Card>
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
         <DailyForecastCard maxH={270} w="full" />
         <PromoBanner spotId="todayTwo" />
-        <Card
-          w="full"
-          h="200px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          RADAR SNAPSHOT
-        </Card>
       </ForecastCardsProvider>
     );
   }

@@ -12,7 +12,6 @@ import {
   DailyForecastCard,
   PromoBanner,
 } from 'client/design-system/organisms';
-import { Card } from 'client/design-system/atoms';
 import { WEATHER_TODAY } from 'client/constants';
 import {
   useHasMounted,
@@ -90,27 +89,9 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
         <TodayCard w="full" />
         <PromoBanner spotId="homeOne" />
         <HourlyForecastCard w="full" />
-        <Card
-          w="full"
-          h="100px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          ADS
-        </Card>
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
         <DailyForecastCard maxH={270} w="full" />
         <PromoBanner spotId="homeTwo" />
-        <Card
-          w="full"
-          h="200px"
-          bg="gray.400"
-          color="white"
-          justifyContent="center"
-        >
-          RADAR SNAPSHOT
-        </Card>
       </ForecastCardsProvider>
     );
   }
