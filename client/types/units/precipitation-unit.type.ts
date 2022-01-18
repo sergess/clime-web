@@ -1,11 +1,7 @@
-export enum PrecipitationUnit {
-  INCH = 'inch',
-  MM = 'mm',
-}
+import { PRECIPITATION_UNITS } from 'client/constants/measurement-units/precipitation.constant';
 
-export const PrecipitationUnitValues = [
-  PrecipitationUnit.INCH,
-  PrecipitationUnit.MM,
-];
+import { ValueOf } from 'common/types';
+
+export type PrecipitationUnit = ValueOf<typeof PRECIPITATION_UNITS>;
 
 export default PrecipitationUnit;

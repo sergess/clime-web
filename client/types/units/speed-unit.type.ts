@@ -1,9 +1,7 @@
-export enum SpeedUnit {
-  MPH = 'mph',
-  KMH = 'kmh',
-  MS = 'ms',
-}
+import { SPEED_UNITS } from 'client/constants/measurement-units/speed.constant';
 
-export const SpeedUnitValues = [SpeedUnit.MPH, SpeedUnit.KMH, SpeedUnit.MS];
+import { ValueOf } from 'common/types';
+
+export type SpeedUnit = ValueOf<typeof SPEED_UNITS>;
 
 export default SpeedUnit;

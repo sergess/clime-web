@@ -10,27 +10,33 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 import { useClimeAppLink } from 'client/hooks';
-import Image from 'next/image';
+import {
+  DEFAULT_BANNER_HEIGHT,
+  DEFAULT_BANNER_BORDER_RADIUS,
+} from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const MarketingBannerFifth = (
   props: ComponentDefaultProps
 ): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
     <LinkBox
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
       bgSize="cover"
       bgPosition="center center"
-      h={250}
+      h={DEFAULT_BANNER_HEIGHT}
       alignItems="flex-start"
       bgImage="url('/img_12.jpg')"
+      bgColor="rgb(5, 19, 56)"
       {...props}
     >
       <Flex
@@ -43,7 +49,7 @@ export const MarketingBannerFifth = (
       >
         <Flex align="center" mb={2.5}>
           <Box me={3.5} boxSize="6" pos="relative">
-            <Image src="/icons/ic_map.svg" layout="fill" priority alt="map" />
+            <Image src="/icons/ic_map.svg" layout="fill" alt="map" />
           </Box>
           <Text color="white" fontSize={14} lineHeight="14px" fontWeight="600">
             {t('Advanced Precipitation Forecast Map')}
@@ -54,7 +60,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_hurricane.svg"
               layout="fill"
-              priority
               alt="hurricane"
             />
           </Box>
@@ -67,7 +72,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_lightning.svg"
               layout="fill"
-              priority
               alt="lightning"
             />
           </Box>
@@ -80,7 +84,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_rainscope.svg"
               layout="fill"
-              priority
               alt="rainscope"
             />
           </Box>
@@ -93,7 +96,6 @@ export const MarketingBannerFifth = (
             <Image
               src="/icons/ic_wildfires.svg"
               layout="fill"
-              priority
               alt="wildfires"
             />
           </Box>

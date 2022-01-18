@@ -1,5 +1,5 @@
 {
-  "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
+  "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}",
   "Today": "Today",
   "Tomorrow": "Tomorrow",
   "Chance": "Chance",

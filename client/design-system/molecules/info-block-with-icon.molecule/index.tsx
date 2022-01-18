@@ -1,17 +1,18 @@
-import { ReactElement } from 'react';
+import { FC, ReactElement, ReactNode } from 'react';
 import { Flex, Center, Text, StyleProps } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { InfoBlockWithIconProps } from './types';
-
-export const InfoBlockWithIcon = ({
-  icon,
-  label,
-  text,
-  flex,
-}: InfoBlockWithIconProps & StyleProps): ReactElement => (
+export const InfoBlockWithIcon: FC<
+  {
+    iconSrc: string;
+    iconAlt: string;
+    label: string;
+    text: ReactNode;
+  } & StyleProps
+> = ({ iconSrc, iconAlt, label, text, flex }): ReactElement => (
   <Flex flex={flex}>
     <Center me={2} p={1}>
-      {icon}
+      <Image src={iconSrc} alt={iconAlt} width={32} height={32} />
     </Center>
 
     <Flex direction="column" justify="center">

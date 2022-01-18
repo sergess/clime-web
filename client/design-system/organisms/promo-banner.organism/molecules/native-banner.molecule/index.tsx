@@ -15,7 +15,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Hurricane Tracker')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_1.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_1.jpg')",
+            bgColor: 'rgb(50, 67, 105)',
+          }}
         />
       );
     case NativeBannerId.bannerTwo:
@@ -23,7 +26,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_2.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_2.jpg')",
+            bgColor: 'rgb(31, 55, 54)',
+          }}
         />
       );
     case NativeBannerId.bannerThree:
@@ -31,7 +37,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_3.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_3.jpg')",
+            bgColor: 'rgb(37, 57, 57)',
+          }}
         />
       );
     case NativeBannerId.bannerFour:
@@ -39,7 +48,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Lightning Tracker')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_4.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_4.jpg')",
+            bgColor: 'rgb(39, 48, 48)',
+          }}
         />
       );
     case NativeBannerId.bannerFife:
@@ -47,7 +59,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Advanced Precipitation Forecast Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_5.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_5.jpg')",
+            bgColor: 'rgb(0, 109, 104)',
+          }}
         />
       );
     case NativeBannerId.bannerSix:
@@ -55,7 +70,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Temperature Forecast Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_6.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_6.jpg')",
+            bgColor: 'rgb(119, 173, 0)',
+          }}
         />
       );
     case NativeBannerId.bannerSeven:
@@ -63,7 +81,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('RainScope')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_7.jpg')" }}
+          bannerStyles={{
+            bgImage: "url('/img_7.jpg')",
+            bgColor: 'rgb(50, 67, 105)',
+          }}
         />
       );
     default:

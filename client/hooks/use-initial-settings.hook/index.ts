@@ -4,12 +4,12 @@ import { useUpdateAtom } from 'jotai/utils';
 import { settingsAtom } from 'client/state/derivatives';
 import { getUserLocale } from 'client/utils';
 import {
-  DistanceUnit,
-  PrecipitationUnit,
-  PressureUnit,
-  SpeedUnit,
-  TemperatureUnit,
-} from 'client/types';
+  DISTANCE_UNITS,
+  PRECIPITATION_UNITS,
+  PRESSURE_UNITS,
+  SPEED_UNITS,
+  TEMPERATURE_UNITS,
+} from 'client/constants/measurement-units';
 import { EN_US, EN } from 'client/constants';
 
 import { areSettingsEmpty } from './utils';
@@ -29,19 +29,19 @@ export const useInitialSettings = (): void => {
       userLocale === EN?.toLowerCase()
     ) {
       setSettings({
-        distance: DistanceUnit.MI,
-        precipitation: PrecipitationUnit.INCH,
-        pressure: PressureUnit.INCH,
-        temperature: TemperatureUnit.F,
-        windSpeed: SpeedUnit.MPH,
+        distance: DISTANCE_UNITS.MI,
+        precipitation: PRECIPITATION_UNITS.INCH,
+        pressure: PRESSURE_UNITS.INCH,
+        temperature: TEMPERATURE_UNITS.F,
+        windSpeed: SPEED_UNITS.MPH,
       });
     } else {
       setSettings({
-        distance: DistanceUnit.KM,
-        precipitation: PrecipitationUnit.MM,
-        pressure: PressureUnit.MM,
-        temperature: TemperatureUnit.C,
-        windSpeed: SpeedUnit.KMH,
+        distance: DISTANCE_UNITS.KM,
+        precipitation: PRECIPITATION_UNITS.MM,
+        pressure: PRESSURE_UNITS.MM,
+        temperature: TEMPERATURE_UNITS.C,
+        windSpeed: SPEED_UNITS.KMH,
       });
     }
   }, []);

@@ -1,8 +1,12 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import { ComponentDefaultProps, Skeleton } from '@chakra-ui/react';
+import { ComponentDefaultProps } from '@chakra-ui/react';
+
+import { Skeleton } from 'client/design-system/organisms/promo-banner.organism/atoms';
 
 import { MarketingBannerProps, MarketingBannerId } from './types';
+
+const loading = (): ReactElement => <Skeleton />;
 
 const marketingBanners: Record<
   MarketingBannerId,
@@ -10,69 +14,47 @@ const marketingBanners: Record<
 > = {
   [MarketingBannerId.bannerOne]: dynamic(
     () => import('./variants/first.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerTwo]: dynamic(
     () => import('./variants/second.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerThree]: dynamic(
     () => import('./variants/third.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerFour]: dynamic(
     () => import('./variants/fourth.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerFife]: dynamic(
     () => import('./variants/fifth.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerSix]: dynamic(
     () => import('./variants/sixth.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerSeven]: dynamic(
     () => import('./variants/seventh.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerEight]: dynamic(
     () => import('./variants/eight.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerNine]: dynamic(
     () => import('./variants/ninth.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerTen]: dynamic(
     () => import('./variants/tenth.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
   [MarketingBannerId.bannerEleven]: dynamic(
     () => import('./variants/eleventh.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    { loading }
   ),
 };
 

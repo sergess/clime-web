@@ -10,8 +10,9 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
-import Image from 'next/image';
 
+import climeTheme from 'client/theme';
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 import {
   Card,
   WeatherStateIcon,
@@ -135,10 +136,10 @@ export const TodayCard = memo(
             }}
           >
             <ClientOnly>
-              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+              {t('{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}', {
                 windAzimuth: windAzimuth.toUpperCase(),
                 windSpeed,
-                windSpeedUnit,
+                windSpeedUnit: MEASUREMENT_UNIT_LABELS[windSpeedUnit],
               })}
             </ClientOnly>
           </WindInfoRow>
@@ -147,32 +148,20 @@ export const TodayCard = memo(
 
           <InfoBlocksRow my={3}>
             <InfoBlockWithIcon
-              icon={
-                <Image
-                  src="/icons/info-chance.svg"
-                  width={32}
-                  height={32}
-                  alt={t('Chance')}
-                />
-              }
+              iconSrc="/icons/info-chance.svg"
+              iconAlt={t('Chance')}
               label={t('Chance')}
               text={`${precipitationChance}%`}
               flex={1}
             />
 
             <InfoBlockWithIcon
-              icon={
-                <Image
-                  src="/icons/info-precipitation.svg"
-                  width={32}
-                  height={32}
-                  alt={t('Precipitation')}
-                />
-              }
+              iconSrc="/icons/info-precipitation.svg"
+              iconAlt={t('Precipitation')}
               label={t('Precipitation')}
               text={
                 <ClientOnly>
-                  {`${precipitationLevel} ${precipitationUnit}`}
+                  {`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}
                 </ClientOnly>
               }
               flex={1}
@@ -184,28 +173,16 @@ export const TodayCard = memo(
           <Collapse in={cardOpened || !widthSmallerThanMedium} animateOpacity>
             <InfoBlocksRow my={3}>
               <InfoBlockWithIcon
-                icon={
-                  <Image
-                    src="/icons/info-uv.svg"
-                    width={32}
-                    height={32}
-                    alt={t('UV Index')}
-                  />
-                }
+                iconSrc="/icons/info-uv.svg"
+                iconAlt={t('UV Index')}
                 label={t('UV Index')}
                 text={t('{{uvIndex}} of 11', { uvIndex })}
                 flex={1}
               />
 
               <InfoBlockWithIcon
-                icon={
-                  <Image
-                    src="/icons/info-humidity.svg"
-                    width={32}
-                    height={32}
-                    alt={t('Humidity')}
-                  />
-                }
+                iconSrc="/icons/info-humidity.svg"
+                iconAlt={t('Humidity')}
                 label={t('Humidity')}
                 text={`${humidity}%`}
                 flex={1}
@@ -214,56 +191,64 @@ export const TodayCard = memo(
 
             <Divider orientation="horizontal" variant="card-divider" />
 
-            <InfoBlocksRow mt={3} mb={widthSmallerThanMedium ? 3 : '1.125em'}>
+            <InfoBlocksRow
+              mt={3}
+              mb="1.125em"
+              sx={{
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { mb: 3 },
+              }}
+            >
               <InfoBlockWithIcon
-                icon={
-                  <Image
-                    src="/icons/info-pressure.svg"
-                    width={32}
-                    height={32}
-                    alt={t('Pressure')}
-                  />
-                }
+                iconSrc="/icons/info-pressure.svg"
+                iconAlt={t('Pressure')}
                 label={t('Pressure')}
-                text={<ClientOnly>{`${pressure} ${pressureUnit}`}</ClientOnly>}
+                text={
+                  <ClientOnly>{`${pressure} ${MEASUREMENT_UNIT_LABELS[pressureUnit]}`}</ClientOnly>
+                }
                 flex={1}
               />
 
               <InfoBlockWithIcon
-                icon={
-                  <Image
-                    src="/icons/info-visibility.svg"
-                    width={32}
-                    height={32}
-                    alt={t('Visibility')}
-                  />
-                }
+                iconSrc="/icons/info-visibility.svg"
+                iconAlt={t('Visibility')}
                 label={t('Visibility')}
                 text={
-                  <ClientOnly>{`${visibility} ${distanceUnit}`}</ClientOnly>
+                  <ClientOnly>{`${visibility} ${MEASUREMENT_UNIT_LABELS[distanceUnit]}`}</ClientOnly>
                 }
                 flex={1}
               />
             </InfoBlocksRow>
 
-            {widthSmallerThanMedium && (
-              <Divider orientation="horizontal" variant="card-divider" />
-            )}
+            <Divider
+              sx={{
+                [`@media screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { display: 'none' },
+              }}
+              orientation="horizontal"
+              variant="card-divider"
+            />
           </Collapse>
         </Flex>
 
-        {widthSmallerThanMedium && (
-          <Button variant="expand-card" onClick={onCardOpenedToggle}>
-            <Text color="blue.500" textStyle="14-semi-bold" me={1}>
-              {cardOpened ? t('Hide details') : t('Show more details')}
-            </Text>
-            <Arrow2Icon
-              transform={cardOpened ? 'rotate(270deg)' : 'rotate(90deg)'}
-              w={5}
-              h={5}
-            />
-          </Button>
-        )}
+        <Button
+          sx={{
+            [`@media screen and (min-width: ${climeTheme.breakpoints.md})`]: {
+              display: 'none',
+            },
+          }}
+          variant="expand-card"
+          onClick={onCardOpenedToggle}
+        >
+          <Text color="blue.500" textStyle="14-semi-bold" me={1}>
+            {cardOpened ? t('Hide details') : t('Show more details')}
+          </Text>
+          <Arrow2Icon
+            transform={cardOpened ? 'rotate(270deg)' : 'rotate(90deg)'}
+            w={5}
+            h={5}
+          />
+        </Button>
       </Card>
     );
   }

@@ -5,11 +5,7 @@ import { SWRConfig } from 'swr';
 
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
-import {
-  LocationDataProvider,
-  ForecastCardsProvider,
-  AppConfigProvider,
-} from 'client/state/contexts';
+import { LocationDataProvider, AppConfigProvider } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
 import { useInitialSettings } from 'client/hooks';
 
@@ -21,7 +17,7 @@ const App = ({
   router,
 }: AppPropsWithLayout): ReactElement => {
   const { locale } = router;
-  const { locationData, forecastCards = {}, ...restPageProps } = pageProps;
+  const { locationData, ...restPageProps } = pageProps;
 
   const direction = detectLanguageDirection(locale);
   const theme = extendTheme(climeTheme, { direction });
@@ -32,15 +28,13 @@ const App = ({
 
   return (
     <AppConfigProvider>
-      <ForecastCardsProvider value={forecastCards}>
-        <LocationDataProvider value={locationData}>
-          <ChakraProvider theme={theme}>
-            <SWRConfig value={{ fetcher }}>
-              {getLayout(<Component {...restPageProps} />)}
-            </SWRConfig>
-          </ChakraProvider>
-        </LocationDataProvider>
-      </ForecastCardsProvider>
+      <LocationDataProvider value={locationData}>
+        <ChakraProvider theme={theme}>
+          <SWRConfig value={{ fetcher }}>
+            {getLayout(<Component {...restPageProps} />)}
+          </SWRConfig>
+        </ChakraProvider>
+      </LocationDataProvider>
     </AppConfigProvider>
   );
 };

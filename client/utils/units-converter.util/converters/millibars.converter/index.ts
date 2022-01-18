@@ -1,6 +1,7 @@
 import curry from 'ramda/src/curry';
 
 import { PressureUnit } from 'client/types';
+import { PRESSURE_UNITS } from 'client/constants/measurement-units/pressure.constant';
 import {
   millibarsToMillimeters,
   millibarsToInches,
@@ -16,9 +17,9 @@ export const convertMillibarsTo = curry(
     if (!isNumber(value)) return value;
 
     switch (unit) {
-      case PressureUnit.MM:
+      case PRESSURE_UNITS.MM:
         return Math.round(millibarsToMillimeters(value as number));
-      case PressureUnit.INCH:
+      case PRESSURE_UNITS.INCH:
         return toFixedOne(millibarsToInches(value as number));
       default:
         return Math.round(value as number);

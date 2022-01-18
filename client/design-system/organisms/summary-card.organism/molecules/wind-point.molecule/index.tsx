@@ -6,8 +6,7 @@ import { useAtomValue } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
 import { windSpeedUnitAtom } from 'client/state/atoms';
-
-import { UNIT_LABELS } from './constants';
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 
 import { PointProps } from '../../types';
 import {
@@ -47,7 +46,7 @@ export const WindPoint = ({
         verticalAnchor="start"
         fontWeight={600}
         dy={12}
-      >{`${y} ${UNIT_LABELS[windSpeedUnit]}`}</Text>
+      >{`${y} ${MEASUREMENT_UNIT_LABELS[windSpeedUnit]}`}</Text>
 
       <Text
         fontSize={10}

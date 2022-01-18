@@ -1,8 +1,7 @@
-export enum TemperatureUnit {
-  C = 'c',
-  F = 'f',
-}
+import { TEMPERATURE_UNITS } from 'client/constants/measurement-units/temperature.constant';
 
-export const TemperatureUnitValues = [TemperatureUnit.F, TemperatureUnit.C];
+import { ValueOf } from 'common/types';
+
+export type TemperatureUnit = ValueOf<typeof TEMPERATURE_UNITS>;
 
 export default TemperatureUnit;

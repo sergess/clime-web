@@ -1,7 +1,7 @@
 import { ReactElement, memo, useMemo, useState, useEffect } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { PinCardIcon } from 'client/design-system/atoms';
 import { useCookies, useLocationData } from 'client/hooks';
 import { isLocationACloseToLocationB } from 'client/utils';
 
@@ -59,10 +59,22 @@ export const LocationInfoRow = memo(
         flexWrap={heading ? 'wrap' : 'nowrap'}
       >
         <Flex w="full" pb={2}>
-          {exact && <PinCardIcon me={2.5} />}
-          <Text color="blue.800" textStyle="16-semi-bold" noOfLines={2}>
+          <Text
+            me={2.5}
+            color="blue.800"
+            textStyle="16-semi-bold"
+            noOfLines={2}
+          >
             {name}
           </Text>
+          {exact && (
+            <Image
+              src="/icons/pin-card.svg"
+              alt="Exact location"
+              width={16}
+              height={16}
+            />
+          )}
         </Flex>
         {heading}
         <Text color="gray.500" textStyle="16-medium">

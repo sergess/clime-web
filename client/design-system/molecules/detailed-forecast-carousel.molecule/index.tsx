@@ -1,7 +1,7 @@
 import { ReactElement, useCallback } from 'react';
 import { Flex } from '@chakra-ui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Navigation, Virtual } from 'swiper';
 import { Swiper as SwiperClass } from 'swiper/types';
 
 import { ForecastCarouselProps } from './types';
@@ -23,7 +23,7 @@ export const DetailedForecastCarousel = <T,>({
   return (
     <Flex width="full">
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation, Virtual]}
         slidesPerView={slidesPerView}
         slidesPerGroup={slidesPerGroup}
         onActiveIndexChange={onSetActiveSwiperIndex}
@@ -32,10 +32,11 @@ export const DetailedForecastCarousel = <T,>({
           nextEl: '.swiper-next-control',
         }}
         threshold={20}
+        virtual
       >
         {data.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} virtualIndex={index}>
             {renderItem({
               index,
               item,

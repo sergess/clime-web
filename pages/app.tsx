@@ -10,7 +10,7 @@ import Head from 'next/head';
 import { AppPageLayout } from 'client/design-system/templates';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 
-const AppPage = () => {
+const AppPage = (): ReactElement => {
   const { t } = useTranslation(['clime-app', 'meta-tags']);
   return (
     <>
@@ -133,7 +133,6 @@ const AppPage = () => {
                   src="/icons/app-store.svg"
                   width={143}
                   height={48}
-                  priority
                   alt="App Store"
                 />
               </Link>
@@ -144,7 +143,6 @@ const AppPage = () => {
                   src="/icons/google-play.svg"
                   width={162}
                   height={48}
-                  priority
                   alt="Google Play"
                 />
               </Link>

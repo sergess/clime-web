@@ -10,27 +10,33 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 import { useClimeAppLink } from 'client/hooks';
-import Image from 'next/image';
+import {
+  DEFAULT_BANNER_HEIGHT,
+  DEFAULT_BANNER_BORDER_RADIUS,
+} from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const MarketingBannerSeventh = (
   props: ComponentDefaultProps
 ): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
     <LinkBox
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
       bgSize="cover"
       bgPosition="center center"
-      h={250}
+      h={DEFAULT_BANNER_HEIGHT}
       alignItems="flex-start"
       bgImage="url('/img_14.jpg')"
+      bgColor="rgb(25, 30, 45)"
       {...props}
     >
       <Flex
@@ -79,7 +85,6 @@ export const MarketingBannerSeventh = (
               src="/icons/keep-track-fire-ico.svg"
               layout="fill"
               alt="fire"
-              priority
             />
           </Box>
         </Flex>
