@@ -56,7 +56,6 @@ build-production:
   extends: .build
   stage: build-production
   environment: production
-  when: manual
   only:
     - master
 
@@ -131,7 +130,6 @@ deploy-to-cloudrun-production:
   extends: .deploy-to-cloudrun
   stage: deploy-cloudrun-production
   environment: production
-  when: manual
   variables:
     SlackWebhook: 'https://hooks.slack.com/services/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' #team-clime-web
   only:
