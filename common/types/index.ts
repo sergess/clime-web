@@ -1,3 +1,4 @@
+export * from './app-config.type';
 export * from './azimuth.type';
 export * from './day-period.type';
 export * from './location.type';

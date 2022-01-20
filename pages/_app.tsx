@@ -17,7 +17,7 @@ const App = ({
   router,
 }: AppPropsWithLayout): ReactElement => {
   const { locale } = router;
-  const { locationData, ...restPageProps } = pageProps;
+  const { appConfig, locationData, ...restPageProps } = pageProps;
 
   const direction = detectLanguageDirection(locale);
   const theme = extendTheme(climeTheme, { direction });
@@ -27,7 +27,7 @@ const App = ({
   useInitialSettings();
 
   return (
-    <AppConfigProvider>
+    <AppConfigProvider value={appConfig}>
       <LocationDataProvider value={locationData}>
         <ChakraProvider theme={theme}>
           <SWRConfig value={{ fetcher }}>

@@ -1,71 +1,56 @@
-import React, { ComponentType, ReactElement } from 'react';
+import React, { ComponentType, FC } from 'react';
 import dynamic from 'next/dynamic';
-import { ComponentDefaultProps } from '@chakra-ui/react';
 
-import { Skeleton } from 'client/design-system/organisms/promo-banner.organism/atoms';
-
-import { MarketingBannerProps, MarketingBannerId } from './types';
-
-const loading = (): ReactElement => <Skeleton />;
+import { MarketingBannerId } from './types';
 
 const marketingBanners: Record<
   MarketingBannerId,
-  ComponentType<ComponentDefaultProps>
+  ComponentType<{ priorityLoad: boolean }>
 > = {
   [MarketingBannerId.bannerOne]: dynamic(
-    () => import('./variants/first.variant'),
-    { loading }
+    () => import('./variants/first.variant')
   ),
   [MarketingBannerId.bannerTwo]: dynamic(
-    () => import('./variants/second.variant'),
-    { loading }
+    () => import('./variants/second.variant')
   ),
   [MarketingBannerId.bannerThree]: dynamic(
-    () => import('./variants/third.variant'),
-    { loading }
+    () => import('./variants/third.variant')
   ),
   [MarketingBannerId.bannerFour]: dynamic(
-    () => import('./variants/fourth.variant'),
-    { loading }
+    () => import('./variants/fourth.variant')
   ),
-  [MarketingBannerId.bannerFife]: dynamic(
-    () => import('./variants/fifth.variant'),
-    { loading }
+  [MarketingBannerId.bannerFive]: dynamic(
+    () => import('./variants/fifth.variant')
   ),
   [MarketingBannerId.bannerSix]: dynamic(
-    () => import('./variants/sixth.variant'),
-    { loading }
+    () => import('./variants/sixth.variant')
   ),
   [MarketingBannerId.bannerSeven]: dynamic(
-    () => import('./variants/seventh.variant'),
-    { loading }
+    () => import('./variants/seventh.variant')
   ),
   [MarketingBannerId.bannerEight]: dynamic(
-    () => import('./variants/eight.variant'),
-    { loading }
+    () => import('./variants/eight.variant')
   ),
   [MarketingBannerId.bannerNine]: dynamic(
-    () => import('./variants/ninth.variant'),
-    { loading }
+    () => import('./variants/ninth.variant')
   ),
   [MarketingBannerId.bannerTen]: dynamic(
-    () => import('./variants/tenth.variant'),
-    { loading }
+    () => import('./variants/tenth.variant')
   ),
   [MarketingBannerId.bannerEleven]: dynamic(
-    () => import('./variants/eleventh.variant'),
-    { loading }
+    () => import('./variants/eleventh.variant')
   ),
 };
 
-export const MarketingBanner = ({
-  bannerId,
-}: MarketingBannerProps): JSX.Element | null => {
+export const MarketingBanner: FC<{
+  bannerId: MarketingBannerId;
+  priorityLoad: boolean;
+}> = ({ bannerId, priorityLoad }): JSX.Element | null => {
   const Component = marketingBanners[bannerId];
 
   if (!Component) return null;
 
-  return <Component />;
+  return <Component priorityLoad={priorityLoad} />;
 };
 
 export default MarketingBanner;

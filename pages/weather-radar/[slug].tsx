@@ -10,6 +10,7 @@ import {
   withLocationData,
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
+import { RemoteConfig } from 'server/services/remote-config.service';
 
 const WeatherRadar = (): ReactElement => {
   const locationData = useLocationData();
@@ -41,9 +42,11 @@ export default WeatherRadar;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return { notFound: true };
 
-  const [locationData, translations] = await Promise.all([
+  const remoteConfig = new RemoteConfig();
+  const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
     withTranslations('meta-tags')(context),
+    remoteConfig.getAppConfig(),
   ]);
 
   if (!locationData) {
@@ -55,6 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       locationData,
+      appConfig,
       ...translations,
     },
   };

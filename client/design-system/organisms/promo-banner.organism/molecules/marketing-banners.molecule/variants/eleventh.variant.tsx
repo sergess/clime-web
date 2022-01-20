@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import {
   Box,
   Button,
-  ComponentDefaultProps,
   Flex,
   LinkBox,
   LinkOverlay,
@@ -18,9 +17,11 @@ import {
   DEFAULT_BANNER_BORDER_RADIUS,
 } from 'client/design-system/organisms/promo-banner.organism/constants';
 
-export const MarketingBannerEleventh = (
-  props: ComponentDefaultProps
-): ReactElement => {
+export const MarketingBannerEleventh = ({
+  priorityLoad,
+}: {
+  priorityLoad: boolean;
+}): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
@@ -34,7 +35,6 @@ export const MarketingBannerEleventh = (
       h={DEFAULT_BANNER_HEIGHT}
       alignItems="center"
       bg="blue.500"
-      {...props}
     >
       <Flex
         h="full"
@@ -78,6 +78,7 @@ export const MarketingBannerEleventh = (
             width={329}
             height={109}
             alt="Moderate rain"
+            priority={priorityLoad}
           />
         </Box>
       </Flex>

@@ -36,6 +36,7 @@ import {
   withLocationData,
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
+import { RemoteConfig } from 'server/services/remote-config.service';
 
 const Index: FC<{ forecastCards: ForecastCards }> = memo(
   ({ forecastCards }): ReactElement => {
@@ -87,7 +88,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <TodayCard w="full" />
-        <PromoBanner spotId="homeOne" />
+        <PromoBanner spotId="homeOne" priorityLoad />
         <HourlyForecastCard w="full" />
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
         <DailyForecastCard maxH={270} w="full" />
@@ -102,7 +103,8 @@ Index.displayName = 'Index';
 export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const [locationData, translations] = await Promise.all([
+  const remoteConfig = new RemoteConfig();
+  const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: true })(context),
     withTranslations(
       'today-card',
@@ -112,6 +114,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       'banners',
       'meta-tags'
     )(context),
+    remoteConfig.getAppConfig(),
   ]);
 
   if (!locationData) {
@@ -140,6 +143,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       locationData,
       forecastCards,
+      appConfig,
       ...translations,
     },
   };

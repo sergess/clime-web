@@ -1,38 +1,35 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
 
-import { Skeleton } from './atoms';
-import { BannerType, PromoBannerProps } from './types';
+import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
 import { ResponsiveBanner } from './molecules/responsive-banners.molecule';
 
 const NativeBanner = dynamic(
-  () => import('./molecules/native-banner.molecule'),
-  {
-    loading: () => <Skeleton minH={340} />,
-  }
+  () => import('./molecules/native-banner.molecule')
 );
 
-export const PromoBanner = ({
+export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
   spotId,
-}: PromoBannerProps): ReactElement | null => {
+  priorityLoad = false,
+}): ReactElement | null => {
   const banner = useParsedPromoBanner(spotId);
 
-  if (!banner) return <Skeleton />;
+  if (!banner) return null;
 
   const { type, id } = banner;
 
   if (type === BannerType.MARKETING) {
-    return <MarketingBanner bannerId={id} />;
+    return <MarketingBanner bannerId={id} priorityLoad={priorityLoad} />;
   }
 
   if (type === BannerType.RESPONSIVE) {
-    return <ResponsiveBanner bannerId={id} />;
+    return <ResponsiveBanner bannerId={id} priorityLoad={priorityLoad} />;
   }
 
   if (type === BannerType.NATIVE) {
-    return <NativeBanner bannerId={id} />;
+    return <NativeBanner bannerId={id} priorityLoad={priorityLoad} />;
   }
 
   return null;

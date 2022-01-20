@@ -5,13 +5,11 @@ import { ParsedPromoBanner } from './types';
 export const useParsedPromoBanner = (
   spotId: string | number
 ): ParsedPromoBanner | null => {
-  const { listOfBanners } = useAppConfig();
+  const appConfig = useAppConfig();
 
-  if (!listOfBanners) return null;
+  if (!appConfig) return null;
 
-  const config: Record<string, string> = JSON.parse(listOfBanners.toString());
-
-  const banner = config[spotId];
+  const banner = appConfig.listOfBanners[spotId];
 
   if (!banner) return null;
 
