@@ -59,7 +59,7 @@ export const Footer = (): ReactElement => {
             color="white"
             opacity="0.5"
           >
-            {t('© 2021 Clime. All rights reserved.')}
+            {t('© 2022 Clime. All rights reserved.')}
           </Box>
           <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: '0px' }}>
             <Download />

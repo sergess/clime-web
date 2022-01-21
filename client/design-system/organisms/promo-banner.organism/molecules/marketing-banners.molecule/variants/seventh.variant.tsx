@@ -1,43 +1,25 @@
 import React, { ReactElement } from 'react';
-import {
-  Button,
-  ComponentDefaultProps,
-  Flex,
-  LinkBox,
-  LinkOverlay,
-  Text,
-  Box,
-} from '@chakra-ui/react';
+import { Button, Flex, LinkOverlay, Text, Box } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 
 import { useClimeAppLink } from 'client/hooks';
-import {
-  DEFAULT_BANNER_HEIGHT,
-  DEFAULT_BANNER_BORDER_RADIUS,
-} from 'client/design-system/organisms/promo-banner.organism/constants';
 
-export const MarketingBannerSeventh = (
-  props: ComponentDefaultProps
-): ReactElement => {
+import { BaseMarketingBanner } from '../molecules';
+
+export const MarketingBannerSeventh = ({
+  priorityLoad,
+}: {
+  priorityLoad: boolean;
+}): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
   return (
-    <LinkBox
-      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
-      d="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      overflow="hidden"
-      bgSize="cover"
-      bgPosition="center center"
-      h={DEFAULT_BANNER_HEIGHT}
-      alignItems="flex-start"
-      bgImage="url('/img_14.jpg')"
-      bgColor="rgb(25, 30, 45)"
-      {...props}
+    <BaseMarketingBanner
+      backgroundSrc="/img_14.jpg"
+      backgroundPriority={priorityLoad}
     >
       <Flex
         h="full"
@@ -120,7 +102,7 @@ export const MarketingBannerSeventh = (
           </Button>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </BaseMarketingBanner>
   );
 };
 

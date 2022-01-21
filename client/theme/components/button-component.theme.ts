@@ -47,7 +47,7 @@ const Button = {
       textStyle: '14-semi-bold',
     },
     cta: {
-      bg: 'blue.500',
+      bg: 'linear-gradient(180deg, #518FE8 0%, #1C72EB 100%)',
       borderRadius: 'xl',
       color: 'white',
       height: '3rem',

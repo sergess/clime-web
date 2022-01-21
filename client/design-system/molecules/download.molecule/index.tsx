@@ -8,11 +8,11 @@ import { IOS_STORE_LINK, ANDROID_STORE_LINK } from 'client/constants';
 export const Download = (): ReactElement => {
   if (mobile) {
     return ios ? (
-      <Link href={IOS_STORE_LINK} isExternal>
+      <Link href={IOS_STORE_LINK} aria-label="App store" isExternal>
         <Image src="/icons/app-store.svg" width={120} height={40} alt="" />
       </Link>
     ) : (
-      <Link href={ANDROID_STORE_LINK} isExternal>
+      <Link href={ANDROID_STORE_LINK} aria-label="Google play" isExternal>
         <Image src="/icons/google-play.svg" width={136} height={40} alt="" />
       </Link>
     );
@@ -20,10 +20,10 @@ export const Download = (): ReactElement => {
 
   return (
     <>
-      <Link href={IOS_STORE_LINK} me="5" isExternal>
+      <Link href={IOS_STORE_LINK} aria-label="App store" me="5" isExternal>
         <Image src="/icons/app-store.svg" width={120} height={40} alt="" />
       </Link>
-      <Link href={ANDROID_STORE_LINK} isExternal>
+      <Link href={ANDROID_STORE_LINK} aria-label="Google play" isExternal>
         <Image src="/icons/google-play.svg" width={136} height={40} alt="" />
       </Link>
     </>

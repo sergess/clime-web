@@ -8,3 +8,4 @@ export * from './header-popover-overlay.atom';
 export * from './legend.atom';
 export * from './state-text-row.atom';
 export * from './hour-condition-icon.atom';
+export * from './background-image.atom';

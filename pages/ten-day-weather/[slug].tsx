@@ -22,6 +22,7 @@ import {
   withTranslations,
   mapHourlyCard,
 } from 'server/middlewares/get-server-side-props';
+import { RemoteConfig } from 'server/services/remote-config.service';
 
 const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
   ({ forecastCards }): ReactElement => {
@@ -59,13 +60,15 @@ TenDayWeather.displayName = 'TenDayWeather';
 export default TenDayWeather;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const [locationData, translations] = await Promise.all([
+  const remoteConfig = new RemoteConfig();
+  const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
     withTranslations(
       'daily-detailed-forecast-card',
       'banners',
       'meta-tags'
     )(context),
+    remoteConfig.getAppConfig(),
   ]);
 
   if (!locationData) {
@@ -92,6 +95,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       locationData,
       forecastCards,
+      appConfig,
       ...translations,
     },
   };
