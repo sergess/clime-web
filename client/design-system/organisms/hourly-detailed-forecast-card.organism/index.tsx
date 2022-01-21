@@ -57,7 +57,13 @@ export const HourlyDetailedForecastCard = memo(
     } = hourlyDetailedForecast[selectedHourIndex];
 
     return (
-      <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
+      <Card
+        {...props}
+        pt="5"
+        pb={{ md: 2 }}
+        overflow="hidden"
+        className="hourly-detailed-block"
+      >
         <LocationInfoRow
           date={
             <>

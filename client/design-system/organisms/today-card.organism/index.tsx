@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react';
+import React, { ReactElement, memo, useEffect } from 'react';
 import {
   Button,
   Divider,
@@ -33,8 +33,12 @@ import {
   precipitationUnitAtom,
   distanceUnitAtom,
 } from 'client/state/atoms';
+import { trackEvent } from 'client/services';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
-
+import {
+  CURRENT_DETAILS_COMPACT_SHOWN,
+  CURRENT_DETAILS_FULL_SHOWN,
+} from 'client/services/analytics.service/constants';
 import { useTodayCardData } from './hooks';
 
 import { TodayCardProps } from './types';
@@ -54,6 +58,14 @@ export const TodayCard = memo(
       useDisclosure();
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
     const todayCardData = useTodayCardData();
+
+    useEffect(() => {
+      if (cardOpened) {
+        trackEvent(CURRENT_DETAILS_FULL_SHOWN);
+      } else {
+        trackEvent(CURRENT_DETAILS_COMPACT_SHOWN);
+      }
+    }, [cardOpened]);
 
     if (!todayCardData) return null;
 

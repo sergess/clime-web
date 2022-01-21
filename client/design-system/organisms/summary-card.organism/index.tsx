@@ -83,7 +83,11 @@ export const SummaryCard = memo(
     if (!points) return null;
 
     return (
-      <Card {...props} overflow="hidden">
+      <Card
+        {...props}
+        overflow="hidden"
+        className={`summary-block__${activeChart}`}
+      >
         <Flex
           w="100%"
           px={4}

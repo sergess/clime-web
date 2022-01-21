@@ -55,7 +55,13 @@ export const DailyDetailedForecastCard = memo(
     } = dailyDetailedForecast[selectedDayIndex];
 
     return (
-      <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
+      <Card
+        {...props}
+        pt="5"
+        pb={{ md: 2 }}
+        overflow="hidden"
+        className="10day-detailed-block"
+      >
         <LocationInfoRow
           date={
             <>

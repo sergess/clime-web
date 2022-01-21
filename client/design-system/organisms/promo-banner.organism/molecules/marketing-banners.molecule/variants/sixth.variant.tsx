@@ -1,5 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Button, Flex, LinkOverlay, Text } from '@chakra-ui/react';
+import {
+  Button,
+  ComponentDefaultProps,
+  Flex,
+  LinkOverlay,
+  Text,
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
 
@@ -9,14 +15,16 @@ import { BaseMarketingBanner } from '../molecules';
 
 export const MarketingBannerSixth = ({
   priorityLoad,
+  ...bannerDefaultProps
 }: {
   priorityLoad: boolean;
-}): ReactElement => {
+} & ComponentDefaultProps): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
   return (
     <BaseMarketingBanner
+      {...bannerDefaultProps}
       backgroundSrc="/img_13.jpg"
       backgroundPriority={priorityLoad}
     >
@@ -38,7 +46,7 @@ export const MarketingBannerSixth = ({
           w="180px"
           textAlign="center"
         >
-          {t('Prep for storms')}
+          {t('Prep for both')}
         </Text>
         <Flex
           boxShadow="4px 4px 16px rgba(0, 0, 0, 0.5)"

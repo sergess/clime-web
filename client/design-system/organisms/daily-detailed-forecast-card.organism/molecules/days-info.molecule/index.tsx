@@ -19,7 +19,9 @@ import {
   useDomain,
 } from 'client/design-system/molecules/detailed-forecast-chart.molecule';
 import { CarouselButton } from 'client/design-system/molecules/detailed-forecast-carousel.molecule/atoms';
+import { trackEvent } from 'client/services';
 
+import { TEN_DAY_DETAILED_FORECAST_SWIPED } from 'client/services/analytics.service/constants';
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
 import { DaysInfoProps } from './types';
 
@@ -35,6 +37,7 @@ export const DaysInfo = memo(
 
     const onActiveSlideIndexChange = useCallback((index: number) => {
       setActiveSlideIndex(index);
+      trackEvent(TEN_DAY_DETAILED_FORECAST_SWIPED);
     }, []);
 
     const isChartItemSelected = useCallback(
