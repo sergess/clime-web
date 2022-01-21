@@ -34,9 +34,11 @@ import {
   HeaderCardPopoverRow,
   HeaderPopoverOverlay,
 } from 'client/design-system/atoms';
+import { trackEvent } from 'client/services';
 
 import { LocationData } from 'common/types';
 
+import { LOCATION_SEARCH_NO_RESULT } from 'client/services/analytics.service/constants';
 import { SearchProps } from './types';
 
 export const Search = ({
@@ -83,6 +85,11 @@ export const Search = ({
       setSuggestions(autocompleteResults.filter(({ slug }) => !!slug));
     }
   }, [autocompleteResults]);
+
+  useEffect(() => {
+    if (suggestions && suggestions.length === 0)
+      trackEvent(LOCATION_SEARCH_NO_RESULT);
+  }, [suggestions]);
 
   return opened ? (
     <Popover
@@ -151,6 +158,7 @@ export const Search = ({
 
                 return (
                   <HeaderCardPopoverRow
+                    className="search-result"
                     key={`${slug}-${latitude}-${longitude}`}
                     first={i === 0}
                     _hover={{
@@ -203,7 +211,11 @@ export const Search = ({
       </Portal>
     </Popover>
   ) : (
-    <InputGroup onClick={onOpen} w={{ base: '128px', md: '340px' }}>
+    <InputGroup
+      onClick={onOpen}
+      w={{ base: '128px', md: '340px' }}
+      className="search-field"
+    >
       <Input
         h={9}
         bg="gray.50"

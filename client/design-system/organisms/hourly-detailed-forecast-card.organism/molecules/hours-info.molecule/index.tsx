@@ -18,11 +18,11 @@ import {
   DetailedForecastChart,
   useDomain,
 } from 'client/design-system/molecules/detailed-forecast-chart.molecule';
-
 import { CarouselButton } from 'client/design-system/molecules/detailed-forecast-carousel.molecule/atoms';
+import { trackEvent } from 'client/services';
 
 import { WEATHER_STATE, SUNRISE, SUNSET } from 'common/constants';
-
+import { HOURLY_DETAILED_FORECAST_SWIPED } from 'client/services/analytics.service/constants';
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
 import { HoursInfoProps } from './types';
 
@@ -38,6 +38,7 @@ export const HoursInfo = memo(
 
     const onActiveSlideIndexChange = useCallback((index: number) => {
       setActiveSlideIndex(index);
+      trackEvent(HOURLY_DETAILED_FORECAST_SWIPED);
     }, []);
 
     const isChartItemSelected = useCallback(

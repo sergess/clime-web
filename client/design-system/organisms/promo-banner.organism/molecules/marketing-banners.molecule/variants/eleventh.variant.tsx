@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import {
   Box,
   Button,
+  ComponentDefaultProps,
   Flex,
   LinkBox,
   LinkOverlay,
@@ -19,14 +20,16 @@ import {
 
 export const MarketingBannerEleventh = ({
   priorityLoad,
+  ...bannerDefaultProps
 }: {
   priorityLoad: boolean;
-}): ReactElement => {
+} & ComponentDefaultProps): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
   return (
     <LinkBox
+      {...bannerDefaultProps}
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
@@ -70,7 +73,7 @@ export const MarketingBannerEleventh = ({
           fontWeight="500"
           pb={1.5}
         >
-          {t('Temperature Forecast Map')}
+          {t('To the minute precip forecast')}
         </Text>
         <Box>
           <Image

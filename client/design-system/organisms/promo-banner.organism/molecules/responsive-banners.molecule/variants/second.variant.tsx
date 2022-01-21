@@ -1,5 +1,13 @@
-import React, { ReactElement } from 'react';
-import { Text, Box, LinkBox, LinkOverlay, Flex, Link } from '@chakra-ui/react';
+import React, { ReactElement, FC } from 'react';
+import {
+  Text,
+  Box,
+  LinkBox,
+  LinkOverlay,
+  Flex,
+  Link,
+  ComponentDefaultProps,
+} from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -9,18 +17,15 @@ import { BackgroundImage } from 'client/design-system/atoms';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
-export const ResponsiveBannerSecond = ({
-  wide,
-  priorityLoad,
-}: {
-  wide: boolean;
-  priorityLoad: boolean;
-}): ReactElement => {
+export const ResponsiveBannerSecond: FC<
+  { wide: boolean; priorityLoad: boolean } & ComponentDefaultProps
+> = ({ wide, priorityLoad, ...props }): ReactElement => {
   const { t } = useTranslation('banners');
   const climeAppLink = useClimeAppLink();
 
   return (
     <LinkBox
+      {...props}
       d="flex"
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       flexDirection="column"

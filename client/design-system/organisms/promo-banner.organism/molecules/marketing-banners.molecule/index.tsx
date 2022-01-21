@@ -1,11 +1,12 @@
 import React, { ComponentType, FC } from 'react';
 import dynamic from 'next/dynamic';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
 import { MarketingBannerId } from './types';
 
 const marketingBanners: Record<
   MarketingBannerId,
-  ComponentType<{ priorityLoad: boolean }>
+  ComponentType<{ priorityLoad: boolean } & ComponentDefaultProps>
 > = {
   [MarketingBannerId.bannerOne]: dynamic(
     () => import('./variants/first.variant')
@@ -45,12 +46,20 @@ const marketingBanners: Record<
 export const MarketingBanner: FC<{
   bannerId: MarketingBannerId;
   priorityLoad: boolean;
-}> = ({ bannerId, priorityLoad }): JSX.Element | null => {
+  spotId: string | number;
+}> = ({ bannerId, priorityLoad, spotId }): JSX.Element | null => {
   const Component = marketingBanners[bannerId];
 
   if (!Component) return null;
 
-  return <Component priorityLoad={priorityLoad} />;
+  return (
+    <Component
+      priorityLoad={priorityLoad}
+      data-banner-id={bannerId}
+      data-spot-name={spotId}
+      className="banner"
+    />
+  );
 };
 
 export default MarketingBanner;

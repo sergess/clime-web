@@ -11,16 +11,23 @@ export const BaseNativeBanner = ({
   buttonText,
   priorityLoad,
   backgroundSrc,
+  spotId,
+  bannerId,
 }: {
   heading: string;
   buttonText: string;
   priorityLoad: boolean;
   backgroundSrc: string;
+  spotId: string | number;
+  bannerId: number;
 }): ReactElement => {
   const climeAppLink = useClimeAppLink();
 
   return (
     <LinkBox
+      className="banner"
+      data-banner-id={bannerId}
+      data-spot-name={spotId}
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"

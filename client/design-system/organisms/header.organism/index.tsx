@@ -99,6 +99,7 @@ export const Header = (): ReactElement => {
             )}
             {searchOpened && (
               <Button
+                className="search-cancel"
                 variant="search-cancel"
                 onClick={onSearchClose}
                 ms={[3, null, null, 8]}

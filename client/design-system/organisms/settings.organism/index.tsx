@@ -23,13 +23,14 @@ import {
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
-
 import climeTheme from 'client/theme';
 
+import { trackEvent } from 'client/services';
 import { ValueOf } from 'common/types';
-
+import { SETTINGS_CHANGE } from 'client/services/analytics.service/constants';
 import { SettingsCardSwitcherRow } from './molecules';
 import { MEASUREMENT_UNIT_LABELS } from './constants';
+
 import { SettingsTogglerProps } from './types';
 
 export const Settings = ({
@@ -83,6 +84,10 @@ export const Settings = ({
   const onSettingsChange = useCallback(
     (unit: keyof SettingsType) => (value: ValueOf<SettingsType>) => {
       setSettings({ [unit]: value });
+      trackEvent(SETTINGS_CHANGE, {
+        SettingName: unit,
+        NewValue: value,
+      });
     },
     []
   );
@@ -96,6 +101,7 @@ export const Settings = ({
     >
       <PopoverTrigger>
         <Flex
+          className="settings"
           align="center"
           justify="space-between"
           cursor="pointer"

@@ -21,15 +21,29 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
   const { type, id } = banner;
 
   if (type === BannerType.MARKETING) {
-    return <MarketingBanner bannerId={id} priorityLoad={priorityLoad} />;
+    return (
+      <MarketingBanner
+        bannerId={id}
+        priorityLoad={priorityLoad}
+        spotId={spotId}
+      />
+    );
   }
 
   if (type === BannerType.RESPONSIVE) {
-    return <ResponsiveBanner bannerId={id} priorityLoad={priorityLoad} />;
+    return (
+      <ResponsiveBanner
+        bannerId={id}
+        priorityLoad={priorityLoad}
+        spotId={spotId}
+      />
+    );
   }
 
   if (type === BannerType.NATIVE) {
-    return <NativeBanner bannerId={id} priorityLoad={priorityLoad} />;
+    return (
+      <NativeBanner bannerId={id} priorityLoad={priorityLoad} spotId={spotId} />
+    );
   }
 
   return null;
