@@ -4,7 +4,6 @@ import React, {
   useState,
   useRef,
   useCallback,
-  MutableRefObject,
 } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -24,18 +23,12 @@ import {
   PopoverTrigger,
   PopoverContent,
   Portal,
-  Box,
 } from '@chakra-ui/react';
-import climeTheme from 'client/theme';
 import { useTranslation } from 'next-i18next';
 
 import { getLocationName } from 'client/utils';
 import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
-import {
-  MOBILE_HEADER_HEIGHT,
-  DESKTOP_HEADER_HEIGHT,
-  WEATHER_TODAY,
-} from 'client/constants';
+import { WEATHER_TODAY } from 'client/constants';
 import {
   Arrow2Icon,
   HeaderCardPopoverRow,
@@ -98,8 +91,6 @@ export const Search = ({
       trackEvent(LOCATION_SEARCH_NO_RESULT);
   }, [suggestions]);
 
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
-
   return opened ? (
     <Popover
       isOpen={opened}
@@ -154,7 +145,7 @@ export const Search = ({
           </InputRightElement>
         </InputGroup>
       </PopoverTrigger>
-      <Portal containerRef={ref}>
+      <Portal>
         {opened && <HeaderPopoverOverlay onClick={onClose} />}
 
         <PopoverContent w="full">
@@ -217,18 +208,6 @@ export const Search = ({
           </Flex>
         </PopoverContent>
       </Portal>
-      <Box
-        ref={ref}
-        sx={{
-          '& .chakra-popover__popper': {
-            maxH: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
-            overflowY: 'auto',
-            [`@media screen and (min-width: ${climeTheme.breakpoints.md})`]: {
-              maxH: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
-            },
-          },
-        }}
-      />
     </Popover>
   ) : (
     <InputGroup
