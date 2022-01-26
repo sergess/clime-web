@@ -8,9 +8,12 @@ import {
   HourlyDetailedForecastCard,
   DailyForecastCard,
   PromoBanner,
+  AdsenseBanner,
+  RadarSnapshotStub,
 } from 'client/design-system/organisms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
+import { CLIENT_ID } from 'client/constants';
 
 import { ForecastCards } from 'common/types/forecast-cards.type';
 import { ForecastCard } from 'common/types/forecast-card.type';
@@ -48,8 +51,15 @@ const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <HourlyDetailedForecastCard w="full" />
+        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
         <PromoBanner spotId="hourlyOne" />
         <DailyForecastCard maxH={270} w="full" />
+        <AdsenseBanner
+          client={CLIENT_ID}
+          slot="7916559712"
+          w="full"
+          h="100px"
+        />
       </ForecastCardsProvider>
     );
   }

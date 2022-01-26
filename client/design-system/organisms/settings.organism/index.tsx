@@ -110,9 +110,9 @@ export const Settings = ({
           w={{ md: '80px' }}
           flex="none"
           bg={{ md: 'gray.50' }}
-          borderRadius="2xl"
+          borderRadius="3xl"
           ps={{ md: '3.5' }}
-          pe={{ md: '1.5' }}
+          pe={{ md: '2.5' }}
           onClick={opened ? onClose : onOpen}
         >
           <Text

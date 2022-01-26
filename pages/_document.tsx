@@ -35,7 +35,6 @@ class Document extends NextDocument {
           />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </Head>
-
         <body>
           <noscript>
             <iframe

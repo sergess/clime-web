@@ -5,12 +5,15 @@ import { useTranslation } from 'next-i18next';
 
 import { ForecastCardsProvider } from 'client/state/contexts/forecast-cards.context';
 import {
+  AdsenseBanner,
   DailyDetailedForecastCard,
   HourlyForecastCard,
   PromoBanner,
+  RadarSnapshotStub,
 } from 'client/design-system/organisms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
+import { CLIENT_ID } from 'client/constants';
 
 import { ForecastCards } from 'common/types/forecast-cards.type';
 import { ForecastCard } from 'common/types/forecast-card.type';
@@ -48,8 +51,15 @@ const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <DailyDetailedForecastCard w="full" />
+        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
         <PromoBanner spotId="tenDayOne" />
         <HourlyForecastCard w="full" />
+        <AdsenseBanner
+          client={CLIENT_ID}
+          slot="7916559712"
+          w="full"
+          h="100px"
+        />
       </ForecastCardsProvider>
     );
   }

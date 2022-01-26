@@ -9,6 +9,10 @@ const styles = {
       flexDirection: 'column',
       h: '100%',
     },
+    // [TODO it will be removed after fix of oneTrust]
+    '#onetrust-consent-sdk svg': {
+      d: 'inline',
+    },
   },
 };
 

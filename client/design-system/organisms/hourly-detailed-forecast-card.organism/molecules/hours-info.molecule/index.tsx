@@ -1,4 +1,4 @@
-import {
+import React, {
   ReactElement,
   memo,
   useState,
@@ -8,8 +8,9 @@ import {
 } from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
-import { Arrow2Icon, HourConditionIcon } from 'client/design-system/atoms';
+import { HourConditionIcon } from 'client/design-system/atoms';
 import {
   DetailedForecastCarousel,
   DetailedForecastCarouselSlide,
@@ -107,7 +108,16 @@ export const HoursInfo = memo(
 
         <CarouselButton
           direction="Left"
-          icon={<Arrow2Icon w={5} h={130} transform="rotate(180deg)" />}
+          icon={
+            <Flex transform="rotate(180deg)" w={5} h={130}>
+              <Image
+                src="/icons/arrow-gray.svg"
+                width={20}
+                height={20}
+                alt="Left"
+              />
+            </Flex>
+          }
           top={100}
           left={0}
           position="absolute"
@@ -116,7 +126,16 @@ export const HoursInfo = memo(
 
         <CarouselButton
           direction="Right"
-          icon={<Arrow2Icon w={5} h={130} />}
+          icon={
+            <Flex w={5} h={130}>
+              <Image
+                src="/icons/arrow-gray.svg"
+                width={20}
+                height={20}
+                alt="Right"
+              />
+            </Flex>
+          }
           top={100}
           right={0}
           position="absolute"

@@ -6,13 +6,15 @@ import { useTranslation } from 'next-i18next';
 
 import { ForecastCardsProvider } from 'client/state/contexts/forecast-cards.context';
 import {
+  AdsenseBanner,
   TodayCard,
   HourlyForecastCard,
   SummaryCard,
   DailyForecastCard,
   PromoBanner,
+  RadarSnapshotStub,
 } from 'client/design-system/organisms';
-import { WEATHER_TODAY } from 'client/constants';
+import { CLIENT_ID, WEATHER_TODAY } from 'client/constants';
 import {
   useHasMounted,
   useCookies,
@@ -88,8 +90,15 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <TodayCard w="full" />
+        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
         <PromoBanner spotId="homeOne" priorityLoad />
         <HourlyForecastCard w="full" />
+        <AdsenseBanner
+          client={CLIENT_ID}
+          slot="7916559712"
+          w="full"
+          h="100px"
+        />
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
         <DailyForecastCard maxH={270} w="full" />
         <PromoBanner spotId="homeTwo" />

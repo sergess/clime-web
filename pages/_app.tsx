@@ -3,6 +3,7 @@ import { appWithTranslation } from 'next-i18next';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { SWRConfig } from 'swr';
 import Script from 'next/script';
+import { useUpdateAtom } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
@@ -11,12 +12,15 @@ import { DefaultLayout } from 'client/design-system/templates';
 import { useInitialSettings } from 'client/hooks';
 
 import { AppPropsWithLayout } from 'common/types';
+import { adSenseScriptLoadingFailedAtom } from 'client/state/atoms';
 
 const App = ({
   Component,
   pageProps,
   router,
 }: AppPropsWithLayout): ReactElement => {
+  const setLoadingFailed = useUpdateAtom(adSenseScriptLoadingFailedAtom);
+
   const { locale } = router;
   const { appConfig, locationData, ...restPageProps } = pageProps;
 
@@ -24,6 +28,8 @@ const App = ({
   const theme = extendTheme(climeTheme, { direction });
 
   const getLayout = Component.getLayout ?? App.getDefaultLayout;
+
+  const showAdvertisements = appConfig?.showAdvertisements;
 
   useInitialSettings();
 
@@ -42,6 +48,14 @@ const App = ({
           `,
         }}
       />
+      {showAdvertisements && (
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          onError={() => {
+            setLoadingFailed(true);
+          }}
+        />
+      )}
       <AppConfigProvider value={appConfig}>
         <LocationDataProvider value={locationData}>
           <ChakraProvider theme={theme}>
