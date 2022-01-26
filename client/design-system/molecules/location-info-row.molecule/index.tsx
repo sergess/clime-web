@@ -62,7 +62,7 @@ export const LocationInfoRow = memo(
           <Text
             me={2.5}
             color="blue.800"
-            textStyle="16-semi-bold"
+            textStyle="16-card-title"
             noOfLines={2}
           >
             {name}

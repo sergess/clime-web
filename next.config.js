@@ -25,7 +25,7 @@ module.exports = withBundleAnalyzer({
   async headers() {
     return [
       {
-        source: '/:path*(svg|jpg|png|ico|txt)',
+        source: '/:path*(svg|jpg|png|ico|txt|mp4)',
         locale: false,
         headers: [
           {

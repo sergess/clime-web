@@ -11,9 +11,12 @@ import {
   SummaryCard,
   DailyForecastCard,
   PromoBanner,
+  AdsenseBanner,
+  RadarSnapshotStub,
 } from 'client/design-system/organisms';
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
+import { CLIENT_ID } from 'client/constants';
 
 import { ForecastCards } from 'common/types/forecast-cards.type';
 import { ForecastCard } from 'common/types/forecast-card.type';
@@ -66,8 +69,15 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           }
           w="full"
         />
+        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
         <PromoBanner spotId="todayOne" priorityLoad />
         <HourlyForecastCard w="full" />
+        <AdsenseBanner
+          client={CLIENT_ID}
+          slot="7916559712"
+          w="full"
+          h="100px"
+        />
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
         <DailyForecastCard maxH={270} w="full" />
         <PromoBanner spotId="todayTwo" />

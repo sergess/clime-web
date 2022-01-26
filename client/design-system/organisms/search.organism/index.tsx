@@ -110,7 +110,7 @@ export const Search = ({
             bg="gray.50"
             w="full"
             textStyle="16-medium"
-            borderRadius="2xl"
+            borderRadius="3xl"
             border="0px"
             onChange={onLocationChange}
             placeholder={t('Enter City or Zip Code')}
@@ -222,7 +222,7 @@ export const Search = ({
         _placeholder={{ color: 'blue.50' }}
         w="full"
         textStyle="16-medium"
-        borderRadius="2xl"
+        borderRadius="3xl"
         border="0px"
         placeholder={t('Search')}
       />
