@@ -145,7 +145,6 @@ export const Search = ({
           </InputRightElement>
         </InputGroup>
       </PopoverTrigger>
-
       <Portal>
         {opened && <HeaderPopoverOverlay onClick={onClose} />}
 
