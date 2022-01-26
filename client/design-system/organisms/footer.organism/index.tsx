@@ -104,12 +104,25 @@ export const Footer = (): ReactElement => {
             <Link
               href="https://weatherornotapps.com/privacyPolicy#h"
               d="inline-block"
+              pe={['12', null, '10']}
               mb={['6', null, '0']}
               color="white"
               isExternal
             >
               {t('California Privacy Rights')}
             </Link>
+            <Box
+              className="ot-sdk-show-settings"
+              d="inline-block"
+              mb={['6', null, '0']}
+              color="white"
+              cursor="pointer"
+              _hover={{
+                textDecoration: 'underline',
+              }}
+            >
+              {t('Cookie Settings')}
+            </Box>
           </Box>
           <Divider
             d={['block', null, 'none']}
