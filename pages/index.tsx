@@ -90,7 +90,11 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <TodayCard w="full" />
-        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
+        <RadarSnapshotStub
+          h="full"
+          minH="270px"
+          display={{ base: 'none', md: 'flex' }}
+        />
         <PromoBanner spotId="homeOne" priorityLoad />
         <HourlyForecastCard w="full" />
         <AdsenseBanner

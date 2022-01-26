@@ -69,7 +69,11 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           }
           w="full"
         />
-        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
+        <RadarSnapshotStub
+          h="full"
+          minH="270px"
+          display={{ base: 'none', md: 'flex' }}
+        />
         <PromoBanner spotId="todayOne" priorityLoad />
         <HourlyForecastCard w="full" />
         <AdsenseBanner

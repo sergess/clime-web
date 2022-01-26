@@ -34,6 +34,9 @@ class Document extends NextDocument {
             rel="stylesheet"
           />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          <link rel="dns-prefetch" href="http://www.googletagmanager.com/" />
+          <link rel="dns-prefetch" href="https://www.google-analytics.com/" />
+          <link rel="dns-prefetch" href="https://cdn.cookielaw.org/" />
         </Head>
         <body>
           <noscript>
