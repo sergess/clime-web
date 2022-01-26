@@ -25,50 +25,54 @@ export const HourlyForecastCard = memo(
     const setSelectedHour = useUpdateAtom(selectedHourAtom);
     const pageUrl = usePageUrl(HOURLY_WEATHER);
 
-    const renderHourBlock = useCallback(({ index, item }) => {
-      const selected = index === 0;
+    const renderHourBlock = useCallback(
+      ({ index, item }) => {
+        const selected = index === 0;
 
-      return (
-        <SelectableColumnBlock
-          key={item.dateTime}
-          selected={selected}
-          onSelect={() => {
-            setSelectedHour(item.dateTime);
-            router.push(pageUrl);
-          }}
-          heading={
-            <Text
-              textStyle={selected ? '12-bold' : '12-semi-bold'}
-              color={selected ? 'blue.500' : 'blue.800'}
-            >
-              {index === 0 && t('Now')}
-              {index !== 0 && item.time}
-            </Text>
-          }
-          main={
-            <Box my={2}>
-              <HourConditionIcon
-                variant={item.variant}
-                night={item.night}
-                stateId={item.stateId}
-              />
-            </Box>
-          }
-          footer={
-            <ClientOnly>
+        return (
+          <SelectableColumnBlock
+            key={item.dateTime}
+            selected={selected}
+            onSelect={() => {
+              setSelectedHour(item.dateTime);
+              router.push(pageUrl);
+            }}
+            heading={
               <Text
                 textStyle={selected ? '12-bold' : '12-semi-bold'}
-                color="blue.800"
+                color={selected ? 'blue.500' : 'blue.800'}
               >
-                {SUNSET === item.variant && t('sunset')}
-                {SUNRISE === item.variant && t('sunrise')}
-                {WEATHER_STATE === item.variant && `${item.temperature}\u00b0`}
+                {index === 0 && t('Now')}
+                {index !== 0 && item.time}
               </Text>
-            </ClientOnly>
-          }
-        />
-      );
-    }, []);
+            }
+            main={
+              <Box my={2}>
+                <HourConditionIcon
+                  variant={item.variant}
+                  night={item.night}
+                  stateId={item.stateId}
+                />
+              </Box>
+            }
+            footer={
+              <ClientOnly>
+                <Text
+                  textStyle={selected ? '12-bold' : '12-semi-bold'}
+                  color="blue.800"
+                >
+                  {SUNSET === item.variant && t('sunset')}
+                  {SUNRISE === item.variant && t('sunrise')}
+                  {WEATHER_STATE === item.variant &&
+                    `${item.temperature}\u00b0`}
+                </Text>
+              </ClientOnly>
+            }
+          />
+        );
+      },
+      [pageUrl]
+    );
 
     const hourlyForecastCardData = useHourlyForecastCardData();
 
