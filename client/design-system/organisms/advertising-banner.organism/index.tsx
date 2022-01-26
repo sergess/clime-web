@@ -38,10 +38,10 @@ export const AdvertisingBanner: FC<
       {showBackgroundVideo && (
         <BackgroundVideo
           source={{
-            src: '/ads-map-animation.mp4',
+            src: '/map-animation.mp4',
             type: 'video/mp4',
           }}
-          poster="/ads-map-poster.jpg"
+          poster="/map-poster.jpg"
           containerStyles={{
             position: 'absolute',
             width: '100%',

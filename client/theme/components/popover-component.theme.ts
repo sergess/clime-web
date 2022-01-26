@@ -1,4 +1,8 @@
-import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
+import {
+  LAYOUT_HORIZONTAL_PADDING,
+  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+} from 'client/constants';
 
 const cardContentStyles = {
   overflow: 'hidden',
@@ -20,6 +24,11 @@ const Popover = {
         width: '100%',
         maxWidth: '100%',
         minWidth: 'auto !important',
+        overflowY: 'auto',
+        maxH: {
+          base: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
+          md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
+        },
       },
       content: cardContentStyles,
     },
