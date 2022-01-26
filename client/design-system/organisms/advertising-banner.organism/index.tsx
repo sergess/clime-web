@@ -51,7 +51,7 @@ export const AdvertisingBanner: FC<
           }}
         />
       )}
-      <Box mt={297} position="relative">
+      <Box mt={279} position="relative">
         <Text
           color="white"
           fontSize={48}

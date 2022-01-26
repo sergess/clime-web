@@ -51,8 +51,12 @@ const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
           />
         </Head>
         <HourlyDetailedForecastCard w="full" />
-        <RadarSnapshotStub h="full" minH="270px" priorityLoad />
-        <PromoBanner spotId="hourlyOne" />
+        <RadarSnapshotStub
+          h="full"
+          minH="270px"
+          display={{ base: 'none', md: 'flex' }}
+        />
+        <PromoBanner spotId="hourlyOne" priorityLoad />
         <DailyForecastCard maxH={270} w="full" />
         <AdsenseBanner
           client={CLIENT_ID}

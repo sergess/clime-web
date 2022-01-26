@@ -8,6 +8,7 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
+  Flex,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
@@ -30,22 +31,30 @@ export const RadarSnapshotStub: FC<
       alignItems="center"
       {...props}
     >
-      <BackgroundImage
-        src="/radar-snapshot-stub-background.jpg"
-        priority={priorityLoad}
-      />
       <Box px={4} pt={5} pb={4} bg="white" w="full" position="relative">
         <Text color="blue.800" textStyle="16-semi-bold">
           {t('Weather Radar')}
         </Text>
       </Box>
-      <NextLink href={climeAppLink} passHref>
-        <LinkOverlay as="a" isExternal>
-          <Button w="280px" variant="cta" mb={5}>
-            {t('Get Clime App')}
-          </Button>
-        </LinkOverlay>
-      </NextLink>
+      <Flex
+        position="relative"
+        w="full"
+        h="full"
+        alignItems="flex-end"
+        justify="center"
+      >
+        <BackgroundImage
+          src="/radar-snapshot-stub-background.jpg"
+          priority={priorityLoad}
+        />
+        <NextLink href={climeAppLink} passHref>
+          <LinkOverlay as="a" isExternal w="full" mx="29px">
+            <Button w="full" variant="cta" mb={5}>
+              {t('Get Clime App')}
+            </Button>
+          </LinkOverlay>
+        </NextLink>
+      </Flex>
     </LinkBox>
   );
 };
