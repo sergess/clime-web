@@ -104,7 +104,7 @@ deploy-to-gar-production:
     - gcloud auth activate-service-account --key-file=$GOOGLE_SA
     - gcloud --project=$GCP_PROJECT run deploy $CloudRun_Service --region=us-east1 --image $GAR_REPO:latest --ingress=internal-and-cloud-load-balancing
     - >-
-        curl -X POST "https://api.cloudflare.com/client/v4/zones/469de0690f8c758373310418a0c634f0/purge_cache" \
+        curl -sS -X POST "https://api.cloudflare.com/client/v4/zones/469de0690f8c758373310418a0c634f0/purge_cache" \
           -H "Authorization: Bearer $CF_Token" -H "Content-Type:application/json" \
           --data '{"hosts": ["'$CF_Host'"]}'
     - apk add --no-cache jq
