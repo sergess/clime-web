@@ -1,11 +1,11 @@
 import { atomWithStorage } from 'jotai/utils';
 
+import { TEMPERATURE_UNITS, TEMPERATURE_UNIT } from 'client/constants';
 import { TemperatureUnit } from 'client/types';
-import { TEMPERATURE_UNIT } from 'client/constants';
 
-export const temperatureUnitAtom = atomWithStorage(
+export const temperatureUnitAtom = atomWithStorage<TemperatureUnit>(
   TEMPERATURE_UNIT,
-  TemperatureUnit.F
+  TEMPERATURE_UNITS.F
 );
 
 export default temperatureUnitAtom;

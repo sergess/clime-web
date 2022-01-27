@@ -1,16 +1,33 @@
-import React, { ReactElement } from 'react';
-import { Box, Flex, SimpleGrid, ComponentDefaultProps } from '@chakra-ui/react';
+import React, { ReactElement, FC } from 'react';
+import {
+  Box,
+  Flex,
+  SimpleGrid,
+  ComponentDefaultProps,
+  Skeleton,
+} from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+import climeTheme from 'client/theme';
 
-import { Footer, Header } from 'client/design-system/organisms';
+import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
+
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
-import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
+import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
-export const DefaultLayout: React.FC = ({
+const AdvertisingBanner = dynamic(
+  () => import('client/design-system/organisms/advertising-banner.organism'),
+  {
+    loading: () => <Skeleton h="full" w="full" />,
+  }
+);
+
+export const DefaultLayout: FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
   const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+
   return (
     <>
       <Box flex="1 0 auto">
@@ -44,16 +61,35 @@ export const DefaultLayout: React.FC = ({
               />
               {children}
             </SimpleGrid>
-            {!widthSmallerThanMedium && (
-              <Flex w="full" maxW="380px" my="5" flexDirection="column">
-                <Box bg="red.50" w="full" h="640px">
-                  ads
-                </Box>
-                <Box bg="gray.300" w="full" h="320px" mt="10">
-                  ads 2
-                </Box>
-              </Flex>
-            )}
+            <Flex
+              sx={{
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { display: 'none' },
+              }}
+              w="full"
+              maxW="380px"
+              my="5"
+              flexDirection="column"
+            >
+              <AdsenseBanner
+                client={CLIENT_ID}
+                slot="1272521434"
+                stub={
+                  <AdvertisingBanner
+                    showBackgroundVideo={!widthSmallerThanMedium}
+                  />
+                }
+                w="full"
+                h="640px"
+              />
+              <AdsenseBanner
+                client={CLIENT_ID}
+                slot="1080949747"
+                w="full"
+                h="320px"
+                mt="10"
+              />
+            </Flex>
           </Flex>
         </Flex>
       </Box>

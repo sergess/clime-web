@@ -1,36 +1,42 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, FC } from 'react';
 import dynamic from 'next/dynamic';
-import { Skeleton } from '@chakra-ui/react';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
-import { ResponsiveBannerProps, ResponsiveBannerId } from './types';
+import { ResponsiveBannerId } from './types';
 
 const responsiveBanners: Record<
   ResponsiveBannerId,
-  ComponentType<{ wide: boolean }>
+  ComponentType<
+    { wide: boolean; priorityLoad: boolean } & ComponentDefaultProps
+  >
 > = {
   [ResponsiveBannerId.bannerOne]: dynamic(
-    () => import('./variants/first.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    () => import('./variants/first.variant')
   ),
   [ResponsiveBannerId.bannerTwo]: dynamic(
-    () => import('./variants/second.variant'),
-    {
-      loading: () => <Skeleton h="full" w="full" />,
-    }
+    () => import('./variants/second.variant')
   ),
 };
 
-export const ResponsiveBanner = ({
-  bannerId,
-  wide = false,
-}: ResponsiveBannerProps): JSX.Element | null => {
+export const ResponsiveBanner: FC<{
+  bannerId: ResponsiveBannerId;
+  wide?: boolean;
+  priorityLoad: boolean;
+  spotId: string | number;
+}> = ({ bannerId, priorityLoad, wide = false, spotId }): JSX.Element | null => {
   const Component = responsiveBanners[bannerId];
 
   if (!Component) return null;
 
-  return <Component wide={wide} />;
+  return (
+    <Component
+      priorityLoad={priorityLoad}
+      wide={wide}
+      data-banner-id={bannerId}
+      data-spot-name={spotId}
+      className="banner"
+    />
+  );
 };
 
 export default ResponsiveBanner;

@@ -10,26 +10,34 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
-
-import { useClimeAppLink } from 'client/hooks';
 import Image from 'next/image';
 
-export const MarketingBannerEleventh = (
-  props: ComponentDefaultProps
-): ReactElement => {
+import { useClimeAppLink } from 'client/hooks';
+import {
+  DEFAULT_BANNER_HEIGHT,
+  DEFAULT_BANNER_BORDER_RADIUS,
+} from 'client/design-system/organisms/promo-banner.organism/constants';
+
+export const MarketingBannerEleventh = ({
+  priorityLoad,
+  ...bannerDefaultProps
+}: {
+  priorityLoad: boolean;
+} & ComponentDefaultProps): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
     <LinkBox
-      borderRadius={16}
+      {...bannerDefaultProps}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
-      h={250}
+      h={DEFAULT_BANNER_HEIGHT}
       alignItems="center"
       bg="blue.500"
-      {...props}
     >
       <Flex
         h="full"
@@ -65,15 +73,15 @@ export const MarketingBannerEleventh = (
           fontWeight="500"
           pb={1.5}
         >
-          {t('Temperature Forecast Map')}
+          {t('To the minute precip forecast')}
         </Text>
         <Box>
           <Image
             src="/icons/graphic.svg"
             width={329}
             height={109}
-            priority
             alt="Moderate rain"
+            priority={priorityLoad}
           />
         </Box>
       </Flex>

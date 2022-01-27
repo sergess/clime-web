@@ -3,18 +3,32 @@ import { Box, Button, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
-import { BaseNativeBannerProps } from './types';
+import { BackgroundImage } from 'client/design-system/atoms';
+import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const BaseNativeBanner = ({
   heading,
   buttonText,
-  bannerStyles,
-}: BaseNativeBannerProps): ReactElement => {
+  priorityLoad,
+  backgroundSrc,
+  spotId,
+  bannerId,
+}: {
+  heading: string;
+  buttonText: string;
+  priorityLoad: boolean;
+  backgroundSrc: string;
+  spotId: string | number;
+  bannerId: number;
+}): ReactElement => {
   const climeAppLink = useClimeAppLink();
 
   return (
     <LinkBox
-      borderRadius={16}
+      className="banner"
+      data-banner-id={bannerId}
+      data-spot-name={spotId}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
       flexDirection="column"
       justifyContent="space-between"
@@ -22,11 +36,10 @@ export const BaseNativeBanner = ({
       minH={340}
       overflow="hidden"
       alignItems="center"
-      bgSize="cover"
-      bgPosition="center center"
-      {...bannerStyles}
     >
-      <Box px={4} pt={5} pb={4} bg="white" w="full">
+      <BackgroundImage src={backgroundSrc} priority={priorityLoad} />
+
+      <Box px={4} pt={5} pb={4} bg="white" w="full" position="relative">
         <Text color="blue.800" textStyle="16-semi-bold">
           {heading}
         </Text>

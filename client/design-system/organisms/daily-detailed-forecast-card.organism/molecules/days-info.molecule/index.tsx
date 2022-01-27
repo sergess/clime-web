@@ -1,4 +1,4 @@
-import {
+import React, {
   ReactElement,
   memo,
   useState,
@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
 
 import { WeatherStateIcon } from 'client/design-system/atoms';
 import {
@@ -18,7 +19,10 @@ import {
   DetailedForecastChart,
   useDomain,
 } from 'client/design-system/molecules/detailed-forecast-chart.molecule';
+import { CarouselButton } from 'client/design-system/molecules/detailed-forecast-carousel.molecule/atoms';
+import { trackEvent } from 'client/services';
 
+import { TEN_DAY_DETAILED_FORECAST_SWIPED } from 'client/services/analytics.service/constants';
 import { SLIDES_PER_VIEW, X_VALUE_CONFIG, Y_VALUE_CONFIG } from './constants';
 import { DaysInfoProps } from './types';
 
@@ -34,6 +38,7 @@ export const DaysInfo = memo(
 
     const onActiveSlideIndexChange = useCallback((index: number) => {
       setActiveSlideIndex(index);
+      trackEvent(TEN_DAY_DETAILED_FORECAST_SWIPED);
     }, []);
 
     const isChartItemSelected = useCallback(
@@ -95,7 +100,41 @@ export const DaysInfo = memo(
             );
           }}
         />
+        <CarouselButton
+          direction="Left"
+          icon={
+            <Flex transform="rotate(180deg)" w={5} h={130}>
+              <Image
+                src="/icons/arrow-gray.svg"
+                width={20}
+                height={20}
+                alt="Left"
+              />
+            </Flex>
+          }
+          top={100}
+          left={0}
+          position="absolute"
+          w={30}
+        />
 
+        <CarouselButton
+          direction="Right"
+          icon={
+            <Flex w={5} h={130}>
+              <Image
+                src="/icons/arrow-gray.svg"
+                width={20}
+                height={20}
+                alt="Right"
+              />
+            </Flex>
+          }
+          top={100}
+          right={0}
+          position="absolute"
+          w={30}
+        />
         <DetailedForecastChart
           data={chartData}
           yDomain={yDomain}

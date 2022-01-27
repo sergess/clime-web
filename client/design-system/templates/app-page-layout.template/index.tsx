@@ -38,7 +38,6 @@ export const AppPageLayout: React.FC = ({
             <Image
               src="/app-page-available-devices.png"
               width={556}
-              priority
               height={650}
               alt="Precise weather"
             />

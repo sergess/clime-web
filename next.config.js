@@ -6,6 +6,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const THREE_DAYS = 3 * 24 * 60 * 60;
+const ONE_YEAR = 365 * 24 * 60 * 60;
+
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   i18n,
@@ -23,12 +26,37 @@ module.exports = withBundleAnalyzer({
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png|ico|txt)',
+        source: '/:path*(svg|jpg|png|ico|txt|mp4)',
         locale: false,
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=300, must-revalidate',
+            value: `public, max-age=${THREE_DAYS}, must-revalidate`,
+          },
+        ],
+      },
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: `max-age=${ONE_YEAR}; includeSubDomains; preload`,
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
           },
         ],
       },

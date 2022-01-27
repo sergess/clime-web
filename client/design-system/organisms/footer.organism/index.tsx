@@ -59,7 +59,7 @@ export const Footer = (): ReactElement => {
             color="white"
             opacity="0.5"
           >
-            {t('© 2021 Clime. All rights reserved.')}
+            {t('© 2022 Clime. All rights reserved.')}
           </Box>
           <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: '0px' }}>
             <Download />
@@ -104,12 +104,25 @@ export const Footer = (): ReactElement => {
             <Link
               href="https://weatherornotapps.com/privacyPolicy#h"
               d="inline-block"
+              pe={['12', null, '10']}
               mb={['6', null, '0']}
               color="white"
               isExternal
             >
               {t('California Privacy Rights')}
             </Link>
+            <Box
+              className="ot-sdk-show-settings"
+              d="inline-block"
+              mb={['6', null, '0']}
+              color="white"
+              cursor="pointer"
+              _hover={{
+                textDecoration: 'underline',
+              }}
+            >
+              {t('Cookie Settings')}
+            </Box>
           </Box>
           <Divider
             d={['block', null, 'none']}

@@ -1,52 +1,67 @@
-import React, { ReactElement } from 'react';
-import { Text, Box, LinkBox, LinkOverlay, Flex, Link } from '@chakra-ui/react';
+import React, { ReactElement, FC } from 'react';
+import {
+  Text,
+  Box,
+  LinkBox,
+  LinkOverlay,
+  Flex,
+  Link,
+  ComponentDefaultProps,
+} from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
+import { BackgroundImage } from 'client/design-system/atoms';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
+import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
-export const ResponsiveBannerSecond = ({
-  wide,
-}: {
-  wide: boolean;
-}): ReactElement => {
+export const ResponsiveBannerSecond: FC<
+  { wide: boolean; priorityLoad: boolean } & ComponentDefaultProps
+> = ({ wide, priorityLoad, ...props }): ReactElement => {
   const { t } = useTranslation('banners');
   const climeAppLink = useClimeAppLink();
 
   return (
     <LinkBox
+      {...props}
       d="flex"
-      borderRadius={16}
+      borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       flexDirection="column"
       justifyContent="space-between"
       overflow="hidden"
       alignItems="flex-start"
-      bg="url('/bg-responsive-banner.png'), linear-gradient(180deg, #051F14 0%, #0C142E 100%)"
-      bgSize="cover"
-      bgPosition="center bottom"
+      bg="linear-gradient(180deg, #051F14 0%, #0C142E 100%)"
       boxShadow="0 4px 8px rgba(26, 96, 179, 0.1), inset 0px -2px 0px rgba(60, 131, 232, 0.1)"
-      h={!wide ? '260px' : '200px'}
+      h={!wide ? '270px' : '200px'}
       px={5}
       pt={!wide ? 9 : 5}
       pb={5}
+      pos="relative"
     >
+      <BackgroundImage
+        src="/bg-responsive-banner.png"
+        priority={priorityLoad}
+      />
       <Box
         w={!wide ? '235px' : '338px'}
         h={!wide ? '326px' : '469px'}
         pos="absolute"
         right={!wide ? '7px' : '113px'}
         top={!wide ? '-55px' : '-233px'}
+        zIndex={0}
       >
-        <Image
-          src="/banner-two-phone.png"
-          layout="fill"
-          priority
-          alt="Keep your weather forecast at hand!"
-        />
+        <Box pos="relative" h="full">
+          <Image
+            src="/banner-two-phone.png"
+            layout="fill"
+            alt="Keep your weather forecast at hand!"
+            priority={priorityLoad}
+          />
+        </Box>
       </Box>
-      <Box w={!wide ? '215px' : '320px'}>
+      <Box w={!wide ? '215px' : '320px'} pos="relative">
         <Text
           color="white"
           fontSize={!wide ? 18 : 28}
@@ -80,7 +95,6 @@ export const ResponsiveBannerSecond = ({
                 <Image
                   src="/icons/app-store.svg"
                   layout="fill"
-                  priority
                   alt="App Store"
                 />
               </Box>
@@ -96,7 +110,6 @@ export const ResponsiveBannerSecond = ({
                 <Image
                   src="/icons/google-play.svg"
                   layout="fill"
-                  priority
                   alt="Google Play"
                 />
               </Box>

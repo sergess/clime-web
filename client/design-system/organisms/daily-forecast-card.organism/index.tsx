@@ -24,42 +24,45 @@ export const DailyForecastCard = memo(
     const setSelectedDay = useUpdateAtom(selectedDayAtom);
     const pageUrl = usePageUrl(TEN_DAY_WEATHER);
 
-    const renderDailyBlock = useCallback(({ index, item }) => {
-      const selected = index === 0;
+    const renderDailyBlock = useCallback(
+      ({ index, item }) => {
+        const selected = index === 0;
 
-      return (
-        <SelectableColumnBlock
-          key={item.dateTime}
-          selected={selected}
-          onSelect={() => {
-            setSelectedDay(item.dateTime);
-            router.push(pageUrl);
-          }}
-          heading={
-            <Text
-              textStyle={selected ? '12-bold' : '12-semi-bold'}
-              color={selected ? 'blue.500' : 'blue.800'}
-            >
-              {index === 0 && t('Today')}
-              {index !== 0 && item.date}
-            </Text>
-          }
-          main={
-            <Box my={2}>
-              <WeatherStateIcon night={item.night} stateId={item.stateId} />
-            </Box>
-          }
-          footer={
-            <ClientOnly>
-              <MinMaxTemperatureColumn
-                min={item.minTemperature}
-                max={item.maxTemperature}
-              />
-            </ClientOnly>
-          }
-        />
-      );
-    }, []);
+        return (
+          <SelectableColumnBlock
+            key={item.dateTime}
+            selected={selected}
+            onSelect={() => {
+              setSelectedDay(item.dateTime);
+              router.push(pageUrl);
+            }}
+            heading={
+              <Text
+                textStyle={selected ? '12-bold' : '12-semi-bold'}
+                color={selected ? 'blue.500' : 'blue.800'}
+              >
+                {index === 0 && t('Today')}
+                {index !== 0 && item.date}
+              </Text>
+            }
+            main={
+              <Box my={2}>
+                <WeatherStateIcon night={item.night} stateId={item.stateId} />
+              </Box>
+            }
+            footer={
+              <ClientOnly>
+                <MinMaxTemperatureColumn
+                  min={item.minTemperature}
+                  max={item.maxTemperature}
+                />
+              </ClientOnly>
+            }
+          />
+        );
+      },
+      [pageUrl]
+    );
 
     const dailyForecast = useCardData();
 
@@ -68,6 +71,7 @@ export const DailyForecastCard = memo(
     return (
       <ForecastCard
         {...props}
+        className="daily-block"
         py="5"
         heading={t('Daily Forecast')}
         data={dailyForecast}

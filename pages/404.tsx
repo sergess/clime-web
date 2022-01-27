@@ -1,16 +1,17 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
+import { AdsenseBanner } from 'client/design-system/organisms';
 import { ErrorPageLayout } from 'client/design-system/templates';
 import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
-import { WEATHER_TODAY } from 'client/constants';
+import { WEATHER_TODAY, CLIENT_ID } from 'client/constants';
 
-const NotFoundPage = () => {
+const NotFoundPage = (): ReactElement => {
   const { t } = useTranslation('page-404');
   const pageUrl = usePageUrl(WEATHER_TODAY);
 
@@ -48,9 +49,7 @@ const NotFoundPage = () => {
           </Button>
         </Link>
       </Flex>
-      <Box bg="gray.300" w="full" h="200px">
-        ads
-      </Box>
+      <AdsenseBanner client={CLIENT_ID} slot="7916559712" w="full" h="200px" />
     </>
   );
 };

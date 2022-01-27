@@ -3,7 +3,7 @@ export enum NativeBannerId {
   bannerTwo,
   bannerThree,
   bannerFour,
-  bannerFife,
+  bannerFive,
   bannerSix,
   bannerSeven,
 }

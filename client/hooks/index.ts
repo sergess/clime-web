@@ -9,6 +9,7 @@ export * from './use-container-width.hook';
 export * from './use-url-slug.hook';
 export * from './use-forecast-cards.hook';
 export * from './use-selected-date-time-index.util';
+export * from './use-mutation-observer.hook';
 export * from './use-location-data.hook';
 export * from './use-location-data-by-ip.hook';
 export * from './use-page-url.hook';

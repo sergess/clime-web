@@ -16,7 +16,8 @@
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
     "react/jsx-props-no-spreading": "warn",
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "error",
+    "react/require-default-props": "off"
   },
   "env": {
     "jest": true

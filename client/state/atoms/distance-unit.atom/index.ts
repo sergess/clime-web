@@ -1,8 +1,11 @@
 import { atomWithStorage } from 'jotai/utils';
 
-import { DISTANCE_UNIT } from 'client/constants';
+import { DISTANCE_UNITS, DISTANCE_UNIT } from 'client/constants';
 import { DistanceUnit } from 'client/types';
 
-export const distanceUnitAtom = atomWithStorage(DISTANCE_UNIT, DistanceUnit.MI);
+export const distanceUnitAtom = atomWithStorage<DistanceUnit>(
+  DISTANCE_UNIT,
+  DISTANCE_UNITS.MI
+);
 
 export default distanceUnitAtom;

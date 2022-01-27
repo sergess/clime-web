@@ -1,13 +1,7 @@
-export enum PressureUnit {
-  INCH = 'inch',
-  MM = 'mm',
-  MBAR = 'mbar',
-}
+import { PRESSURE_UNITS } from 'client/constants/measurement-units/pressure.constant';
 
-export const PressureUnitValues = [
-  PressureUnit.INCH,
-  PressureUnit.MM,
-  PressureUnit.MBAR,
-];
+import { ValueOf } from 'common/types';
+
+export type PressureUnit = ValueOf<typeof PRESSURE_UNITS>;
 
 export default PressureUnit;

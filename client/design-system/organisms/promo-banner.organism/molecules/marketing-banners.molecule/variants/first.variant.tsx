@@ -3,7 +3,6 @@ import {
   Button,
   ComponentDefaultProps,
   Flex,
-  LinkBox,
   LinkOverlay,
   Text,
 } from '@chakra-ui/react';
@@ -12,24 +11,22 @@ import { useTranslation } from 'next-i18next';
 
 import { useClimeAppLink } from 'client/hooks';
 
-export const MarketingBannerFirst = (
-  props: ComponentDefaultProps
-): ReactElement => {
+import { BaseMarketingBanner } from '../molecules';
+
+export const MarketingBannerFirst = ({
+  priorityLoad,
+  ...bannerDefaultProps
+}: {
+  priorityLoad: boolean;
+} & ComponentDefaultProps): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
-    <LinkBox
-      borderRadius={16}
-      d="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      overflow="hidden"
-      bgSize="cover"
-      bgPosition="center center"
-      h={250}
-      alignItems="flex-start"
-      bgImage="url('/img_8.jpg')"
-      {...props}
+    <BaseMarketingBanner
+      backgroundSrc="/img_8.jpg"
+      backgroundPriority={priorityLoad}
+      {...bannerDefaultProps}
     >
       <Flex
         h="full"
@@ -59,7 +56,7 @@ export const MarketingBannerFirst = (
           </Button>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </BaseMarketingBanner>
   );
 };
 

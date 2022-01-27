@@ -13,7 +13,7 @@ export const SwitchSelectorOption = ({
 
   return (
     <Box as="label">
-      <input {...input} />
+      <input {...input} aria-label={`Switch to ${radioProps.value}`} />
       <Box
         {...checkbox}
         cursor="pointer"

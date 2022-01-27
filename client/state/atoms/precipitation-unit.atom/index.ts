@@ -1,11 +1,11 @@
 import { atomWithStorage } from 'jotai/utils';
 
-import { PRECIPITATION_UNIT } from 'client/constants';
+import { PRECIPITATION_UNITS, PRECIPITATION_UNIT } from 'client/constants';
 import { PrecipitationUnit } from 'client/types';
 
-export const precipitationUnitAtom = atomWithStorage(
+export const precipitationUnitAtom = atomWithStorage<PrecipitationUnit>(
   PRECIPITATION_UNIT,
-  PrecipitationUnit.INCH
+  PRECIPITATION_UNITS.INCH
 );
 
 export default precipitationUnitAtom;

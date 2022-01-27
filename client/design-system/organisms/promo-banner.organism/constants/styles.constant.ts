@@ -1,0 +1,2 @@
+export const DEFAULT_BANNER_HEIGHT = 270;
+export const DEFAULT_BANNER_BORDER_RADIUS = 16;

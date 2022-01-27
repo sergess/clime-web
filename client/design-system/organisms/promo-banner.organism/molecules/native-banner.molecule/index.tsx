@@ -1,12 +1,14 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, FC } from 'react';
 import { useTranslation } from 'next-i18next';
 
 import { BaseNativeBanner } from './molecules';
-import { NativeBannerId, NativeBannerProps } from './types';
+import { NativeBannerId } from './types';
 
-export const NativeBanner = ({
-  bannerId,
-}: NativeBannerProps): ReactElement | null => {
+export const NativeBanner: FC<{
+  bannerId: NativeBannerId;
+  priorityLoad: boolean;
+  spotId: string | number;
+}> = ({ bannerId, priorityLoad, spotId }): ReactElement | null => {
   const { t } = useTranslation('banners');
 
   switch (bannerId) {
@@ -15,7 +17,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Hurricane Tracker')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_1.jpg')" }}
+          backgroundSrc="/img_1.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     case NativeBannerId.bannerTwo:
@@ -23,7 +28,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_2.jpg')" }}
+          backgroundSrc="/img_2.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     case NativeBannerId.bannerThree:
@@ -31,7 +39,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_3.jpg')" }}
+          backgroundSrc="/img_3.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     case NativeBannerId.bannerFour:
@@ -39,15 +50,21 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Lightning Tracker')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_4.jpg')" }}
+          backgroundSrc="/img_4.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
-    case NativeBannerId.bannerFife:
+    case NativeBannerId.bannerFive:
       return (
         <BaseNativeBanner
           heading={t('Advanced Precipitation Forecast Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_5.jpg')" }}
+          backgroundSrc="/img_5.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     case NativeBannerId.bannerSix:
@@ -55,7 +72,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('Temperature Forecast Map')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_6.jpg')" }}
+          backgroundSrc="/img_6.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     case NativeBannerId.bannerSeven:
@@ -63,7 +83,10 @@ export const NativeBanner = ({
         <BaseNativeBanner
           heading={t('RainScope')}
           buttonText={t('Get Clime App')}
-          bannerStyles={{ bgImage: "url('/img_7.jpg')" }}
+          backgroundSrc="/img_7.jpg"
+          priorityLoad={priorityLoad}
+          bannerId={bannerId}
+          spotId={spotId}
         />
       );
     default:

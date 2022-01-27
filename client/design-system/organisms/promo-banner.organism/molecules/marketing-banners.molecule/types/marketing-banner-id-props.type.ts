@@ -3,7 +3,7 @@ export enum MarketingBannerId {
   bannerTwo,
   bannerThree,
   bannerFour,
-  bannerFife,
+  bannerFive,
   bannerSix,
   bannerSeven,
   bannerEight,

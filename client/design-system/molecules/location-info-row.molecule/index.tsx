@@ -1,7 +1,7 @@
 import { ReactElement, memo, useMemo, useState, useEffect } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { PinCardIcon } from 'client/design-system/atoms';
 import { useCookies, useLocationData } from 'client/hooks';
 import { isLocationACloseToLocationB } from 'client/utils';
 
@@ -14,8 +14,9 @@ import { LocationInfoRowProps } from './types';
 import { getFullLocationName } from './utils';
 
 export const LocationInfoRow = memo(
-  ({ date, componentStyles }: LocationInfoRowProps): ReactElement => {
+  ({ date, componentStyles, heading }: LocationInfoRowProps): ReactElement => {
     const locationData = useLocationData();
+
     const name = useMemo(
       () => getFullLocationName(locationData),
       [locationData]
@@ -51,20 +52,34 @@ export const LocationInfoRow = memo(
     }, [locationData, cookies, exact]);
 
     return (
-      <Flex {...componentStyles} w="full" justify="space-between">
-        <Flex align="center">
-          {exact && <PinCardIcon me={2.5} />}
-
-          <Text color="blue.800" textStyle="16-card-title" noOfLines={2}>
+      <Flex
+        {...componentStyles}
+        w="full"
+        justify="space-between"
+        flexWrap={heading ? 'wrap' : 'nowrap'}
+      >
+        <Flex w="full" pb={2}>
+          <Text
+            me={2.5}
+            color="blue.800"
+            textStyle="16-card-title"
+            noOfLines={2}
+          >
             {name}
           </Text>
+          {exact && (
+            <Image
+              src="/icons/pin-card.svg"
+              alt="Exact location"
+              width={16}
+              height={16}
+            />
+          )}
         </Flex>
-
-        <Flex>
-          <Text color="gray.500" textStyle="16-medium">
-            {date}
-          </Text>
-        </Flex>
+        {heading}
+        <Text color="gray.500" textStyle="16-medium">
+          {date}
+        </Text>
       </Flex>
     );
   }

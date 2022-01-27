@@ -1,4 +1,3 @@
 export const WEB_FUNNEL_LINK = 'https://app.climeradar.com/';
-export const IOS_STORE_LINK = 'https://apps.apple.com/app/id749133753';
-export const ANDROID_STORE_LINK =
-  'https://play.google.com/store/apps/details?id=com.apalon.weatherradar.free';
+export const IOS_STORE_LINK = 'https://app.adjust.com/z2gzvdl';
+export const ANDROID_STORE_LINK = 'https://app.adjust.com/3t5lokr';

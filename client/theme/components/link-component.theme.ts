@@ -1,7 +1,7 @@
 const Link = {
   variants: {
     'common-nav': {
-      color: 'blue.50',
+      color: 'blue.500',
 
       _hover: {
         textDecoration: 'none',

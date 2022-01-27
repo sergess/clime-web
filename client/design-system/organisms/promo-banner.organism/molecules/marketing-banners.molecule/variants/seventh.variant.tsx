@@ -1,37 +1,34 @@
 import React, { ReactElement } from 'react';
 import {
   Button,
-  ComponentDefaultProps,
   Flex,
-  LinkBox,
   LinkOverlay,
   Text,
   Box,
+  ComponentDefaultProps,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
-
-import { useClimeAppLink } from 'client/hooks';
 import Image from 'next/image';
 
-export const MarketingBannerSeventh = (
-  props: ComponentDefaultProps
-): ReactElement => {
+import { useClimeAppLink } from 'client/hooks';
+
+import { BaseMarketingBanner } from '../molecules';
+
+export const MarketingBannerSeventh = ({
+  priorityLoad,
+  ...bannerDefaultProps
+}: {
+  priorityLoad: boolean;
+} & ComponentDefaultProps): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
   return (
-    <LinkBox
-      borderRadius={16}
-      d="flex"
-      flexDirection="column"
-      justifyContent="space-between"
-      overflow="hidden"
-      bgSize="cover"
-      bgPosition="center center"
-      h={250}
-      alignItems="flex-start"
-      bgImage="url('/img_14.jpg')"
-      {...props}
+    <BaseMarketingBanner
+      {...bannerDefaultProps}
+      backgroundSrc="/img_14.jpg"
+      backgroundPriority={priorityLoad}
     >
       <Flex
         h="full"
@@ -79,7 +76,6 @@ export const MarketingBannerSeventh = (
               src="/icons/keep-track-fire-ico.svg"
               layout="fill"
               alt="fire"
-              priority
             />
           </Box>
         </Flex>
@@ -115,7 +111,7 @@ export const MarketingBannerSeventh = (
           </Button>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </BaseMarketingBanner>
   );
 };
 

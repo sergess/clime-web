@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
@@ -8,9 +8,12 @@ import Link from 'next/link';
 
 import { ErrorPageLayout } from 'client/design-system/templates';
 import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
-import { WEATHER_TODAY } from 'client/constants';
+import { CLIENT_ID, WEATHER_TODAY } from 'client/constants';
+import { AdsenseBanner } from 'client/design-system/organisms';
 
-const InternalServerErrorPage = () => {
+import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
+
+const InternalServerErrorPage = (): ReactElement => {
   const { t } = useTranslation('page-500');
 
   const pageUrl = usePageUrl(WEATHER_TODAY);
@@ -50,9 +53,7 @@ const InternalServerErrorPage = () => {
           </Button>
         </Link>
       </Flex>
-      <Box bg="gray.300" w="full" h="200px">
-        ads
-      </Box>
+      <AdsenseBanner client={CLIENT_ID} slot="7916559712" w="full" h="200px" />
     </>
   );
 };
@@ -68,4 +69,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     ...(!!locale &&
       (await serverSideTranslations(locale, ['common', 'page-500']))),
   },
+  revalidate: REVALIDATE_FOR_STATIC_GENERATED_PAGES,
 });

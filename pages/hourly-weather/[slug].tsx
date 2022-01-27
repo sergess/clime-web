@@ -1,14 +1,22 @@
-import React, { ReactElement, memo } from 'react';
+import React, { FC, ReactElement, memo } from 'react';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
+import { ForecastCardsProvider } from 'client/state/contexts/forecast-cards.context';
 import {
   HourlyDetailedForecastCard,
   DailyForecastCard,
   PromoBanner,
+  AdsenseBanner,
+  RadarSnapshotStub,
 } from 'client/design-system/organisms';
-import { Card } from 'client/design-system/atoms';
+import { useLocationData } from 'client/hooks';
+import { getLocationName } from 'client/utils';
+import { CLIENT_ID } from 'client/constants';
 
-import { ForecastCard } from 'common/types';
+import { ForecastCards } from 'common/types/forecast-cards.type';
+import { ForecastCard } from 'common/types/forecast-card.type';
 
 import {
   withForecastCards,
@@ -17,33 +25,48 @@ import {
   mapHourlyDetailedCard,
   mapDailyCard,
 } from 'server/middlewares/get-server-side-props';
+import { RemoteConfig } from 'server/services/remote-config.service';
 
-const HourlyWeather = memo(
-  (): ReactElement => (
-    <>
-      <HourlyDetailedForecastCard w="full" />
-      <PromoBanner spotId="hourlyOne" />
-      <DailyForecastCard maxH={270} w="full" />
-      <Card
-        w="full"
-        h="100px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        ADS
-      </Card>
-      <Card
-        w="full"
-        h="200px"
-        bg="gray.400"
-        color="white"
-        justifyContent="center"
-      >
-        RADAR SNAPSHOT
-      </Card>
-    </>
-  )
+const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
+  ({ forecastCards }): ReactElement => {
+    const locationData = useLocationData();
+    const locationName = getLocationName(locationData);
+
+    const { t } = useTranslation('meta-tags');
+
+    return (
+      <ForecastCardsProvider value={forecastCards}>
+        <Head>
+          <title>
+            {t('{{locationName}} - Hourly Weather Forecast | Clime', {
+              locationName,
+            })}
+          </title>
+          <meta
+            name="description"
+            content={t(
+              'Hourly weather forecast for {{locationName}}: temps, chance & amount of precip, wind speed & direction, humidity, & UV index.',
+              { locationName }
+            )}
+          />
+        </Head>
+        <HourlyDetailedForecastCard w="full" />
+        <RadarSnapshotStub
+          h="full"
+          minH="270px"
+          display={{ base: 'none', md: 'flex' }}
+        />
+        <PromoBanner spotId="hourlyOne" priorityLoad />
+        <DailyForecastCard maxH={270} w="full" />
+        <AdsenseBanner
+          client={CLIENT_ID}
+          slot="7916559712"
+          w="full"
+          h="100px"
+        />
+      </ForecastCardsProvider>
+    );
+  }
 );
 
 HourlyWeather.displayName = 'HourlyWeather';
@@ -51,13 +74,16 @@ HourlyWeather.displayName = 'HourlyWeather';
 export default HourlyWeather;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const [locationData, translations] = await Promise.all([
+  const remoteConfig = new RemoteConfig();
+  const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
     withTranslations(
       'hourly-detailed-forecast-card',
       'daily-forecast-card',
-      'banners'
+      'banners',
+      'meta-tags'
     )(context),
+    remoteConfig.getAppConfig(),
   ]);
 
   if (!locationData) {
@@ -84,6 +110,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       locationData,
       forecastCards,
+      appConfig,
       ...translations,
     },
   };

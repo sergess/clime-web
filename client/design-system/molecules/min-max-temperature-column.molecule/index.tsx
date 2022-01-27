@@ -1,29 +1,31 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import { Arrow1Icon } from 'client/design-system/atoms';
-
-import { MinMaxTemperatureColumnProps } from './types';
-
-export const MinMaxTemperatureColumn = ({
-  max,
-  min,
-}: MinMaxTemperatureColumnProps): ReactElement => (
+export const MinMaxTemperatureColumn: FC<{
+  max: number | string;
+  min: number | string;
+}> = ({ max, min }): ReactElement => (
   <Flex direction="column">
     <Flex mb="1">
-      <Arrow1Icon stroke="blue.800" boxSize="12px" mr="0.5" />
-      <Text textStyle="12-semi-bold" color="blue.800">
+      <Image
+        src="/icons/arrow-1-gray-max.svg"
+        alt="Max temperature"
+        width={12}
+        height={12}
+      />
+      <Text ms="0.5" textStyle="12-semi-bold" color="blue.800">
         {max}&#176;
       </Text>
     </Flex>
     <Flex>
-      <Arrow1Icon
-        stroke="gray.500"
-        boxSize="12px"
-        mr="0.5"
-        transform="rotate(180deg)"
+      <Image
+        src="/icons/arrow-1-gray-min.svg"
+        alt="Min temperature"
+        width={12}
+        height={12}
       />
-      <Text textStyle="12-semi-bold" color="gray.500">
+      <Text ms="0.5" textStyle="12-semi-bold" color="gray.500">
         {min}&#176;
       </Text>
     </Flex>

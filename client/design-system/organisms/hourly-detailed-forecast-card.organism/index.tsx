@@ -1,14 +1,16 @@
-import { ReactElement, memo } from 'react';
+import React, { ReactElement, memo } from 'react';
 import {
   Flex,
   ComponentDefaultProps,
   Divider,
   Skeleton,
+  Heading,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
 import dynamic from 'next/dynamic';
 
+import { MEASUREMENT_UNIT_LABELS } from 'client/constants/measurement-units/labels.constant';
 import { Card, StateTextRow, ClientOnly } from 'client/design-system/atoms';
 import { useSelectedDateTimeIndex } from 'client/hooks';
 import { LocationInfoRow, WindInfoRow } from 'client/design-system/molecules';
@@ -55,7 +57,13 @@ export const HourlyDetailedForecastCard = memo(
     } = hourlyDetailedForecast[selectedHourIndex];
 
     return (
-      <Card {...props} pt="5" pb={{ md: 2 }} overflow="hidden">
+      <Card
+        {...props}
+        pt="5"
+        pb={{ md: 2 }}
+        overflow="hidden"
+        className="hourly-detailed-block"
+      >
         <LocationInfoRow
           date={
             <>
@@ -65,6 +73,17 @@ export const HourlyDetailedForecastCard = memo(
               {relatedDayConditionIndex > 1 &&
                 t('{{date}}, {{time}}', { date, time })}
             </>
+          }
+          heading={
+            <Heading
+              as="h1"
+              color="gray.500"
+              fontSize="16px"
+              fontWeight="500"
+              lineHeight="16px"
+            >
+              {t('Hourly Weather')}
+            </Heading>
           }
           componentStyles={{
             mb: 5,
@@ -90,10 +109,10 @@ export const HourlyDetailedForecastCard = memo(
             }}
           >
             <ClientOnly>
-              {t('{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}', {
+              {t('{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}', {
                 windAzimuth: windAzimuth.toUpperCase(),
                 windSpeed,
-                windSpeedUnit,
+                windSpeedUnit: MEASUREMENT_UNIT_LABELS[windSpeedUnit],
               })}
             </ClientOnly>
           </WindInfoRow>

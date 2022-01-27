@@ -1,0 +1,10 @@
+export const MI = 'mi';
+export const KM = 'km';
+export const INCH = 'inch';
+export const MM = 'mm';
+export const MBAR = 'mbar';
+export const MPH = 'mph';
+export const KMH = 'kmh';
+export const MS = 'ms';
+export const C = 'c';
+export const F = 'f';

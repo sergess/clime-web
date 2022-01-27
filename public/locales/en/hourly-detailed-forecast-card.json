@@ -1,5 +1,5 @@
 {
-  "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}}{{windSpeedUnit}}",
+  "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}": "{{windAzimuth}} wind at {{windSpeed}} {{windSpeedUnit}}",
   "Chance": "Chance",
   "Precipitation": "Precipitation",
   "UV Index": "UV Index",
@@ -12,5 +12,6 @@
   "{{uvIndex}} of 11": "{{uvIndex}} of 11",
   "Today, {{time}}": "Today, {{time}}",
   "Tomorrow, {{time}}": "Tomorrow, {{time}}",
-  "{{date}}, {{time}}": "{{date}}, {{time}}"
+  "{{date}}, {{time}}": "{{date}}, {{time}}",
+  "Hourly Weather": "Hourly Weather"
 }

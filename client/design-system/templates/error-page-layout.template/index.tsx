@@ -1,16 +1,26 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, FC } from 'react';
+import dynamic from 'next/dynamic';
+import { Box, Flex, ComponentDefaultProps, Skeleton } from '@chakra-ui/react';
 
-import { Box, Flex, ComponentDefaultProps } from '@chakra-ui/react';
+import climeTheme from 'client/theme';
+import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 
-import { Footer, Header } from 'client/design-system/organisms';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 
-import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
+import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
-export const ErrorPageLayout: React.FC = ({
+const AdvertisingBanner = dynamic(
+  () => import('client/design-system/organisms/advertising-banner.organism'),
+  {
+    loading: () => <Skeleton h="full" w="full" />,
+  }
+);
+
+export const ErrorPageLayout: FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
   const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+
   return (
     <>
       <Box flex="1 0 auto">
@@ -33,13 +43,28 @@ export const ErrorPageLayout: React.FC = ({
             <Flex w="full" flexDirection="column" pe={[null, null, 5]}>
               {children}
             </Flex>
-            {!widthSmallerThanMedium && (
-              <Flex w="full" maxW="380px" my="5" flexDirection="column">
-                <Box bg="red.50" w="full" h="640px">
-                  ads
-                </Box>
-              </Flex>
-            )}
+            <Flex
+              sx={{
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                  { display: 'none' },
+              }}
+              w="full"
+              maxW="380px"
+              my="5"
+              flexDirection="column"
+            >
+              <AdsenseBanner
+                client={CLIENT_ID}
+                slot="1272521434"
+                stub={
+                  <AdvertisingBanner
+                    showBackgroundVideo={!widthSmallerThanMedium}
+                  />
+                }
+                w="full"
+                h="640px"
+              />
+            </Flex>
           </Flex>
         </Flex>
       </Box>

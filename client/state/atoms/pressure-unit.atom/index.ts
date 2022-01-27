@@ -1,11 +1,11 @@
 import { atomWithStorage } from 'jotai/utils';
 
-import { PRESSURE_UNIT } from 'client/constants';
+import { PRESSURE_UNITS, PRESSURE_UNIT } from 'client/constants';
 import { PressureUnit } from 'client/types';
 
-export const pressureUnitAtom = atomWithStorage(
+export const pressureUnitAtom = atomWithStorage<PressureUnit>(
   PRESSURE_UNIT,
-  PressureUnit.INCH
+  PRESSURE_UNITS.INCH
 );
 
 export default pressureUnitAtom;
