@@ -6,6 +6,8 @@ import {
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
 
+import { getClientIp } from 'server/utils';
+
 import { fetchLocationData } from './utils';
 import { WithLocationDataArguments } from './types';
 
@@ -23,12 +25,15 @@ export const withLocationData =
       longitude: Number(cookies?.[EXACT_LONGITUDE_COOKIE]),
     };
 
+    const clientIp = getClientIp(context.req, autolocation);
+
     const locationData = await fetchLocationData({
       userAgentHeader,
       autolocation,
       language,
       locationFromCookies,
       slug: query?.slug as string,
+      clientIp,
     });
 
     if (!locationData) {

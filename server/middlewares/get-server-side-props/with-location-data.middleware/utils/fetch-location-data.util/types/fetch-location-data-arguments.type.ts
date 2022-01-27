@@ -6,6 +6,7 @@ export type FetchLocationDataArguments = {
   autolocation: boolean;
   slug: string | undefined;
   language: string;
+  clientIp: string | null;
 };
 
 export default FetchLocationDataArguments;

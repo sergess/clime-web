@@ -10,3 +10,4 @@ export * from './calculate-opposite-angle.util';
 export * from './is-object.util';
 export * from './request-json.util';
 export * from './is-boolean.util';
+export * from './get-client-ip.util';
