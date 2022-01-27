@@ -10,6 +10,8 @@ import { ErrorPageLayout } from 'client/design-system/templates';
 import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';
 
+import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
+
 const InternalServerErrorPage = (): ReactElement => {
   const { t } = useTranslation('page-500');
 
@@ -68,4 +70,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     ...(!!locale &&
       (await serverSideTranslations(locale, ['common', 'page-500']))),
   },
+  revalidate: REVALIDATE_FOR_STATIC_GENERATED_PAGES,
 });

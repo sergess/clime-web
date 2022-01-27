@@ -10,6 +10,8 @@ import Head from 'next/head';
 import { AppPageLayout } from 'client/design-system/templates';
 import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 
+import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
+
 const AppPage = (): ReactElement => {
   const { t } = useTranslation(['clime-app', 'meta-tags']);
   return (
@@ -165,4 +167,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     ...(!!locale &&
       (await serverSideTranslations(locale, ['clime-app', 'meta-tags']))),
   },
+  revalidate: REVALIDATE_FOR_STATIC_GENERATED_PAGES,
 });
