@@ -6,6 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const THREE_DAYS = 3 * 24 * 60 * 60;
 const ONE_YEAR = 365 * 24 * 60 * 60;
 
 module.exports = withBundleAnalyzer({
@@ -30,7 +31,7 @@ module.exports = withBundleAnalyzer({
         headers: [
           {
             key: 'Cache-Control',
-            value: `public, max-age=${ONE_YEAR}, must-revalidate`,
+            value: `public, max-age=${THREE_DAYS}, must-revalidate`,
           },
         ],
       },

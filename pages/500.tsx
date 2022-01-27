@@ -11,6 +11,8 @@ import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
 import { CLIENT_ID, WEATHER_TODAY } from 'client/constants';
 import { AdsenseBanner } from 'client/design-system/organisms';
 
+import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
+
 const InternalServerErrorPage = (): ReactElement => {
   const { t } = useTranslation('page-500');
 
@@ -67,4 +69,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     ...(!!locale &&
       (await serverSideTranslations(locale, ['common', 'page-500']))),
   },
+  revalidate: REVALIDATE_FOR_STATIC_GENERATED_PAGES,
 });
