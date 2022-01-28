@@ -7,6 +7,7 @@ import {
   Collapse,
   useDisclosure,
   ComponentDefaultProps,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import { useAtomValue } from 'jotai/utils';
@@ -59,13 +60,20 @@ export const TodayCard = memo(
     const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
     const todayCardData = useTodayCardData();
 
+    // [TODO] Find better way how we can handle 'collapsed' state.
+    // 'useScreenWidthSmallerThanMedium' returns 'true' during SSR and sets correct value after rehydration.
+    // Probably we need to use media-queries here.
+    const [widthLargerThanMedium] = useMediaQuery(
+      `(min-width: ${climeTheme.breakpoints.md})`
+    );
+
     useEffect(() => {
-      if (cardOpened) {
+      if (cardOpened || widthLargerThanMedium) {
         trackEvent(CURRENT_DETAILS_FULL_SHOWN);
       } else {
         trackEvent(CURRENT_DETAILS_COMPACT_SHOWN);
       }
-    }, [cardOpened]);
+    }, [cardOpened, widthLargerThanMedium]);
 
     if (!todayCardData) return null;
 
