@@ -46,7 +46,7 @@ export const DailyForecastCard = memo(
               </Text>
             }
             main={
-              <Box my={2}>
+              <Box>
                 <WeatherStateIcon night={item.night} stateId={item.stateId} />
               </Box>
             }
@@ -73,6 +73,7 @@ export const DailyForecastCard = memo(
         {...props}
         className="daily-block"
         py="5"
+        h="full"
         heading={t('Daily Forecast')}
         data={dailyForecast}
         footer={

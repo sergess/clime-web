@@ -47,7 +47,7 @@ export const HourlyForecastCard = memo(
               </Text>
             }
             main={
-              <Box my={2}>
+              <Box>
                 <HourConditionIcon
                   variant={item.variant}
                   night={item.night}
@@ -83,6 +83,7 @@ export const HourlyForecastCard = memo(
         {...props}
         className="hourly-block"
         py="5"
+        h="full"
         heading={t('Hourly Forecast')}
         data={hourlyForecastCardData}
         footer={
