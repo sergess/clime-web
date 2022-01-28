@@ -15,7 +15,7 @@ export const HeaderBanner = (): ReactElement => {
   return (
     <Flex
       sx={{
-        [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]: {
+        [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]: {
           display: 'none',
         },
       }}
