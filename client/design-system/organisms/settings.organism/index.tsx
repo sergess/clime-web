@@ -117,9 +117,10 @@ export const Settings = ({
         >
           <Text
             sx={{
-              [`@media screen and (max-width: ${climeTheme.breakpoints.md})`]: {
-                display: 'none',
-              },
+              [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                {
+                  display: 'none',
+                },
             }}
             textStyle="16-medium"
           >
