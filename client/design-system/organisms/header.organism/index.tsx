@@ -3,6 +3,7 @@ import { Box, Container, Link, Button } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import { usePageUrl } from 'client/hooks';
 import { ClientOnly } from 'client/design-system/atoms';
@@ -25,6 +26,7 @@ const Settings = dynamic(
 );
 
 export const Header = (): ReactElement => {
+  const { t } = useTranslation('common');
   const {
     searchOpened,
     searchVisible,
@@ -102,9 +104,10 @@ export const Header = (): ReactElement => {
                 className="search-cancel"
                 variant="search-cancel"
                 onClick={onSearchClose}
-                ms={[3, null, null, 8]}
+                ms={[3, null, null, 5]}
+                w={{ md: '80px' }}
               >
-                Cancel
+                {t('Cancel')}
               </Button>
             )}
           </ClientOnly>
