@@ -25,9 +25,10 @@ import {
   Portal,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import climeTheme from 'client/theme';
 
 import { getLocationName } from 'client/utils';
-import { useAutocomplete, useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useAutocomplete, useScreenWidthSmallerThan } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';
 import {
   Arrow2Icon,
@@ -53,7 +54,9 @@ export const Search = ({
   const [location, setLocation] = useState<string>('');
   const [suggestions, setSuggestions] = useState<LocationData[] | null>(null);
 
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const screenWidthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   const onLocationChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {

@@ -12,7 +12,7 @@ import climeTheme from 'client/theme';
 import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
 
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
@@ -26,7 +26,9 @@ const AdvertisingBanner = dynamic(
 export const DefaultLayout: FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
-  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const widthSmallerThanLarge = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.lg
+  );
 
   return (
     <>
@@ -76,7 +78,7 @@ export const DefaultLayout: FC = ({
                 slot="1272521434"
                 stub={
                   <AdvertisingBanner
-                    showBackgroundVideo={!widthSmallerThanMedium}
+                    showBackgroundVideo={!widthSmallerThanLarge}
                   />
                 }
                 w="full"
