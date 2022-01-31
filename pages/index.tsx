@@ -96,7 +96,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           display={{ base: 'none', md: 'flex' }}
         />
         <PromoBanner spotId="homeOne" priorityLoad />
-        <HourlyForecastCard w="full" />
+        <HourlyForecastCard w="full" className="hourly-block__home" />
         <AdsenseBanner
           client={CLIENT_ID}
           slot="7916559712"
@@ -104,7 +104,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           h="100px"
         />
         <SummaryCard w="full" h={{ base: 260, md: 270 }} />
-        <DailyForecastCard maxH={270} w="full" />
+        <DailyForecastCard maxH={270} w="full" className="daily-block__home" />
         <PromoBanner spotId="homeTwo" />
       </ForecastCardsProvider>
     );
