@@ -49,21 +49,21 @@ export const DefaultLayout: FC = ({
           >
             <SimpleGrid
               w="full"
-              pe={[null, null, null, 5]}
+              pe={[null, null, null, null, 5]}
               py={5}
-              columns={[1, 1, 1, 1, 2]}
+              columns={[1, 1, 1, 2]}
               spacing={[4, 5]}
             >
               <TopNavigationBar
                 p="3px"
                 m="-3px"
-                gridColumn={[null, null, null, null, 'span 2']}
+                gridColumn={[null, null, null, 'span 2']}
               />
               {children}
             </SimpleGrid>
             <Flex
               sx={{
-                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]:
                   { display: 'none' },
               }}
               w="full"

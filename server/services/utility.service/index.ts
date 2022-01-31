@@ -16,6 +16,20 @@ export class Utility {
     return data;
   }
 
+  public async getLocationLookup(ip: string | null): Promise<Location | null> {
+    if (!ip) return null;
+
+    const { ok, data } = await this.callAsync<Location>('/location-lookup', {
+      headers: {
+        'Lookup-Ip': ip,
+      },
+    });
+
+    if (!ok || !data?.latitude || !data?.longitude) return null;
+
+    return data;
+  }
+
   public async getNow(): Promise<number | null> {
     const { ok, data } = await this.callAsync<NowResponse>('/now');
 

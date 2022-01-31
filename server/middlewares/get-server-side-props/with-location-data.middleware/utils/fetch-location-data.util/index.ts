@@ -10,6 +10,7 @@ export const fetchLocationData = async ({
   language,
   locationFromCookies,
   slug,
+  clientIp,
 }: FetchLocationDataArguments): Promise<LocationData | null> => {
   const geocodeService = new Geocode({ userAgentHeader });
 
@@ -25,7 +26,7 @@ export const fetchLocationData = async ({
     }
 
     const utilityService = new Utility();
-    const locationByIp = await utilityService.getLocation();
+    const locationByIp = await utilityService.getLocationLookup(clientIp);
 
     if (!locationByIp) return null;
 
