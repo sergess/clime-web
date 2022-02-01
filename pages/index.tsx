@@ -131,6 +131,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   ]);
 
   if (!locationData) {
+    console.error('[Index.getServerSideProps]: locationData is missing');
+
     return {
       notFound: true,
     };
@@ -147,6 +149,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )(context);
 
   if (!forecastCards) {
+    console.error('[Index.getServerSideProps]: forecastCards are missing');
+
     return {
       notFound: true,
     };
