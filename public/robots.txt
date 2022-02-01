@@ -1,1 +1,1 @@
-Sitemap: https://static.weatherlive.info/sitemaps/sitemap.xml
+User-agent: *Allow: /Sitemap: https://static.weatherlive.info/sitemaps/sitemap.xml
