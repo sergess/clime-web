@@ -64,7 +64,7 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
               fontWeight="500"
               lineHeight="16px"
             >
-              {t('Today Weather')}
+              {t("Today's Weather")}
             </Heading>
           }
           w="full"

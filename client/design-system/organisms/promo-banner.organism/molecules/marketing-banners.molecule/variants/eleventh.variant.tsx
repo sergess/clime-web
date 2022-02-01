@@ -73,7 +73,7 @@ export const MarketingBannerEleventh = ({
           fontWeight="500"
           pb={1.5}
         >
-          {t('To the minute precip forecast')}
+          {t('To-the-minute precip forecast')}
         </Text>
         <Box>
           <Image

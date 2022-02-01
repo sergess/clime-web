@@ -78,7 +78,7 @@ export const DailyDetailedForecastCard = memo(
               fontWeight="500"
               lineHeight="16px"
             >
-              {t('10 Day Weather')}
+              {t('10-Day Weather')}
             </Heading>
           }
           componentStyles={{
