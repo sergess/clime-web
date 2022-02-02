@@ -81,11 +81,11 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
     return (
       <ForecastCardsProvider value={forecastCards}>
         <Head>
-          <title>{t('Local & World Weather Forecast and Radar | Clime')}</title>
+          <title>{t('Local & World Weather Forecast | Clime')}</title>
           <meta
             name="description"
             content={t(
-              'Prepare for weather surprises with Clime! Check current weather in multiple locations, get precise 10-day forecasts, and explore the weather radar map.'
+              'Prepare for weather surprises with Clime! Check the local forecast for today, view the current weather in multiple locations, and get precise 10-day forecasts.'
             )}
           />
         </Head>

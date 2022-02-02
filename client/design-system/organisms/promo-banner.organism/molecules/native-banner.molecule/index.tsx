@@ -8,7 +8,8 @@ export const NativeBanner: FC<{
   bannerId: NativeBannerId;
   priorityLoad: boolean;
   spotId: string | number;
-}> = ({ bannerId, priorityLoad, spotId }): ReactElement | null => {
+  banner: string;
+}> = ({ bannerId, priorityLoad, spotId, banner }): ReactElement | null => {
   const { t } = useTranslation('banners');
 
   switch (bannerId) {
@@ -19,8 +20,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_1.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerTwo:
@@ -30,8 +31,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_2.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerThree:
@@ -41,8 +42,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_3.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerFour:
@@ -52,8 +53,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_4.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerFive:
@@ -63,8 +64,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_5.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerSix:
@@ -74,8 +75,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_6.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     case NativeBannerId.bannerSeven:
@@ -85,8 +86,8 @@ export const NativeBanner: FC<{
           buttonText={t('Get Clime App')}
           backgroundSrc="/img_7.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
         />
       );
     default:
