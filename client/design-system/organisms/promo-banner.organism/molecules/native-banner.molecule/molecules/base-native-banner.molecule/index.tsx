@@ -26,7 +26,7 @@ export const BaseNativeBanner = ({
   return (
     <LinkBox
       className="banner"
-      data-banner-id={bannerId}
+      data-banner-id={`native_${bannerId}`}
       data-spot-name={spotId}
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"

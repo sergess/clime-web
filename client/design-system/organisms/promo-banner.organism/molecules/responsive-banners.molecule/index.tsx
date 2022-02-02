@@ -32,7 +32,7 @@ export const ResponsiveBanner: FC<{
     <Component
       priorityLoad={priorityLoad}
       wide={wide}
-      data-banner-id={bannerId}
+      data-banner-id={`responsive_${bannerId}`}
       data-spot-name={spotId}
       className="banner"
     />

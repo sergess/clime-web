@@ -55,7 +55,7 @@ export const MarketingBanner: FC<{
   return (
     <Component
       priorityLoad={priorityLoad}
-      data-banner-id={bannerId}
+      data-banner-id={`marketing_${bannerId}`}
       data-spot-name={spotId}
       className="banner"
     />
