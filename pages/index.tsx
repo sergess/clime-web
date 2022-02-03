@@ -103,8 +103,8 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 270 }} />
-        <DailyForecastCard maxH={270} w="full" />
+        <SummaryCard w="full" />
+        <DailyForecastCard w="full" />
         <PromoBanner spotId="homeTwo" />
       </ForecastCardsProvider>
     );
