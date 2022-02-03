@@ -81,11 +81,11 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
     return (
       <ForecastCardsProvider value={forecastCards}>
         <Head>
-          <title>{t('Local & World Weather Forecast and Radar | Clime')}</title>
+          <title>{t('Local & World Weather Forecast | Clime')}</title>
           <meta
             name="description"
             content={t(
-              'Prepare for weather surprises with Clime! Check current weather in multiple locations, get precise 10-day forecasts, and explore the weather radar map.'
+              'Prepare for weather surprises with Clime! Check the local forecast for today, view the current weather in multiple locations, and get precise 10-day forecasts.'
             )}
           />
         </Head>
@@ -103,8 +103,8 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 270 }} />
-        <DailyForecastCard maxH={270} w="full" className="daily-block__home" />
+        <SummaryCard w="full" />
+        <DailyForecastCard w="full" className="daily-block__home" />
         <PromoBanner spotId="homeTwo" />
       </ForecastCardsProvider>
     );
@@ -131,6 +131,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   ]);
 
   if (!locationData) {
+    console.error('[Index.getServerSideProps]: locationData is missing');
+
     return {
       notFound: true,
     };
@@ -147,6 +149,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )(context);
 
   if (!forecastCards) {
+    console.error('[Index.getServerSideProps]: forecastCards are missing');
+
     return {
       notFound: true,
     };
