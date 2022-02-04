@@ -41,11 +41,15 @@ export const Footer = (): ReactElement => {
           flexDirection={{ base: 'row', md: 'column' }}
           justifyContent="space-between"
         >
-          <Box order={1}>
+          <Box
+            order={1}
+            position="relative"
+            w={{ base: '132px', md: '149px' }}
+            h={{ base: '30px', md: '34px' }}
+          >
             <Image
               src="/icons/clime-logo-white.svg"
-              width={126}
-              height={28}
+              layout="fill"
               alt="Clime"
             />
           </Box>

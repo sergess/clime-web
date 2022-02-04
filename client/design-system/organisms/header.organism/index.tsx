@@ -79,11 +79,17 @@ export const Header = (): ReactElement => {
       >
         {logoVisible && (
           <NextLink href={pageUrl} passHref>
-            <Link flex="none" d="flex" href={pageUrl}>
+            <Link
+              flex="none"
+              position="relative"
+              d="flex"
+              href={pageUrl}
+              w={{ base: '132px', md: '158px' }}
+              h={{ base: '30px', md: '36px' }}
+            >
               <Image
                 src="/icons/clime-logo-dark.svg"
-                width={141}
-                height={30}
+                layout="fill"
                 alt="Clime"
               />
             </Link>
