@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { useUpdateAtom } from 'jotai/utils';
 
 import climeTheme from 'client/theme';
-import { detectLanguageDirection, fetcher } from 'client/utils';
+import { detectLanguageDirection, fetcher, getGTMParams } from 'client/utils';
 import { LocationDataProvider, AppConfigProvider } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
 import { useInitialSettings } from 'client/hooks';
@@ -33,6 +33,8 @@ const App = ({
 
   useInitialSettings();
 
+  const { auth, preview } = getGTMParams();
+
   return (
     <>
       <Script
@@ -42,7 +44,7 @@ const App = ({
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=${auth}&gtm_preview=${preview}&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}');
             function gtag(){dataLayer.push(arguments);}
           `,
