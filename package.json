@@ -6,10 +6,9 @@
     "*.css"
   ],
   "scripts": {
-    "dev:development": "env-cmd -f .env.development next dev",
-    "dev:production": "env-cmd -f .env.production next dev",
-    "build:development": "env-cmd -f .env.development next build",
-    "build:production": "env-cmd -f .env.development next build",
+    "dev": "env-cmd -f .env.development next dev",
+    "build:dev": "env-cmd -f .env.development next build",
+    "build:prod": "env-cmd -f .env.production next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
