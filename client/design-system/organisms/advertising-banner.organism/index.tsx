@@ -34,8 +34,13 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = ({
       position="relative"
       {...componentStyles}
     >
-      <Box pos="absolute" w={380} h={408} top="0" left="0">
-        <Image src="/map-background.jpg" layout="fill" alt="All Pro Features" />
+      <Box pos="absolute" top="0" left="0">
+        <Image
+          src="/map-background.jpg"
+          width={380}
+          height={408}
+          alt="All Pro Features"
+        />
       </Box>
       <Box mt={275} position="relative">
         <Text
