@@ -10,7 +10,7 @@ import NextDocument, {
 import { ColorModeScript } from '@chakra-ui/react';
 
 import climeTheme from 'client/theme';
-import { detectLanguageDirection, getGTMParams } from 'client/utils';
+import { detectLanguageDirection } from 'client/utils';
 
 class Document extends NextDocument {
   static async getInitialProps(
@@ -25,8 +25,6 @@ class Document extends NextDocument {
     // eslint-disable-next-line no-underscore-dangle
     const { locale } = this.props.__NEXT_DATA__;
     const direction = detectLanguageDirection(locale);
-
-    const { auth, preview } = getGTMParams();
 
     return (
       <Html dir={direction}>
@@ -43,7 +41,7 @@ class Document extends NextDocument {
         <body>
           <noscript>
             <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}&gtm_auth=${auth}&gtm_preview=${preview}&gtm_cookies_win=x`}
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}&gtm_auth=${process.env.NEXT_PUBLIC_GTM_AUTH}&gtm_preview=${process.env.NEXT_PUBLIC_GTM_PREVIEW}&gtm_cookies_win=x`}
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}
