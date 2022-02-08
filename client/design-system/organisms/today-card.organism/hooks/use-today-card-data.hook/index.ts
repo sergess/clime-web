@@ -7,6 +7,7 @@ import {
   precipitationUnitAtom,
   pressureUnitAtom,
   distanceUnitAtom,
+  timeFormatAtom,
 } from 'client/state/atoms';
 import {
   convertFahrenheitTo,
@@ -15,19 +16,23 @@ import {
   convertMillibarsTo,
   convertKilometersTo,
   defaultToDash,
+  changeTimeFormatTo,
 } from 'client/utils';
-import { useForecastCards } from 'client/hooks';
+import { useForecastCards, useLocationData } from 'client/hooks';
 
 import { UseTodayCardData } from '../../types';
 
 export const useTodayCardData = (): UseTodayCardData | null => {
   const { today } = useForecastCards();
 
+  const location = useLocationData();
+
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
   const precipitationUnit = useAtomValue(precipitationUnitAtom);
   const pressureUnit = useAtomValue(pressureUnitAtom);
   const distanceUnit = useAtomValue(distanceUnitAtom);
+  const timeFormat = useAtomValue(timeFormatAtom);
 
   const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
   const convertKilometersPerHourToUnit =
@@ -35,12 +40,19 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   const convertMillimetersToUnit = convertMillimetersTo(precipitationUnit);
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
   const convertKilometersToUnit = convertKilometersTo(distanceUnit);
+  const changeTimeFormat = changeTimeFormatTo(
+    timeFormat,
+    location,
+    'h:mmaaa',
+    'H:mm'
+  );
 
   return useMemo(() => {
     if (!today) return null;
 
     return {
       ...today,
+      date: defaultToDash(changeTimeFormat(today.date)),
       temperature: defaultToDash(convertFahrenheitToUnit(today.temperature)),
       feelsLikeTemperature: defaultToDash(
         convertFahrenheitToUnit(today.feelsLikeTemperature)
@@ -68,6 +80,7 @@ export const useTodayCardData = (): UseTodayCardData | null => {
     precipitationUnit,
     pressureUnit,
     distanceUnit,
+    timeFormat,
   ]) as UseTodayCardData;
 };
 

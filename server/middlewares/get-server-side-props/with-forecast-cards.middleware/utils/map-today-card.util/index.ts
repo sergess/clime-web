@@ -1,27 +1,18 @@
-import { Today, LocationData } from 'common/types';
+import { Today } from 'common/types';
 
 import {
   convertWindDegreeToAzimuth,
   calculateOppositeAngle,
-  formatUtcString,
 } from 'server/utils';
 import { ForecastFeed } from 'server/types';
 
-export const mapTodayCard = (
-  forecastFeed: ForecastFeed,
-  locationData: LocationData | null
-): Today => {
+export const mapTodayCard = (forecastFeed: ForecastFeed): Today => {
   const currentHourCondition = forecastFeed.hourConditions[0];
   const todayDayCondition = forecastFeed.dayConditions[0];
 
   const windDirection = currentHourCondition.windDirection || 0;
-
   return {
-    date: formatUtcString(
-      currentHourCondition.dateTime,
-      'h:mmaaa',
-      locationData?.timeZone
-    ),
+    date: currentHourCondition.dateTime,
     night: currentHourCondition.night,
     stateText: currentHourCondition.night
       ? currentHourCondition.stateNightText || currentHourCondition.stateText

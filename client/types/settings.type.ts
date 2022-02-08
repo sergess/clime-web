@@ -4,6 +4,7 @@ import {
   PressureUnit,
   TemperatureUnit,
   SpeedUnit,
+  TimeFormat,
 } from './units';
 
 export type Settings = {
@@ -12,6 +13,7 @@ export type Settings = {
   pressure: PressureUnit;
   temperature: TemperatureUnit;
   windSpeed: SpeedUnit;
+  time: TimeFormat;
 };
 
 export default Settings;

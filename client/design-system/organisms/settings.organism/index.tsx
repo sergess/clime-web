@@ -20,6 +20,7 @@ import {
   PRESSURE_UNIT_VALUES,
   TEMPERATURE_UNIT_VALUES,
   SPEED_UNIT_VALUES,
+  TIME_FORMAT_VALUES,
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
@@ -78,6 +79,10 @@ export const Settings = ({
   );
   const distanceUnitOptions = useMemo(
     () => getSwitcherOptions(DISTANCE_UNIT_VALUES),
+    []
+  );
+  const timeFormatOptions = useMemo(
+    () => getSwitcherOptions(TIME_FORMAT_VALUES),
     []
   );
 
@@ -171,6 +176,12 @@ export const Settings = ({
               options={distanceUnitOptions}
               value={settings.distance}
               onValueChange={onSettingsChange('distance')}
+            />
+            <SettingsCardSwitcherRow
+              title="Time Format:"
+              options={timeFormatOptions}
+              value={settings.time}
+              onValueChange={onSettingsChange('time')}
             />
           </Flex>
         </PopoverContent>
