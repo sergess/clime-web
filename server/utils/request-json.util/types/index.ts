@@ -1,1 +1,1 @@
-export * from './not-ok.type';
+export * from './request-json-result.type';

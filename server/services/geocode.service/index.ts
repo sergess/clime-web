@@ -3,7 +3,7 @@ import isEmpty from 'ramda/src/isEmpty';
 import { LocationData } from 'common/types';
 import { isLocationValid, isString } from 'common/utils';
 
-import BaseApiV3Service from 'server/services/base-api-v3.service';
+import ApiV3Service from 'server/services/api-v3.service';
 
 import {
   LocationDataBySlugArguments,
@@ -16,7 +16,7 @@ import {
  * Geocoding service.
  * @see https://confluence.jabodo.com:8443/pages/viewpage.action?pageId=91099149
  */
-export class Geocode extends BaseApiV3Service {
+export class Geocode extends ApiV3Service {
   public async getLocationDataByCoordinates({
     location,
     language,

@@ -1,6 +1,6 @@
 import { format as formatTz, utcToZonedTime } from 'date-fns-tz';
 
-import { UTC } from 'server/constants';
+import { UTC } from 'common/constants';
 
 export const formatUtcString = (
   utcString: string,

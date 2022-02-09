@@ -1,5 +1,6 @@
 /* eslint-disable */
-import BaseApiV3Service from 'server/services/base-api-v3.service';
+import ApiV3Service from 'server/services/api-v3.service';
+import * as util from 'server/services/api-v3.service/utils/generete-timestamp.util';
 
 const USER_AGENT_HEADER =
   'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1';
@@ -10,10 +11,10 @@ const TIMESTAMP = 100;
 
 describe('Checking if base api v3 service', () => {
   beforeAll(() => {
-    jest.mock('server/services/base-api-v3.service');
+    jest.mock('server/services/api-v3.service');
 
     // @ts-ignore
-    jest.spyOn(BaseApiV3Service, 'timestamp', 'get').mockReturnValue(TIMESTAMP);
+    jest.spyOn(util, 'generateTimestamp').mockReturnValue(TIMESTAMP);
 
     global.fetch = jest.fn().mockResolvedValue({
       json: () => Promise.resolve('success'),
@@ -25,24 +26,13 @@ describe('Checking if base api v3 service', () => {
     fetch.mockClear();
   });
 
-  const baseApiV3Service = new BaseApiV3Service({
+  const apiV3Service = new ApiV3Service({
     userAgentHeader: USER_AGENT_HEADER,
-  });
-
-  test('has right property values', async () => {
-    // @ts-ignore
-    expect(baseApiV3Service.userAgentHeader).toBe(USER_AGENT_HEADER);
-    // @ts-ignore
-    expect(baseApiV3Service.userAgent).toBe(USER_AGENT);
-    // @ts-ignore
-    expect(baseApiV3Service.generateSignature(URI, TIMESTAMP)).toBe(
-      GENERATED_SIGNATURE
-    );
   });
 
   test('make an async call once with right params', async () => {
     // @ts-ignore
-    await baseApiV3Service.callAsync(URI);
+    await apiV3Service.callAsync(URI);
 
     expect(fetch).toBeCalledTimes(1);
     expect(fetch).toBeCalledWith('url/uri', {
@@ -57,7 +47,7 @@ describe('Checking if base api v3 service', () => {
 
   test('receives positive response in right format', async () => {
     // @ts-ignore
-    const response = await baseApiV3Service.callAsync(URI);
+    const response = await apiV3Service.callAsync(URI);
 
     expect(response).toEqual({
       ok: true,
@@ -70,7 +60,7 @@ describe('Checking if base api v3 service', () => {
     fetch.mockResolvedValueOnce({ ok: false, statusCode: 200 });
 
     // @ts-ignore
-    const response = await baseApiV3Service.callAsync(URI);
+    const response = await apiV3Service.callAsync(URI);
 
     expect(response).toEqual({
       ok: false,
@@ -83,7 +73,7 @@ describe('Checking if base api v3 service', () => {
     fetch.mockRejectedValueOnce(new Error('API is down'));
 
     // @ts-ignore
-    const response = await baseApiV3Service.callAsync(URI);
+    const response = await apiV3Service.callAsync(URI);
 
     expect(fetch).toBeCalledTimes(1);
 
@@ -95,7 +85,7 @@ describe('Checking if base api v3 service', () => {
 
   test('make an async call once with right params in case there is additional init argument', async () => {
     // @ts-ignore
-    const response = await baseApiV3Service.callAsync(URI, {
+    const response = await apiV3Service.callAsync(URI, {
       // @ts-ignore
       headers: {
         test: 700,

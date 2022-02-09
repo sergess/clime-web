@@ -1,9 +1,10 @@
-import { NotOk } from './types';
+import { RequestJsonResult } from './types';
+import { isResponseOk } from './utils';
 
 export const requestJson = async <T>(
   url: string,
   init?: RequestInit
-): Promise<T | NotOk> => {
+): Promise<RequestJsonResult<T>> => {
   try {
     const response = await fetch(url, {
       ...init,
@@ -12,16 +13,19 @@ export const requestJson = async <T>(
         Accept: 'application/json',
       },
     });
-    const body = await response.json();
 
-    return body;
+    const body = await response.json();
+    const ok = isResponseOk(body);
+
+    return {
+      ok,
+      data: ok ? (body as T) : null,
+    };
   } catch (err) {
     console.error('[requestJson]: ', err);
 
-    return { ok: false };
+    return { ok: false, data: null };
   }
 };
-
-export * from './utils';
 
 export default requestJson;

@@ -16,7 +16,7 @@ describe('Checking if request method returns', () => {
   test('"success" if promise resolves', async () => {
     const response = await requestJson('/test/url');
 
-    expect(response).toBe('success');
+    expect(response).toEqual({ ok: true, data: 'success' });
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
@@ -26,6 +26,6 @@ describe('Checking if request method returns', () => {
 
     const response = await requestJson('/test/url');
 
-    expect(response).toEqual({ ok: false });
+    expect(response).toEqual({ ok: false, data: null });
   });
 });

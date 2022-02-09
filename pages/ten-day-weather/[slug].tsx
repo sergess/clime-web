@@ -15,8 +15,7 @@ import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
 import { CLIENT_ID } from 'client/constants';
 
-import { ForecastCards } from 'common/types/forecast-cards.type';
-import { ForecastCard } from 'common/types/forecast-card.type';
+import { ForecastCards, ForecastCard } from 'common/types';
 
 import {
   mapDailyDetailedCard,
