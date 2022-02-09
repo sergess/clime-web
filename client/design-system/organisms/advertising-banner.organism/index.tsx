@@ -14,9 +14,9 @@ import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
 
-export const AdvertisingBanner: FC<ComponentDefaultProps> = ({
-  ...componentStyles
-}): ReactElement => {
+export const AdvertisingBanner: FC<ComponentDefaultProps> = (
+  props
+): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
@@ -32,7 +32,7 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = ({
       px={6}
       pb={8}
       position="relative"
-      {...componentStyles}
+      {...props}
     >
       <Box pos="absolute" top="0" left="0">
         <Image
