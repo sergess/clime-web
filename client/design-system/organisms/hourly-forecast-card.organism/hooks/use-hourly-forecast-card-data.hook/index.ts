@@ -8,6 +8,8 @@ import {
   defaultToDash,
 } from 'client/utils';
 import { useForecastCards, useLocationData } from 'client/hooks';
+import { WEATHER_STATE } from 'common/constants';
+import { FORMAT_H12_SHORT, FORMAT_H12, FORMAT_H24 } from 'client/constants';
 
 import { UseHourlyForecastCardData } from '../../types';
 
@@ -21,21 +23,22 @@ export const useHourlyForecastCardData =
     const timeFormat = useAtomValue(timeFormatAtom);
 
     const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
-    const changeTimeFormat = changeTimeFormatTo(
-      timeFormat,
-      location,
-      'h:mmaaa',
-      'H:mm'
-    );
+    const changeTimeFormat = changeTimeFormatTo(timeFormat, location);
 
     return useMemo(() => {
       if (!hourly) return null;
 
-      return hourly.map((item) => ({
-        ...item,
-        time: defaultToDash(changeTimeFormat(item.time)),
-        temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
-      }));
+      return hourly.map((item) => {
+        const formatH12 =
+          item.variant === WEATHER_STATE ? FORMAT_H12_SHORT : FORMAT_H12;
+        const setTimeFormat = changeTimeFormat(formatH12, FORMAT_H24);
+
+        return {
+          ...item,
+          time: defaultToDash(setTimeFormat(item.time)),
+          temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
+        };
+      });
     }, [hourly, temperatureUnit, timeFormat]);
   };
 

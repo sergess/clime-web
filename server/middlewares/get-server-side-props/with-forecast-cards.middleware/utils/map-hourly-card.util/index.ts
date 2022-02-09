@@ -13,11 +13,6 @@ export const mapHourlyCard = (forecastFeed: ForecastFeed): Hourly =>
       stateId,
       temperature,
       time: dateTime,
-      // time: formatUtcString(
-      //   dateTime,
-      //   variant === WEATHER_STATE ? 'haaa' : 'h:mmaaa',
-      //   locationData?.timeZone
-      // ),
     })
   );
 
