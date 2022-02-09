@@ -15,6 +15,7 @@ import {
   WEATHER_TODAY,
   HOURLY_WEATHER,
   TEN_DAY_WEATHER,
+  WEATHER_RADAR,
 } from 'client/constants';
 import { useUrlSlug, useClimeAppLink } from 'client/hooks';
 
@@ -63,30 +64,32 @@ export const TopNavigationBar = (
 
   const climeAppLink = useClimeAppLink();
 
+  // [todo] add i18n git navigation labels
   const navigationOptions = useMemo<NavigationOption[]>(
     () => [
       {
         label: 'Today',
         path: urlSlug && `/${WEATHER_TODAY}/${urlSlug}`,
-        variant: 'common-nav',
         external: false,
       },
       {
         label: 'Hourly',
         path: urlSlug && `/${HOURLY_WEATHER}/${urlSlug}`,
-        variant: 'common-nav',
         external: false,
       },
       {
         label: 'Clime App',
         path: climeAppLink,
-        variant: 'common-nav',
         external: true,
       },
       {
         label: '10-day',
         path: urlSlug && `/${TEN_DAY_WEATHER}/${urlSlug}`,
-        variant: 'common-nav',
+        external: false,
+      },
+      {
+        label: 'Weather Radar',
+        path: urlSlug && `/${WEATHER_RADAR}/${urlSlug}`,
         external: false,
       },
     ],
@@ -128,7 +131,7 @@ export const TopNavigationBar = (
         }}
         onScroll={onScroll}
       >
-        {navigationOptions.map(({ label, variant, path, external }) => {
+        {navigationOptions.map(({ label, path, external }) => {
           if (!path) return null;
 
           const currentRoute = isCurrentRoute(router.asPath, path);
@@ -151,7 +154,7 @@ export const TopNavigationBar = (
                 ref={currentRoute ? currentRouteRef : null}
                 flexShrink={0}
                 aria-current={currentRoute && 'page'}
-                variant={variant}
+                variant="common-nav"
               >
                 {label}
               </Link>

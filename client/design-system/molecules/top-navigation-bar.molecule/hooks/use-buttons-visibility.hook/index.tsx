@@ -1,6 +1,8 @@
 import { MutableRefObject } from 'react';
 
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import climeTheme from 'client/theme';
+import { useScreenWidthSmallerThan } from 'client/hooks';
+
 import { UseButtonsVisibilityReturnValue } from './types';
 
 const TOP_NAVIGATION_BUTTON_INDENT = 30;
@@ -9,7 +11,9 @@ export const useButtonsVisibility = (
   shift: number,
   ref: MutableRefObject<HTMLDivElement>
 ): UseButtonsVisibilityReturnValue => {
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const screenWidthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   const scrollbarWidth = ref.current
     ? ref.current.scrollWidth - ref.current.clientWidth

@@ -35,11 +35,12 @@ import {
   distanceUnitAtom,
 } from 'client/state/atoms';
 import { trackEvent } from 'client/services';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
 import {
   CURRENT_DETAILS_COMPACT_SHOWN,
   CURRENT_DETAILS_FULL_SHOWN,
 } from 'client/services/analytics.service/constants';
+import { useScreenWidthSmallerThan } from 'client/hooks';
+
 import { useTodayCardData } from './hooks';
 
 import { TodayCardProps } from './types';
@@ -57,7 +58,9 @@ export const TodayCard = memo(
     const { t } = useTranslation('today-card');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
-    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    const widthSmallerThanMedium = useScreenWidthSmallerThan(
+      climeTheme.breakpoints.md
+    );
     const todayCardData = useTodayCardData();
 
     // [TODO] Find better way how we can handle 'collapsed' state.

@@ -12,6 +12,7 @@ import { useAtom } from 'jotai';
 import Image from 'next/image';
 import includes from 'ramda/src/includes';
 
+import climeTheme from 'client/theme';
 import { HeaderPopoverOverlay } from 'client/design-system/atoms';
 import { settingsAtom } from 'client/state/derivatives';
 import {
@@ -22,8 +23,7 @@ import {
   SPEED_UNIT_VALUES,
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
-import climeTheme from 'client/theme';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { trackEvent } from 'client/services';
 import { ValueOf } from 'common/types';
@@ -41,7 +41,9 @@ export const Settings = ({
   const { t } = useTranslation('common');
   const settingsCardRef = useRef<HTMLDivElement>(null);
 
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const screenWidthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   const [settings, setSettings] = useAtom(settingsAtom);
 

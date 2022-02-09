@@ -14,7 +14,8 @@ export const HeaderPopoverOverlay = ({
   return (
     <Box
       onClick={onClick}
-      zIndex={10}
+      // [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
+      zIndex={1300}
       position="fixed"
       width="100vw"
       opacity="0.8"

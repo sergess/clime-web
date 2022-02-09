@@ -7,12 +7,11 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
-import climeTheme from 'client/theme';
 
+import climeTheme from 'client/theme';
 import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
-
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
@@ -26,7 +25,9 @@ const AdvertisingBanner = dynamic(
 export const DefaultLayout: FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
-  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const widthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   return (
     <>
@@ -58,6 +59,7 @@ export const DefaultLayout: FC = ({
                 p="3px"
                 m="-3px"
                 gridColumn={[null, null, null, 'span 2']}
+                bg="gray.50"
               />
               {children}
             </SimpleGrid>

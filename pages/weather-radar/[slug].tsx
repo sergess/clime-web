@@ -5,6 +5,10 @@ import { useTranslation } from 'next-i18next';
 
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
+import dynamic from 'next/dynamic';
+import { Skeleton } from '@chakra-ui/react';
+
+import { WeatherRadarPageLayout } from 'client/design-system/templates';
 
 import {
   withLocationData,
@@ -12,12 +16,20 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
 
-const WeatherRadar = (): ReactElement => {
-  const locationData = useLocationData();
+const Radar = dynamic(
+  () => import('client/design-system/organisms/radar.organism'),
+  {
+    ssr: false,
+    loading: () => <Skeleton h="full" w="full" />,
+  }
+);
 
+const WeatherRadar = (): ReactElement => {
+  const { t } = useTranslation('meta-tags');
+
+  const locationData = useLocationData();
   const locationName = getLocationName(locationData);
 
-  const { t } = useTranslation('meta-tags');
   return (
     <>
       <Head>
@@ -32,20 +44,23 @@ const WeatherRadar = (): ReactElement => {
           )}
         />
       </Head>
-      <p>Weather radar</p>
+
+      <Radar />
     </>
   );
+};
+
+WeatherRadar.getLayout = function getLayout(page: ReactElement) {
+  return <WeatherRadarPageLayout>{page}</WeatherRadarPageLayout>;
 };
 
 export default WeatherRadar;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  return { notFound: true };
-
   const remoteConfig = new RemoteConfig();
   const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
-    withTranslations('meta-tags')(context),
+    withTranslations('meta-tags', 'radar')(context),
     remoteConfig.getAppConfig(),
   ]);
 

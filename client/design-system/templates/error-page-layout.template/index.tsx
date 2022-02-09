@@ -5,7 +5,7 @@ import { Box, Flex, ComponentDefaultProps, Skeleton } from '@chakra-ui/react';
 import climeTheme from 'client/theme';
 import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
@@ -19,7 +19,9 @@ const AdvertisingBanner = dynamic(
 export const ErrorPageLayout: FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
-  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const widthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   return (
     <>
