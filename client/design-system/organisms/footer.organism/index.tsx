@@ -61,7 +61,7 @@ export const Footer = (): ReactElement => {
           >
             {t('© 2022 Clime. All rights reserved.')}
           </Box>
-          <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: '0px' }}>
+          <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: 2 }}>
             <Download />
           </Box>
         </Box>
@@ -78,6 +78,7 @@ export const Footer = (): ReactElement => {
               mb={['6', null, '0']}
               color="white"
               isExternal
+              rel="nofollow"
             >
               {t('EULA')}
             </Link>
@@ -98,6 +99,7 @@ export const Footer = (): ReactElement => {
               mb={['6', null, '0']}
               color="white"
               isExternal
+              rel="nofollow"
             >
               {t('Privacy policy')}
             </Link>
@@ -108,6 +110,7 @@ export const Footer = (): ReactElement => {
               mb={['6', null, '0']}
               color="white"
               isExternal
+              rel="nofollow"
             >
               {t('California Privacy Rights')}
             </Link>
@@ -131,7 +134,7 @@ export const Footer = (): ReactElement => {
           />
           <Box pt={['5', null, '10']} color="white" opacity="0.5">
             {t(
-              'Apple, the Apple logo, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. IOS is a trademark or registered trademark of Cisco in the U.S. and other countries and is used under license. Android, Google Play and the Google Play logo are trademarks of Google Inc. All other trademarks are the property of their respective owners.'
+              'All trademarks and brand names belong to their respective owners. Use of third party trademarks does not represent endorsement.'
             )}
           </Box>
         </Box>

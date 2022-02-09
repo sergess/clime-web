@@ -39,6 +39,7 @@ import {
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
+import { Heading } from '@chakra-ui/react';
 
 const Index: FC<{ forecastCards: ForecastCards }> = memo(
   ({ forecastCards }): ReactElement => {
@@ -89,7 +90,20 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
             )}
           />
         </Head>
-        <TodayCard w="full" />
+        <TodayCard
+          heading={
+            <Heading
+              as="h1"
+              color="gray.500"
+              fontSize="16px"
+              fontWeight="500"
+              lineHeight="16px"
+            >
+              {t('Local Weather')}
+            </Heading>
+          }
+          w="full"
+        />
         <RadarSnapshotStub
           h="full"
           minH="270px"

@@ -8,14 +8,10 @@ import Image from 'next/image';
 
 import { AdsenseBanner } from 'client/design-system/organisms';
 import { ErrorPageLayout } from 'client/design-system/templates';
-import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
-import { WEATHER_TODAY, CLIENT_ID } from 'client/constants';
+import { CLIENT_ID } from 'client/constants';
 
 const NotFoundPage = (): ReactElement => {
   const { t } = useTranslation('page-404');
-  const pageUrl = usePageUrl(WEATHER_TODAY);
-
-  const { locationData } = useSetLocationDataByIp();
 
   return (
     <>
@@ -32,20 +28,14 @@ const NotFoundPage = (): ReactElement => {
       >
         <Image src="/icons/404.svg" width={180} height={94} alt="404" />
         <Text textStyle="24-bold" my="4">
-          {t('Page not found')}
+          {t('Nothing found here')}
         </Text>
         <Text textStyle="16-medium" align="center">
-          {t("There's nothing but wind here. Let's go to the home page.")}
+          {t("The page you're looking for got carried away by the wind.")}
         </Text>
-        <Link href={pageUrl} passHref>
-          <Button
-            variant="cta"
-            as="a"
-            mt="10"
-            fontSize="14px"
-            disabled={!locationData}
-          >
-            {t("Explore today's weather")}
+        <Link href="/" passHref>
+          <Button variant="cta" as="a" mt="10" fontSize="14px">
+            {t('Go to homepage')}
           </Button>
         </Link>
       </Flex>
