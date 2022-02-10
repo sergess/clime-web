@@ -5,13 +5,11 @@ import NextLink from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 
-import { usePageUrl } from 'client/hooks';
 import { ClientOnly } from 'client/design-system/atoms';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
   LAYOUT_HORIZONTAL_PADDING,
-  WEATHER_TODAY,
 } from 'client/constants';
 
 import { useUiState } from './hooks';
@@ -53,8 +51,6 @@ export const Header = (): ReactElement => {
     onSearchOpen();
   }, [settingsOpened]);
 
-  const pageUrl = usePageUrl(WEATHER_TODAY);
-
   return (
     <Box
       as="header"
@@ -78,12 +74,12 @@ export const Header = (): ReactElement => {
         alignItems="center"
       >
         {logoVisible && (
-          <NextLink href={pageUrl} passHref>
+          <NextLink href="/" passHref>
             <Link
               flex="none"
               position="relative"
               d="flex"
-              href={pageUrl}
+              href="/"
               w={{ base: '132px', md: '158px' }}
               h={{ base: '30px', md: '36px' }}
             >
