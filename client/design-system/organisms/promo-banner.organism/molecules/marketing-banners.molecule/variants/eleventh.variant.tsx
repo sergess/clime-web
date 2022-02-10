@@ -43,7 +43,7 @@ export const MarketingBannerEleventh = ({
         h="full"
         w="full"
         direction="column"
-        justify="flex-end"
+        justify="center"
         align="center"
       >
         <Box>
@@ -78,8 +78,8 @@ export const MarketingBannerEleventh = ({
         <Box>
           <Image
             src="/icons/graphic.svg"
-            width={329}
-            height={109}
+            width={325}
+            height={105}
             alt="Moderate rain"
             priority={priorityLoad}
           />
