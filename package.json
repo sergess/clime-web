@@ -6,9 +6,8 @@
     "*.css"
   ],
   "scripts": {
-    "dev": "env-cmd -f .env.development next dev",
-    "build:dev": "env-cmd -f .env.development next build",
-    "build:prod": "env-cmd -f .env.production next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
@@ -33,7 +32,6 @@
     "@visx/text": "^2.1.2",
     "date-fns": "^2.25.0",
     "date-fns-tz": "^1.1.6",
-    "env-cmd": "^10.1.0",
     "framer-motion": "^5.0.0",
     "geolib": "^3.3.3",
     "jotai": "^1.4.2",
