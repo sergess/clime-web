@@ -39,6 +39,7 @@ import {
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
+import { Heading } from '@chakra-ui/react';
 
 const Index: FC<{ forecastCards: ForecastCards }> = memo(
   ({ forecastCards }): ReactElement => {
@@ -81,15 +82,28 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
     return (
       <ForecastCardsProvider value={forecastCards}>
         <Head>
-          <title>{t('Local & World Weather Forecast and Radar | Clime')}</title>
+          <title>{t('Local & World Weather Forecast | Clime')}</title>
           <meta
             name="description"
             content={t(
-              'Prepare for weather surprises with Clime! Check current weather in multiple locations, get precise 10-day forecasts, and explore the weather radar map.'
+              'Prepare for weather surprises with Clime! Check the local forecast for today, view the current weather in multiple locations, and get precise 10-day forecasts.'
             )}
           />
         </Head>
-        <TodayCard w="full" />
+        <TodayCard
+          heading={
+            <Heading
+              as="h1"
+              color="gray.500"
+              fontSize="16px"
+              fontWeight="500"
+              lineHeight="16px"
+            >
+              {t('Local Weather')}
+            </Heading>
+          }
+          w="full"
+        />
         <RadarSnapshotStub
           h="full"
           minH="270px"
@@ -103,8 +117,8 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 270 }} />
-        <DailyForecastCard maxH={270} w="full" />
+        <SummaryCard w="full" h={{ base: 260, md: 'auto' }} />
+        <DailyForecastCard w="full" />
         <PromoBanner spotId="homeTwo" />
       </ForecastCardsProvider>
     );

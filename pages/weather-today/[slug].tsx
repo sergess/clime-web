@@ -64,7 +64,7 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
               fontWeight="500"
               lineHeight="16px"
             >
-              {t('Today Weather')}
+              {t("Today's Weather")}
             </Heading>
           }
           w="full"
@@ -82,8 +82,8 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 270 }} />
-        <DailyForecastCard maxH={270} w="full" />
+        <SummaryCard w="full" h={{ base: 260, md: 'auto' }} />
+        <DailyForecastCard w="full" />
         <PromoBanner spotId="todayTwo" />
       </ForecastCardsProvider>
     );

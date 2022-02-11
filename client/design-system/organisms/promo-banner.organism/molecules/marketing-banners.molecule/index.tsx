@@ -47,7 +47,8 @@ export const MarketingBanner: FC<{
   bannerId: MarketingBannerId;
   priorityLoad: boolean;
   spotId: string | number;
-}> = ({ bannerId, priorityLoad, spotId }): JSX.Element | null => {
+  banner: string;
+}> = ({ bannerId, priorityLoad, spotId, banner }): JSX.Element | null => {
   const Component = marketingBanners[bannerId];
 
   if (!Component) return null;
@@ -55,7 +56,7 @@ export const MarketingBanner: FC<{
   return (
     <Component
       priorityLoad={priorityLoad}
-      data-banner-id={bannerId}
+      data-banner-id={banner}
       data-spot-name={spotId}
       className="banner"
     />

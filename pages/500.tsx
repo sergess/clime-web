@@ -7,18 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { ErrorPageLayout } from 'client/design-system/templates';
-import { usePageUrl, useSetLocationDataByIp } from 'client/hooks';
-import { CLIENT_ID, WEATHER_TODAY } from 'client/constants';
+import { CLIENT_ID } from 'client/constants';
 import { AdsenseBanner } from 'client/design-system/organisms';
 
 import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
 
 const InternalServerErrorPage = (): ReactElement => {
   const { t } = useTranslation('page-500');
-
-  const pageUrl = usePageUrl(WEATHER_TODAY);
-
-  const { locationData } = useSetLocationDataByIp();
 
   return (
     <>
@@ -34,22 +29,17 @@ const InternalServerErrorPage = (): ReactElement => {
         bgPosition="center center"
       >
         <Image src="/icons/500.svg" width={180} height={94} alt="500" />
-        <Text textStyle="24-bold" mt="7">
-          {t('Internal Server Error')}
+        <Text textStyle="24-bold" mt="7" align="center">
+          {t('The server is a bit under the weather now')}
         </Text>
         <Text textStyle="16-medium" align="center" mt="4">
-          {t('Something went wrong')}
+          {t(
+            "We're looking into it right away. Please try again in a few minutes."
+          )}
         </Text>
-        <Link href={pageUrl} passHref>
-          <Button
-            variant="cta"
-            mt="14"
-            fontSize="14px"
-            minW="280px"
-            disabled={!locationData}
-            as="a"
-          >
-            {t("Explore today's weather")}
+        <Link href="/" passHref>
+          <Button variant="cta" mt="14" fontSize="14px" minW="280px" as="a">
+            {t('Go to homepage')}
           </Button>
         </Link>
       </Flex>

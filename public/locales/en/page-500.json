@@ -1,5 +1,5 @@
 {
-  "Internal Server Error": "Internal Server Error",
-  "Something went wrong": "Something went wrong",
-  "Explore today's weather": "Explore today's weather"
+  "The server is a bit under the weather now": "The server is a bit under the weather now",
+  "We're looking into it right away. Please try again in a few minutes.": "We're looking into it right away. Please try again in a few minutes.",
+  "Go to homepage": "Go to homepage"
 }

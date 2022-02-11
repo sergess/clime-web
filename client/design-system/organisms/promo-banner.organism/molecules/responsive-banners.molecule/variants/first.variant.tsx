@@ -58,7 +58,7 @@ export const ResponsiveBannerFirst: FC<
           />
         </Box>
       </Box>
-      <Box w={!wide ? '210px' : '320px'} pos="relative">
+      <Box w={!wide ? '210px' : '320px'}>
         <Text
           color="black"
           fontSize={!wide ? 22 : 28}
