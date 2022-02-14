@@ -2,7 +2,10 @@ import React, { ReactElement, useRef } from 'react';
 import { Box, Portal, chakra } from '@chakra-ui/react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 
-import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
+import {
+  LAYOUT_HORIZONTAL_PADDING,
+  MOBILE_HEADER_HEIGHT,
+} from 'client/constants';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import {
@@ -26,7 +29,13 @@ export const Radar = (): ReactElement => {
   useFetchConfig();
 
   return (
-    <Box ref={radarContainerRef} h="full" w="full" position="relative">
+    <Box
+      ref={radarContainerRef}
+      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '100%' }}
+      w="full"
+      position="relative"
+      minH={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '792px' }}
+    >
       <MapContainer
         h="full"
         w="full"
@@ -39,29 +48,28 @@ export const Radar = (): ReactElement => {
         <Portal containerRef={radarContainerRef}>
           <ZoomControl
             pos="absolute"
-            zIndex={1200}
+            zIndex="banner"
             bottom="260px"
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
           <FullscreenControl
             pos="absolute"
-            zIndex={1200}
+            zIndex="banner"
             bottom="140px"
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
           <PlayerControl
             pos="absolute"
-            zIndex={1200}
+            zIndex="banner"
             w="full"
             bottom="52px"
             px={LAYOUT_HORIZONTAL_PADDING}
           />
 
-          <LegendControl pos="absolute" zIndex={1200} w="full" bottom={0} />
+          <LegendControl pos="absolute" zIndex="banner" w="full" bottom={0} />
         </Portal>
-
         <Markers />
         <Layers />
       </MapContainer>

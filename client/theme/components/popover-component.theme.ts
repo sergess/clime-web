@@ -21,7 +21,7 @@ const Popover = {
     'search-card': {
       popper: {
         // [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
-        zIndex: 1300,
+        zIndex: 'tooltip',
         px: [...LAYOUT_HORIZONTAL_PADDING, 0],
         width: '100%',
         maxWidth: '100%',
@@ -37,7 +37,7 @@ const Popover = {
     card: {
       popper: {
         // [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
-        zIndex: 1300,
+        zIndex: 'tooltip',
         px: [...LAYOUT_HORIZONTAL_PADDING, 0],
         width: { base: '100%', md: 'max-content' },
       },
