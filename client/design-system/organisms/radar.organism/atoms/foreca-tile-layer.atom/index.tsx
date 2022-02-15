@@ -15,21 +15,22 @@ export const ForecaTileLayer: FC<{
   layer: RadarLayerId;
   frame: number;
   updated: string;
+  opacity: number;
   bounds?: LatLngBoundsExpression;
-}> = ({ layer, frame, updated, bounds }): ReactElement | null => {
+}> = ({ layer, frame, updated, bounds, opacity }): ReactElement | null => {
   const forecaPid = useAtomValue(forecaPidAtom);
 
   if (!forecaPid) return null;
 
   return (
     <ForecaTileLayerComponent
-      key={frame}
       url="/api/radar/tile?z={z}&x={x}&y={y}&layer={layer}&frame={frame}&updated={updated}&c={c}"
       c={forecaPid.c}
       layer={layer}
       frame={frame}
       updated={updated}
       bounds={bounds}
+      opacity={opacity}
     />
   );
 };
