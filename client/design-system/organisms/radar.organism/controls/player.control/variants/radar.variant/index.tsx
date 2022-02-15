@@ -3,7 +3,7 @@ import { Text } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'next-i18next';
 
-import { activePlayerFrameIndexAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
+import { activeFrameIndexAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
 import { RadarLayerId } from 'common/types';
 import { useLayer } from 'client/design-system/organisms/radar.organism/hooks';
 import { SliderPlayer } from 'client/design-system/molecules';
@@ -13,16 +13,11 @@ import { NowLabel } from './molecules';
 
 export const Radar = (): ReactElement | null => {
   const { t } = useTranslation('radar');
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   const layer = useLayer(RadarLayerId.RADAR);
-  const [activePlayerFrameIndex, setActivePlayerFrameIndex] = useAtom(
-    activePlayerFrameIndexAtom
-  );
-
-  const [currentFrameIndex, setCurrentFrameIndex] = useState(
-    activePlayerFrameIndex
-  );
+  const [activeFrameIndex, setActiveFrameIndex] = useAtom(activeFrameIndexAtom);
+  const [currentFrameIndex, setCurrentFrameIndex] = useState(activeFrameIndex);
 
   const onPlayToggle = useCallback(() => {
     setPlaying(!playing);
@@ -43,7 +38,7 @@ export const Radar = (): ReactElement | null => {
 
   useEffect(
     () => () => {
-      setActivePlayerFrameIndex(0);
+      setActiveFrameIndex(0);
     },
     []
   );
@@ -51,7 +46,7 @@ export const Radar = (): ReactElement | null => {
   useInterval(
     () => {
       setCurrentFrameIndex(onNextFrameIndexChange);
-      setActivePlayerFrameIndex(onNextFrameIndexChange);
+      setActiveFrameIndex(onNextFrameIndexChange);
     },
     playing && !!layer ? 1000 : null
   );
@@ -67,7 +62,7 @@ export const Radar = (): ReactElement | null => {
       min={0}
       max={layer.frames.length - 1}
       onChange={setCurrentFrameIndex}
-      onChangeEnd={setActivePlayerFrameIndex}
+      onChangeEnd={setActiveFrameIndex}
       nowLabel={<NowLabel />}
       endLabel={
         <Text textStyle="12-medium" color="gray.600">

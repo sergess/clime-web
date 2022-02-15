@@ -1,23 +1,25 @@
 import React, { FC, ReactElement, useCallback } from 'react';
+import { useAtomValue } from 'jotai/utils';
 import {
   Flex,
   IconButton,
   Divider,
   ComponentDefaultProps,
 } from '@chakra-ui/react';
-import { useMap } from 'react-leaflet';
 import Image from 'next/image';
+
+import { mapAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
 
 export const Zoom: FC<ComponentDefaultProps> = (
   componentStyles
 ): ReactElement => {
-  const map = useMap();
+  const map = useAtomValue(mapAtom);
 
   const onZoomIn = useCallback(() => {
-    map.zoomIn();
+    map?.zoomIn();
   }, [map]);
   const onZoomOut = useCallback(() => {
-    map.zoomOut();
+    map?.zoomOut();
   }, [map]);
 
   return (
