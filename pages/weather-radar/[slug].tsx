@@ -44,7 +44,6 @@ const WeatherRadar = (): ReactElement => {
           )}
         />
       </Head>
-
       <Radar />
     </>
   );

@@ -7,32 +7,31 @@ import { Legend } from './legend.control';
 import { Player } from './player.control';
 import { Zoom } from './zoom.control';
 
-// [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
 export const Controls = (): ReactElement => (
   <>
     <Zoom
       pos="absolute"
-      zIndex={1200}
+      zIndex="control"
       bottom="260px"
       right={LAYOUT_HORIZONTAL_PADDING}
     />
 
     <Fullscreen
       pos="absolute"
-      zIndex={1200}
+      zIndex="control"
       bottom="140px"
       right={LAYOUT_HORIZONTAL_PADDING}
     />
 
     <Player
       pos="absolute"
-      zIndex={1200}
+      zIndex="control"
       w="full"
       bottom="52px"
       px={LAYOUT_HORIZONTAL_PADDING}
     />
 
-    <Legend pos="absolute" zIndex={1200} w="full" bottom={0} />
+    <Legend pos="absolute" zIndex="control" w="full" bottom={0} />
   </>
 );
 

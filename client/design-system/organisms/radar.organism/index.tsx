@@ -3,6 +3,8 @@ import { Box, chakra } from '@chakra-ui/react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { useUpdateAtom } from 'jotai/utils';
 
+import { MOBILE_HEADER_HEIGHT } from 'client/constants';
+
 import { useCenterPoint, useFetchConfig } from './hooks';
 import { Controls } from './controls';
 import { Markers } from './markers';
@@ -20,7 +22,12 @@ export const Radar = (): ReactElement => {
   useFetchConfig();
 
   return (
-    <Box h="full" w="full" position="relative">
+    <Box
+      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '100%' }}
+      w="full"
+      position="relative"
+      minH={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '792px' }}
+    >
       <MapContainer
         h="full"
         w="full"
