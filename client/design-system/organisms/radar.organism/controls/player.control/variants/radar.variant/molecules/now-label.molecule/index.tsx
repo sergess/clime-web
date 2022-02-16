@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai/utils';
 import { formatInTimeZone } from 'date-fns-tz';
 import { useTranslation } from 'next-i18next';
 
-import { activePlayerFrameIndexAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
+import { activeFrameIndexAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
 import { RadarLayerId } from 'common/types';
 import { useLayer } from 'client/design-system/organisms/radar.organism/hooks';
 import { useLocationData } from 'client/hooks';
@@ -15,13 +15,12 @@ export const NowLabel = (): ReactElement | null => {
   const { t } = useTranslation('radar');
 
   const layer = useLayer(RadarLayerId.RADAR);
-  const activePlayerFrameIndex = useAtomValue(activePlayerFrameIndexAtom);
+  const activeFrameIndex = useAtomValue(activeFrameIndexAtom);
   const locationData = useLocationData();
 
   if (!layer) return null;
 
-  const { intervalToNow, today, dateTime } =
-    layer.dates[activePlayerFrameIndex];
+  const { intervalToNow, today, dateTime } = layer.dates[activeFrameIndex];
 
   const currentTimestamp = formatInTimeZone(
     dateTime,
