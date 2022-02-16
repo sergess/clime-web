@@ -3,6 +3,7 @@ const zIndices = {
   aboveMap: 1100,
   control: 1200,
   navigation: 1600,
+  overlay: 1700,
   popover: 1800,
 };
 
