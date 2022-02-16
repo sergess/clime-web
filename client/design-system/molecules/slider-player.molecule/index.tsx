@@ -106,8 +106,7 @@ export const SliderPlayer: FC<
             value={i * (step as number)}
             bg="gray.100"
             w={0.5}
-            // [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
-            zIndex={1}
+            zIndex="mark"
             h={1}
             mt={-0.5}
             ms="-1px"

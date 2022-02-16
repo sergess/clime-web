@@ -13,7 +13,7 @@ import { NowLabel } from './molecules';
 
 export const Radar = (): ReactElement | null => {
   const { t } = useTranslation('radar');
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   const layer = useLayer(RadarLayerId.RADAR);
   const [activePlayerFrameIndex, setActivePlayerFrameIndex] = useAtom(

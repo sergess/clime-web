@@ -36,12 +36,15 @@ export const TopNavigationBar = (
     navigationRef
   );
 
-  const currentRouteRef = useCallback((node) => {
-    if (node !== null && navigationRef.current) {
-      const { left, width } = node.getBoundingClientRect();
-      navigationRef.current.scrollLeft = left < width ? 0 : left - width / 2;
-    }
-  }, []);
+  const currentRouteRef = useCallback(
+    (node) => {
+      if (node !== null && navigationRef.current) {
+        const { left, width } = node.getBoundingClientRect();
+        navigationRef.current.scrollLeft = left < width ? 0 : left - width / 2;
+      }
+    },
+    [navigationRef.current]
+  );
 
   const onScroll = useCallback(() => {
     if (navigationRef.current) {
@@ -104,16 +107,13 @@ export const TopNavigationBar = (
           left="0"
           boxSize="48px"
           justifyContent="flex-end"
-          bg="linear-gradient(270deg, #EFF3F8 42.93%, rgba(239, 243, 248, 0) 100%)"
-          transform="matrix(-1, 0, 0, 1, 0, 0)"
           onClick={swipeLeft}
         >
-          <Image src="/icons/arrow-100.svg" width={20} height={20} alt="Left" />
+          <Image src="/arrow-nav-left.png" width={48} height={48} alt="Left" />
         </Flex>
       )}
       <Flex
         as="nav"
-        bg="gray.50"
         overflowX="auto"
         ref={navigationRef}
         m="-3px"
@@ -168,13 +168,12 @@ export const TopNavigationBar = (
           right="0"
           boxSize="48px"
           justifyContent="flex-end"
-          bg="linear-gradient(270deg, #EFF3F8 42.93%, rgba(239, 243, 248, 0) 110%)"
           onClick={swipeRight}
         >
           <Image
-            src="/icons/arrow-100.svg"
-            width={20}
-            height={20}
+            src="/arrow-nav-right.png"
+            width={48}
+            height={48}
             alt="Right"
           />
         </Flex>
