@@ -32,7 +32,7 @@ export const WeatherRadarPageLayout: React.FC = ({
               h={`${TOP_NAVIGATION_BAR_HEIGHT}px`}
               pos="relative"
               mx={{ base: '3px', lg: '0' }}
-              zIndex="skipLink"
+              zIndex="navigation"
               px={{ base: '2.5', lg: '0' }}
               pt={5}
             />
@@ -49,7 +49,7 @@ export const WeatherRadarPageLayout: React.FC = ({
                 top: '0',
                 left: '0',
                 width: '100%',
-                zIndex: 'sticky',
+                zIndex: 'aboveMap',
                 height: '68px',
                 bg: 'linear-gradient(0deg, rgba(239, 243, 248, 0) 0%, #EFF3F8 100%)',
                 [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]:

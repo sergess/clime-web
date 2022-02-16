@@ -21,7 +21,6 @@ import 'leaflet/dist/leaflet.css';
 
 const MapContainer = chakra(LeafletMapContainer);
 
-// [todo] move zIndex to constants ABOVE_THE_MAP, MAP, SETTINGS, еtс
 export const Radar = (): ReactElement => {
   const radarContainerRef = useRef(null);
   const center = useCenterPoint();
@@ -48,27 +47,27 @@ export const Radar = (): ReactElement => {
         <Portal containerRef={radarContainerRef}>
           <ZoomControl
             pos="absolute"
-            zIndex="banner"
+            zIndex="control"
             bottom="260px"
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
           <FullscreenControl
             pos="absolute"
-            zIndex="banner"
+            zIndex="control"
             bottom="140px"
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
           <PlayerControl
             pos="absolute"
-            zIndex="banner"
+            zIndex="control"
             w="full"
             bottom="52px"
             px={LAYOUT_HORIZONTAL_PADDING}
           />
 
-          <LegendControl pos="absolute" zIndex="banner" w="full" bottom={0} />
+          <LegendControl pos="absolute" zIndex="control" w="full" bottom={0} />
         </Portal>
         <Markers />
         <Layers />
