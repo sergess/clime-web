@@ -50,7 +50,7 @@ export const RadarSnapshotStub: FC<
         <NextLink href={climeAppLink} passHref>
           <LinkOverlay as="a" isExternal w="full" mx="29px">
             <Button w="full" variant="cta" mb={5}>
-              {t('Get Clime App')}
+              {t('Get Clime app')}
             </Button>
           </LinkOverlay>
         </NextLink>
