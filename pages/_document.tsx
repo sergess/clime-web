@@ -37,6 +37,10 @@ class Document extends NextDocument {
           <link rel="dns-prefetch" href="http://www.googletagmanager.com/" />
           <link rel="dns-prefetch" href="https://www.google-analytics.com/" />
           <link rel="dns-prefetch" href="https://cdn.cookielaw.org/" />
+          <meta
+            name="apple-itunes-app"
+            content="app-id=749133753, app-argument=https://itunes.apple.com/us/app/id749133753"
+          />
         </Head>
         <body>
           <noscript>
