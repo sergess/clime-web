@@ -35,7 +35,7 @@ export const useHourlyForecastCardData =
 
         return {
           ...item,
-          time: defaultToDash(setTimeFormat(item.time)),
+          dateTime: defaultToDash(setTimeFormat(item.dateTime)),
           temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
         };
       });

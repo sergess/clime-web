@@ -1,10 +1,11 @@
 import curry from 'ramda/src/curry';
+import { formatInTimeZone } from 'date-fns-tz';
 
 import { LocationData } from 'common/types';
 import { TimeFormat } from 'client/types';
 import { isString } from 'common/utils';
 import { TIME_FORMATS } from 'client/constants';
-import { formatUtcString } from 'client/utils/change-time-format-to.util/rules';
+import { UTC } from 'server/constants';
 
 export const changeTimeFormatTo = curry(
   (
@@ -16,11 +17,13 @@ export const changeTimeFormatTo = curry(
   ) => {
     if (!isString(value)) return value;
 
+    const timeZone = location?.timeZone || UTC;
+
     switch (format) {
       case TIME_FORMATS.H12:
-        return formatUtcString(value as string, formatH12, location?.timeZone);
+        return formatInTimeZone(value as string, timeZone, formatH12);
       default:
-        return formatUtcString(value as string, formatH24, location?.timeZone);
+        return formatInTimeZone(value as string, timeZone, formatH24);
     }
   }
 );

@@ -6,7 +6,6 @@ export type UseHourlyForecastCardData = Array<{
   night: boolean;
   stateId: WeatherStateId | null;
   temperature: number | string;
-  time: string;
 }>;
 
 export default UseHourlyForecastCardData;

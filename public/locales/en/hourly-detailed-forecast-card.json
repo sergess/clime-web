@@ -10,8 +10,8 @@
   "sunset": "sunset",
   "sunrise": "sunrise",
   "{{uvIndex}} of 11": "{{uvIndex}} of 11",
-  "Today, {{time}}": "Today, {{time}}",
-  "Tomorrow, {{time}}": "Tomorrow, {{time}}",
-  "{{date}}, {{time}}": "{{date}}, {{time}}",
+  "Today, {{dateTime}}": "Today, {{dateTime}}",
+  "Tomorrow, {{dateTime}}": "Tomorrow, {{dateTime}}",
+  "{{date}}, {{dateTime}}": "{{date}}, {{dateTime}}",
   "Hourly Weather": "Hourly Weather"
 }

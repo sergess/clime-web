@@ -12,7 +12,6 @@ export const mapHourlyCard = (forecastFeed: ForecastFeed): Hourly =>
       night,
       stateId,
       temperature,
-      time: dateTime,
     })
   );
 

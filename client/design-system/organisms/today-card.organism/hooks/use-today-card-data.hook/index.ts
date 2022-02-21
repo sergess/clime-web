@@ -50,7 +50,7 @@ export const useTodayCardData = (): UseTodayCardData | null => {
 
     return {
       ...today,
-      date: defaultToDash(setTimeFormat(today.date)),
+      dateTime: defaultToDash(setTimeFormat(today.dateTime)),
       temperature: defaultToDash(convertFahrenheitToUnit(today.temperature)),
       feelsLikeTemperature: defaultToDash(
         convertFahrenheitToUnit(today.feelsLikeTemperature)

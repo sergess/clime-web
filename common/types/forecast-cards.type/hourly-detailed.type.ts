@@ -7,7 +7,6 @@ export type HourlyDetailed = Array<{
   dateTime: string;
   stateId: WeatherStateId | null;
   variant: HourConditionVariant;
-  time: string;
   date: string;
   relatedDayConditionIndex: number;
   humidity: number | null;

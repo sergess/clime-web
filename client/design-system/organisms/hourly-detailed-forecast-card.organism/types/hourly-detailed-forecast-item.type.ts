@@ -14,7 +14,6 @@ export type HourlyDetailedForecastItem = {
   precipitationLevel: number | string;
   precipitationChance: number | string;
   stateText: string | null;
-  time: string;
   date: string;
   relatedDayConditionIndex: number;
   windAzimuth: Azimuth;

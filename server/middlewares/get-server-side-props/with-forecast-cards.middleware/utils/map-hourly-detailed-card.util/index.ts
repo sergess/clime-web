@@ -45,7 +45,6 @@ export const mapHourlyDetailedCard = (
         dateTime,
         stateId,
         variant,
-        time: dateTime,
         date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
         relatedDayConditionIndex,
         humidity,

@@ -51,7 +51,7 @@ export const useCardData = (): HourlyDetailedForecastItem[] | null => {
 
       return {
         ...item,
-        time: defaultToDash(setTimeFormat(item.time)),
+        dateTime: defaultToDash(setTimeFormat(item.dateTime)),
         temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
         feelsLikeTemperature: defaultToDash(
           convertFahrenheitToUnit(item.feelsLikeTemperature)

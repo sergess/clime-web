@@ -12,7 +12,7 @@ export const mapTodayCard = (forecastFeed: ForecastFeed): Today => {
 
   const windDirection = currentHourCondition.windDirection || 0;
   return {
-    date: currentHourCondition.dateTime,
+    dateTime: currentHourCondition.dateTime,
     night: currentHourCondition.night,
     stateText: currentHourCondition.night
       ? currentHourCondition.stateNightText || currentHourCondition.stateText
