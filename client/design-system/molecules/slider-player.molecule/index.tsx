@@ -42,6 +42,7 @@ export const SliderPlayer: FC<
     borderRadius="xl"
     maxW={{ md: 380 }}
     margin={{ md: '0 auto' }}
+    boxShadow="player"
   >
     <Flex align="center" pe="3">
       <IconButton

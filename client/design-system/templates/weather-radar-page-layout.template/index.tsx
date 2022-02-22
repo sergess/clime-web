@@ -46,8 +46,8 @@ export const WeatherRadarPageLayout: React.FC = ({
           >
             <Flex
               w="full"
-              pe={[null, null, null, null, 5]}
-              py={5}
+              pe={{ base: 0, lg: 5 }}
+              py="17px"
               flexDirection="column"
               alignItems="stretch"
               h={{
@@ -58,7 +58,7 @@ export const WeatherRadarPageLayout: React.FC = ({
               <TopNavigationBar
                 p="3px"
                 mx="-3px"
-                mb={{ base: 4, lg: 5 }}
+                mb="17px"
                 bg="gray.50"
                 flex="none"
               />

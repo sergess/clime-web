@@ -1,39 +1,28 @@
-import React, { ReactElement, useMemo } from 'react';
-import { Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
+import React, { ReactElement } from 'react';
+import { Flex, Text } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
-import { Arrow2Icon, ColorScale } from 'client/design-system/atoms';
-import { useScreenWidthSmallerThan } from 'client/hooks';
-import climeTheme from 'client/theme';
+import { ColorScale } from 'client/design-system/atoms';
 
 import { ColorScaleContainer } from './molecules';
 
 export const Radar = (): ReactElement => {
   const { t } = useTranslation('weather-radar-page');
-  const widthSmallerThanSmall = useScreenWidthSmallerThan(
-    climeTheme.breakpoints.sm
-  );
-  const { isOpen: expanded, onToggle: onExpandedToggle } = useDisclosure();
-
-  const inDetail = useMemo(
-    () => expanded || !widthSmallerThanSmall,
-    [expanded, widthSmallerThanSmall]
-  );
 
   return (
     <Flex
       direction="row"
       w="full"
       bg="white"
-      py="2.5"
-      ps="2.5"
+      pt={{ base: '0.5', md: '3.5' }}
+      pb={{ base: '2', md: '3.5' }}
+      ps="3"
       pe="3"
-      justifyContent={['space-between', 'space-between', 'center']}
+      justifyContent={{ base: 'space-between', md: 'center' }}
       alignItems="center"
     >
       <ColorScaleContainer
         title={t('Rain')}
-        inDetail={inDetail}
         colorScale={
           <ColorScale
             px={1}
@@ -41,20 +30,13 @@ export const Radar = (): ReactElement => {
             h={['12px', '12px', '14px']}
             variant="rain-legend"
           >
-            {inDetail ? (
-              <>
-                <Text>{t('Light')}</Text>
-                <Text>{t('Heavy')}</Text>
-              </>
-            ) : (
-              <Text>{t('Rain')}</Text>
-            )}
+            <Text>{t('Light')}</Text>
+            <Text>{t('Heavy')}</Text>
           </ColorScale>
         }
       />
       <ColorScaleContainer
         title={t('Mixed')}
-        inDetail={inDetail}
         colorScale={
           <ColorScale
             px={1}
@@ -62,20 +44,13 @@ export const Radar = (): ReactElement => {
             h={['12px', '12px', '14px']}
             variant="mixed-legend"
           >
-            {inDetail ? (
-              <>
-                <Text>{t('Light')}</Text>
-                <Text>{t('Heavy')}</Text>
-              </>
-            ) : (
-              <Text>{t('Mixed')}</Text>
-            )}
+            <Text>{t('Light')}</Text>
+            <Text>{t('Heavy')}</Text>
           </ColorScale>
         }
       />
       <ColorScaleContainer
         title={t('Snow')}
-        inDetail={inDetail}
         colorScale={
           <ColorScale
             px={1}
@@ -83,31 +58,11 @@ export const Radar = (): ReactElement => {
             h={['12px', '12px', '14px']}
             variant="snow-legend"
           >
-            {inDetail ? (
-              <>
-                <Text>{t('Light')}</Text>
-                <Text>{t('Heavy')}</Text>
-              </>
-            ) : (
-              <Text>{t('Snow')}</Text>
-            )}
+            <Text>{t('Light')}</Text>
+            <Text>{t('Heavy')}</Text>
           </ColorScale>
         }
       />
-
-      {widthSmallerThanSmall && (
-        <IconButton
-          variant="legend-detailed"
-          aria-label="Details"
-          icon={
-            <Arrow2Icon
-              boxSize={5}
-              transform={expanded ? 'rotate(90deg)' : 'none'}
-            />
-          }
-          onClick={onExpandedToggle}
-        />
-      )}
     </Flex>
   );
 };

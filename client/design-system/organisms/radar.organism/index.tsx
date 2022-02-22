@@ -35,6 +35,7 @@ export const Radar = (): ReactElement => {
       position="relative"
       overflow="hidden"
       borderRadius="2xl"
+      boxShadow="radar-map"
     >
       <MapContainer
         h="full"
@@ -56,7 +57,7 @@ export const Radar = (): ReactElement => {
           <FullscreenControl
             pos="absolute"
             zIndex="control"
-            bottom={{ base: '140px', lg: '52px' }}
+            bottom={{ base: '140px', lg: '60px' }}
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
@@ -64,7 +65,7 @@ export const Radar = (): ReactElement => {
             pos="absolute"
             zIndex="control"
             w="full"
-            bottom="52px"
+            bottom="60px"
             px={LAYOUT_HORIZONTAL_PADDING}
           />
 
