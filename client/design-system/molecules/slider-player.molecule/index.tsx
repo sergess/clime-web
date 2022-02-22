@@ -39,7 +39,7 @@ export const SliderPlayer: FC<
       <SliderMark
         key={v}
         value={i * (step as number)}
-        bg="gray.100"
+        bg="gray.50"
         w={0.5}
         zIndex="mark"
         h={1}
