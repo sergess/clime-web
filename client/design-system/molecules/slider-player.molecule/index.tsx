@@ -104,7 +104,7 @@ export const SliderPlayer: FC<
           <SliderMark
             key={v}
             value={i * (step as number)}
-            bg="gray.100"
+            bg="gray.50"
             w={0.5}
             zIndex="mark"
             h={1}
@@ -113,11 +113,16 @@ export const SliderPlayer: FC<
           />
         ))}
 
-        <SliderTrack bg="gray.100">
-          <SliderFilledTrack bg="blue.100" />
-        </SliderTrack>
+        <SliderTrack bg="gray.100" h="4px" borderRadius="sm" />
 
-        <SliderThumb boxSize={4} bg="blue.500" />
+        <SliderFilledTrack
+          bg="blue.100"
+          h="4px"
+          zIndex="track"
+          borderRadius="sm"
+        />
+
+        <SliderThumb boxSize={4} bg="blue.500" zIndex="thumb" />
       </Slider>
     </Flex>
   </Flex>

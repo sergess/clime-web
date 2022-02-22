@@ -1,5 +1,7 @@
 const zIndices = {
   mark: 1,
+  track: 2,
+  thumb: 3,
   aboveMap: 1100,
   control: 1200,
   navigation: 1600,
