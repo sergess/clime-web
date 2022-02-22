@@ -30,10 +30,11 @@ export const Radar = (): ReactElement => {
   return (
     <Box
       ref={radarContainerRef}
-      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '100%' }}
+      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }}
       w="full"
       position="relative"
-      minH={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '792px' }}
+      overflow="hidden"
+      borderRadius="2xl"
     >
       <MapContainer
         h="full"
@@ -48,14 +49,14 @@ export const Radar = (): ReactElement => {
           <ZoomControl
             pos="absolute"
             zIndex="control"
-            bottom="260px"
+            bottom={{ base: '240px', lg: '298px' }}
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
           <FullscreenControl
             pos="absolute"
             zIndex="control"
-            bottom="140px"
+            bottom={{ base: '140px', lg: '52px' }}
             right={LAYOUT_HORIZONTAL_PADDING}
           />
 
