@@ -12,6 +12,7 @@ import isNil from 'ramda/src/isNil';
 import climeTheme from 'client/theme';
 import { ChartPoint } from 'client/design-system/organisms/summary-card.organism/types';
 
+import { SUMMARY_CARD_SWITCHER_HEIGHT } from 'client/constants';
 import { ChartProps } from './types';
 import { getMinY, getMaxY, isYDefined, getMinMaxYDomain } from './utils';
 
@@ -25,7 +26,13 @@ export const Chart = ({ points, theme, Point }: ChartProps): ReactElement => {
   const maxY = useMemo(() => getMaxY(points), [points]);
 
   return (
-    <ParentSize debounceTime={500}>
+    <ParentSize
+      debounceTime={500}
+      parentSizeStyles={{
+        width: '100%',
+        height: `calc(100% - ${SUMMARY_CARD_SWITCHER_HEIGHT}px)`,
+      }}
+    >
       {({ width, height }) => {
         const lastPointIndex = points.length - 1;
         const xScale = scaleLinear({

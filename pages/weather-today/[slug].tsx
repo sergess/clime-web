@@ -82,7 +82,7 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 'auto' }} />
+        <SummaryCard w="full" h="260px" />
         <DailyForecastCard w="full" />
         <PromoBanner spotId="todayTwo" />
       </ForecastCardsProvider>
