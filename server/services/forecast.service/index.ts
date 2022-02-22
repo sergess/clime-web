@@ -20,16 +20,12 @@ export class Forecast extends BaseApiV3Service {
     forecastZoneId,
     language,
   }: GetForecastFeedArguments): Promise<ForecastFeed | null> {
-    if (!forecastZoneId) return null;
-
     const { ok, data: forecastFeedFromApi } =
       await this.callAsync<ForecastFeedFromApi>(
         `/feed/forecast/${language}/${forecastZoneId}`
       );
 
-    if (!ok || !forecastFeedFromApi) {
-      return null;
-    }
+    if (!ok || !forecastFeedFromApi) return null;
 
     const upToDateDayConditionsFromApi = getUpToDateDayConditionsFromApi(
       forecastFeedFromApi.frst

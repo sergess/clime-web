@@ -22,6 +22,11 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: LocationDataByCoordinatesArguments): Promise<LocationData | null> {
     if (!isLocationValid(location) || !isString(language)) {
+      console.error(
+        `[Geocode.getLocationDataByCoordinates]: location is not valid`,
+        { location, language }
+      );
+
       return null;
     }
 
@@ -30,6 +35,16 @@ export class Geocode extends BaseApiV3Service {
     );
 
     if (!ok || isEmpty(locationData)) {
+      console.error(
+        `[Geocode.getLocationDataByCoordinates]: location data is empty`,
+        {
+          ok,
+          locationData,
+          location,
+          language,
+        }
+      );
+
       return null;
     }
 
@@ -41,6 +56,11 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: LocationDataBySlugArguments): Promise<LocationData | null> {
     if (!isString(slug) || !isString(language)) {
+      console.error(`[Geocode.getLocationDataBySlug]: slug is missing`, {
+        slug,
+        language,
+      });
+
       return null;
     }
 
@@ -49,6 +69,13 @@ export class Geocode extends BaseApiV3Service {
     );
 
     if (!ok || isEmpty(locationData)) {
+      console.error(`[Geocode.getLocationDataBySlug]: location data is empty`, {
+        ok,
+        locationData,
+        slug,
+        language,
+      });
+
       return null;
     }
 
@@ -60,6 +87,11 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: SearchArguments): Promise<LocationData[] | null> {
     if (!isString(query) || !isString(language) || query.length < 2) {
+      console.error(`[Geocode.querySearch]: problem with query`, {
+        query,
+        language,
+      });
+
       return null;
     }
 
@@ -83,6 +115,11 @@ export class Geocode extends BaseApiV3Service {
     language,
   }: AutocompleteArguments): Promise<LocationData[] | null> {
     if (!isString(query) || !isString(language) || query.length < 2) {
+      console.error(`[Geocode.queryAutocomplete]: problem with query`, {
+        query,
+        language,
+      });
+
       return null;
     }
 
