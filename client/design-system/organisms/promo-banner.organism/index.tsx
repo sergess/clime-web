@@ -1,6 +1,7 @@
 import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
 
+import { useOptimizeExperimentById } from 'client/hooks';
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -14,6 +15,13 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
   spotId,
   priorityLoad = false,
 }): ReactElement | null => {
+  const experiment = useOptimizeExperimentById(
+    'banner_experiment',
+    '0K6cc0Y1R1aPDHs1_CiVdg'
+  );
+
+  console.log('test', experiment);
+
   const banner = useParsedPromoBanner(spotId);
 
   if (!banner) return null;
