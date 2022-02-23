@@ -35,7 +35,7 @@ import {
   distanceUnitAtom,
 } from 'client/state/atoms';
 import { trackEvent } from 'client/services';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 import {
   CURRENT_DETAILS_COMPACT_SHOWN,
   CURRENT_DETAILS_FULL_SHOWN,
@@ -57,11 +57,13 @@ export const TodayCard = memo(
     const { t } = useTranslation('today-card');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
-    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    const widthSmallerThanMedium = useScreenWidthSmallerThan(
+      climeTheme.breakpoints.md
+    );
     const todayCardData = useTodayCardData();
 
     // [TODO] Find better way how we can handle 'collapsed' state.
-    // 'useScreenWidthSmallerThanMedium' returns 'true' during SSR and sets correct value after rehydration.
+    // 'useScreenWidthSmallerThan' returns 'true' during SSR and sets correct value after rehydration.
     // Probably we need to use media-queries here.
     const [widthLargerThanMedium] = useMediaQuery(
       `(min-width: ${climeTheme.breakpoints.md})`

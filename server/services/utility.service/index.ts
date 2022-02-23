@@ -26,7 +26,14 @@ export class Utility {
     });
 
     if (!ok || !data?.latitude || !data?.longitude) {
-      console.error(`[Utility.getLocationLookup]: `, { ip, ok, data });
+      console.error(
+        `[Utility.getLocationLookup]: there is no valid location for such ip`,
+        {
+          ip,
+          ok,
+          data,
+        }
+      );
 
       return null;
     }
@@ -48,6 +55,15 @@ export class Utility {
   ): Promise<CallAsyncResult<T>> {
     const response = await requestJson<T>(`${this.baseUrl}${uri}`, init);
     const ok = isResponseOk(response);
+
+    if (!ok) {
+      console.error(`[Utility.callAsync]: response is not ok`, {
+        ok,
+        uri,
+        init,
+        response,
+      });
+    }
 
     return {
       ok,

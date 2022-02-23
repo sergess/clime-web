@@ -118,12 +118,8 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard
-          w="full"
-          h={{ base: 260, md: 'auto' }}
-          order={{ base: 1, md: 0 }}
-        />
-        <DailyForecastCard w="full" order={{ base: 3, md: 0 }} />
+        <SummaryCard w="full" h="260px" order={{ base: 1, md: 0 }} />
+        <DailyForecastCard w="full" />
         <PromoBanner spotId="homeTwo" />
       </ForecastCardsProvider>
     );
@@ -150,8 +146,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   ]);
 
   if (!locationData) {
-    console.error('[Index.getServerSideProps]: locationData is missing');
-
     return {
       notFound: true,
     };
@@ -168,8 +162,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )(context);
 
   if (!forecastCards) {
-    console.error('[Index.getServerSideProps]: forecastCards are missing');
-
     return {
       notFound: true,
     };

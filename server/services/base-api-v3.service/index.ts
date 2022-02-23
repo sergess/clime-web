@@ -47,16 +47,27 @@ export class BaseApiV3 {
     init?: RequestInit
   ): Promise<CallAsyncResult<T>> {
     const { timestamp } = BaseApiV3;
+    const headers = {
+      ...init?.headers,
+      'X-Timestamp': timestamp,
+      'User-Agent': this.userAgent,
+      'X-Signature': this.generateSignature(uri, timestamp),
+    };
     const response = await requestJson<T>(`${this.baseUrl}${uri}`, {
       ...init,
-      headers: {
-        ...init?.headers,
-        'X-Timestamp': timestamp,
-        'User-Agent': this.userAgent,
-        'X-Signature': this.generateSignature(uri, timestamp),
-      },
+      headers,
     });
     const ok = isResponseOk(response);
+
+    if (!ok) {
+      console.error('[BaseApiV3.callAsync]: response is not ok', {
+        ok,
+        uri,
+        init,
+        headers,
+        response,
+      });
+    }
 
     return {
       ok,
