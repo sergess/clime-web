@@ -23,7 +23,14 @@ export const ResponsiveBanner: FC<{
   wide?: boolean;
   priorityLoad: boolean;
   spotId: string | number;
-}> = ({ bannerId, priorityLoad, wide = false, spotId }): JSX.Element | null => {
+  banner: string;
+}> = ({
+  bannerId,
+  priorityLoad,
+  wide = false,
+  spotId,
+  banner,
+}): JSX.Element | null => {
   const Component = responsiveBanners[bannerId];
 
   if (!Component) return null;
@@ -32,7 +39,7 @@ export const ResponsiveBanner: FC<{
     <Component
       priorityLoad={priorityLoad}
       wide={wide}
-      data-banner-id={bannerId}
+      data-banner-id={banner}
       data-spot-name={spotId}
       className="banner"
     />

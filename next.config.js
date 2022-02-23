@@ -10,6 +10,7 @@ const THREE_DAYS = 3 * 24 * 60 * 60;
 const ONE_YEAR = 365 * 24 * 60 * 60;
 
 module.exports = withBundleAnalyzer({
+  poweredByHeader: false,
   reactStrictMode: true,
   i18n,
   webpack(config) {

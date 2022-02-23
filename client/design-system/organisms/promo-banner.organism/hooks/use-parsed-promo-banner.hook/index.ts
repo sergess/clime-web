@@ -15,7 +15,7 @@ export const useParsedPromoBanner = (
 
   const [type, id] = banner.split('_');
 
-  return { type, id: Number(id) };
+  return { type, id: Number(id), name: banner };
 };
 
 export default useParsedPromoBanner;

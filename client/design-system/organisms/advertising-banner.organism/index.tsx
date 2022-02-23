@@ -13,11 +13,10 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
-import { BackgroundVideo } from 'client/design-system/atoms';
 
-export const AdvertisingBanner: FC<
-  { showBackgroundVideo: boolean } & ComponentDefaultProps
-> = ({ showBackgroundVideo = false, ...componentStyles }): ReactElement => {
+export const AdvertisingBanner: FC<ComponentDefaultProps> = (
+  props
+): ReactElement => {
   const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
 
@@ -33,25 +32,17 @@ export const AdvertisingBanner: FC<
       px={6}
       pb={8}
       position="relative"
-      {...componentStyles}
+      {...props}
     >
-      {showBackgroundVideo && (
-        <BackgroundVideo
-          source={{
-            src: '/map-animation.mp4',
-            type: 'video/mp4',
-          }}
-          poster="/map-poster.jpg"
-          containerStyles={{
-            position: 'absolute',
-            width: '100%',
-            height: 'auto',
-            left: 0,
-            top: 0,
-          }}
+      <Box pos="absolute" top="0" left="0">
+        <Image
+          src="/map-background.jpg"
+          width={380}
+          height={408}
+          alt="All Pro Features"
         />
-      )}
-      <Box mt={279} position="relative">
+      </Box>
+      <Box mt={275} position="relative">
         <Text
           color="white"
           fontSize={48}

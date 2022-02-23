@@ -12,8 +12,6 @@ import climeTheme from 'client/theme';
 import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
 
-import { useScreenWidthSmallerThan } from 'client/hooks';
-
 import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
 const AdvertisingBanner = dynamic(
@@ -25,79 +23,69 @@ const AdvertisingBanner = dynamic(
 
 export const DefaultLayout: FC = ({
   children,
-}: ComponentDefaultProps): ReactElement => {
-  const widthSmallerThanLarge = useScreenWidthSmallerThan(
-    climeTheme.breakpoints.lg
-  );
-
-  return (
-    <>
-      <Box flex="1 0 auto">
-        <Header />
+}: ComponentDefaultProps): ReactElement => (
+  <>
+    <Box flex="1 0 auto">
+      <Header />
+      <Flex
+        as="main"
+        w="full"
+        h="100%"
+        bg="gray.50"
+        px={LAYOUT_HORIZONTAL_PADDING}
+        justify="center"
+      >
         <Flex
-          as="main"
+          maxW="container.xl"
           w="full"
-          h="100%"
-          bg="gray.50"
-          px={LAYOUT_HORIZONTAL_PADDING}
-          justify="center"
+          p="0"
+          justify="space-between"
+          align="flex-start"
         >
-          <Flex
-            maxW="container.xl"
+          <SimpleGrid
             w="full"
-            p="0"
-            justify="space-between"
-            align="flex-start"
+            pe={[null, null, null, null, 5]}
+            py={5}
+            columns={[1, 1, 1, 2]}
+            spacing={[4, 5]}
           >
-            <SimpleGrid
+            <TopNavigationBar
+              p="3px"
+              m="-3px"
+              gridColumn={[null, null, null, 'span 2']}
+            />
+            {children}
+          </SimpleGrid>
+          <Flex
+            sx={{
+              [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]:
+                { display: 'none' },
+            }}
+            w="full"
+            maxW="380px"
+            my="5"
+            flexDirection="column"
+          >
+            <AdsenseBanner
+              client={CLIENT_ID}
+              slot="1272521434"
+              stub={<AdvertisingBanner />}
               w="full"
-              pe={[null, null, null, null, 5]}
-              py={5}
-              columns={[1, 1, 1, 2]}
-              spacing={[4, 5]}
-            >
-              <TopNavigationBar
-                p="3px"
-                m="-3px"
-                gridColumn={[null, null, null, 'span 2']}
-              />
-              {children}
-            </SimpleGrid>
-            <Flex
-              sx={{
-                [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]:
-                  { display: 'none' },
-              }}
+              h="640px"
+            />
+            <AdsenseBanner
+              client={CLIENT_ID}
+              slot="1080949747"
               w="full"
-              maxW="380px"
-              my="5"
-              flexDirection="column"
-            >
-              <AdsenseBanner
-                client={CLIENT_ID}
-                slot="1272521434"
-                stub={
-                  <AdvertisingBanner
-                    showBackgroundVideo={!widthSmallerThanLarge}
-                  />
-                }
-                w="full"
-                h="640px"
-              />
-              <AdsenseBanner
-                client={CLIENT_ID}
-                slot="1080949747"
-                w="full"
-                h="320px"
-                mt="10"
-              />
-            </Flex>
+              h="320px"
+              mt="10"
+            />
           </Flex>
         </Flex>
-      </Box>
-      <Footer />
-    </>
-  );
-};
+      </Flex>
+    </Box>
+    <Footer />
+  </>
+);
 
 export default DefaultLayout;
