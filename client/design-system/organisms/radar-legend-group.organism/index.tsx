@@ -1,15 +1,18 @@
 import React, { ReactElement, useMemo } from 'react';
 import { Flex, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
+import climeTheme from 'client/theme';
 
 import { RadarLegend } from 'client/design-system/molecules';
 import { Arrow2Icon, Legend } from 'client/design-system/atoms';
 
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 export const RadarLegendGroup = (): ReactElement => {
   const { t } = useTranslation('weather-radar-page');
-  const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const widthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
   const { isOpen: expanded, onToggle: onExpandedToggle } = useDisclosure();
 
   const inDetail = useMemo(

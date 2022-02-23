@@ -22,7 +22,7 @@ import {
   SPEED_UNIT_VALUES,
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 import climeTheme from 'client/theme';
 
 import { trackEvent } from 'client/services';
@@ -41,7 +41,9 @@ export const Settings = ({
   const { t } = useTranslation('common');
   const settingsCardRef = useRef<HTMLDivElement>(null);
 
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const screenWidthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   const [settings, setSettings] = useAtom(settingsAtom);
 
