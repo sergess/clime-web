@@ -1,34 +1,25 @@
 import { useEffect, useState } from 'react';
 
 export const useOptimizeExperimentById = (
-  event: string,
+  eventName: string,
   id: string
-): string => {
-  const [experiment, setExperiment] = useState('0');
+): string | null => {
+  const [experiment, setExperiment] = useState<string | null>(null);
 
   useEffect(() => {
-    // if(window && window.dataLayer) {
-    //     window.dataLayer.push({
-    //         event: {event},
-    //         eventCallback: () => {
-    //             const experimentType = window.google_optimize && window.google_optimize.get({id});
-    //             console.log('experiment', experimentType);
-    //             if(experimentType) {
-    //                 setExperiment(experimentType);
-    //             }
-    //         }
-    //     });
-    // }
-    window.dataLayer.push({ event: 'optimize.activate' });
-    const interval = setInterval(() => {
-      if (window.google_optimize !== undefined) {
-        const variant = window.google_optimize.get('0K6cc0Y1R1aPDHs1_CiVdg');
-        console.log('1', variant);
-        if (typeof variant !== 'undefined') setExperiment(variant);
-        clearInterval(interval);
-      }
-    }, 1000);
-  }, [event, id]);
+    if (window && window.dataLayer) {
+      window.dataLayer.push({
+        event: eventName,
+        eventCallback: () => {
+          const experimentType =
+            window.google_optimize && window.google_optimize.get(id);
+          if (experimentType) {
+            setExperiment(experimentType);
+          }
+        },
+      });
+    }
+  }, [eventName, id]);
 
   return experiment;
 };

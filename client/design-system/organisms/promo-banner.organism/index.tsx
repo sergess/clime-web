@@ -16,15 +16,20 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
   priorityLoad = false,
 }): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
-    'banner_experiment',
-    '0K6cc0Y1R1aPDHs1_CiVdg'
+    'optimize.activate',
+    'yb5IGeTcTKGvFpunp6ttSA'
   );
 
-  console.log('test', experiment);
+  let spot = spotId;
 
-  const banner = useParsedPromoBanner(spotId);
+  if (experiment !== '0') {
+    const regexp = /One|Two/g;
+    spot = regexp.test(spot) ? `${spot}Test` : spot;
+  }
 
-  if (!banner) return null;
+  const banner = useParsedPromoBanner(spot);
+
+  if (!banner || !experiment) return null;
 
   const { type, id, name } = banner;
 
@@ -34,7 +39,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
       />
     );
   }
@@ -45,7 +50,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
       />
     );
   }
@@ -55,7 +60,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
       <NativeBanner
         bannerId={id}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         banner={name}
       />
     );
