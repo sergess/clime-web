@@ -58,7 +58,11 @@ const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
           order={{ base: 1, md: 0 }}
         />
         <PromoBanner spotId="hourlyOne" priorityLoad />
-        <DailyForecastCard maxH={270} w="full" />
+        <DailyForecastCard
+          maxH={270}
+          w="full"
+          className="daily-block__hourly"
+        />
         <AdsenseBanner
           client={CLIENT_ID}
           slot="7916559712"

@@ -58,7 +58,7 @@ const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
           order={{ base: 1, md: 0 }}
         />
         <PromoBanner spotId="tenDayOne" priorityLoad />
-        <HourlyForecastCard w="full" />
+        <HourlyForecastCard w="full" className="hourly-block__tenday" />
         <AdsenseBanner
           client={CLIENT_ID}
           slot="7916559712"

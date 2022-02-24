@@ -76,7 +76,7 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           order={{ base: 2, md: 0 }}
         />
         <PromoBanner spotId="todayOne" priorityLoad />
-        <HourlyForecastCard w="full" />
+        <HourlyForecastCard w="full" className="hourly-block__today" />
         <AdsenseBanner
           client={CLIENT_ID}
           slot="7916559712"
@@ -84,7 +84,11 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           h="100px"
         />
         <SummaryCard w="full" h="260px" order={{ base: 1, md: 0 }} />
-        <DailyForecastCard w="full" order={{ base: 3, md: 0 }} />
+        <DailyForecastCard
+          w="full"
+          order={{ base: 3, md: 0 }}
+          className="daily-block__today"
+        />
         <PromoBanner spotId="todayTwo" />
       </ForecastCardsProvider>
     );
