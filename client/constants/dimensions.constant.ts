@@ -2,3 +2,4 @@ export const MOBILE_HEADER_HEIGHT = 56;
 export const DESKTOP_HEADER_HEIGHT = 68;
 export const LAYOUT_HORIZONTAL_PADDING = [2.5, 2.5, 4];
 export const MAIN_CONTENT_VERTICAL_PADDING = [4, 4, 5];
+export const SUMMARY_CARD_SWITCHER_HEIGHT = 32;

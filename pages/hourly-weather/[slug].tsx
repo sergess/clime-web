@@ -54,7 +54,8 @@ const HourlyWeather: FC<{ forecastCards: ForecastCards }> = memo(
         <RadarSnapshotStub
           h="full"
           minH="270px"
-          display={{ base: 'none', md: 'flex' }}
+          className="radar-snapshot__hourly"
+          order={{ base: 1, md: 0 }}
         />
         <PromoBanner spotId="hourlyOne" priorityLoad />
         <DailyForecastCard
