@@ -28,7 +28,7 @@ export const Radar = (): ReactElement => {
   const map = useAtomValue(mapAtom);
 
   useEffect(() => {
-    map?.invalidateSize();
+    if (mapFullscreen) map?.invalidateSize();
   }, [mapFullscreen]);
 
   return (
