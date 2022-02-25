@@ -18,12 +18,20 @@ const responsiveBanners: Record<
   ),
 };
 
-export const ResponsiveBanner: FC<{
-  bannerId: ResponsiveBannerId;
-  wide?: boolean;
-  priorityLoad: boolean;
-  spotId: string | number;
-}> = ({ bannerId, priorityLoad, wide = false, spotId }): JSX.Element | null => {
+export const ResponsiveBanner: FC<
+  {
+    bannerId: ResponsiveBannerId;
+    wide?: boolean;
+    priorityLoad: boolean;
+    spotId: string | number;
+  } & ComponentDefaultProps
+> = ({
+  bannerId,
+  priorityLoad,
+  wide = false,
+  spotId,
+  ...componentStyles
+}): JSX.Element | null => {
   const Component = responsiveBanners[bannerId];
 
   if (!Component) return null;
@@ -35,6 +43,7 @@ export const ResponsiveBanner: FC<{
       data-banner-id={bannerId}
       data-spot-name={spotId}
       className="banner"
+      {...componentStyles}
     />
   );
 };

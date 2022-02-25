@@ -1,5 +1,6 @@
 import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
@@ -10,9 +11,12 @@ const NativeBanner = dynamic(
   () => import('./molecules/native-banner.molecule')
 );
 
-export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
+export const PromoBanner: FC<
+  { spotId: string; priorityLoad?: boolean } & ComponentDefaultProps
+> = ({
   spotId,
   priorityLoad = false,
+  ...componentStyles
 }): ReactElement | null => {
   const banner = useParsedPromoBanner(spotId);
 
@@ -26,6 +30,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         priorityLoad={priorityLoad}
         spotId={spotId}
+        {...componentStyles}
       />
     );
   }
@@ -36,13 +41,19 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         priorityLoad={priorityLoad}
         spotId={spotId}
+        {...componentStyles}
       />
     );
   }
 
   if (type === BannerType.NATIVE) {
     return (
-      <NativeBanner bannerId={id} priorityLoad={priorityLoad} spotId={spotId} />
+      <NativeBanner
+        bannerId={id}
+        priorityLoad={priorityLoad}
+        spotId={spotId}
+        {...componentStyles}
+      />
     );
   }
 
