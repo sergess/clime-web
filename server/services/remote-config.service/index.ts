@@ -20,6 +20,14 @@ export class RemoteConfig {
     const response = await requestJson<T>(this.baseUrl as string, init);
     const ok = isResponseOk(response);
 
+    if (!ok) {
+      console.error(`[RemoteConfig.callAsync]: response is not ok`, {
+        ok,
+        init,
+        response,
+      });
+    }
+
     return {
       ok,
       data: ok ? (response as T) : null,
