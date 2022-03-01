@@ -17,19 +17,19 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
 }): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
     'optimize.activate',
-    'yb5IGeTcTKGvFpunp6ttSA'
+    'n8Hb0i6TTZaPOu6dta-sxg'
   );
 
   let spot = spotId;
 
-  if (experiment !== '0') {
+  if (experiment && experiment !== '0') {
     const regexp = /One|Two/g;
     spot = regexp.test(spot) ? `${spot}Test` : spot;
   }
 
   const banner = useParsedPromoBanner(spot);
 
-  if (!banner || !experiment) return null;
+  if (!banner) return null;
 
   const { type, id, name } = banner;
 
