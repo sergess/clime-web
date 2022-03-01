@@ -1,6 +1,7 @@
 import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
 
+import { useOptimizeExperimentById } from 'client/hooks';
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -14,7 +15,19 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
   spotId,
   priorityLoad = false,
 }): ReactElement | null => {
-  const banner = useParsedPromoBanner(spotId);
+  const experiment = useOptimizeExperimentById(
+    'optimize.activate',
+    'n8Hb0i6TTZaPOu6dta-sxg'
+  );
+
+  let spot = spotId;
+
+  if (experiment && experiment !== '0') {
+    const regexp = /One|Two/g;
+    spot = regexp.test(spot) ? `${spot}Test` : spot;
+  }
+
+  const banner = useParsedPromoBanner(spot);
 
   if (!banner) return null;
 
@@ -26,7 +39,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
       />
     );
   }
@@ -37,7 +50,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
       />
     );
   }
@@ -47,7 +60,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
       <NativeBanner
         bannerId={id}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         banner={name}
       />
     );
