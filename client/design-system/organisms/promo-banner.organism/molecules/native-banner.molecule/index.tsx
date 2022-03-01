@@ -1,15 +1,24 @@
 import React, { ReactElement, FC } from 'react';
 import { useTranslation } from 'next-i18next';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
 import { BaseNativeBanner } from './molecules';
 import { NativeBannerId } from './types';
 
-export const NativeBanner: FC<{
-  bannerId: NativeBannerId;
-  priorityLoad: boolean;
-  spotId: string | number;
-  banner: string;
-}> = ({ bannerId, priorityLoad, spotId, banner }): ReactElement | null => {
+export const NativeBanner: FC<
+  {
+    bannerId: NativeBannerId;
+    priorityLoad: boolean;
+    spotId: string | number;
+    banner: string;
+  } & ComponentDefaultProps
+> = ({
+  bannerId,
+  priorityLoad,
+  spotId,
+  banner,
+  ...componentStyles
+}): ReactElement | null => {
   const { t } = useTranslation('banners');
 
   switch (bannerId) {
@@ -22,6 +31,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerTwo:
@@ -33,6 +43,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerThree:
@@ -44,6 +55,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerFour:
@@ -55,6 +67,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerFive:
@@ -66,6 +79,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerSix:
@@ -77,6 +91,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     case NativeBannerId.bannerSeven:
@@ -88,6 +103,7 @@ export const NativeBanner: FC<{
           priorityLoad={priorityLoad}
           spotId={spotId}
           banner={banner}
+          {...componentStyles}
         />
       );
     default:

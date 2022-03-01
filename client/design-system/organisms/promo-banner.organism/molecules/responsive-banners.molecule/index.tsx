@@ -18,18 +18,21 @@ const responsiveBanners: Record<
   ),
 };
 
-export const ResponsiveBanner: FC<{
-  bannerId: ResponsiveBannerId;
-  wide?: boolean;
-  priorityLoad: boolean;
-  spotId: string | number;
-  banner: string;
-}> = ({
+export const ResponsiveBanner: FC<
+  {
+    bannerId: ResponsiveBannerId;
+    wide?: boolean;
+    priorityLoad: boolean;
+    spotId: string | number;
+    banner: string;
+  } & ComponentDefaultProps
+> = ({
   bannerId,
   priorityLoad,
   wide = false,
   spotId,
   banner,
+  ...componentStyles
 }): JSX.Element | null => {
   const Component = responsiveBanners[bannerId];
 
@@ -41,7 +44,7 @@ export const ResponsiveBanner: FC<{
       wide={wide}
       data-banner-id={banner}
       data-spot-name={spotId}
-      className="banner"
+      {...componentStyles}
     />
   );
 };

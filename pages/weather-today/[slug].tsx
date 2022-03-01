@@ -75,7 +75,11 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           className="radar-snapshot__today"
           order={{ base: 2, md: 0 }}
         />
-        <PromoBanner spotId="todayOne" priorityLoad />
+        <PromoBanner
+          spotId="todayOne"
+          className="banner__today-one"
+          priorityLoad
+        />
         <HourlyForecastCard w="full" className="hourly-block__today" />
         <AdsenseBanner
           client={CLIENT_ID}
@@ -83,13 +87,18 @@ const WeatherToday: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h="260px" order={{ base: 1, md: 0 }} />
+        <SummaryCard
+          w="full"
+          h="260px"
+          order={{ base: 1, md: 0 }}
+          className="summary-block__today"
+        />
         <DailyForecastCard
           w="full"
           order={{ base: 3, md: 0 }}
           className="daily-block__today"
         />
-        <PromoBanner spotId="todayTwo" />
+        <PromoBanner spotId="todayTwo" className="banner__today-two" />
       </ForecastCardsProvider>
     );
   }
