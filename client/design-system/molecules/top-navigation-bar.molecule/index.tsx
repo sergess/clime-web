@@ -84,7 +84,7 @@ export const TopNavigationBar = (
         external: true,
       },
       {
-        label: '10-day',
+        label: '10-day forecast',
         path: urlSlug && `/${TEN_DAY_WEATHER}/${urlSlug}`,
         variant: 'common-nav',
         external: false,

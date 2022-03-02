@@ -3,7 +3,7 @@ import { format as formatTz, utcToZonedTime } from 'date-fns-tz';
 import { UTC } from 'server/constants';
 
 export const formatUtcString = (
-  utcString: string,
+  utcString: Date | string,
   format: string,
   timeZone: string | null | undefined
 ): string =>
