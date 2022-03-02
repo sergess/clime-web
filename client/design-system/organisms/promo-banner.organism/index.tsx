@@ -17,7 +17,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
 }): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
     'optimize.activate',
-    'n8Hb0i6TTZaPOu6dta-sxg'
+    '-ZRq0fX1TweM_se9KrIA1g'
   );
 
   let spot = spotId;
