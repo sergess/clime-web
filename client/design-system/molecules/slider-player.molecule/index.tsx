@@ -116,6 +116,7 @@ export const SliderPlayer: FC<
           value={value}
           onChange={onChange}
           onChangeEnd={onChangeEnd}
+          focusThumbOnChange={false}
         >
           {stepMarks}
 
