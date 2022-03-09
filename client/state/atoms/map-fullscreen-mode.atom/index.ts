@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
 
-export const mapFullscreenMode = atom(false);
+export const mapFullscreenOn = atom(false);
 
-export default mapFullscreenMode;
+export default mapFullscreenOn;

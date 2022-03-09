@@ -1,20 +1,18 @@
 import React, { FC, ReactElement, useCallback } from 'react';
-import { useUpdateAtom, useAtomValue } from 'jotai/utils';
+import { useAtom } from 'jotai';
 import { ComponentDefaultProps, Box, IconButton } from '@chakra-ui/react';
 import Image from 'next/image';
 
-import { mapFullscreenMode } from 'client/state/atoms';
+import { mapFullscreenOn } from 'client/state/atoms';
 
 export const Fullscreen: FC<ComponentDefaultProps> = (
   componentStyles
 ): ReactElement => {
-  const setMapFullscreenMode = useUpdateAtom(mapFullscreenMode);
+  const [mapFullscreen, setMapFullscreen] = useAtom(mapFullscreenOn);
 
   const onMapFullscreen = useCallback(() => {
-    setMapFullscreenMode((value) => !value);
+    setMapFullscreen((value) => !value);
   }, []);
-
-  const mapFullscreen = useAtomValue(mapFullscreenMode);
 
   return (
     <Box {...componentStyles}>

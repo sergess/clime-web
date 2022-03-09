@@ -1,12 +1,12 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Box, chakra } from '@chakra-ui/react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
-import { useAtomValue, useUpdateAtom } from 'jotai/utils';
-import type { Map } from 'leaflet';
+import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai/utils';
 
 import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
 
-import { mapFullscreenMode } from 'client/state/atoms';
+import { mapFullscreenOn } from 'client/state/atoms';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import { Controls } from './controls';
@@ -19,22 +19,19 @@ import 'leaflet/dist/leaflet.css';
 const MapContainer = chakra(LeafletMapContainer);
 
 export const Radar = (): ReactElement => {
-  const [createdMap, setCreatedMap] = useState<Map | null>(null);
+  const [map, setMap] = useAtom(mapAtom);
 
-  const setMap = useUpdateAtom(mapAtom);
   const center = useCenterPoint();
-
-  useEffect(() => {
-    setMap(createdMap);
-  }, [createdMap]);
 
   useFetchConfig();
 
-  const mapFullscreen = useAtomValue(mapFullscreenMode);
+  const mapFullscreen = useAtomValue(mapFullscreenOn);
+
+  useEffect(() => () => setMap(null), []);
 
   useEffect(() => {
-    createdMap?.invalidateSize();
-  }, [mapFullscreen, createdMap]);
+    map?.invalidateSize();
+  }, [mapFullscreen]);
 
   return (
     <Box
@@ -60,7 +57,7 @@ export const Radar = (): ReactElement => {
         zoom={9}
         minZoom={3}
         maxZoom={12}
-        whenCreated={setCreatedMap}
+        whenCreated={setMap}
       >
         <Markers />
         <Layers />

@@ -19,7 +19,7 @@ import {
   DESKTOP_HEADER_HEIGHT,
 } from 'client/constants';
 import { useAtomValue } from 'jotai/utils';
-import { mapFullscreenMode } from 'client/state/atoms';
+import { mapFullscreenOn } from 'client/state/atoms';
 
 export const WeatherRadarPageLayout: React.FC = ({
   children,
@@ -28,7 +28,7 @@ export const WeatherRadarPageLayout: React.FC = ({
     climeTheme.breakpoints.lg
   );
 
-  const mapFullscreen = useAtomValue(mapFullscreenMode);
+  const mapFullscreen = useAtomValue(mapFullscreenOn);
 
   return (
     <>
