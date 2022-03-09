@@ -15,6 +15,7 @@ import {
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
+import { PromoBanner } from 'client/design-system/organisms';
 
 const Radar = dynamic(
   () => import('client/design-system/organisms/radar.organism'),
@@ -45,6 +46,11 @@ const WeatherRadar = (): ReactElement => {
         />
       </Head>
       <Radar />
+      <PromoBanner
+        spotId="radarOne"
+        mt={5}
+        display={{ base: 'block', md: 'none' }}
+      />
     </>
   );
 };

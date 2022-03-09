@@ -3,7 +3,7 @@ const ColorScale = {
     alignItems: 'center',
     justifyContent: 'space-between',
     borderRadius: 'sm',
-    textStyle: '8-bold',
+    textStyle: { base: '8-bold', md: '10-semi-bold' },
     color: 'white',
     d: 'flex',
   },

@@ -23,10 +23,12 @@ export const Radar = (): ReactElement => {
 
   return (
     <Box
-      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '100%' }}
+      h={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }}
       w="full"
       position="relative"
-      minH={{ base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '792px' }}
+      overflow="hidden"
+      borderRadius="2xl"
+      boxShadow="radar-map"
     >
       <MapContainer
         h="full"

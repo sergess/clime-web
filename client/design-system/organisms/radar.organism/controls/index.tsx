@@ -12,22 +12,22 @@ export const Controls = (): ReactElement => (
     <Zoom
       pos="absolute"
       zIndex="control"
-      bottom="260px"
+      bottom="240px"
       right={LAYOUT_HORIZONTAL_PADDING}
     />
 
     <Fullscreen
       pos="absolute"
       zIndex="control"
-      bottom="140px"
+      bottom={{ base: '140px', md: '60px' }}
       right={LAYOUT_HORIZONTAL_PADDING}
     />
 
     <Player
       pos="absolute"
-      zIndex="control"
+      zIndex="player"
       w="full"
-      bottom="52px"
+      bottom="60px"
       px={LAYOUT_HORIZONTAL_PADDING}
     />
 
