@@ -1,10 +1,11 @@
+import { TimeFormat } from 'client/types/time-format.type';
+
 import {
   DistanceUnit,
   PrecipitationUnit,
   PressureUnit,
   TemperatureUnit,
   SpeedUnit,
-  TimeFormat,
 } from './units';
 
 export type Settings = {

@@ -19,7 +19,7 @@ import {
 } from 'client/utils';
 import { useForecastCards, useFormattedDate } from 'client/hooks';
 
-import { FORMAT_H12, FORMAT_H24 } from 'client/constants';
+import { H_MMAAA } from 'client/constants';
 
 import { UseTodayCardData } from '../../types';
 
@@ -42,7 +42,7 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
   const convertKilometersToUnit = convertKilometersTo(distanceUnit);
 
-  const setTimeFormat = changeTimeFormat(FORMAT_H12, FORMAT_H24);
+  const setTimeFormat = changeTimeFormat(H_MMAAA);
 
   return useMemo(() => {
     if (!today) return null;

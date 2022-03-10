@@ -1,7 +1,12 @@
 import { useMemo } from 'react';
 import { useAtomValue } from 'jotai/utils';
+import { formatInTimeZone } from 'date-fns-tz';
 
-import { useForecastCards, useFormattedDate } from 'client/hooks';
+import {
+  useForecastCards,
+  useFormattedDate,
+  useLocationData,
+} from 'client/hooks';
 import {
   temperatureUnitAtom,
   windSpeedUnitAtom,
@@ -18,11 +23,14 @@ import {
 } from 'client/utils';
 
 import { WEATHER_STATE } from 'common/constants';
-import { FORMAT_H12, FORMAT_H12_SHORT, FORMAT_H24 } from 'client/constants';
+import { H_MMAAA, HAAA } from 'client/constants';
+import { UTC } from 'server/constants';
 import { HourlyDetailedForecastItem } from '../../types';
 
 export const useCardData = (): HourlyDetailedForecastItem[] | null => {
   const changeTimeFormat = useFormattedDate();
+
+  const location = useLocationData();
 
   const { hourlyDetailed } = useForecastCards();
 
@@ -42,12 +50,16 @@ export const useCardData = (): HourlyDetailedForecastItem[] | null => {
     if (!hourlyDetailed) return null;
 
     return hourlyDetailed.map((item) => {
-      const formatH12 =
-        item.variant === WEATHER_STATE ? FORMAT_H12_SHORT : FORMAT_H12;
-      const setTimeFormat = changeTimeFormat(formatH12, FORMAT_H24);
+      const formatH12 = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
+      const setTimeFormat = changeTimeFormat(formatH12);
 
       return {
         ...item,
+        date: formatInTimeZone(
+          item.dateTime,
+          location?.timeZone || UTC,
+          'MMM d'
+        ),
         dateTime: defaultToDash(setTimeFormat(item.dateTime)),
         temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
         feelsLikeTemperature: defaultToDash(

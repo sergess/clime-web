@@ -1,14 +1,7 @@
-export const FORMAT_H12_SHORT = 'haaa';
-export const FORMAT_H12 = 'h:mmaaa';
-export const FORMAT_H24 = 'H:mm';
-export const H24 = '24';
-export const H12 = '12';
+import { TimeFormat } from 'client/types/time-format.type';
 
-export const TIME_FORMATS = {
-  H12,
-  H24,
-} as const;
+export const HAAA = 'haaa';
+export const H_MMAAA = 'h:mmaaa';
+export const H_MM = 'H:mm';
 
-export const TIME_FORMAT_VALUES = [TIME_FORMATS.H24, TIME_FORMATS.H12];
-
-export default TIME_FORMATS;
+export const TIME_FORMAT_VALUES = [TimeFormat.H24, TimeFormat.H12];

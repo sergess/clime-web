@@ -5,7 +5,7 @@ import { temperatureUnitAtom, timeFormatAtom } from 'client/state/atoms';
 import { convertFahrenheitTo, defaultToDash } from 'client/utils';
 import { useForecastCards, useFormattedDate } from 'client/hooks';
 import { WEATHER_STATE } from 'common/constants';
-import { FORMAT_H12_SHORT, FORMAT_H12, FORMAT_H24 } from 'client/constants';
+import { HAAA, H_MMAAA } from 'client/constants';
 
 import { UseHourlyForecastCardData } from '../../types';
 
@@ -23,9 +23,8 @@ export const useHourlyForecastCardData =
       if (!hourly) return null;
 
       return hourly.map((item) => {
-        const formatH12 =
-          item.variant === WEATHER_STATE ? FORMAT_H12_SHORT : FORMAT_H12;
-        const setTimeFormat = changeTimeFormat(formatH12, FORMAT_H24);
+        const formatH12 = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
+        const setTimeFormat = changeTimeFormat(formatH12);
 
         return {
           ...item,
