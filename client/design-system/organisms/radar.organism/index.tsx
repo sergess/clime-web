@@ -2,11 +2,10 @@ import React, { ReactElement, useEffect } from 'react';
 import { Box, chakra } from '@chakra-ui/react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { useAtom } from 'jotai';
-import { useAtomValue } from 'jotai/utils';
 
 import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
 
-import { mapFullscreenOn } from 'client/state/atoms';
+import { mapFullscreenOnAtom } from 'client/state/atoms';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import { Controls } from './controls';
@@ -20,23 +19,27 @@ const MapContainer = chakra(LeafletMapContainer);
 
 export const Radar = (): ReactElement => {
   const [map, setMap] = useAtom(mapAtom);
-
+  const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
   const center = useCenterPoint();
 
   useFetchConfig();
 
-  const mapFullscreen = useAtomValue(mapFullscreenOn);
-
-  useEffect(() => () => setMap(null), []);
-
   useEffect(() => {
     map?.invalidateSize();
-  }, [mapFullscreen]);
+  }, [map, mapFullscreenOn]);
+
+  useEffect(
+    () => () => {
+      setMap(null);
+      setMapFullscreenOn(false);
+    },
+    []
+  );
 
   return (
     <Box
       h={
-        !mapFullscreen
+        !mapFullscreenOn
           ? { base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }
           : {
               base: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
@@ -46,7 +49,7 @@ export const Radar = (): ReactElement => {
       w="full"
       position="relative"
       overflow="hidden"
-      borderRadius={!mapFullscreen ? '2xl' : '0'}
+      borderRadius={!mapFullscreenOn ? '2xl' : '0'}
       boxShadow="radar-map"
     >
       <MapContainer

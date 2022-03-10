@@ -19,7 +19,7 @@ import {
   DESKTOP_HEADER_HEIGHT,
 } from 'client/constants';
 import { useAtomValue } from 'jotai/utils';
-import { mapFullscreenOn } from 'client/state/atoms';
+import { mapFullscreenOnAtom } from 'client/state/atoms';
 
 export const WeatherRadarPageLayout: React.FC = ({
   children,
@@ -28,7 +28,7 @@ export const WeatherRadarPageLayout: React.FC = ({
     climeTheme.breakpoints.lg
   );
 
-  const mapFullscreen = useAtomValue(mapFullscreenOn);
+  const mapFullscreenOn = useAtomValue(mapFullscreenOnAtom);
 
   return (
     <>
@@ -39,19 +39,19 @@ export const WeatherRadarPageLayout: React.FC = ({
           w="full"
           h="100%"
           bg="gray.50"
-          px={!mapFullscreen ? LAYOUT_HORIZONTAL_PADDING : '0'}
+          px={!mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
           justify="center"
         >
           <Flex
-            maxW={!mapFullscreen ? 'container.xl' : 'full'}
+            maxW={!mapFullscreenOn ? 'container.xl' : 'full'}
             w="full"
             justify="space-between"
             align="flex-start"
           >
             <Flex
               w="full"
-              pe={!mapFullscreen ? { base: 0, lg: 5 } : '0'}
-              py={!mapFullscreen ? 5 : 0}
+              pe={!mapFullscreenOn ? { base: 0, lg: 5 } : '0'}
+              py={!mapFullscreenOn ? 5 : 0}
               flexDirection="column"
               alignItems="stretch"
               h={{
@@ -59,7 +59,7 @@ export const WeatherRadarPageLayout: React.FC = ({
                 lg: `calc(100% - ${DESKTOP_HEADER_HEIGHT}px)`,
               }}
             >
-              {!mapFullscreen && (
+              {!mapFullscreenOn && (
                 <TopNavigationBar
                   p="3px"
                   mx="-3px"
@@ -79,7 +79,7 @@ export const WeatherRadarPageLayout: React.FC = ({
               maxW="380px"
               my="5"
               flexDirection="column"
-              display={!mapFullscreen ? 'flex' : 'none'}
+              display={!mapFullscreenOn ? 'flex' : 'none'}
             >
               <AdsenseBanner
                 client={CLIENT_ID}

@@ -3,15 +3,15 @@ import { useAtom } from 'jotai';
 import { ComponentDefaultProps, Box, IconButton } from '@chakra-ui/react';
 import Image from 'next/image';
 
-import { mapFullscreenOn } from 'client/state/atoms';
+import { mapFullscreenOnAtom } from 'client/state/atoms';
 
 export const Fullscreen: FC<ComponentDefaultProps> = (
   componentStyles
 ): ReactElement => {
-  const [mapFullscreen, setMapFullscreen] = useAtom(mapFullscreenOn);
+  const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
 
   const onMapFullscreen = useCallback(() => {
-    setMapFullscreen((value) => !value);
+    setMapFullscreenOn((on) => !on);
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export const Fullscreen: FC<ComponentDefaultProps> = (
         aria-label="Fullscreen"
         icon={
           <Image
-            src={`/icons/fullscreen-${mapFullscreen ? 'off' : 'on'}.svg`}
+            src={`/icons/fullscreen-${mapFullscreenOn ? 'off' : 'on'}.svg`}
             width={24}
             height={24}
             alt="Fullscreen"
