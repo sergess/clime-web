@@ -16,9 +16,8 @@ import {
   convertMillibarsTo,
   convertKilometersTo,
   defaultToDash,
-  changeTimeFormatTo,
 } from 'client/utils';
-import { useForecastCards, useLocationData } from 'client/hooks';
+import { useForecastCards, useFormattedDate } from 'client/hooks';
 
 import { FORMAT_H12, FORMAT_H24 } from 'client/constants';
 
@@ -27,7 +26,7 @@ import { UseTodayCardData } from '../../types';
 export const useTodayCardData = (): UseTodayCardData | null => {
   const { today } = useForecastCards();
 
-  const location = useLocationData();
+  const changeTimeFormat = useFormattedDate();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -42,7 +41,7 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   const convertMillimetersToUnit = convertMillimetersTo(precipitationUnit);
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
   const convertKilometersToUnit = convertKilometersTo(distanceUnit);
-  const changeTimeFormat = changeTimeFormatTo(timeFormat, location);
+
   const setTimeFormat = changeTimeFormat(FORMAT_H12, FORMAT_H24);
 
   return useMemo(() => {

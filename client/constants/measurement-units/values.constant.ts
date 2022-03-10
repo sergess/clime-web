@@ -8,5 +8,3 @@ export const KMH = 'kmh';
 export const MS = 'ms';
 export const C = 'c';
 export const F = 'f';
-export const H24 = '24 h';
-export const H12 = '12 h';

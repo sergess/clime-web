@@ -5,4 +5,3 @@ export * from './precipitation.constant';
 export * from './pressure.constant';
 export * from './speed.constant';
 export * from './temperature.constant';
-export * from './time.constant';

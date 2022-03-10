@@ -15,3 +15,4 @@ export * from './use-location-data-by-ip.hook';
 export * from './use-page-url.hook';
 export * from './use-initial-settings.hook';
 export * from './use-set-location-data-by-ip.hook';
+export * from './use-formatted-date';

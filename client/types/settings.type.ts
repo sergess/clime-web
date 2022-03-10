@@ -13,7 +13,7 @@ export type Settings = {
   pressure: PressureUnit;
   temperature: TemperatureUnit;
   windSpeed: SpeedUnit;
-  time: TimeFormat;
+  timeFormat: TimeFormat;
 };
 
 export default Settings;

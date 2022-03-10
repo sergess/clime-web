@@ -20,7 +20,6 @@ import {
   PRESSURE_UNIT_VALUES,
   TEMPERATURE_UNIT_VALUES,
   SPEED_UNIT_VALUES,
-  TIME_FORMAT_VALUES,
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThanMedium } from 'client/hooks';
@@ -29,8 +28,10 @@ import climeTheme from 'client/theme';
 import { trackEvent } from 'client/services';
 import { ValueOf } from 'common/types';
 import { SETTINGS_CHANGE } from 'client/services/analytics.service/constants';
+import { TIME_FORMAT_VALUES } from 'client/constants';
+
 import { SettingsCardSwitcherRow } from './molecules';
-import { MEASUREMENT_UNIT_LABELS } from './constants';
+import { SETTINGS_LABELS } from './constants';
 
 import { SettingsTogglerProps } from './types';
 
@@ -49,7 +50,7 @@ export const Settings = ({
   const getSwitcherOptions = useCallback(
     (unitValues: ValueOf<SettingsType>[]) =>
       unitValues.map((value) => {
-        const label = t(MEASUREMENT_UNIT_LABELS[value]);
+        const label = t(SETTINGS_LABELS[value]);
 
         return {
           value,
@@ -129,7 +130,7 @@ export const Settings = ({
             }}
             textStyle="16-medium"
           >
-            &#176;{t(MEASUREMENT_UNIT_LABELS[settings.temperature])}
+            &#176;{t(SETTINGS_LABELS[settings.temperature])}
           </Text>
 
           <Image
@@ -180,8 +181,8 @@ export const Settings = ({
             <SettingsCardSwitcherRow
               title="Time Format:"
               options={timeFormatOptions}
-              value={settings.time}
-              onValueChange={onSettingsChange('time')}
+              value={settings.timeFormat}
+              onValueChange={onSettingsChange('timeFormat')}
             />
           </Flex>
         </PopoverContent>

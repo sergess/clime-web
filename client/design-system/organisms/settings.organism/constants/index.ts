@@ -1,1 +1,1 @@
-export * from './measurement-unit-labels.constant';
+export * from './settings-labels.constant';
