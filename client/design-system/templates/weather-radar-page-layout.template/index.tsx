@@ -18,6 +18,8 @@ import {
   MOBILE_HEADER_HEIGHT,
   DESKTOP_HEADER_HEIGHT,
 } from 'client/constants';
+import { useAtomValue } from 'jotai/utils';
+import { mapFullscreenOnAtom } from 'client/state/atoms';
 
 export const WeatherRadarPageLayout: React.FC = ({
   children,
@@ -25,6 +27,8 @@ export const WeatherRadarPageLayout: React.FC = ({
   const widthSmallerThanLarge = useScreenWidthSmallerThan(
     climeTheme.breakpoints.lg
   );
+
+  const mapFullscreenOn = useAtomValue(mapFullscreenOnAtom);
 
   return (
     <>
@@ -35,19 +39,19 @@ export const WeatherRadarPageLayout: React.FC = ({
           w="full"
           h="100%"
           bg="gray.50"
-          px={LAYOUT_HORIZONTAL_PADDING}
+          px={!mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
           justify="center"
         >
           <Flex
-            maxW="container.xl"
+            maxW={!mapFullscreenOn ? 'container.xl' : 'full'}
             w="full"
             justify="space-between"
             align="flex-start"
           >
             <Flex
               w="full"
-              pe={{ base: 0, lg: 5 }}
-              py="17px"
+              pe={!mapFullscreenOn ? { base: 0, lg: 5 } : '0'}
+              py={!mapFullscreenOn ? 5 : 0}
               flexDirection="column"
               alignItems="stretch"
               h={{
@@ -55,13 +59,15 @@ export const WeatherRadarPageLayout: React.FC = ({
                 lg: `calc(100% - ${DESKTOP_HEADER_HEIGHT}px)`,
               }}
             >
-              <TopNavigationBar
-                p="3px"
-                mx="-3px"
-                mb="17px"
-                bg="gray.50"
-                flex="none"
-              />
+              {!mapFullscreenOn && (
+                <TopNavigationBar
+                  p="3px"
+                  mx="-3px"
+                  mb="17px"
+                  bg="gray.50"
+                  flex="none"
+                />
+              )}
               {children}
             </Flex>
             <Flex
@@ -73,6 +79,7 @@ export const WeatherRadarPageLayout: React.FC = ({
               maxW="380px"
               my="5"
               flexDirection="column"
+              display={!mapFullscreenOn ? 'flex' : 'none'}
             >
               <AdsenseBanner
                 client={CLIENT_ID}
