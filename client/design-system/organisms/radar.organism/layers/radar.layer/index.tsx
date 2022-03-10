@@ -33,9 +33,9 @@ export const Radar = (): ReactElement | null => {
     setFrames((previousFrames) => {
       if (previousFrames.length === layer.frames.length) return previousFrames;
 
-      const numberOfFramesToNextFrame = activeFrameIndex + 2;
+      const numberOfFramesToShow = activeFrameIndex + 3;
 
-      return take(numberOfFramesToNextFrame, layer.frames);
+      return take(numberOfFramesToShow, layer.frames);
     });
   }, [layer, activeFrameIndex]);
 
