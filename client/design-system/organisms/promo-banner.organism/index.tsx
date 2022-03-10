@@ -2,6 +2,7 @@ import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
 import { ComponentDefaultProps } from '@chakra-ui/react';
 
+import { useOptimizeExperimentById } from 'client/hooks';
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -18,7 +19,19 @@ export const PromoBanner: FC<
   priorityLoad = false,
   ...componentStyles
 }): ReactElement | null => {
-  const banner = useParsedPromoBanner(spotId);
+  const experiment = useOptimizeExperimentById(
+    'optimize.activate',
+    '-ZRq0fX1TweM_se9KrIA1g'
+  );
+
+  let spot = spotId;
+
+  if (experiment && experiment !== '0') {
+    const regexp = /One|Two/g;
+    spot = regexp.test(spot) ? `${spot}Test` : spot;
+  }
+
+  const banner = useParsedPromoBanner(spot);
 
   if (!banner) return null;
 
@@ -30,7 +43,7 @@ export const PromoBanner: FC<
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         {...componentStyles}
       />
     );
@@ -42,7 +55,7 @@ export const PromoBanner: FC<
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         {...componentStyles}
       />
     );
@@ -53,7 +66,7 @@ export const PromoBanner: FC<
       <NativeBanner
         bannerId={id}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         banner={name}
         {...componentStyles}
       />
