@@ -10,4 +10,4 @@ export * from './icons-names-map.constant';
 export * from './language-codes.constant';
 export * from './adsense.constant';
 export * from './measurement-units';
-export * from './time-formats.constant';
+export * from './date-time-formats.constant';

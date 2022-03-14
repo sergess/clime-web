@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 import { useAtomValue } from 'jotai/utils';
-import { formatInTimeZone } from 'date-fns-tz';
 
-import { useForecastCards, useLocationData } from 'client/hooks';
+import { useForecastCards, useFormattedDate } from 'client/hooks';
 import {
   temperatureUnitAtom,
   windSpeedUnitAtom,
@@ -16,13 +15,15 @@ import {
   convertMillibarsTo,
   defaultToDash,
 } from 'client/utils';
-import { UTC } from 'server/constants';
+
+import { MMMD } from 'client/constants';
+
 import { DailyDetailedForecastItem } from '../../types';
 
 export const useCardData = (): DailyDetailedForecastItem[] | null => {
-  const location = useLocationData();
-
   const { dailyDetailed } = useForecastCards();
+
+  const changeDateFormatTo = useFormattedDate();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -35,12 +36,14 @@ export const useCardData = (): DailyDetailedForecastItem[] | null => {
   const convertMillimetersToUnit = convertMillimetersTo(precipitationUnit);
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
 
+  const setDateFormat = changeDateFormatTo(MMMD);
+
   return useMemo(() => {
     if (!dailyDetailed) return null;
 
     return dailyDetailed.map((item) => ({
       ...item,
-      date: formatInTimeZone(item.dateTime, location?.timeZone || UTC, 'MMM d'),
+      date: defaultToDash(setDateFormat(item.dateTime)),
       dewPoint: defaultToDash(convertFahrenheitToUnit(item.dewPoint)),
       maxTemperature: defaultToDash(
         convertFahrenheitToUnit(item.maxTemperature)

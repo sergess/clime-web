@@ -5,15 +5,16 @@ import { temperatureUnitAtom, timeFormatAtom } from 'client/state/atoms';
 import { convertFahrenheitTo, defaultToDash } from 'client/utils';
 import { useForecastCards, useFormattedDate } from 'client/hooks';
 import { WEATHER_STATE } from 'common/constants';
-import { HAAA, H_MMAAA } from 'client/constants';
+import { HAAA, H_MMAAA, H_MM } from 'client/constants';
 
+import { TimeFormat } from 'client/types';
 import { UseHourlyForecastCardData } from '../../types';
 
 export const useHourlyForecastCardData =
   (): UseHourlyForecastCardData | null => {
     const { hourly } = useForecastCards();
 
-    const changeTimeFormat = useFormattedDate();
+    const changeDateFormatTo = useFormattedDate();
     const temperatureUnit = useAtomValue(temperatureUnitAtom);
     const timeFormat = useAtomValue(timeFormatAtom);
 
@@ -23,12 +24,19 @@ export const useHourlyForecastCardData =
       if (!hourly) return null;
 
       return hourly.map((item) => {
-        const formatH12 = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
-        const setTimeFormat = changeTimeFormat(formatH12);
+        let format;
+
+        if (timeFormat === TimeFormat.H12) {
+          format = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
+        } else {
+          format = H_MM;
+        }
+
+        const setDateTimeFormat = changeDateFormatTo(format);
 
         return {
           ...item,
-          dateTime: defaultToDash(setTimeFormat(item.dateTime)),
+          dateTime: defaultToDash(setDateTimeFormat(item.dateTime)),
           temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
         };
       });

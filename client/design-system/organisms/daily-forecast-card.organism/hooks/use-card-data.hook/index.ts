@@ -1,28 +1,29 @@
 import { useMemo } from 'react';
 import { useAtomValue } from 'jotai/utils';
-import { formatInTimeZone } from 'date-fns-tz';
 
 import { temperatureUnitAtom } from 'client/state/atoms';
 import { convertFahrenheitTo, defaultToDash } from 'client/utils';
-import { useForecastCards, useLocationData } from 'client/hooks';
+import { useForecastCards, useFormattedDate } from 'client/hooks';
 
-import { UTC } from 'server/constants';
+import { MMMD } from 'client/constants';
 
 import { UseDailyForecastCardData } from '../../types';
 
 export const useCardData = (): UseDailyForecastCardData | null => {
+  const changeDateFormatTo = useFormattedDate();
   const { daily } = useForecastCards();
+
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
 
-  const location = useLocationData();
+  const setDateFormat = changeDateFormatTo(MMMD);
 
   return useMemo(() => {
     if (!daily) return null;
 
     return daily.map((item) => ({
       ...item,
-      date: formatInTimeZone(item.dateTime, location?.timeZone || UTC, 'MMM d'),
+      date: defaultToDash(setDateFormat(item.dateTime)),
       minTemperature: defaultToDash(
         convertFahrenheitToUnit(item.minTemperature)
       ),
