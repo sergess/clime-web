@@ -78,7 +78,7 @@ export const HoursInfo = memo(
               <DetailedForecastCarouselSlide
                 selected={selected}
                 onSelect={() => onSetSelectedSlideIndex(index)}
-                heading={index === 0 ? t('Now') : item.dateTime}
+                heading={index === 0 ? t('Now') : item.time}
                 main={
                   <Box mt={2}>
                     <HourConditionIcon

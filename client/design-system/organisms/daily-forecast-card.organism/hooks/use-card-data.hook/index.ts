@@ -10,13 +10,13 @@ import { MMMD } from 'client/constants';
 import { UseDailyForecastCardData } from '../../types';
 
 export const useCardData = (): UseDailyForecastCardData | null => {
-  const changeDateFormatTo = useFormattedDate();
+  const formatDate = useFormattedDate();
   const { daily } = useForecastCards();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const convertFahrenheitToUnit = convertFahrenheitTo(temperatureUnit);
 
-  const setDateFormat = changeDateFormatTo(MMMD);
+  const setDateFormat = formatDate(MMMD);
 
   return useMemo(() => {
     if (!daily) return null;

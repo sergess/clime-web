@@ -27,7 +27,7 @@ import { UseTodayCardData } from '../../types';
 export const useTodayCardData = (): UseTodayCardData | null => {
   const { today } = useForecastCards();
 
-  const changeDateFormatTo = useFormattedDate();
+  const formatDate = useFormattedDate();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -46,15 +46,13 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   return useMemo(() => {
     if (!today) return null;
 
-    let format;
+    let format = H_MM;
 
     if (timeFormat === TimeFormat.H12) {
       format = H_MMAAA;
-    } else {
-      format = H_MM;
     }
 
-    const setDateTimeFormat = changeDateFormatTo(format);
+    const setDateTimeFormat = formatDate(format);
 
     return {
       ...today,

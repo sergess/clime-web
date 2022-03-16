@@ -25,7 +25,7 @@ import { HourlyDetailedForecastItem } from '../../types';
 export const useCardData = (): HourlyDetailedForecastItem[] | null => {
   const { hourlyDetailed } = useForecastCards();
 
-  const changeDateFormatTo = useFormattedDate();
+  const formatDate = useFormattedDate();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -42,22 +42,20 @@ export const useCardData = (): HourlyDetailedForecastItem[] | null => {
   return useMemo(() => {
     if (!hourlyDetailed) return null;
 
-    return hourlyDetailed.map((item) => {
-      let format;
+    let format = H_MM;
 
+    return hourlyDetailed.map((item) => {
       if (timeFormat === TimeFormat.H12) {
         format = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
-      } else {
-        format = H_MM;
       }
 
-      const setDateTimeFormat = changeDateFormatTo(format);
-      const setDateFormat = changeDateFormatTo(MMMD);
+      const setTimeFormat = formatDate(format);
+      const setDateFormat = formatDate(MMMD);
 
       return {
         ...item,
         date: defaultToDash(setDateFormat(item.dateTime)),
-        dateTime: defaultToDash(setDateTimeFormat(item.dateTime)),
+        time: defaultToDash(setTimeFormat(item.dateTime)),
         temperature: defaultToDash(convertFahrenheitToUnit(item.temperature)),
         feelsLikeTemperature: defaultToDash(
           convertFahrenheitToUnit(item.feelsLikeTemperature)

@@ -48,7 +48,7 @@ export const HourlyDetailedForecastCard = memo(
       pressure,
       feelsLikeTemperature,
       date,
-      dateTime,
+      time,
       relatedDayConditionIndex,
       stateText,
       windDirectionAngle,
@@ -67,12 +67,11 @@ export const HourlyDetailedForecastCard = memo(
         <LocationInfoRow
           date={
             <>
-              {relatedDayConditionIndex === 0 &&
-                t('Today, {{dateTime}}', { dateTime })}
+              {relatedDayConditionIndex === 0 && t('Today, {{time}}', { time })}
               {relatedDayConditionIndex === 1 &&
-                t('Tomorrow, {{dateTime}}', { dateTime })}
+                t('Tomorrow, {{time}}', { time })}
               {relatedDayConditionIndex > 1 &&
-                t('{{date}}, {{dateTime}}', { date, dateTime })}
+                t('{{date}}, {{time}}', { date, time })}
             </>
           }
           heading={

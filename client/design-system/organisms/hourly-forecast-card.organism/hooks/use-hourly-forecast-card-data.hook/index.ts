@@ -14,7 +14,7 @@ export const useHourlyForecastCardData =
   (): UseHourlyForecastCardData | null => {
     const { hourly } = useForecastCards();
 
-    const changeDateFormatTo = useFormattedDate();
+    const formatDate = useFormattedDate();
     const temperatureUnit = useAtomValue(temperatureUnitAtom);
     const timeFormat = useAtomValue(timeFormatAtom);
 
@@ -23,16 +23,14 @@ export const useHourlyForecastCardData =
     return useMemo(() => {
       if (!hourly) return null;
 
-      return hourly.map((item) => {
-        let format;
+      let format = H_MM;
 
+      return hourly.map((item) => {
         if (timeFormat === TimeFormat.H12) {
           format = item.variant === WEATHER_STATE ? HAAA : H_MMAAA;
-        } else {
-          format = H_MM;
         }
 
-        const setDateTimeFormat = changeDateFormatTo(format);
+        const setDateTimeFormat = formatDate(format);
 
         return {
           ...item,

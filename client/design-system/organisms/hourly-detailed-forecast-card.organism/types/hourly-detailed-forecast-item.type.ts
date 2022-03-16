@@ -15,6 +15,7 @@ export type HourlyDetailedForecastItem = {
   precipitationChance: number | string;
   stateText: string | null;
   date: string;
+  time: string;
   relatedDayConditionIndex: number;
   windAzimuth: Azimuth;
   windDirectionAngle: number;

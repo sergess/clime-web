@@ -23,7 +23,7 @@ import { DailyDetailedForecastItem } from '../../types';
 export const useCardData = (): DailyDetailedForecastItem[] | null => {
   const { dailyDetailed } = useForecastCards();
 
-  const changeDateFormatTo = useFormattedDate();
+  const formatDate = useFormattedDate();
 
   const temperatureUnit = useAtomValue(temperatureUnitAtom);
   const windSpeedUnit = useAtomValue(windSpeedUnitAtom);
@@ -36,7 +36,7 @@ export const useCardData = (): DailyDetailedForecastItem[] | null => {
   const convertMillimetersToUnit = convertMillimetersTo(precipitationUnit);
   const convertMillibarsToUnit = convertMillibarsTo(pressureUnit);
 
-  const setDateFormat = changeDateFormatTo(MMMD);
+  const setDateFormat = formatDate(MMMD);
 
   return useMemo(() => {
     if (!dailyDetailed) return null;
