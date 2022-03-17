@@ -1,6 +1,6 @@
 export type AppConfig = {
   showAdvertisements: boolean;
-  showMarketingPopup: boolean;
+  showRedirectToAppPopup: boolean;
   listOfBanners: Record<string, string>;
 };
 

@@ -1,4 +1,4 @@
-import React, { ReactElement, FC, useEffect, useCallback } from 'react';
+import React, { ReactElement, FC, useEffect, useCallback, useRef } from 'react';
 import { useAtom } from 'jotai';
 import {
   Text,
@@ -16,39 +16,42 @@ import NextLink from 'next/link';
 import { isDesktop as desktop } from 'react-device-detect';
 
 import { trackEvent } from 'client/services';
-import { marketingPopupShowed } from 'client/state/atoms';
 import { useClimeAppLink } from 'client/hooks';
 import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
-
 import { CLIME_POP_UP_VIEWED } from 'client/services/analytics.service/constants';
 
-export const MarketingPopups: FC = (): ReactElement | null => {
+import { redirectToAppPopupOpened } from '../state/atoms';
+
+export const RedirectToAppPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');
+
+  const goToAppButtonRef = useRef(null);
 
   const climeAppLink = useClimeAppLink();
 
-  const [popupShowed, setPopupShowed] = useAtom(marketingPopupShowed);
+  const [popupOpened, setPopupOpened] = useAtom(redirectToAppPopupOpened);
 
   const onClosePopup = useCallback(() => {
-    setPopupShowed(false);
+    setPopupOpened(false);
   }, []);
 
   const appConfig = useAppConfig();
 
-  const showMarketingPopup = appConfig?.showMarketingPopup;
+  const showRedirectToAppPopup = appConfig?.showRedirectToAppPopup;
 
   useEffect(() => {
-    if (popupShowed && showMarketingPopup) trackEvent(CLIME_POP_UP_VIEWED);
-  }, [popupShowed, showMarketingPopup]);
+    if (popupOpened && showRedirectToAppPopup) trackEvent(CLIME_POP_UP_VIEWED);
+  }, [popupOpened, showRedirectToAppPopup]);
 
-  if (desktop || !showMarketingPopup) return null;
+  if (desktop || !showRedirectToAppPopup) return null;
 
   return (
     <Modal
-      isOpen={popupShowed}
+      isOpen={popupOpened}
       onClose={onClosePopup}
       motionPreset="slideInBottom"
       closeOnOverlayClick={false}
+      initialFocusRef={goToAppButtonRef}
     >
       <ModalOverlay bg="rgba(15, 21, 39, 0.8)" />
       <ModalContent
@@ -102,7 +105,7 @@ export const MarketingPopups: FC = (): ReactElement | null => {
             {t('Not Now')}
           </Button>
           <NextLink href={climeAppLink} passHref>
-            <Button as="a" variant="cta">
+            <Button ref={goToAppButtonRef} as="a" variant="cta">
               {t('Go to Clime app')}
             </Button>
           </NextLink>
@@ -112,4 +115,4 @@ export const MarketingPopups: FC = (): ReactElement | null => {
   );
 };
 
-export default MarketingPopups;
+export default RedirectToAppPopup;

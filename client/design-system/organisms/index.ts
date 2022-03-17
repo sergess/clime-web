@@ -13,4 +13,3 @@ export * from './promo-banner.organism';
 export * from './adsense-banner.organism';
 export * from './advertising-banner.organism';
 export * from './radar-snapshot-stub.organism';
-export * from './marketing-popups.organism';
