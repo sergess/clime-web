@@ -9,6 +9,7 @@ import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
 import { LocationDataProvider, AppConfigProvider } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
+import { MarketingPopups } from 'client/design-system/organisms';
 import { useInitialSettings } from 'client/hooks';
 
 import { AppPropsWithLayout } from 'common/types';
@@ -61,6 +62,8 @@ const App = ({
           <ChakraProvider theme={theme}>
             <SWRConfig value={{ fetcher }}>
               {getLayout(<Component {...restPageProps} />)}
+
+              <MarketingPopups />
             </SWRConfig>
           </ChakraProvider>
         </LocationDataProvider>
