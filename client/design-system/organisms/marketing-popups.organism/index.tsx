@@ -1,4 +1,5 @@
-import React, { ReactElement, FC } from 'react';
+import React, { ReactElement, FC, useEffect, useCallback } from 'react';
+import { useAtom } from 'jotai';
 import {
   Text,
   Button,
@@ -11,13 +12,45 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
+import NextLink from 'next/link';
+import { isDesktop as desktop } from 'react-device-detect';
+
+import { trackEvent } from 'client/services';
+import { marketingPopupShowed } from 'client/state/atoms';
+import { useClimeAppLink } from 'client/hooks';
+import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
+
+import { CLIME_POP_UP_VIEWED } from 'client/services/analytics.service/constants';
 
 export const MarketingPopups: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');
 
+  const climeAppLink = useClimeAppLink();
+
+  const [popupShowed, setPopupShowed] = useAtom(marketingPopupShowed);
+
+  const onClosePopup = useCallback(() => {
+    setPopupShowed(false);
+  }, []);
+
+  const appConfig = useAppConfig();
+
+  const showMarketingPopup = appConfig?.showMarketingPopup;
+
+  useEffect(() => {
+    if (popupShowed && showMarketingPopup) trackEvent(CLIME_POP_UP_VIEWED);
+  }, [popupShowed, showMarketingPopup]);
+
+  if (desktop || !showMarketingPopup) return null;
+
   return (
-    <Modal isOpen onClose={() => {}} motionPreset="slideInBottom">
-      <ModalOverlay />
+    <Modal
+      isOpen={popupShowed}
+      onClose={onClosePopup}
+      motionPreset="slideInBottom"
+      closeOnOverlayClick={false}
+    >
+      <ModalOverlay bg="rgba(15, 21, 39, 0.8)" />
       <ModalContent
         pt={5}
         px={4}
@@ -56,11 +89,23 @@ export const MarketingPopups: FC = (): ReactElement | null => {
             )}
           </Text>
         </ModalBody>
-        <ModalFooter p={0} justifyContent="space-between">
-          <Button variant="cta-outline" borderColor="blue.50">
+        <ModalFooter
+          p={0}
+          justifyContent="space-between"
+          className="marketing-popup__controls"
+        >
+          <Button
+            variant="cta-outline"
+            borderColor="blue.50"
+            onClick={onClosePopup}
+          >
             {t('Not Now')}
           </Button>
-          <Button variant="cta">{t('Go to Clime app')}</Button>
+          <NextLink href={climeAppLink} passHref>
+            <Button as="a" variant="cta">
+              {t('Go to Clime app')}
+            </Button>
+          </NextLink>
         </ModalFooter>
       </ModalContent>
     </Modal>

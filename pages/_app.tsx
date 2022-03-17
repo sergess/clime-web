@@ -9,11 +9,18 @@ import climeTheme from 'client/theme';
 import { detectLanguageDirection, fetcher } from 'client/utils';
 import { LocationDataProvider, AppConfigProvider } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
-import { MarketingPopups } from 'client/design-system/organisms';
 import { useInitialSettings } from 'client/hooks';
 
 import { AppPropsWithLayout } from 'common/types';
 import { adSenseScriptLoadingFailedAtom } from 'client/state/atoms';
+import dynamic from 'next/dynamic';
+
+const MarketingPopups = dynamic(
+  () => import('client/design-system/organisms/marketing-popups.organism'),
+  {
+    ssr: false,
+  }
+);
 
 const App = ({
   Component,

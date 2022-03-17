@@ -1,4 +1,5 @@
 export const DEFAULT_APP_CONFIG = {
+  showMarketingPopup: true,
   showAdvertisements: false,
   listOfBanners: {
     homeOne: 'responsive_1',
