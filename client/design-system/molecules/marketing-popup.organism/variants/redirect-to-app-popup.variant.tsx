@@ -101,7 +101,7 @@ export const RedirectToAppPopup: FC = (): ReactElement | null => {
             variant="cta-outline"
             borderColor="blue.50"
             onClick={onClosePopup}
-            flex={1}
+            w="116px"
             me={4}
           >
             {t('Not Now')}
