@@ -101,11 +101,13 @@ export const RedirectToAppPopup: FC = (): ReactElement | null => {
             variant="cta-outline"
             borderColor="blue.50"
             onClick={onClosePopup}
+            flex={1}
+            me={4}
           >
             {t('Not Now')}
           </Button>
           <NextLink href={climeAppLink} passHref>
-            <Button ref={goToAppButtonRef} as="a" variant="cta">
+            <Button ref={goToAppButtonRef} as="a" variant="cta" flex={1}>
               {t('Go to Clime app')}
             </Button>
           </NextLink>
