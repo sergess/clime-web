@@ -45,7 +45,7 @@ class Document extends NextDocument {
         <body>
           <noscript>
             <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}`}
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}&gtm_auth=${process.env.NEXT_PUBLIC_GTM_AUTH}&gtm_preview=${process.env.NEXT_PUBLIC_GTM_PREVIEW}&gtm_cookies_win=x`}
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}

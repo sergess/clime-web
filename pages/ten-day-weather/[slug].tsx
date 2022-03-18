@@ -57,7 +57,11 @@ const TenDayWeather: FC<{ forecastCards: ForecastCards }> = memo(
           className="radar-snapshot__tenday"
           order={{ base: 1, md: 0 }}
         />
-        <PromoBanner spotId="tenDayOne" priorityLoad />
+        <PromoBanner
+          spotId="tenDayOne"
+          priorityLoad
+          className="banner__tenday-one"
+        />
         <HourlyForecastCard w="full" className="hourly-block__tenday" />
         <AdsenseBanner
           client={CLIENT_ID}
