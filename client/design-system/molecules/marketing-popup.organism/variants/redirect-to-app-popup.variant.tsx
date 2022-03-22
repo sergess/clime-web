@@ -19,12 +19,11 @@ import { trackEvent } from 'client/services';
 import { useClimeAppLink } from 'client/hooks';
 import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
 import { CLIME_POP_UP_VIEWED } from 'client/services/analytics.service/constants';
-
-import { redirectToAppPopupOpened } from '../state/atoms';
 import {
   REDIRECT_POPUP_ANDROID_STORE_LINK,
   REDIRECT_POPUP_IOS_STORE_LINK,
-} from '../constants';
+} from 'client/constants';
+import { redirectToAppPopupOpened } from '../state/atoms';
 
 export const RedirectToAppPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');
