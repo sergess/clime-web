@@ -15,10 +15,10 @@ import { AppPropsWithLayout } from 'common/types';
 import { adSenseScriptLoadingFailedAtom } from 'client/state/atoms';
 import dynamic from 'next/dynamic';
 
-const RedirectToAppPopup = dynamic(
+const FullScreenAppPromoPopup = dynamic(
   () =>
     import(
-      'client/design-system/molecules/marketing-popup.organism/variants/redirect-to-app-popup.variant'
+      'client/design-system/molecules/marketing-popup.organism/variants/full-screen-app-promo-popup.variant'
     ),
   {
     ssr: false,
@@ -73,7 +73,7 @@ const App = ({
             <SWRConfig value={{ fetcher }}>
               {getLayout(<Component {...restPageProps} />)}
 
-              <RedirectToAppPopup />
+              <FullScreenAppPromoPopup />
             </SWRConfig>
           </ChakraProvider>
         </LocationDataProvider>

@@ -7,3 +7,4 @@ export const SETTINGS_CHANGE = 'Settings change';
 export const CURRENT_DETAILS_FULL_SHOWN = 'Current details full shown';
 export const CURRENT_DETAILS_COMPACT_SHOWN = 'Current details compact shown';
 export const CLIME_POP_UP_VIEWED = 'Clime pop-up viewed';
+export const CLIME_FULL_SCREEN_VIEWED = 'Clime full-screen viewed';
