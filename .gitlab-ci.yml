@@ -48,7 +48,7 @@ build-dev:
 
 build-staging:
   extends: .build
-  environment: dev-staging
+  environment: production # build staging with production .env file
   only:
     - master
 

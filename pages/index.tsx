@@ -110,7 +110,11 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           className="radar-snapshot__home"
           order={{ base: 2, md: 0 }}
         />
-        <PromoBanner spotId="homeOne" priorityLoad />
+        <PromoBanner
+          spotId="homeOne"
+          className="banner__home-one"
+          priorityLoad
+        />
         <HourlyForecastCard w="full" className="hourly-block__home" />
         <AdsenseBanner
           client={CLIENT_ID}
@@ -118,13 +122,18 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h="260px" order={{ base: 1, md: 0 }} />
+        <SummaryCard
+          w="full"
+          h="260px"
+          order={{ base: 1, md: 0 }}
+          className="summary-block__home"
+        />
         <DailyForecastCard
           className="daily-block__home"
           w="full"
           order={{ base: 3, md: 0 }}
         />
-        <PromoBanner spotId="homeTwo" />
+        <PromoBanner spotId="homeTwo" className="banner__home-two" />
       </ForecastCardsProvider>
     );
   }

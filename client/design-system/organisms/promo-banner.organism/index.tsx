@@ -1,5 +1,6 @@
 import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
 import { useOptimizeExperimentById } from 'client/hooks';
 import { BannerType } from './types';
@@ -11,9 +12,12 @@ const NativeBanner = dynamic(
   () => import('./molecules/native-banner.molecule')
 );
 
-export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
+export const PromoBanner: FC<
+  { spotId: string; priorityLoad?: boolean } & ComponentDefaultProps
+> = ({
   spotId,
   priorityLoad = false,
+  ...componentStyles
 }): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
     'optimize.activate',
@@ -40,6 +44,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         banner={name}
         priorityLoad={priorityLoad}
         spotId={spot}
+        {...componentStyles}
       />
     );
   }
@@ -51,6 +56,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         banner={name}
         priorityLoad={priorityLoad}
         spotId={spot}
+        {...componentStyles}
       />
     );
   }
@@ -62,6 +68,7 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         priorityLoad={priorityLoad}
         spotId={spot}
         banner={name}
+        {...componentStyles}
       />
     );
   }

@@ -13,6 +13,17 @@ import { useInitialSettings } from 'client/hooks';
 
 import { AppPropsWithLayout } from 'common/types';
 import { adSenseScriptLoadingFailedAtom } from 'client/state/atoms';
+import dynamic from 'next/dynamic';
+
+const RedirectToAppPopup = dynamic(
+  () =>
+    import(
+      'client/design-system/molecules/marketing-popup.organism/variants/redirect-to-app-popup.variant'
+    ),
+  {
+    ssr: false,
+  }
+);
 
 const App = ({
   Component,
@@ -42,7 +53,7 @@ const App = ({
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '&gtm_auth=${process.env.NEXT_PUBLIC_GTM_AUTH}&gtm_preview=${process.env.NEXT_PUBLIC_GTM_PREVIEW}&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer', '${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}');
             function gtag(){dataLayer.push(arguments);}
           `,
@@ -61,6 +72,8 @@ const App = ({
           <ChakraProvider theme={theme}>
             <SWRConfig value={{ fetcher }}>
               {getLayout(<Component {...restPageProps} />)}
+
+              <RedirectToAppPopup />
             </SWRConfig>
           </ChakraProvider>
         </LocationDataProvider>
