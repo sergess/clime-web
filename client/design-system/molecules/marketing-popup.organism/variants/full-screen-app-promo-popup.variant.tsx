@@ -24,7 +24,7 @@ import {
   FULL_SCREEN_POPUP_ANDROID_STORE_LINK,
   FULL_SCREEN_POPUP_IOS_STORE_LINK,
 } from 'client/constants';
-import { fullScreenAppPromoPopupOpened } from '../state/atoms';
+import { redirectToAppPopupOpened } from '../state/atoms';
 
 export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');
@@ -36,7 +36,7 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
     FULL_SCREEN_POPUP_ANDROID_STORE_LINK
   );
 
-  const [popupOpened, setPopupOpened] = useAtom(fullScreenAppPromoPopupOpened);
+  const [popupOpened, setPopupOpened] = useAtom(redirectToAppPopupOpened);
 
   const onClosePopup = useCallback(() => {
     setPopupOpened(false);
@@ -44,14 +44,14 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
 
   const appConfig = useAppConfig();
 
-  const showFullScreenAppPromoPopup = appConfig?.showFullScreenAppPromoPopup;
+  const showRedirectToAppPopup = appConfig?.showRedirectToAppPopup;
 
   useEffect(() => {
-    if (popupOpened && showFullScreenAppPromoPopup)
+    if (popupOpened && showRedirectToAppPopup)
       trackEvent(CLIME_FULL_SCREEN_VIEWED);
-  }, [popupOpened, showFullScreenAppPromoPopup]);
+  }, [popupOpened, showRedirectToAppPopup]);
 
-  if (!showFullScreenAppPromoPopup) return null;
+  if (!showRedirectToAppPopup) return null;
 
   return (
     <Modal

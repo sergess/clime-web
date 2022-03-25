@@ -1,6 +1,5 @@
 export const DEFAULT_APP_CONFIG = {
-  showRedirectToAppPopup: false,
-  showFullScreenAppPromoPopup: true,
+  showRedirectToAppPopup: true,
   showAdvertisements: false,
   listOfBanners: {
     homeOne: 'responsive_1',
