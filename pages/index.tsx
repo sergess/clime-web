@@ -20,7 +20,7 @@ import {
   useCookies,
   useLocationFromBrowser,
   useLocationDataByCoordinates,
-  useMarketingPopupOpened,
+  useRedirectToAppPopupOpened,
 } from 'client/hooks';
 
 import {
@@ -50,10 +50,10 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
       EXACT_LONGITUDE_COOKIE,
     ]);
     const [latitudeCookie, longitudeCookie] = cookies as (string | undefined)[];
-    const popupOpened = useMarketingPopupOpened();
+    const redirectToAppPopupOpened = useRedirectToAppPopupOpened();
 
     const locationFromBrowser = useLocationFromBrowser({
-      skip: (!!latitudeCookie && !!longitudeCookie) || popupOpened,
+      skip: (!!latitudeCookie && !!longitudeCookie) || redirectToAppPopupOpened,
     });
     const { data: exactLocationData } =
       useLocationDataByCoordinates(locationFromBrowser);
@@ -61,7 +61,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
 
     useEffect(() => {
       if (
-        !popupOpened &&
+        !redirectToAppPopupOpened &&
         hasMounted &&
         exactLocationData &&
         !latitudeCookie &&
@@ -80,7 +80,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
       locationFromBrowser,
       latitudeCookie,
       longitudeCookie,
-      popupOpened,
+      redirectToAppPopupOpened,
     ]);
     const { t } = useTranslation('meta-tags');
 

@@ -4,7 +4,7 @@ import { isDesktop as desktop } from 'react-device-detect';
 import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
 import { redirectToAppPopupOpened } from 'client/design-system/molecules/marketing-popup.organism/state/atoms';
 
-export const useMarketingPopupOpened = (): boolean => {
+export const useRedirectToAppPopupOpened = (): boolean => {
   const popupOpened = useAtomValue(redirectToAppPopupOpened);
 
   const appConfig = useAppConfig();
@@ -16,4 +16,4 @@ export const useMarketingPopupOpened = (): boolean => {
   return showRedirectToAppPopup && popupOpened && !desktop;
 };
 
-export default useMarketingPopupOpened;
+export default useRedirectToAppPopupOpened;

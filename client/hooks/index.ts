@@ -16,4 +16,4 @@ export * from './use-page-url.hook';
 export * from './use-initial-settings.hook';
 export * from './use-set-location-data-by-ip.hook';
 export * from './use-optimize-experiment-by-id.hook';
-export * from './use-marketing-popup-opened';
+export * from './use-redirect-to-app-popup-opened';
