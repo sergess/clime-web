@@ -2,15 +2,16 @@ import { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
 
 import { useOptimizeExperimentById } from 'client/hooks';
+import {
+  DEFAULT_EXPERIMENT_EVENT_NAME,
+  POPUP_EXPERIMENT_ID,
+} from 'client/hooks/use-optimize-experiment-by-id.hook/constants';
 
 const FullScreenAppPromoPopup = dynamic(
   () =>
     import(
       'client/design-system/molecules/marketing-popup.organism/variants/full-screen-app-promo-popup.variant'
-    ),
-  {
-    ssr: false,
-  }
+    )
 );
 
 const RedirectToAppPopup = dynamic(
@@ -23,10 +24,10 @@ const RedirectToAppPopup = dynamic(
   }
 );
 
-export const AppPopup = (): ReactElement | null => {
+export const MarketingPopup = (): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
-    'optimize.activate',
-    'zBdETvZkQXGszPHTHORTsw'
+    DEFAULT_EXPERIMENT_EVENT_NAME,
+    POPUP_EXPERIMENT_ID
   );
 
   if (experiment === '0') {
@@ -37,7 +38,7 @@ export const AppPopup = (): ReactElement | null => {
     return <FullScreenAppPromoPopup />;
   }
 
-  return null;
+  return <FullScreenAppPromoPopup />;
 };
 
-export default AppPopup;
+export default MarketingPopup;
