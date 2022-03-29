@@ -10,20 +10,10 @@ import { detectLanguageDirection, fetcher } from 'client/utils';
 import { LocationDataProvider, AppConfigProvider } from 'client/state/contexts';
 import { DefaultLayout } from 'client/design-system/templates';
 import { useInitialSettings } from 'client/hooks';
+import { AppPopup } from 'client/design-system/molecules';
 
 import { AppPropsWithLayout } from 'common/types';
 import { adSenseScriptLoadingFailedAtom } from 'client/state/atoms';
-import dynamic from 'next/dynamic';
-
-const FullScreenAppPromoPopup = dynamic(
-  () =>
-    import(
-      'client/design-system/molecules/marketing-popup.organism/variants/full-screen-app-promo-popup.variant'
-    ),
-  {
-    ssr: false,
-  }
-);
 
 const App = ({
   Component,
@@ -73,7 +63,7 @@ const App = ({
             <SWRConfig value={{ fetcher }}>
               {getLayout(<Component {...restPageProps} />)}
 
-              <FullScreenAppPromoPopup />
+              <AppPopup />
             </SWRConfig>
           </ChakraProvider>
         </LocationDataProvider>
