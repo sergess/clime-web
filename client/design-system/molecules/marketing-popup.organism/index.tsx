@@ -38,7 +38,7 @@ export const MarketingPopup = (): ReactElement | null => {
     return <FullScreenAppPromoPopup />;
   }
 
-  return <FullScreenAppPromoPopup />;
+  return null;
 };
 
 export default MarketingPopup;
