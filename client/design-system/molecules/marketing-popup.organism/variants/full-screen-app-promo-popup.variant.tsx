@@ -59,18 +59,18 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
       onClose={onClosePopup}
       closeOnOverlayClick={false}
       initialFocusRef={goToAppButtonRef}
-      isCentered
     >
       <ModalOverlay bg="rgba(15, 21, 39, 0.8)" />
       <ModalContent
         pt={0}
         px={5}
         pb={{ base: 10, md: 5 }}
-        my={0}
+        my="auto"
         borderRadius={{ base: '0', md: '2xl' }}
         w="100%"
         maxW={{ base: '100%', md: '348px', lg: '752px' }}
-        height={{ base: '100%', md: 'auto' }}
+        h="auto"
+        minH={{ base: '100%', md: 'auto' }}
         bg={{
           base: "#0F1525 url('/full-screen-popup-mob-bg.jpg')",
           lg: "#0F1525 url('/full-screen-popup-desk-bg.jpg')",
