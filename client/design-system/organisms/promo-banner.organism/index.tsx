@@ -3,6 +3,10 @@ import dynamic from 'next/dynamic';
 import { ComponentDefaultProps } from '@chakra-ui/react';
 
 import { useOptimizeExperimentById } from 'client/hooks';
+import {
+  DEFAULT_EXPERIMENT_EVENT_NAME,
+  BANNERS_STYLE_EXPERIMENT_ID,
+} from 'client/hooks/use-optimize-experiment-by-id.hook/constants';
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -20,8 +24,8 @@ export const PromoBanner: FC<
   ...componentStyles
 }): ReactElement | null => {
   const experiment = useOptimizeExperimentById(
-    'optimize.activate',
-    '-ZRq0fX1TweM_se9KrIA1g'
+    DEFAULT_EXPERIMENT_EVENT_NAME,
+    BANNERS_STYLE_EXPERIMENT_ID
   );
 
   let spot = spotId;
