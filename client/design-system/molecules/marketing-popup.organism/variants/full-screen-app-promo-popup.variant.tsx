@@ -55,7 +55,6 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
 
   return (
     <Modal
-      variant="full-screen-app-promo"
       isOpen={popupOpened}
       onClose={onClosePopup}
       closeOnOverlayClick={false}
