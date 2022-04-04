@@ -218,6 +218,11 @@ const Button = {
         color: '#FB7F04',
       },
     },
+    'radar-control': {
+      boxShadow: 'radar-control',
+      borderRadius: 12,
+      bg: 'white',
+    },
   },
 };
 

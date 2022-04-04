@@ -12,6 +12,7 @@ import { useAtom } from 'jotai';
 import Image from 'next/image';
 import includes from 'ramda/src/includes';
 
+import climeTheme from 'client/theme';
 import { HeaderPopoverOverlay } from 'client/design-system/atoms';
 import { settingsAtom } from 'client/state/derivatives';
 import {
@@ -23,7 +24,6 @@ import {
 } from 'client/constants/measurement-units';
 import { Settings as SettingsType } from 'client/types';
 import { useScreenWidthSmallerThan } from 'client/hooks';
-import climeTheme from 'client/theme';
 
 import { trackEvent } from 'client/services';
 import { ValueOf } from 'common/types';

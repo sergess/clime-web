@@ -1,6 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react';
-import climeTheme from 'client/theme';
 
+import climeTheme from 'client/theme';
 import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { UseUiStateReturnValue } from './types';

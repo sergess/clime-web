@@ -1,4 +1,4 @@
-import { isResponseOk } from 'server/utils/request-json.util';
+import { isResponseOk } from 'server/utils/request-json.util/utils';
 
 describe('Checking whether response', () => {
   test('is ok for empty object', () => {

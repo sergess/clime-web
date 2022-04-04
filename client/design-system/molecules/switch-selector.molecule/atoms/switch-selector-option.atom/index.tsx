@@ -1,12 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Box, useRadio, UseRadioProps } from '@chakra-ui/react';
 
-import { SwitchSelectorOptionProps } from './types';
-
-export const SwitchSelectorOption = ({
+export const SwitchSelectorOption: FC<UseRadioProps> = ({
   children,
   ...radioProps
-}: UseRadioProps & SwitchSelectorOptionProps): ReactElement => {
+}): ReactElement => {
   const { getInputProps, getCheckboxProps } = useRadio(radioProps);
   const input = getInputProps();
   const checkbox = getCheckboxProps();
