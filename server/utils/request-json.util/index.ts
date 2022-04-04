@@ -17,6 +17,15 @@ export const requestJson = async <T>(
     const body = await response.json();
     const ok = isResponseOk(body);
 
+    if (!ok) {
+      console.error('[requestJson]: response is not ok', {
+        ok,
+        url,
+        init,
+        body,
+      });
+    }
+
     return {
       ok,
       data: ok ? (body as T) : null,
