@@ -16,12 +16,10 @@ export const mapTodayCard = (
 
   const windDirection = currentHourCondition.windDirection || 0;
 
+  const utcString = new Date().toISOString();
+
   return {
-    date: formatUtcString(
-      currentHourCondition.dateTime,
-      'h:mmaaa',
-      locationData?.timeZone
-    ),
+    date: formatUtcString(utcString, 'h:mmaaa', locationData?.timeZone),
     night: currentHourCondition.night,
     stateText: currentHourCondition.night
       ? currentHourCondition.stateNightText || currentHourCondition.stateText

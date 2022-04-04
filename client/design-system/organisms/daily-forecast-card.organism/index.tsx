@@ -71,7 +71,6 @@ export const DailyForecastCard = memo(
     return (
       <ForecastCard
         {...props}
-        className="daily-block"
         py="5"
         h="full"
         heading={t('Daily Forecast')}

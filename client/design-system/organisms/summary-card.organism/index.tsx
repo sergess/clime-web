@@ -12,6 +12,7 @@ import Image from 'next/image';
 
 import { Card } from 'client/design-system/atoms';
 
+import { SUMMARY_CARD_SWITCHER_HEIGHT } from 'client/constants';
 import { ChartOption } from './types';
 import { CHART_THEME } from './constants';
 import { TemperaturePoint, PrecipitationPoint, WindPoint } from './molecules';
@@ -82,17 +83,19 @@ export const SummaryCard = memo(
 
     if (!points) return null;
 
+    const { className } = props;
+
     return (
       <Card
         {...props}
         overflow="hidden"
-        className={`summary-block__${activeChart}`}
+        className={`${className}-${activeChart}`}
       >
         <Flex
           w="100%"
-          px={4}
-          pt={3}
-          pb={{ base: 0, md: 3.5 }}
+          h={`${SUMMARY_CARD_SWITCHER_HEIGHT}px`}
+          px={3}
+          mt={3}
           justify="space-between"
           align="center"
         >

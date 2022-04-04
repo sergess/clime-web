@@ -43,7 +43,7 @@ export const MarketingBannerEleventh = ({
         h="full"
         w="full"
         direction="column"
-        justify="flex-end"
+        justify="center"
         align="center"
       >
         <Box>
@@ -73,13 +73,13 @@ export const MarketingBannerEleventh = ({
           fontWeight="500"
           pb={1.5}
         >
-          {t('To the minute precip forecast')}
+          {t('To-the-minute precip forecast')}
         </Text>
         <Box>
           <Image
             src="/icons/graphic.svg"
-            width={329}
-            height={109}
+            width={325}
+            height={105}
             alt="Moderate rain"
             priority={priorityLoad}
           />

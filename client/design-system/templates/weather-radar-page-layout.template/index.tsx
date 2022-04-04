@@ -10,7 +10,6 @@ import {
   Header,
   AdvertisingBanner,
 } from 'client/design-system/organisms';
-import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import {
   CLIENT_ID,
@@ -24,10 +23,6 @@ import { mapFullscreenOnAtom } from 'client/state/atoms';
 export const WeatherRadarPageLayout: React.FC = ({
   children,
 }: ComponentDefaultProps): ReactElement => {
-  const widthSmallerThanLarge = useScreenWidthSmallerThan(
-    climeTheme.breakpoints.lg
-  );
-
   const mapFullscreenOn = useAtomValue(mapFullscreenOnAtom);
 
   return (
@@ -84,11 +79,7 @@ export const WeatherRadarPageLayout: React.FC = ({
               <AdsenseBanner
                 client={CLIENT_ID}
                 slot="1272521434"
-                stub={
-                  <AdvertisingBanner
-                    showBackgroundVideo={!widthSmallerThanLarge}
-                  />
-                }
+                stub={<AdvertisingBanner />}
                 w="full"
                 h="640px"
               />

@@ -1,32 +1,42 @@
-import React, { ReactElement } from 'react';
-import { Box, Button, LinkBox, LinkOverlay, Text } from '@chakra-ui/react';
+import React, { ReactElement, FC } from 'react';
+import {
+  Box,
+  Button,
+  ComponentDefaultProps,
+  LinkBox,
+  LinkOverlay,
+  Text,
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
 import { BackgroundImage } from 'client/design-system/atoms';
 import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
-export const BaseNativeBanner = ({
+export const BaseNativeBanner: FC<
+  {
+    heading: string;
+    buttonText: string;
+    priorityLoad: boolean;
+    backgroundSrc: string;
+    spotId: string | number;
+    banner: string;
+  } & ComponentDefaultProps
+> = ({
   heading,
   buttonText,
   priorityLoad,
   backgroundSrc,
   spotId,
-  bannerId,
-}: {
-  heading: string;
-  buttonText: string;
-  priorityLoad: boolean;
-  backgroundSrc: string;
-  spotId: string | number;
-  bannerId: number;
+  banner,
+  ...componentStyles
 }): ReactElement => {
   const climeAppLink = useClimeAppLink();
 
   return (
     <LinkBox
-      className="banner"
-      data-banner-id={bannerId}
+      {...componentStyles}
+      data-banner-id={banner}
       data-spot-name={spotId}
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"

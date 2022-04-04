@@ -25,9 +25,7 @@ export class Forecast extends ApiV3Service {
         `/feed/forecast/${language}/${forecastZoneId}`
       );
 
-    if (!ok || !forecastFeedFromApi) {
-      return null;
-    }
+    if (!ok || !forecastFeedFromApi) return null;
 
     const upToDateDayConditionsFromApi = getUpToDateDayConditionsFromApi(
       forecastFeedFromApi.frst

@@ -30,18 +30,10 @@ const AppPage = (): ReactElement => {
         pt={14}
         justifyContent={{ base: 'center', lg: 'flex-start' }}
       >
-        <Box me={4} h="63px" w="63px" pos="relative">
-          <Image
-            src="/icons/clime-icon.svg"
-            layout="fill"
-            priority
-            alt="Clime"
-          />
-        </Box>
         <Image
           src="/icons/clime-logo-white.svg"
-          width={196}
-          height={42}
+          width={280}
+          height={62}
           priority
           alt="Clime"
         />

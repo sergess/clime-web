@@ -5,7 +5,10 @@ import { IOS_STORE_LINK, ANDROID_STORE_LINK, APP } from 'client/constants';
 
 import { useHasMounted } from '../use-has-mounted.hook';
 
-export const useClimeAppLink = (): string => {
+export const useClimeAppLink = (
+  iosStoreLink = IOS_STORE_LINK,
+  androidStoreLink = ANDROID_STORE_LINK
+): string => {
   const hasMounted = useHasMounted();
 
   return useMemo(() => {
@@ -14,7 +17,7 @@ export const useClimeAppLink = (): string => {
     }
 
     if (mobile) {
-      return ios ? IOS_STORE_LINK : ANDROID_STORE_LINK;
+      return ios ? iosStoreLink : androidStoreLink;
     }
 
     return `/${APP}`;

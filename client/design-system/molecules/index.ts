@@ -12,3 +12,4 @@ export * from './wind-info-row.molecule';
 export * from './detailed-forecast-carousel-slide.molecule';
 export * from './detailed-forecast-carousel.molecule';
 export * from './detailed-forecast-chart.molecule';
+export * from './marketing-popup.organism';

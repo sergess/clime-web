@@ -28,14 +28,6 @@ export const SelectedHourInfo = memo(
       <>
         <InfoBlocksRow my={3}>
           <InfoBlockWithIcon
-            iconSrc="/icons/info-chance.svg"
-            iconAlt={t('Chance')}
-            label={t('Chance')}
-            text={`${precipitationChance}%`}
-            flex={1}
-          />
-
-          <InfoBlockWithIcon
             iconSrc="/icons/info-precipitation.svg"
             iconAlt={t('Precipitation')}
             label={t('Precipitation')}
@@ -44,6 +36,14 @@ export const SelectedHourInfo = memo(
                 {`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}
               </ClientOnly>
             }
+            flex={1}
+          />
+
+          <InfoBlockWithIcon
+            iconSrc="/icons/info-chance.svg"
+            iconAlt={t('Chance')}
+            label={t('Chance')}
+            text={`${precipitationChance}%`}
             flex={1}
           />
         </InfoBlocksRow>

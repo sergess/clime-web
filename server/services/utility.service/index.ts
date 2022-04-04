@@ -25,7 +25,18 @@ export class Utility {
       },
     });
 
-    if (!ok || !data?.latitude || !data?.longitude) return null;
+    if (!ok || !data?.latitude || !data?.longitude) {
+      console.error(
+        `[Utility.getLocationLookup]: there is no valid location for such ip`,
+        {
+          ip,
+          ok,
+          data,
+        }
+      );
+
+      return null;
+    }
 
     return data;
   }

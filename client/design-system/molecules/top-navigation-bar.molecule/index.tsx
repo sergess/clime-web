@@ -10,6 +10,7 @@ import NextLink from 'next/link';
 import { ComponentDefaultProps, Flex, Link } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import {
   WEATHER_TODAY,
@@ -26,6 +27,8 @@ import { useButtonsVisibility } from './hooks';
 export const TopNavigationBar = (
   componentProps: ComponentDefaultProps
 ): ReactElement => {
+  const { t } = useTranslation('common');
+
   const router = useRouter();
   const urlSlug = useUrlSlug();
   const navigationRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -71,22 +74,22 @@ export const TopNavigationBar = (
   const navigationOptions = useMemo<NavigationOption[]>(
     () => [
       {
-        label: 'Today',
+        label: t('Today'),
         path: urlSlug && `/${WEATHER_TODAY}/${urlSlug}`,
         external: false,
       },
       {
-        label: 'Hourly',
+        label: t('Hourly'),
         path: urlSlug && `/${HOURLY_WEATHER}/${urlSlug}`,
         external: false,
       },
       {
-        label: 'Clime App',
+        label: t('Clime App'),
         path: climeAppLink,
         external: true,
       },
       {
-        label: '10-day',
+        label: t('10-day forecast'),
         path: urlSlug && `/${TEN_DAY_WEATHER}/${urlSlug}`,
         external: false,
       },

@@ -10,11 +10,13 @@ export const NativeBanner: FC<
     bannerId: NativeBannerId;
     priorityLoad: boolean;
     spotId: string | number;
+    banner: string;
   } & ComponentDefaultProps
 > = ({
   bannerId,
   priorityLoad,
   spotId,
+  banner,
   ...componentStyles
 }): ReactElement | null => {
   const { t } = useTranslation('banners');
@@ -24,11 +26,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Hurricane Tracker')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_1.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -36,11 +38,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_2.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -48,11 +50,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Fires and Hotspots Map')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_3.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -60,11 +62,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Lightning Tracker')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_4.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -72,11 +74,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Advanced Precipitation Forecast Map')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_5.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -84,11 +86,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('Temperature Forecast Map')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_6.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
@@ -96,11 +98,11 @@ export const NativeBanner: FC<
       return (
         <BaseNativeBanner
           heading={t('RainScope')}
-          buttonText={t('Get Clime App')}
+          buttonText={t('Get Clime app')}
           backgroundSrc="/img_7.jpg"
           priorityLoad={priorityLoad}
-          bannerId={bannerId}
           spotId={spotId}
+          banner={banner}
           {...componentStyles}
         />
       );
