@@ -42,8 +42,13 @@ export const TopNavigationBar = (
   const currentRouteRef = useCallback(
     (node) => {
       if (node !== null && navigationRef.current) {
-        const { left, width } = node.getBoundingClientRect();
-        navigationRef.current.scrollLeft = left < width ? 0 : left - width / 2;
+        const { left: navItemLeft, width: navItemWidth } =
+          node.getBoundingClientRect();
+        const { scrollWidth, clientWidth, scrollLeft } = navigationRef.current;
+        navigationRef.current.scrollLeft =
+          navItemLeft + scrollLeft < clientWidth - navItemWidth
+            ? 0
+            : scrollWidth;
       }
     },
     [navigationRef.current]
@@ -94,7 +99,7 @@ export const TopNavigationBar = (
         external: false,
       },
       {
-        label: 'Weather Radar',
+        label: t('Weather Radar'),
         path: urlSlug && `/${WEATHER_RADAR}/${urlSlug}`,
         external: false,
       },
