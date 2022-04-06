@@ -1,8 +1,7 @@
 import { MutableRefObject } from 'react';
-
 import climeTheme from 'client/theme';
-import { useScreenWidthSmallerThan } from 'client/hooks';
 
+import { useScreenWidthSmallerThan } from 'client/hooks';
 import { UseButtonsVisibilityReturnValue } from './types';
 
 const TOP_NAVIGATION_BUTTON_INDENT = 30;

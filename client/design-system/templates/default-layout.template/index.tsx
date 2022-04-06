@@ -7,8 +7,8 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
-
 import climeTheme from 'client/theme';
+
 import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
 
