@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
 import {
   InputGroup,
   Input,
@@ -24,8 +25,8 @@ import {
   Portal,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
-
 import climeTheme from 'client/theme';
+
 import { getLocationName } from 'client/utils';
 import { useAutocomplete, useScreenWidthSmallerThan } from 'client/hooks';
 import { WEATHER_TODAY } from 'client/constants';

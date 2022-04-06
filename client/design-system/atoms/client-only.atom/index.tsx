@@ -1,8 +1,12 @@
-import { ReactElement, FC } from 'react';
+import { ReactElement } from 'react';
 
 import { useHasMounted } from 'client/hooks';
 
-export const ClientOnly: FC = ({ children }): ReactElement | null => {
+import { ClientOnlyProps } from './types';
+
+export const ClientOnly = ({
+  children,
+}: ClientOnlyProps): ReactElement | null => {
   const hasMounted = useHasMounted();
 
   if (!hasMounted) {

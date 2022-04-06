@@ -14,7 +14,7 @@ export const HeaderPopoverOverlay = ({
   return (
     <Box
       onClick={onClick}
-      zIndex="overlay"
+      zIndex={10}
       position="fixed"
       width="100vw"
       opacity="0.8"
