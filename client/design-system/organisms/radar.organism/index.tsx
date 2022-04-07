@@ -18,9 +18,9 @@ import 'leaflet/dist/leaflet.css';
 
 const MapContainer = chakra(LeafletMapContainer);
 
-export const Radar = (): ReactElement => {
-  const bounds = Leaflet.latLngBounds([-90, -190], [90, 190]);
+const bounds = Leaflet.latLngBounds([-90, -190], [90, 190]);
 
+export const Radar = (): ReactElement => {
   const [map, setMap] = useAtom(mapAtom);
   const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
   const center = useCenterPoint();
