@@ -8,7 +8,7 @@ export const ColorScaleContainer: FC<{
   <Flex
     align="center"
     position="relative"
-    me={{ base: 0, md: 16 }}
+    mx={{ base: 0, md: 8 }}
     flexDirection={{ base: 'column', md: 'row' }}
   >
     <Text

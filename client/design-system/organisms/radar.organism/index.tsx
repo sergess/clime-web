@@ -23,15 +23,17 @@ export const Radar = (): ReactElement => {
   const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
   const center = useCenterPoint();
 
+  const height = useSetAppHeight();
+
   const radarHeight = useMemo(
     () =>
       !mapFullscreenOn
         ? { base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }
         : {
-            base: `calc(var(--app-height) - ${MOBILE_HEADER_HEIGHT}px)`,
+            base: `calc(${height}px - ${MOBILE_HEADER_HEIGHT}px)`,
             lg: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
           },
-    [mapFullscreenOn]
+    [mapFullscreenOn, height]
   );
 
   useFetchConfig();
@@ -47,8 +49,6 @@ export const Radar = (): ReactElement => {
     },
     []
   );
-
-  useSetAppHeight();
 
   return (
     <Box

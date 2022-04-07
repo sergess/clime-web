@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useSetAppHeight = (): void => {
+export const useSetAppHeight = (): number => {
+  const [height, setHeight] = useState(0);
+
   useEffect(() => {
-    const setAppHeight = () => {
-      const height = window.innerHeight;
-      document.documentElement.style.setProperty('--app-height', `${height}px`);
-    };
+    const setAppHeight = () => setHeight(window.innerHeight);
 
-    if (window) {
-      window.addEventListener('resize', setAppHeight);
-      setAppHeight();
-    }
+    setAppHeight();
+
+    window.addEventListener('resize', setAppHeight);
 
     return () => window.removeEventListener('resize', setAppHeight);
   }, []);
+
+  return height;
 };
 
 export default useSetAppHeight;
