@@ -8,4 +8,4 @@ export * from './does-have-night-icon-name.util';
 export * from './get-location-name.util';
 export * from './is-location-a-close-to-location-b.util';
 export * from './get-user-locale.util';
-export * from './is-today-by-time-zone.utils';
+export * from './is-today-by-time-zone.util';
