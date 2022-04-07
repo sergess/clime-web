@@ -4,7 +4,6 @@ export type RadarLayer = {
   dates: Array<{
     intervalToNow: Pick<Duration, 'hours' | 'minutes'>;
     dateTime: string;
-    today: boolean;
   }>;
 };
 

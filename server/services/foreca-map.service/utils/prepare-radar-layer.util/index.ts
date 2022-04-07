@@ -1,4 +1,4 @@
-import { intervalToDuration, isToday, isAfter } from 'date-fns';
+import { intervalToDuration, isAfter } from 'date-fns';
 import pick from 'ramda/src/pick';
 import takeWhile from 'ramda/src/takeWhile';
 
@@ -28,7 +28,6 @@ export const prepareRadarLayer = (layer: ForecaLayer): RadarLayer => {
           ['hours', 'minutes'],
           intervalToDuration({ start: date, end: now })
         ),
-        today: isToday(date),
         dateTime,
       };
     }),
