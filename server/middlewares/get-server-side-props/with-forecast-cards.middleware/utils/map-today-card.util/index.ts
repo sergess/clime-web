@@ -11,8 +11,11 @@ export const mapTodayCard = (forecastFeed: ForecastFeed): Today => {
   const todayDayCondition = forecastFeed.dayConditions[0];
 
   const windDirection = currentHourCondition.windDirection || 0;
+
+  const utcString = new Date().toISOString();
+
   return {
-    dateTime: currentHourCondition.dateTime,
+    dateTime: utcString,
     night: currentHourCondition.night,
     stateText: currentHourCondition.night
       ? currentHourCondition.stateNightText || currentHourCondition.stateText
