@@ -1,1 +1,5 @@
-User-agent: *Allow: /Sitemap: https://static.weatherlive.info/sitemaps/sitemap.xml
+User-agent: *
+Allow: /
+Disallow: /news
+
+Sitemap: https://climeradar.com/sitemaps/sitemap.xml

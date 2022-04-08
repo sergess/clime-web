@@ -43,12 +43,20 @@ const marketingBanners: Record<
   ),
 };
 
-export const MarketingBanner: FC<{
-  bannerId: MarketingBannerId;
-  priorityLoad: boolean;
-  spotId: string | number;
-  banner: string;
-}> = ({ bannerId, priorityLoad, spotId, banner }): JSX.Element | null => {
+export const MarketingBanner: FC<
+  {
+    bannerId: MarketingBannerId;
+    priorityLoad: boolean;
+    spotId: string | number;
+    banner: string;
+  } & ComponentDefaultProps
+> = ({
+  bannerId,
+  priorityLoad,
+  spotId,
+  banner,
+  ...componentStyles
+}): JSX.Element | null => {
   const Component = marketingBanners[bannerId];
 
   if (!Component) return null;
@@ -58,7 +66,7 @@ export const MarketingBanner: FC<{
       priorityLoad={priorityLoad}
       data-banner-id={banner}
       data-spot-name={spotId}
-      className="banner"
+      {...componentStyles}
     />
   );
 };

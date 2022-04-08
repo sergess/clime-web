@@ -35,7 +35,7 @@ import {
   distanceUnitAtom,
 } from 'client/state/atoms';
 import { trackEvent } from 'client/services';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import { useScreenWidthSmallerThan } from 'client/hooks';
 import {
   CURRENT_DETAILS_COMPACT_SHOWN,
   CURRENT_DETAILS_FULL_SHOWN,
@@ -57,11 +57,13 @@ export const TodayCard = memo(
     const { t } = useTranslation('today-card');
     const { isOpen: cardOpened, onToggle: onCardOpenedToggle } =
       useDisclosure();
-    const widthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+    const widthSmallerThanMedium = useScreenWidthSmallerThan(
+      climeTheme.breakpoints.md
+    );
     const todayCardData = useTodayCardData();
 
     // [TODO] Find better way how we can handle 'collapsed' state.
-    // 'useScreenWidthSmallerThanMedium' returns 'true' during SSR and sets correct value after rehydration.
+    // 'useScreenWidthSmallerThan' returns 'true' during SSR and sets correct value after rehydration.
     // Probably we need to use media-queries here.
     const [widthLargerThanMedium] = useMediaQuery(
       `(min-width: ${climeTheme.breakpoints.md})`
@@ -168,14 +170,6 @@ export const TodayCard = memo(
 
           <InfoBlocksRow my={3}>
             <InfoBlockWithIcon
-              iconSrc="/icons/info-chance.svg"
-              iconAlt={t('Chance')}
-              label={t('Chance')}
-              text={`${precipitationChance}%`}
-              flex={1}
-            />
-
-            <InfoBlockWithIcon
               iconSrc="/icons/info-precipitation.svg"
               iconAlt={t('Precipitation')}
               label={t('Precipitation')}
@@ -184,6 +178,14 @@ export const TodayCard = memo(
                   {`${precipitationLevel} ${MEASUREMENT_UNIT_LABELS[precipitationUnit]}`}
                 </ClientOnly>
               }
+              flex={1}
+            />
+
+            <InfoBlockWithIcon
+              iconSrc="/icons/info-chance.svg"
+              iconAlt={t('Chance')}
+              label={t('Chance')}
+              text={`${precipitationChance}%`}
               flex={1}
             />
           </InfoBlocksRow>

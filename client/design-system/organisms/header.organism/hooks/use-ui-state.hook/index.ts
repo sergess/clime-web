@@ -1,5 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react';
-import { useScreenWidthSmallerThanMedium } from 'client/hooks';
+import climeTheme from 'client/theme';
+
+import { useScreenWidthSmallerThan } from 'client/hooks';
 
 import { UseUiStateReturnValue } from './types';
 
@@ -15,7 +17,9 @@ export const useUiState = (): UseUiStateReturnValue => {
     onClose: onSettingsClose,
   } = useDisclosure();
 
-  const screenWidthSmallerThanMedium = useScreenWidthSmallerThanMedium();
+  const screenWidthSmallerThanMedium = useScreenWidthSmallerThan(
+    climeTheme.breakpoints.md
+  );
 
   const searchVisible = !(screenWidthSmallerThanMedium && settingsOpened);
   const settingsVisible = !searchOpened;

@@ -1,6 +1,12 @@
 import React, { ReactElement, FC } from 'react';
 import dynamic from 'next/dynamic';
+import { ComponentDefaultProps } from '@chakra-ui/react';
 
+import { useOptimizeExperimentById } from 'client/hooks';
+import {
+  DEFAULT_EXPERIMENT_EVENT_NAME,
+  BANNERS_STYLE_EXPERIMENT_ID,
+} from 'client/hooks/use-optimize-experiment-by-id.hook/constants';
 import { BannerType } from './types';
 import { useParsedPromoBanner } from './hooks/use-parsed-promo-banner.hook';
 import { MarketingBanner } from './molecules/marketing-banners.molecule';
@@ -10,11 +16,26 @@ const NativeBanner = dynamic(
   () => import('./molecules/native-banner.molecule')
 );
 
-export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
+export const PromoBanner: FC<
+  { spotId: string; priorityLoad?: boolean } & ComponentDefaultProps
+> = ({
   spotId,
   priorityLoad = false,
+  ...componentStyles
 }): ReactElement | null => {
-  const banner = useParsedPromoBanner(spotId);
+  const experiment = useOptimizeExperimentById(
+    DEFAULT_EXPERIMENT_EVENT_NAME,
+    BANNERS_STYLE_EXPERIMENT_ID
+  );
+
+  let spot = spotId;
+
+  if (experiment && experiment !== '0') {
+    const regexp = /One|Two/g;
+    spot = regexp.test(spot) ? `${spot}Test` : spot;
+  }
+
+  const banner = useParsedPromoBanner(spot);
 
   if (!banner) return null;
 
@@ -26,7 +47,8 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
+        {...componentStyles}
       />
     );
   }
@@ -37,7 +59,8 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
         bannerId={id}
         banner={name}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
+        {...componentStyles}
       />
     );
   }
@@ -47,8 +70,9 @@ export const PromoBanner: FC<{ spotId: string; priorityLoad?: boolean }> = ({
       <NativeBanner
         bannerId={id}
         priorityLoad={priorityLoad}
-        spotId={spotId}
+        spotId={spot}
         banner={name}
+        {...componentStyles}
       />
     );
   }

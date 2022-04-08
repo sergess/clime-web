@@ -20,6 +20,7 @@ import {
   useCookies,
   useLocationFromBrowser,
   useLocationDataByCoordinates,
+  useRedirectToAppPopupOpened,
 } from 'client/hooks';
 
 import {
@@ -39,6 +40,7 @@ import {
   withTranslations,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
+import { Heading } from '@chakra-ui/react';
 
 const Index: FC<{ forecastCards: ForecastCards }> = memo(
   ({ forecastCards }): ReactElement => {
@@ -48,8 +50,10 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
       EXACT_LONGITUDE_COOKIE,
     ]);
     const [latitudeCookie, longitudeCookie] = cookies as (string | undefined)[];
+    const redirectToAppPopupOpened = useRedirectToAppPopupOpened();
+
     const locationFromBrowser = useLocationFromBrowser({
-      skip: !!latitudeCookie && !!longitudeCookie,
+      skip: (!!latitudeCookie && !!longitudeCookie) || redirectToAppPopupOpened,
     });
     const { data: exactLocationData } =
       useLocationDataByCoordinates(locationFromBrowser);
@@ -57,6 +61,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
 
     useEffect(() => {
       if (
+        !redirectToAppPopupOpened &&
         hasMounted &&
         exactLocationData &&
         !latitudeCookie &&
@@ -75,6 +80,7 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
       locationFromBrowser,
       latitudeCookie,
       longitudeCookie,
+      redirectToAppPopupOpened,
     ]);
     const { t } = useTranslation('meta-tags');
 
@@ -89,23 +95,50 @@ const Index: FC<{ forecastCards: ForecastCards }> = memo(
             )}
           />
         </Head>
-        <TodayCard w="full" />
+        <TodayCard
+          heading={
+            <Heading
+              as="h1"
+              color="gray.500"
+              fontSize="16px"
+              fontWeight="500"
+              lineHeight="16px"
+            >
+              {t('Local Weather')}
+            </Heading>
+          }
+          w="full"
+        />
         <RadarSnapshotStub
           h="full"
           minH="270px"
-          display={{ base: 'none', md: 'flex' }}
+          className="radar-snapshot__home"
+          order={{ base: 2, md: 0 }}
         />
-        <PromoBanner spotId="homeOne" priorityLoad />
-        <HourlyForecastCard w="full" />
+        <PromoBanner
+          spotId="homeOne"
+          className="banner__home-one"
+          priorityLoad
+        />
+        <HourlyForecastCard w="full" className="hourly-block__home" />
         <AdsenseBanner
           client={CLIENT_ID}
           slot="7916559712"
           w="full"
           h="100px"
         />
-        <SummaryCard w="full" h={{ base: 260, md: 'auto' }} />
-        <DailyForecastCard w="full" />
-        <PromoBanner spotId="homeTwo" />
+        <SummaryCard
+          w="full"
+          h="260px"
+          order={{ base: 1, md: 0 }}
+          className="summary-block__home"
+        />
+        <DailyForecastCard
+          className="daily-block__home"
+          w="full"
+          order={{ base: 3, md: 0 }}
+        />
+        <PromoBanner spotId="homeTwo" className="banner__home-two" />
       </ForecastCardsProvider>
     );
   }
@@ -131,8 +164,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   ]);
 
   if (!locationData) {
-    console.error('[Index.getServerSideProps]: locationData is missing');
-
     return {
       notFound: true,
     };
@@ -149,8 +180,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   )(context);
 
   if (!forecastCards) {
-    console.error('[Index.getServerSideProps]: forecastCards are missing');
-
     return {
       notFound: true,
     };

@@ -139,6 +139,6 @@ deploy-to-cloudrun-production:
   environment: production
   variables:
     SlackWebhook: 'https://hooks.slack.com/services/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' #team-clime-web
-    CF_Host: 'master.climeradar.com'
+    CF_Host: 'climeradar.com'
   only:
     - master

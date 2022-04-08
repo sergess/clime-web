@@ -37,11 +37,15 @@ class Document extends NextDocument {
           <link rel="dns-prefetch" href="http://www.googletagmanager.com/" />
           <link rel="dns-prefetch" href="https://www.google-analytics.com/" />
           <link rel="dns-prefetch" href="https://cdn.cookielaw.org/" />
+          <meta
+            name="apple-itunes-app"
+            content="app-id=749133753, app-argument=https://itunes.apple.com/us/app/id749133753"
+          />
         </Head>
         <body>
           <noscript>
             <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}`}
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}&gtm_auth=${process.env.NEXT_PUBLIC_GTM_AUTH}&gtm_preview=${process.env.NEXT_PUBLIC_GTM_PREVIEW}&gtm_cookies_win=x`}
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}

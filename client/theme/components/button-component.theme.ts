@@ -73,6 +73,38 @@ const Button = {
         opacity: 1,
       },
     },
+    'cta-outline': {
+      bg: 'transparent',
+      borderRadius: 'xl',
+      color: 'blue.500',
+      height: '3rem',
+      textStyle: '14-semi-bold',
+      px: '1.875rem',
+      border: '2px solid',
+      borderColor: 'blue.500',
+
+      _hover: {
+        bg: 'blue.500',
+        color: 'white',
+
+        _disabled: {
+          color: 'gray.100',
+          borderColor: 'gray.50',
+        },
+      },
+
+      _active: {
+        opacity: 0.5,
+        bg: 'blue.500',
+        color: 'white',
+      },
+
+      _disabled: {
+        color: 'gray.100',
+        borderColor: 'gray.50',
+        opacity: 1,
+      },
+    },
     'legend-detailed': {
       bg: 'white',
       borderRadius: 'none',
