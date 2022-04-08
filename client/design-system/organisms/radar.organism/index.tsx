@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
 
 import { mapFullscreenOnAtom } from 'client/state/atoms';
-import { useSetAppHeight } from 'client/hooks';
+import { useWindowDimensions } from 'client/hooks';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import { Controls } from './controls';
@@ -23,7 +23,7 @@ export const Radar = (): ReactElement => {
   const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
   const center = useCenterPoint();
 
-  const height = useSetAppHeight();
+  const { innerHeight: height } = useWindowDimensions();
 
   const radarHeight = useMemo(
     () =>
