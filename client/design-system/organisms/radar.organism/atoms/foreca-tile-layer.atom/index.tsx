@@ -31,6 +31,7 @@ export const ForecaTileLayer: FC<{
       updated={updated}
       bounds={bounds}
       opacity={opacity}
+      errorTileUrl="/empty-foreca-tile.png"
     />
   );
 };
