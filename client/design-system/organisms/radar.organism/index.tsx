@@ -6,6 +6,7 @@ import { useAtom } from 'jotai';
 import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
 
 import { mapFullscreenOnAtom } from 'client/state/atoms';
+import { useWindowDimensions } from 'client/hooks';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import { Controls } from './controls';
@@ -22,15 +23,17 @@ export const Radar = (): ReactElement => {
   const [mapFullscreenOn, setMapFullscreenOn] = useAtom(mapFullscreenOnAtom);
   const center = useCenterPoint();
 
+  const { innerHeight: height } = useWindowDimensions();
+
   const radarHeight = useMemo(
     () =>
       !mapFullscreenOn
         ? { base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }
         : {
-            base: `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)`,
+            base: `calc(${height}px - ${MOBILE_HEADER_HEIGHT}px)`,
             lg: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
           },
-    [mapFullscreenOn]
+    [mapFullscreenOn, height]
   );
 
   useFetchConfig();
@@ -54,6 +57,7 @@ export const Radar = (): ReactElement => {
       position="relative"
       overflow="hidden"
       borderRadius={!mapFullscreenOn ? '2xl' : '0'}
+      zIndex={1}
       boxShadow="radar-map"
     >
       <MapContainer

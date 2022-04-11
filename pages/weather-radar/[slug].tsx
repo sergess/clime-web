@@ -2,11 +2,12 @@ import React, { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
+import { useAtomValue } from 'jotai/utils';
+import dynamic from 'next/dynamic';
+import { Skeleton } from '@chakra-ui/react';
 
 import { useLocationData } from 'client/hooks';
 import { getLocationName } from 'client/utils';
-import dynamic from 'next/dynamic';
-import { Skeleton } from '@chakra-ui/react';
 
 import { WeatherRadarPageLayout } from 'client/design-system/templates';
 
@@ -16,6 +17,8 @@ import {
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
 import { PromoBanner } from 'client/design-system/organisms';
+import { mapFullscreenOnAtom } from 'client/state/atoms';
+import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
 const Radar = dynamic(
   () => import('client/design-system/organisms/radar.organism'),
@@ -30,6 +33,7 @@ const WeatherRadar = (): ReactElement => {
 
   const locationData = useLocationData();
   const locationName = getLocationName(locationData);
+  const mapFullscreenOn = useAtomValue(mapFullscreenOnAtom);
 
   return (
     <>
@@ -47,8 +51,9 @@ const WeatherRadar = (): ReactElement => {
       </Head>
       <Radar />
       <PromoBanner
+        mx={mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
         spotId="radarOne"
-        mt={5}
+        my={5}
         display={{ base: 'block', md: 'none' }}
       />
     </>

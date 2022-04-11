@@ -17,3 +17,4 @@ export * from './use-set-location-data-by-ip.hook';
 export * from './use-interval.hook';
 export * from './use-optimize-experiment-by-id.hook';
 export * from './use-redirect-to-app-popup-opened.hook';
+export * from './use-window-dimensions.hook';
