@@ -53,8 +53,7 @@ export const SliderPlayer: FC<
     <Flex
       align="stretch"
       h="48px"
-      ps="4"
-      pe="2.5"
+      px="4"
       bg="white"
       borderRadius="xl"
       maxW={{ md: 380 }}
