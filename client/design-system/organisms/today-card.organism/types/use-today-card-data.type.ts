@@ -1,7 +1,7 @@
 import { Azimuth, WeatherStateId } from 'common/types';
 
 export type UseTodayCardData = {
-  dateTime: string;
+  time: string;
   night: boolean;
   stateText: string | null;
   temperature: number | string;

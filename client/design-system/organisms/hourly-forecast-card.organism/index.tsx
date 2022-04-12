@@ -44,7 +44,7 @@ export const HourlyForecastCard = memo(
               >
                 <ClientOnly>
                   {index === 0 && t('Now')}
-                  {index !== 0 && item.dateTime}
+                  {index !== 0 && item.time}
                 </ClientOnly>
               </Text>
             }

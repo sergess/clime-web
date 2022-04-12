@@ -46,17 +46,13 @@ export const useTodayCardData = (): UseTodayCardData | null => {
   return useMemo(() => {
     if (!today) return null;
 
-    let format = H_MM;
-
-    if (timeFormat === TimeFormat.H12) {
-      format = H_MMAAA;
-    }
+    const format = timeFormat !== TimeFormat.H12 ? H_MM : H_MMAAA;
 
     const setDateTimeFormat = formatDate(format);
 
     return {
       ...today,
-      dateTime: defaultToDash(setDateTimeFormat(today.dateTime)),
+      time: defaultToDash(setDateTimeFormat(today.dateTime)),
       temperature: defaultToDash(convertFahrenheitToUnit(today.temperature)),
       feelsLikeTemperature: defaultToDash(
         convertFahrenheitToUnit(today.feelsLikeTemperature)

@@ -1,9 +1,9 @@
 import curry from 'ramda/src/curry';
+import { formatInTimeZone } from 'date-fns-tz';
 
 import { useLocationData } from 'client/hooks/use-location-data.hook';
 import { isString } from 'common/utils';
-import { UTC } from 'server/constants';
-import { formatInTimeZone } from 'date-fns-tz';
+import { UTC } from 'client/constants';
 
 export const useFormattedDate = () => {
   const location = useLocationData();
