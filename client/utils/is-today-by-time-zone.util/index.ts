@@ -1,8 +1,10 @@
 import { utcToZonedTime } from 'date-fns-tz';
 
+import { UTC } from 'common/constants';
+
 export const isTodayByTimeZone = (
   dateTime: string,
-  timeZone: string
+  timeZone = UTC
 ): boolean => {
   const today = utcToZonedTime(new Date(), timeZone);
   const date = utcToZonedTime(dateTime, timeZone);
