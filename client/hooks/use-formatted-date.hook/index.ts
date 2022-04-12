@@ -3,7 +3,7 @@ import { formatInTimeZone } from 'date-fns-tz';
 
 import { useLocationData } from 'client/hooks/use-location-data.hook';
 import { isString } from 'common/utils';
-import { UTC } from 'client/constants';
+import { UTC } from 'common/constants';
 
 export const useFormattedDate = () => {
   const location = useLocationData();

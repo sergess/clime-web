@@ -11,4 +11,3 @@ export * from './language-codes.constant';
 export * from './adsense.constant';
 export * from './measurement-units';
 export * from './date-time-formats.constant';
-export * from './timezones.constant';
