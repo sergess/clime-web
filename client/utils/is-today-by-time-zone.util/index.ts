@@ -4,10 +4,10 @@ import { UTC } from 'common/constants';
 
 export const isTodayByTimeZone = (
   dateTime: string,
-  timeZone = UTC
+  timeZone: string | null = UTC
 ): boolean => {
-  const today = utcToZonedTime(new Date(), timeZone);
-  const date = utcToZonedTime(dateTime, timeZone);
+  const today = utcToZonedTime(new Date(), timeZone ?? UTC);
+  const date = utcToZonedTime(dateTime, timeZone ?? UTC);
 
   return (
     date.getDate() === today.getDate() &&

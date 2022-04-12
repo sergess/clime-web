@@ -23,7 +23,7 @@ export const NowLabel = (): ReactElement | null => {
 
   const { intervalToNow, dateTime } = layer.dates[activeFrameIndex];
 
-  const today = isTodayByTimeZone(dateTime, locationData?.timeZone ?? UTC);
+  const today = isTodayByTimeZone(dateTime, locationData?.timeZone);
 
   const currentTimestamp = formatInTimeZone(
     dateTime,
