@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useMemo } from 'react';
 import { Box, chakra } from '@chakra-ui/react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { useAtom } from 'jotai';
+import Leaflet from 'leaflet';
 
 import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
 
@@ -17,6 +18,8 @@ import { mapAtom } from './state/atoms';
 import 'leaflet/dist/leaflet.css';
 
 const MapContainer = chakra(LeafletMapContainer);
+
+const bounds = Leaflet.latLngBounds([-90, -190], [90, 190]);
 
 export const Radar = (): ReactElement => {
   const [map, setMap] = useAtom(mapAtom);
@@ -69,6 +72,8 @@ export const Radar = (): ReactElement => {
         minZoom={3}
         maxZoom={12}
         whenCreated={setMap}
+        maxBoundsViscosity={1.0}
+        maxBounds={bounds}
       >
         <Markers />
         <Layers />
