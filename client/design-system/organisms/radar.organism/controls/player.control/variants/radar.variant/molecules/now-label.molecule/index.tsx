@@ -8,6 +8,7 @@ import { activeFrameIndexAtom } from 'client/design-system/organisms/radar.organ
 import { RadarLayerId } from 'common/types';
 import { useLayer } from 'client/design-system/organisms/radar.organism/hooks';
 import { useLocationData } from 'client/hooks';
+import { isTodayByTimeZone } from 'client/utils';
 
 import { UTC } from 'common/constants';
 
@@ -20,7 +21,9 @@ export const NowLabel = (): ReactElement | null => {
 
   if (!layer) return null;
 
-  const { intervalToNow, today, dateTime } = layer.dates[activeFrameIndex];
+  const { intervalToNow, dateTime } = layer.dates[activeFrameIndex];
+
+  const today = isTodayByTimeZone(dateTime, locationData?.timeZone);
 
   const currentTimestamp = formatInTimeZone(
     dateTime,
