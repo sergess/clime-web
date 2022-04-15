@@ -1,3 +1,16 @@
+# [1.2.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.1.0...v1.2.0) (2022-04-15)
+
+
+### Bug Fixes
+
+* **review:** [CLW-196] removed the duplicate of time, added formatInTimeZone ([49396d5](https://git.herewetest.com/apalon-web/clime-web/commit/49396d535081d8145a6a5f8d8ad6e75c773e00bb))
+
+
+### Features
+
+* **time format:** [CLW-196] setup time format ([b03bdcd](https://git.herewetest.com/apalon-web/clime-web/commit/b03bdcdc6b9ab0a2a4dcae4b205c64f7a68de64f))
+* **timeFormat:** [CLW-196] added time format to settings ([39c90fa](https://git.herewetest.com/apalon-web/clime-web/commit/39c90fa9ae3fa4c00db95439d0f36065bc0451ab))
+
 # [1.1.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.0.0...v1.1.0) (2022-04-11)
 
 
