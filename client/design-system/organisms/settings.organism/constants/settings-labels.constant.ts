@@ -1,3 +1,5 @@
+import { TimeFormat } from 'client/types';
+
 import {
   MI,
   KM,
@@ -11,7 +13,7 @@ import {
   F,
 } from 'client/constants/measurement-units/values.constant';
 
-export const MEASUREMENT_UNIT_LABELS = {
+export const SETTINGS_LABELS = {
   [MI]: 'miles',
   [KM]: 'kilometers',
   [INCH]: 'inches',
@@ -22,6 +24,8 @@ export const MEASUREMENT_UNIT_LABELS = {
   [MPH]: 'mph',
   [KMH]: 'km/h',
   [MS]: 'm/s',
+  [TimeFormat.H24]: '24 h',
+  [TimeFormat.H12]: '12 h',
 };
 
-export default MEASUREMENT_UNIT_LABELS;
+export default SETTINGS_LABELS;

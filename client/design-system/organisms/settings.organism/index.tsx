@@ -28,8 +28,10 @@ import climeTheme from 'client/theme';
 import { trackEvent } from 'client/services';
 import { ValueOf } from 'common/types';
 import { SETTINGS_CHANGE } from 'client/services/analytics.service/constants';
+import { TIME_FORMAT_VALUES } from 'client/constants';
+
 import { SettingsCardSwitcherRow } from './molecules';
-import { MEASUREMENT_UNIT_LABELS } from './constants';
+import { SETTINGS_LABELS } from './constants';
 
 import { SettingsTogglerProps } from './types';
 
@@ -50,7 +52,7 @@ export const Settings = ({
   const getSwitcherOptions = useCallback(
     (unitValues: ValueOf<SettingsType>[]) =>
       unitValues.map((value) => {
-        const label = t(MEASUREMENT_UNIT_LABELS[value]);
+        const label = t(SETTINGS_LABELS[value]);
 
         return {
           value,
@@ -80,6 +82,10 @@ export const Settings = ({
   );
   const distanceUnitOptions = useMemo(
     () => getSwitcherOptions(DISTANCE_UNIT_VALUES),
+    []
+  );
+  const timeFormatOptions = useMemo(
+    () => getSwitcherOptions(TIME_FORMAT_VALUES),
     []
   );
 
@@ -126,7 +132,7 @@ export const Settings = ({
             }}
             textStyle="16-medium"
           >
-            &#176;{t(MEASUREMENT_UNIT_LABELS[settings.temperature])}
+            &#176;{t(SETTINGS_LABELS[settings.temperature])}
           </Text>
 
           <Image
@@ -173,6 +179,12 @@ export const Settings = ({
               options={distanceUnitOptions}
               value={settings.distance}
               onValueChange={onSettingsChange('distance')}
+            />
+            <SettingsCardSwitcherRow
+              title="Time Format:"
+              options={timeFormatOptions}
+              value={settings.timeFormat}
+              onValueChange={onSettingsChange('timeFormat')}
             />
           </Flex>
         </PopoverContent>

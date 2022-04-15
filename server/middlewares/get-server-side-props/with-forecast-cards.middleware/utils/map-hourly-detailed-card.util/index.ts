@@ -1,10 +1,8 @@
 import take from 'ramda/src/take';
 
-import { HourlyDetailed, LocationData } from 'common/types';
-import { WEATHER_STATE } from 'common/constants';
+import { HourlyDetailed } from 'common/types';
 
 import {
-  formatUtcString,
   convertWindDegreeToAzimuth,
   calculateOppositeAngle,
 } from 'server/utils';
@@ -13,8 +11,7 @@ import { ForecastFeed } from 'server/types';
 import { getNumberOfHourConditionsToTake } from './utils';
 
 export const mapHourlyDetailedCard = (
-  forecastFeed: ForecastFeed,
-  locationData: LocationData | null
+  forecastFeed: ForecastFeed
 ): HourlyDetailed => {
   const numberOfHourConditionsToTake = getNumberOfHourConditionsToTake(
     forecastFeed.hourConditions
@@ -46,12 +43,6 @@ export const mapHourlyDetailedCard = (
         dateTime,
         stateId,
         variant,
-        time: formatUtcString(
-          dateTime,
-          variant === WEATHER_STATE ? 'haaa' : 'h:mmaaa',
-          locationData?.timeZone
-        ),
-        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
         relatedDayConditionIndex,
         humidity,
         temperature,
