@@ -1,6 +1,5 @@
 import { ReactElement, Fragment, useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai/utils';
-import take from 'ramda/src/take';
 import { useMap } from 'react-leaflet';
 
 import {
@@ -19,6 +18,8 @@ import {
   US_COVERAGE,
 } from './constants';
 
+const NUMBER_OF_FRAMES_TO_SHOW = 3;
+
 export const Radar = (): ReactElement | null => {
   const layer = useLayer(RadarLayerId.RADAR);
   const activeFrameIndex = useAtomValue(activeFrameIndexAtom);
@@ -30,14 +31,23 @@ export const Radar = (): ReactElement | null => {
   useEffect(() => {
     if (!layer) return;
 
-    setFrames((previousFrames) => {
-      if (previousFrames.length === layer.frames.length) return previousFrames;
+    const nextFramesToShow = layer.frames.slice(
+      activeFrameIndex,
+      activeFrameIndex + NUMBER_OF_FRAMES_TO_SHOW
+    );
+    const framesToShow =
+      nextFramesToShow.length < NUMBER_OF_FRAMES_TO_SHOW
+        ? [
+            ...nextFramesToShow,
+            ...layer.frames.slice(
+              0,
+              NUMBER_OF_FRAMES_TO_SHOW - nextFramesToShow.length
+            ),
+          ]
+        : nextFramesToShow;
 
-      const numberOfFramesToShow = activeFrameIndex + 3;
-
-      return take(numberOfFramesToShow, layer.frames);
-    });
-  }, [layer, activeFrameIndex]);
+    setFrames(framesToShow);
+  }, [activeFrameIndex, layer]);
 
   if (!layer) return null;
 
@@ -48,7 +58,7 @@ export const Radar = (): ReactElement | null => {
           layer: RadarLayerId.RADAR,
           frame,
           updated: layer.updateTime,
-          opacity: index === activeFrameIndex ? 1 : 0,
+          opacity: index === 0 ? 1 : 0,
         };
 
         return (
