@@ -4,13 +4,23 @@ import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { useAtom } from 'jotai';
 import Leaflet from 'leaflet';
 
-import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from 'client/constants';
+import {
+  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+  LAYOUT_HORIZONTAL_PADDING,
+} from 'client/constants';
 
 import { mapFullscreenOnAtom } from 'client/state/atoms';
 import { useWindowDimensions } from 'client/hooks';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
-import { Controls } from './controls';
+import {
+  Legend,
+  MapboxAttribution,
+  Zoom,
+  Fullscreen,
+  Player,
+} from './controls';
 import { Markers } from './markers';
 import { Layers } from './layers';
 import { mapAtom } from './state/atoms';
@@ -57,29 +67,89 @@ export const Radar = (): ReactElement => {
     <Box
       h={radarHeight}
       w="full"
-      position="relative"
       overflow="hidden"
       borderRadius={!mapFullscreenOn ? '2xl' : '0'}
       zIndex={1}
       boxShadow="radar-map"
+      display="flex"
+      flexDirection="column"
     >
-      <MapContainer
-        h="full"
-        w="full"
-        center={center}
-        zoomControl={false}
-        zoom={9}
-        minZoom={3}
-        maxZoom={12}
-        whenCreated={setMap}
-        maxBoundsViscosity={1.0}
-        maxBounds={bounds}
-      >
-        <Markers />
-        <Layers />
-      </MapContainer>
+      <Box
+        flex={1}
+        position="relative"
+        sx={{
+          '.leaflet-bottom': {
+            left: { base: 0, md: 'auto' },
+            w: { base: 'full', md: 'unset' },
 
-      <Controls />
+            '.leaflet-control-attribution': {
+              background: 'rgba(255, 255, 255, 0.5)',
+              color: '#4264FB',
+              fontWeight: 500,
+              lineHeight: '12px',
+              fontSize: '0.625rem',
+              p: 1,
+              w: { base: 'full', md: 'unset' },
+              textAlign: { base: 'right', md: 'left' },
+
+              '> a': {
+                color: '#4264FB',
+              },
+            },
+          },
+        }}
+      >
+        <MapContainer
+          h="full"
+          w="full"
+          center={center}
+          zoomControl={false}
+          zoom={9}
+          minZoom={3}
+          maxZoom={12}
+          whenCreated={setMap}
+          maxBoundsViscosity={1.0}
+          maxBounds={bounds}
+        >
+          <Markers />
+          <Layers />
+        </MapContainer>
+
+        <Zoom
+          pos="absolute"
+          zIndex="control"
+          bottom="210px"
+          right={LAYOUT_HORIZONTAL_PADDING}
+        />
+
+        <Fullscreen
+          pos="absolute"
+          zIndex="control"
+          bottom={{ base: '110px', md: '30px' }}
+          right={LAYOUT_HORIZONTAL_PADDING}
+        />
+
+        <Player
+          pos="absolute"
+          zIndex="player"
+          w="full"
+          bottom="30px"
+          px={LAYOUT_HORIZONTAL_PADDING}
+        />
+
+        <MapboxAttribution
+          pos="absolute"
+          zIndex="control"
+          h="20px"
+          w="90px"
+          bottom={{ base: 'auto', md: 2 }}
+          left={{ base: 'auto', md: 2 }}
+          top={{ base: 2.5, md: 'auto' }}
+          right={{ base: 2.5, md: 'auto' }}
+        />
+      </Box>
+
+      <Legend w="full" />
     </Box>
   );
 };
