@@ -1,6 +1,5 @@
-import { intervalToDuration, isAfter } from 'date-fns';
+import { intervalToDuration, sub, isWithinInterval } from 'date-fns';
 import pick from 'ramda/src/pick';
-import takeWhile from 'ramda/src/takeWhile';
 
 import { RadarLayer } from 'common/types/radar-layers';
 
@@ -10,11 +9,16 @@ import { parseFrame } from '../parse-frame.util';
 
 export const prepareRadarLayer = (layer: ForecaLayer): RadarLayer => {
   const now = new Date();
-  const frames = takeWhile<number>((frame) => {
+  const hourAndHalfAgo = sub(now, { hours: 1, minutes: 30 });
+
+  const frames = layer.UTC.filter((frame) => {
     const date = parseFrame(frame);
 
-    return !isAfter(date, now);
-  }, layer.UTC);
+    return isWithinInterval(date, {
+      start: hourAndHalfAgo,
+      end: now,
+    });
+  });
 
   return {
     frames,
