@@ -9,18 +9,15 @@ version: '3'
 services:
   clime:
     image: $CI_REGISTRY_IMAGE/$CI_ENVIRONMENT_SLUG:$CI_COMMIT_SHA
+    links:
+      - nginx:api.weatherlive.info
 
   nginx:
     build: nginx
-    links:
-      - memcached:memcached1
-    depends_on:
-      - php
 
   tester:
-    image: registry.git.herewetest.com/apalon-web/weather-live-backend-automation/tester
+    image: registry.git.herewetest.com/apalon-web/clime-web-automation/tester
     links:
-      - nginx:x.x
-      - nginx:api.x.x
+      - nginx:climeradar.com
     profiles:
       - do_not_start_automatically

@@ -1,11 +1,11 @@
 # https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
 
 stages:
+  - release
+  - build
   - test-build-env
   - test-run
   - test-cleanup
-  - release
-  - build
   - deploy-image
   - deploy-cloudrun
   - build-production
@@ -27,33 +27,37 @@ before_script:
   - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
 
 build-test-env:
-    stage: test-build-env
-    script:
-        - docker-compose build --pull --parallel
-        - docker-compose down --remove-orphans
-        - docker-compose up -d
-        - docker-compose exec -T php service ssh start
-        - docker-compose exec -T php bash /update-db.sh
-    only:
-        - master
-        - init_ci
+  stage: test-build-env
+  environment: dev
+  image: ${CI_REGISTRY}/php-team/common/docker-compose:apalon
+  script:
+    - docker-compose build --pull --parallel
+    - docker-compose down --remove-orphans
+    - docker-compose up -d
+  only:
+    - master
+    - init_ci
 
 run-tests:
-    stage: test-run
-    script:
-        - docker-compose exec -T tester gradle test --no-daemon
-    only:
-        - master
-        - init_ci
+  stage: test-run
+  environment: dev
+  image: ${CI_REGISTRY}/php-team/common/docker-compose:apalon
+  script:
+    - docker-compose exec -T tester gradle test --no-daemon
+  only:
+    - master
+    - init_ci
 
 cleanup-test-env:
-    stage: test-cleanup
-    allow_failure: true
-    script:
-        - docker-compose down
-    only:
-        - master
-        - init_ci
+  stage: test-cleanup
+  environment: dev
+  image: ${CI_REGISTRY}/php-team/common/docker-compose:apalon
+  allow_failure: true
+  script:
+    - docker-compose down
+  only:
+    - master
+    - init_ci
 
 create-release:
   stage: release
@@ -90,6 +94,7 @@ build-dev:
   environment: dev
   only:
     - develop
+    - init_ci
 
 build-staging:
   extends: .build
