@@ -181,7 +181,7 @@ export const Settings = ({
               onValueChange={onSettingsChange('distance')}
             />
             <SettingsCardSwitcherRow
-              title="Time Format:"
+              title="Time format:"
               options={timeFormatOptions}
               value={settings.timeFormat}
               onValueChange={onSettingsChange('timeFormat')}
