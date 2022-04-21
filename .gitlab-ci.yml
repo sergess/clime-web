@@ -1,6 +1,9 @@
 # https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
 
 stages:
+  - test-build-env
+  - test-run
+  - test-cleanup
   - release
   - build
   - deploy-image
@@ -14,12 +17,43 @@ default:
 
 variables:
   DOCKER_BUILDKIT: 1
+  COMPOSE_FILE: ci/docker-compose.ci.yml
+  COMPOSE_PROJECT_NAME: clime
 
 before_script:
   # docker login asks for the password to be passed through stdin for security
   # we use $CI_JOB_TOKEN here which is a special token provided by GitLab
   - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
+
+build-test-env:
+    stage: test-build-env
+    script:
+        - docker-compose build --pull --parallel
+        - docker-compose down --remove-orphans
+        - docker-compose up -d
+        - docker-compose exec -T php service ssh start
+        - docker-compose exec -T php bash /update-db.sh
+    only:
+        - master
+        - init_ci
+
+run-tests:
+    stage: test-run
+    script:
+        - docker-compose exec -T tester gradle test --no-daemon
+    only:
+        - master
+        - init_ci
+
+cleanup-test-env:
+    stage: test-cleanup
+    allow_failure: true
+    script:
+        - docker-compose down
+    only:
+        - master
+        - init_ci
 
 create-release:
   stage: release
@@ -28,6 +62,8 @@ create-release:
     - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
   script:
     - npx semantic-release
+  only:
+    - master
 
 .build:
   stage: build
