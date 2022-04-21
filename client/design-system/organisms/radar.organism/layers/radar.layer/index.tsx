@@ -1,6 +1,5 @@
 import { ReactElement, Fragment, useEffect, useState } from 'react';
 import { useAtomValue } from 'jotai/utils';
-import { useMap } from 'react-leaflet';
 
 import {
   PrimaryLayer,
@@ -24,9 +23,6 @@ export const Radar = (): ReactElement | null => {
   const layer = useLayer(RadarLayerId.RADAR);
   const activeFrameIndex = useAtomValue(activeFrameIndexAtom);
   const [frames, setFrames] = useState<number[]>([]);
-  const map = useMap();
-
-  const currentBounds = map.getBounds();
 
   useEffect(() => {
     if (!layer) return;
@@ -63,18 +59,10 @@ export const Radar = (): ReactElement | null => {
 
         return (
           <Fragment key={frame}>
-            {currentBounds.intersects(US_COVERAGE) && (
-              <ForecaTileLayer {...layerProps} bounds={US_COVERAGE} />
-            )}
-            {currentBounds.intersects(AU_COVERAGE) && (
-              <ForecaTileLayer {...layerProps} bounds={AU_COVERAGE} />
-            )}
-            {currentBounds.intersects(EU_COVERAGE) && (
-              <ForecaTileLayer {...layerProps} bounds={EU_COVERAGE} />
-            )}
-            {currentBounds.intersects(JP_COVERAGE) && (
-              <ForecaTileLayer {...layerProps} bounds={JP_COVERAGE} />
-            )}
+            <ForecaTileLayer {...layerProps} bounds={US_COVERAGE} />
+            <ForecaTileLayer {...layerProps} bounds={AU_COVERAGE} />
+            <ForecaTileLayer {...layerProps} bounds={EU_COVERAGE} />
+            <ForecaTileLayer {...layerProps} bounds={JP_COVERAGE} />
           </Fragment>
         );
       })}
