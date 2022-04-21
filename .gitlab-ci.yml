@@ -28,6 +28,8 @@ create-release:
     - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
   script:
     - npx semantic-release
+  only:
+    - master
 
 .build:
   stage: build
