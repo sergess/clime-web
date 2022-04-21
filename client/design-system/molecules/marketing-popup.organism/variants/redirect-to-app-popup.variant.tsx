@@ -46,7 +46,9 @@ export const RedirectToAppPopup: FC = (): ReactElement | null => {
   const showRedirectToAppPopup = appConfig?.showRedirectToAppPopup;
 
   useEffect(() => {
-    if (popupOpened && showRedirectToAppPopup) trackEvent(CLIME_POP_UP_VIEWED);
+    if (popupOpened && showRedirectToAppPopup && !desktop) {
+      trackEvent(CLIME_POP_UP_VIEWED);
+    }
   }, [popupOpened, showRedirectToAppPopup]);
 
   if (desktop || !showRedirectToAppPopup) return null;
