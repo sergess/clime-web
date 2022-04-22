@@ -45,9 +45,10 @@ run-tests:
   script:
     - mkdir -p screenshots
     - docker-compose exec -T tester gradle test --no-daemon
+    - docker-compose exec -T tester touch /screenshots/testing.djipeg
   artifacts:
     paths:
-      - screenshots
+      - ci/screenshots
     expire_in: 1d
   only:
     - master
