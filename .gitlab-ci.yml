@@ -43,7 +43,12 @@ run-tests:
   environment: dev
   image: ${CI_REGISTRY}/php-team/common/docker-compose:apalon
   script:
+    - mkdir -p screenshots
     - docker-compose exec -T tester gradle test --no-daemon
+  artifacts:
+    paths:
+      - screenshots
+    expire_in: 1d
   only:
     - master
     - init_ci

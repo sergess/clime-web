@@ -13,3 +13,5 @@ services:
     image: ${CI_REGISTRY}/apalon-web/clime-web-automation/tester
     links:
       - nginx:climeradar.com
+    volumes:
+      - ./screenshots:/screenshots:rw
