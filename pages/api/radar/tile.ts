@@ -11,6 +11,9 @@ const TWO_HOURS = 2 * 60 * 60;
 export const tileHandler = createProxyMiddleware({
   logLevel: process.env.NODE_ENV === 'production' ? 'silent' : 'warn',
   target: process.env.API_BASE_URL,
+  headers: {
+    Connection: 'keep-alive',
+  },
   pathRewrite: (_, req) => {
     const { c, frame, updated, layer, x, y, z } = req.query;
 
