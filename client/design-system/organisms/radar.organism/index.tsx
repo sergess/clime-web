@@ -12,6 +12,8 @@ import {
 
 import { mapFullscreenOnAtom } from 'client/state/atoms';
 import { useWindowDimensions } from 'client/hooks';
+import { trackEvent } from 'client/services';
+import { MAP_SWIPE } from 'client/services/analytics.service/constants';
 
 import { useCenterPoint, useFetchConfig } from './hooks';
 import {
@@ -53,6 +55,7 @@ export const Radar = (): ReactElement => {
 
   useEffect(() => {
     map?.invalidateSize();
+    map?.on('drag', () => trackEvent(MAP_SWIPE));
   }, [map, mapFullscreenOn]);
 
   useEffect(

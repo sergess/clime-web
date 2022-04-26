@@ -4,6 +4,11 @@ import { ComponentDefaultProps, Box, IconButton } from '@chakra-ui/react';
 import Image from 'next/image';
 
 import { mapFullscreenOnAtom } from 'client/state/atoms';
+import { trackEvent } from 'client/services';
+import {
+  FULLSCREEN_MODE_EXIT,
+  FULLSCREEN_MODE_ENTERED,
+} from 'client/services/analytics.service/constants';
 
 export const Fullscreen: FC<ComponentDefaultProps> = (
   componentStyles
@@ -12,7 +17,12 @@ export const Fullscreen: FC<ComponentDefaultProps> = (
 
   const onMapFullscreen = useCallback(() => {
     setMapFullscreenOn((on) => !on);
-  }, []);
+    if (mapFullscreenOn) {
+      trackEvent(FULLSCREEN_MODE_EXIT);
+    } else {
+      trackEvent(FULLSCREEN_MODE_ENTERED);
+    }
+  }, [mapFullscreenOn]);
 
   return (
     <Box {...componentStyles}>

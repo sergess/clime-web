@@ -8,6 +8,12 @@ import { RadarLayerId } from 'common/types';
 import { useLayer } from 'client/design-system/organisms/radar.organism/hooks';
 import { SliderPlayer } from 'client/design-system/molecules';
 import { useInterval } from 'client/hooks';
+import { trackEvent } from 'client/services';
+import {
+  TIMELINE_PLAYER_PAUSED,
+  TIMELINE_PLAYER_PLAYED,
+  TIMELINE_PICKER_MOVED,
+} from 'client/services/analytics.service/constants';
 
 import { NowLabel } from './molecules';
 
@@ -21,7 +27,17 @@ export const Radar = (): ReactElement | null => {
 
   const onPlayToggle = useCallback(() => {
     setPlaying(!playing);
+    if (playing) {
+      trackEvent(TIMELINE_PLAYER_PAUSED);
+    } else {
+      trackEvent(TIMELINE_PLAYER_PLAYED);
+    }
   }, [playing]);
+
+  const onChange = useCallback((value) => {
+    setCurrentFrameIndex(value);
+    trackEvent(TIMELINE_PICKER_MOVED);
+  }, []);
 
   const onNextFrameIndexChange = useCallback(
     (prevIndex) => {
@@ -61,7 +77,7 @@ export const Radar = (): ReactElement | null => {
       step={1}
       min={0}
       max={layer.frames.length - 1}
-      onChange={setCurrentFrameIndex}
+      onChange={onChange}
       onChangeEnd={setActiveFrameIndex}
       nowLabel={<NowLabel />}
       endLabel={
