@@ -53,6 +53,7 @@ const WeatherRadar = (): ReactElement => {
       <PromoBanner
         mx={mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
         spotId="radarOne"
+        className="banner__radar-one"
         my={5}
         display={{ base: 'block', md: 'none' }}
       />

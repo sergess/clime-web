@@ -9,6 +9,8 @@ import {
 import Image from 'next/image';
 
 import { mapAtom } from 'client/design-system/organisms/radar.organism/state/atoms';
+import { trackEvent } from 'client/services';
+import { MAP_ZOOM } from 'client/services/analytics.service/constants';
 
 export const Zoom: FC<ComponentDefaultProps> = (
   componentStyles
@@ -17,9 +19,11 @@ export const Zoom: FC<ComponentDefaultProps> = (
 
   const onZoomIn = useCallback(() => {
     map?.zoomIn();
+    trackEvent(MAP_ZOOM);
   }, [map]);
   const onZoomOut = useCallback(() => {
     map?.zoomOut();
+    trackEvent(MAP_ZOOM);
   }, [map]);
 
   return (
