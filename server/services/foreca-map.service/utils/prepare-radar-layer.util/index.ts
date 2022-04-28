@@ -9,13 +9,13 @@ import { parseFrame } from '../parse-frame.util';
 
 export const prepareRadarLayer = (layer: ForecaLayer): RadarLayer => {
   const now = new Date();
-  const hourAndHalfAgo = sub(now, { hours: 1, minutes: 30 });
+  const start = sub(now, { minutes: 40 });
 
   const frames = layer.UTC.filter((frame) => {
     const date = parseFrame(frame);
 
     return isWithinInterval(date, {
-      start: hourAndHalfAgo,
+      start,
       end: now,
     });
   });
