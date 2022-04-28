@@ -1,3 +1,10 @@
+## [1.3.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.0...v1.3.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* **radar:** [CLW-314] reduce number of frames in radar (40 mins) ([0a0439b](https://git.herewetest.com/apalon-web/clime-web/commit/0a0439b7f6f33ceda9fd126d1b3e3d665b6d8d1c))
+
 # [1.3.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.2.0...v1.3.0) (2022-04-28)
 
 
