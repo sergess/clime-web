@@ -35,11 +35,12 @@ import {
   distanceUnitAtom,
 } from 'client/state/atoms';
 import { trackEvent } from 'client/services';
-import { useScreenWidthSmallerThan } from 'client/hooks';
 import {
   CURRENT_DETAILS_COMPACT_SHOWN,
   CURRENT_DETAILS_FULL_SHOWN,
 } from 'client/services/analytics.service/constants';
+import { useScreenWidthSmallerThan } from 'client/hooks';
+
 import { useTodayCardData } from './hooks';
 
 import { TodayCardProps } from './types';

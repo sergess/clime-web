@@ -27,8 +27,7 @@ import {
   EXACT_LATITUDE_COOKIE,
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
-import { ForecastCards } from 'common/types/forecast-cards.type';
-import { ForecastCard } from 'common/types/forecast-card.type';
+import { ForecastCards, ForecastCard } from 'common/types';
 
 import {
   mapDailyCard,

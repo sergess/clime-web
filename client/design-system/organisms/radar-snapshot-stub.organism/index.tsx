@@ -1,5 +1,5 @@
 import React, { ReactElement, FC } from 'react';
-import { useClimeAppLink } from 'client/hooks';
+import { useUrlSlug } from 'client/hooks';
 import { useTranslation } from 'next-i18next';
 import {
   Box,
@@ -13,12 +13,14 @@ import {
 import NextLink from 'next/link';
 
 import { BackgroundImage } from 'client/design-system/atoms';
+import { WEATHER_RADAR } from 'client/constants';
 
 export const RadarSnapshotStub: FC<
   { priorityLoad?: boolean } & ComponentDefaultProps
 > = ({ priorityLoad = false, ...props }): ReactElement => {
-  const climeAppLink = useClimeAppLink();
   const { t } = useTranslation('banners');
+
+  const urlSlug = useUrlSlug();
 
   return (
     <LinkBox
@@ -47,10 +49,10 @@ export const RadarSnapshotStub: FC<
           src="/radar-snapshot-stub-background.jpg"
           priority={priorityLoad}
         />
-        <NextLink href={climeAppLink} passHref>
-          <LinkOverlay as="a" isExternal w="full" mx="29px">
+        <NextLink href={`/${WEATHER_RADAR}/${urlSlug}`} passHref>
+          <LinkOverlay as="a" w="full" mx="29px">
             <Button w="full" variant="cta" mb={5}>
-              {t('Get Clime app')}
+              {t('Explore weather radar')}
             </Button>
           </LinkOverlay>
         </NextLink>

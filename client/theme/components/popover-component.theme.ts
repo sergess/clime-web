@@ -20,6 +20,7 @@ const Popover = {
   variants: {
     'search-card': {
       popper: {
+        zIndex: 'popover',
         px: [...LAYOUT_HORIZONTAL_PADDING, 0],
         width: '100%',
         maxWidth: '100%',
@@ -34,6 +35,7 @@ const Popover = {
     },
     card: {
       popper: {
+        zIndex: 'popover',
         px: [...LAYOUT_HORIZONTAL_PADDING, 0],
         width: { base: '100%', md: 'max-content' },
       },

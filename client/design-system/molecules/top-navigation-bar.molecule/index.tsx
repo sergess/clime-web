@@ -16,6 +16,7 @@ import {
   WEATHER_TODAY,
   HOURLY_WEATHER,
   TEN_DAY_WEATHER,
+  WEATHER_RADAR,
 } from 'client/constants';
 import { useUrlSlug, useClimeAppLink } from 'client/hooks';
 
@@ -38,12 +39,20 @@ export const TopNavigationBar = (
     navigationRef
   );
 
-  const currentRouteRef = useCallback((node) => {
-    if (node !== null && navigationRef.current) {
-      const { left, width } = node.getBoundingClientRect();
-      navigationRef.current.scrollLeft = left < width ? 0 : left - width / 2;
-    }
-  }, []);
+  const currentRouteRef = useCallback(
+    (node) => {
+      if (node !== null && navigationRef.current) {
+        const { left: navItemLeft, width: navItemWidth } =
+          node.getBoundingClientRect();
+        const { scrollWidth, clientWidth, scrollLeft } = navigationRef.current;
+        navigationRef.current.scrollLeft =
+          navItemLeft + scrollLeft < clientWidth - navItemWidth
+            ? 0
+            : scrollWidth;
+      }
+    },
+    [navigationRef.current]
+  );
 
   const onScroll = useCallback(() => {
     if (navigationRef.current) {
@@ -66,30 +75,32 @@ export const TopNavigationBar = (
 
   const climeAppLink = useClimeAppLink();
 
+  // [todo] add i18n git navigation labels
   const navigationOptions = useMemo<NavigationOption[]>(
     () => [
       {
         label: t('Today'),
         path: urlSlug && `/${WEATHER_TODAY}/${urlSlug}`,
-        variant: 'common-nav',
         external: false,
       },
       {
         label: t('Hourly'),
         path: urlSlug && `/${HOURLY_WEATHER}/${urlSlug}`,
-        variant: 'common-nav',
         external: false,
       },
       {
         label: t('Clime App'),
         path: climeAppLink,
-        variant: 'common-nav',
         external: true,
       },
       {
         label: t('10-day forecast'),
         path: urlSlug && `/${TEN_DAY_WEATHER}/${urlSlug}`,
-        variant: 'common-nav',
+        external: false,
+      },
+      {
+        label: t('Weather Radar'),
+        path: urlSlug && `/${WEATHER_RADAR}/${urlSlug}`,
         external: false,
       },
     ],
@@ -104,16 +115,13 @@ export const TopNavigationBar = (
           left="0"
           boxSize="48px"
           justifyContent="flex-end"
-          bg="linear-gradient(270deg, #EFF3F8 42.93%, rgba(239, 243, 248, 0) 100%)"
-          transform="matrix(-1, 0, 0, 1, 0, 0)"
           onClick={swipeLeft}
         >
-          <Image src="/icons/arrow-100.svg" width={20} height={20} alt="Left" />
+          <Image src="/arrow-nav-left.png" width={48} height={48} alt="Left" />
         </Flex>
       )}
       <Flex
         as="nav"
-        bg="gray.50"
         overflowX="auto"
         ref={navigationRef}
         m="-3px"
@@ -131,7 +139,7 @@ export const TopNavigationBar = (
         }}
         onScroll={onScroll}
       >
-        {navigationOptions.map(({ label, variant, path, external }) => {
+        {navigationOptions.map(({ label, path, external }) => {
           if (!path) return null;
 
           const currentRoute = isCurrentRoute(router.asPath, path);
@@ -154,7 +162,7 @@ export const TopNavigationBar = (
                 ref={currentRoute ? currentRouteRef : null}
                 flexShrink={0}
                 aria-current={currentRoute && 'page'}
-                variant={variant}
+                variant="common-nav"
               >
                 {label}
               </Link>
@@ -168,13 +176,12 @@ export const TopNavigationBar = (
           right="0"
           boxSize="48px"
           justifyContent="flex-end"
-          bg="linear-gradient(270deg, #EFF3F8 42.93%, rgba(239, 243, 248, 0) 110%)"
           onClick={swipeRight}
         >
           <Image
-            src="/icons/arrow-100.svg"
-            width={20}
-            height={20}
+            src="/arrow-nav-right.png"
+            width={48}
+            height={48}
             alt="Right"
           />
         </Flex>

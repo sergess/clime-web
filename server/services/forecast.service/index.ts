@@ -1,4 +1,4 @@
-import BaseApiV3Service from 'server/services/base-api-v3.service';
+import ApiV3Service from 'server/services/api-v3.service';
 import { ForecastFeed } from 'server/types';
 
 import { ForecastFeedFromApi, GetForecastFeedArguments } from './types';
@@ -15,7 +15,7 @@ import {
  * Forecast service.
  * @see https://confluence.jabodo.com:8443/display/AWS/Forecast+Feed
  */
-export class Forecast extends BaseApiV3Service {
+export class Forecast extends ApiV3Service {
   public async getForecastFeed({
     forecastZoneId,
     language,
