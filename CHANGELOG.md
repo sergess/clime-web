@@ -1,3 +1,42 @@
+# [1.3.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.2.0...v1.3.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* [CLW-95] return 'focusThumbOnChange' flag to player's slider ([3cd5839](https://git.herewetest.com/apalon-web/clime-web/commit/3cd5839881133a88273b3dcc617efb087ac427c9))
+* [CLW-99] remove focus on slider after onChange event ([b4c4480](https://git.herewetest.com/apalon-web/clime-web/commit/b4c44800d702abae75e1f4adb06d85460c3ff80d))
+* **banners:** [CLW-95] were passed styleprops to banners ([e508700](https://git.herewetest.com/apalon-web/clime-web/commit/e50870077e3858a0a32387ab4cd4e90ef73d95f8))
+* **fullscreen popup:** [CLW-293] fix height of fullscreen popup in safari ([92a027d](https://git.herewetest.com/apalon-web/clime-web/commit/92a027d3f03cbaef3d0ea7a78c228f2522d31fa5))
+* **invalidateSize:** [CLW-100] fixed instance of leaflet ([4c5ecfd](https://git.herewetest.com/apalon-web/clime-web/commit/4c5ecfdb12c9e98405d8b6f02b7a161548b1d1e7))
+* **invalidateSize:** [CLW-100] was called invalidateSize() ([8a95caf](https://git.herewetest.com/apalon-web/clime-web/commit/8a95cafe9733bafe412b0cb38c667accfbcafbed))
+* **overlay to zIndices:** added overlay to zIndices ([af834d1](https://git.herewetest.com/apalon-web/clime-web/commit/af834d12cd8b281097f57c58a7f348d4d88527d7))
+* **radar template:** [CLW-95] controls z-index, slider mark bg ([b10fb3e](https://git.herewetest.com/apalon-web/clime-web/commit/b10fb3eed19349615f9849e1a63582ea36f28304))
+* **radar:** [CLW-294] add empty tile for foreca tiles' errors ([6e85b00](https://git.herewetest.com/apalon-web/clime-web/commit/6e85b008d757399d7927713baf6cfccfe97593a5))
+* **radar:** [CLW-294] remove 'keep alive' header, reduce number of tiles on the map ([7e02dfd](https://git.herewetest.com/apalon-web/clime-web/commit/7e02dfd1c7b72ef7d6f6d10aa313c9d874459cb1))
+* **radar:** [CLW-304] draw tile layers for all bounds ([5d3f56d](https://git.herewetest.com/apalon-web/clime-web/commit/5d3f56d0cc4fa58ca66efd48649bf3fcbe3247b7))
+* **radar:** [CLW-304] reduce framing of radar to 1.5h ([9cd7011](https://git.herewetest.com/apalon-web/clime-web/commit/9cd70110a3d7fbca58a00b5a73d708788e2b18cf))
+* **radar:** [CLW-309] add attributions to the map ([283e5b1](https://git.herewetest.com/apalon-web/clime-web/commit/283e5b1b7ca77ee0f9df89d347be1d8ed1831726))
+* **rename util:** [CLW-302] renamed isTodayByTimeZone util ([97a63f8](https://git.herewetest.com/apalon-web/clime-web/commit/97a63f8fa966ca347c61e2eaef6aac0c54a9d33f))
+* **values for zIndices:** zIndices foundation theme ([4dfc31a](https://git.herewetest.com/apalon-web/clime-web/commit/4dfc31a4376c70f4b001306a9f568129575b91ad))
+
+
+### Features
+
+* **analytics:** [CLW-312] Radar map analytics ([e8aee94](https://git.herewetest.com/apalon-web/clime-web/commit/e8aee94f2f89e0506b2413bb0979e13562f7fc9b))
+* **boundaries of map:** [CLW-303] set boundaries of map ([4625388](https://git.herewetest.com/apalon-web/clime-web/commit/4625388617da689c61c173cd1bb67cee8d06fc55))
+* **date for radar player:** [CLW-302] current date for radar player ([dc1e957](https://git.herewetest.com/apalon-web/clime-web/commit/dc1e957eb22de236367173c2c2e004b0e8c86d78))
+* **fullscreen:** [CLW-100] fullscreen ([16f643d](https://git.herewetest.com/apalon-web/clime-web/commit/16f643dcb3a837711800791b2c4ba525b4e49b8c))
+* **fullscreen:** [CLW-296] was fixed fullscreen mode, styles borderRadius in ios ([a503200](https://git.herewetest.com/apalon-web/clime-web/commit/a50320082d7d795cfbdad637b657759d1bf03d40))
+* **navbar:** [CLW-292] was fixed navbar ([80a1ea8](https://git.herewetest.com/apalon-web/clime-web/commit/80a1ea84128bc78dadfd69ecb24c6515428e013d))
+* **pin:** [CLW-306] reload pin-map.svg ([9c2b3c0](https://git.herewetest.com/apalon-web/clime-web/commit/9c2b3c0a3395cb583e27030f3e1f6e8739ade673))
+* **player styles:** [CLW-95] player styles ([5cd6b5d](https://git.herewetest.com/apalon-web/clime-web/commit/5cd6b5d98c65474af7801bd7e83eb493ef53b924))
+* **radar layout:** [CLW-95] Layout for icons, player, legend, etc + responsive styles for desktop layout ([bc4f5bf](https://git.herewetest.com/apalon-web/clime-web/commit/bc4f5bf18afae968afee575d32e94956c362bc08))
+* **radar page:** [CLW-95] new template for radar page ([8129323](https://git.herewetest.com/apalon-web/clime-web/commit/8129323446c00d66270b5bcfc75633961d66d69c))
+* **Radar snapshot:** [CLW-313] Radar snapshot Placeholder. Redirect to Radar page, update CTA text ([7c72087](https://git.herewetest.com/apalon-web/clime-web/commit/7c720877eaacc998c5086463d8a242ebdd0a3b97))
+* **radar template:** [CLW-95] radar page new template ([d5a7ddc](https://git.herewetest.com/apalon-web/clime-web/commit/d5a7ddcfc934c1feecb1acc5a795d4605df538eb))
+* **radar:** [CLW-94] add bare bones of radar ([5ba64f2](https://git.herewetest.com/apalon-web/clime-web/commit/5ba64f2ceda896aa4330563cc905a9ee8d8453c6))
+* **radar:** [CLW-94] add BE foreca-map.service, api routes for fetching config and tiles, etc. ([beb4ecb](https://git.herewetest.com/apalon-web/clime-web/commit/beb4ecb5c3b6c5f244b27e4eacb92a6021cb08ee))
+
 # [1.2.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.1.0...v1.2.0) (2022-04-15)
 
 
