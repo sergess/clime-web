@@ -1,12 +1,13 @@
 # https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
 
 stages:
-    - build
-    - deploy-image
-    - deploy-cloudrun
-    - build-production
-    - deploy-image-production
-    - deploy-cloudrun-production
+  - release
+  - build
+  - deploy-image
+  - deploy-cloudrun
+  - build-production
+  - deploy-image-production
+  - deploy-cloudrun-production
 
 default:
   image: docker:19
@@ -19,6 +20,16 @@ before_script:
   # we use $CI_JOB_TOKEN here which is a special token provided by GitLab
   - echo -n $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   - cat $GOOGLE_SA | docker login -u _json_key --password-stdin https://us-docker.pkg.dev
+
+create-release:
+  stage: release
+  image: node:14.17
+  before_script:
+    - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
+  script:
+    - npx semantic-release
+  only:
+    - master
 
 .build:
   stage: build

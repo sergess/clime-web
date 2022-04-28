@@ -81,7 +81,7 @@ export const TodayCard = memo(
     if (!todayCardData) return null;
 
     const {
-      date,
+      time,
       night,
       stateId,
       temperature,
@@ -104,7 +104,7 @@ export const TodayCard = memo(
       <Card {...componentStyles} pt="5">
         <Flex w="full" direction="column" px="4">
           <LocationInfoRow
-            date={date}
+            date={time}
             heading={heading}
             componentStyles={{
               mb: 5,

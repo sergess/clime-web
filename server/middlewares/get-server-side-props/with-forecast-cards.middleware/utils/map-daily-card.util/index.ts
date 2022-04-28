@@ -1,14 +1,11 @@
 import take from 'ramda/src/take';
 
-import { Daily, LocationData } from 'common/types';
+import { Daily } from 'common/types';
 
-import { formatUtcString, isUtcStringNight } from 'server/utils';
+import { isUtcStringNight } from 'server/utils';
 import { ForecastFeed } from 'server/types';
 
-export const mapDailyCard = (
-  forecastFeed: ForecastFeed,
-  locationData: LocationData | null
-): Daily => {
+export const mapDailyCard = (forecastFeed: ForecastFeed): Daily => {
   const now = new Date().toISOString();
   return take(5, forecastFeed.dayConditions).map(
     (
@@ -24,7 +21,6 @@ export const mapDailyCard = (
         minTemperature,
         maxTemperature,
         stateId,
-        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
       };
     }
   );

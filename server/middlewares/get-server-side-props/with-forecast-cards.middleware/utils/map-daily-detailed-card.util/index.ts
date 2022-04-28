@@ -1,9 +1,8 @@
 import take from 'ramda/src/take';
 
-import { DailyDetailed, LocationData } from 'common/types';
+import { DailyDetailed } from 'common/types';
 
 import {
-  formatUtcString,
   isUtcStringNight,
   convertWindDegreeToAzimuth,
   calculateOppositeAngle,
@@ -11,8 +10,7 @@ import {
 import { ForecastFeed } from 'server/types';
 
 export const mapDailyDetailedCard = (
-  forecastFeed: ForecastFeed,
-  locationData: LocationData | null
+  forecastFeed: ForecastFeed
 ): DailyDetailed => {
   const now = new Date().toISOString();
 
@@ -56,7 +54,6 @@ export const mapDailyDetailedCard = (
         precipitationLevel,
         precipitationChance,
         stateText: night ? stateNightText || stateText : stateText,
-        date: formatUtcString(dateTime, 'MMM d', locationData?.timeZone),
         windAzimuth: convertWindDegreeToAzimuth(degree),
         windDirectionAngle: calculateOppositeAngle(degree),
       };

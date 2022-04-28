@@ -1,3 +1,5 @@
+import { TimeFormat } from 'client/types/time-format.type';
+
 import {
   DistanceUnit,
   PrecipitationUnit,
@@ -12,6 +14,7 @@ export type Settings = {
   pressure: PressureUnit;
   temperature: TemperatureUnit;
   windSpeed: SpeedUnit;
+  timeFormat: TimeFormat;
 };
 
 export default Settings;

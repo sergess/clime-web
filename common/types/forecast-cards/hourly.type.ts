@@ -7,7 +7,6 @@ export type Hourly = Array<{
   night: boolean;
   stateId: WeatherStateId | null;
   temperature: number | null;
-  time: string;
 }>;
 
 export default Hourly;

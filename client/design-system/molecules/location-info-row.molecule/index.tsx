@@ -1,4 +1,4 @@
-import { ReactElement, memo, useMemo, useState, useEffect } from 'react';
+import React, { ReactElement, memo, useMemo, useState, useEffect } from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
@@ -9,6 +9,8 @@ import {
   EXACT_LATITUDE_COOKIE,
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
+
+import { ClientOnly } from 'client/design-system/atoms';
 
 import { LocationInfoRowProps } from './types';
 import { getFullLocationName } from './utils';
@@ -81,7 +83,7 @@ export const LocationInfoRow = memo(
         </Flex>
         {heading}
         <Text color="gray.500" textStyle="16-medium">
-          {date}
+          <ClientOnly>{date}</ClientOnly>
         </Text>
       </Flex>
     );

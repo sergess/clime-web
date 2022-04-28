@@ -6,6 +6,7 @@ import {
   pressureUnitAtom,
   temperatureUnitAtom,
   windSpeedUnitAtom,
+  timeFormatAtom,
 } from 'client/state/atoms';
 
 import { Settings } from 'client/types';
@@ -18,10 +19,17 @@ export const settingsAtom = atom(
       pressure: get(pressureUnitAtom),
       temperature: get(temperatureUnitAtom),
       windSpeed: get(windSpeedUnitAtom),
+      timeFormat: get(timeFormatAtom),
     } as Settings),
   (get, set, updatedSettings: Partial<Settings>) => {
-    const { distance, precipitation, pressure, temperature, windSpeed } =
-      updatedSettings;
+    const {
+      distance,
+      precipitation,
+      pressure,
+      temperature,
+      windSpeed,
+      timeFormat,
+    } = updatedSettings;
 
     if (distance) {
       set(distanceUnitAtom, distance);
@@ -41,6 +49,10 @@ export const settingsAtom = atom(
 
     if (windSpeed) {
       set(windSpeedUnitAtom, windSpeed);
+    }
+
+    if (timeFormat) {
+      set(timeFormatAtom, timeFormat);
     }
   }
 );

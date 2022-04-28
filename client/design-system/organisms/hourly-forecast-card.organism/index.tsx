@@ -1,4 +1,4 @@
-import { ReactElement, memo, useCallback } from 'react';
+import React, { ReactElement, memo, useCallback } from 'react';
 import { Button, Text, ComponentDefaultProps, Box } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
@@ -42,8 +42,10 @@ export const HourlyForecastCard = memo(
                 textStyle={selected ? '12-bold' : '12-semi-bold'}
                 color={selected ? 'blue.500' : 'blue.800'}
               >
-                {index === 0 && t('Now')}
-                {index !== 0 && item.time}
+                <ClientOnly>
+                  {index === 0 && t('Now')}
+                  {index !== 0 && item.time}
+                </ClientOnly>
               </Text>
             }
             main={

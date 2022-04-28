@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /news
 
 Sitemap: https://climeradar.com/sitemaps/sitemap.xml
