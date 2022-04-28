@@ -1,3 +1,10 @@
+## [1.3.2](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.1...v1.3.2) (2022-04-28)
+
+
+### Bug Fixes
+
+* **radar:** [CLW-315] set playing interval to 750ms instead of 1000ms ([35ac55f](https://git.herewetest.com/apalon-web/clime-web/commit/35ac55faf3b6486bca15e1b3fb25a21cedccdb2d))
+
 ## [1.3.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.0...v1.3.1) (2022-04-28)
 
 
