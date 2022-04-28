@@ -64,7 +64,7 @@ export const Radar = (): ReactElement | null => {
       setCurrentFrameIndex(onNextFrameIndexChange);
       setActiveFrameIndex(onNextFrameIndexChange);
     },
-    playing && !!layer ? 1000 : null
+    playing && !!layer ? 750 : null
   );
 
   if (!layer) return null;
