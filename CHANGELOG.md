@@ -1,3 +1,10 @@
+## [1.3.4](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.3...v1.3.4) (2022-04-29)
+
+
+### Bug Fixes
+
+* **gtm event:** [CLW-307] fixed event Clime pop-up viewed ([18b0eb3](https://git.herewetest.com/apalon-web/clime-web/commit/18b0eb37177a43878adc6d0cb0b47f6884d7edc7))
+
 ## [1.3.3](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.2...v1.3.3) (2022-04-29)
 
 
