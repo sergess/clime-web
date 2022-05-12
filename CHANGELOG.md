@@ -1,3 +1,10 @@
+## [1.3.5](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.4...v1.3.5) (2022-05-12)
+
+
+### Bug Fixes
+
+* [CLW-317] add additional check if hour condition exists before taking it ([6cc49ba](https://git.herewetest.com/apalon-web/clime-web/commit/6cc49baf43249ef41e3212c20da6ae2b400a981c))
+
 ## [1.3.4](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.3...v1.3.4) (2022-04-29)
 
 
