@@ -55,7 +55,7 @@ export const Radar = (): ReactElement => {
 
   useEffect(() => {
     map?.invalidateSize();
-    map?.on('drag', () => trackEvent(MAP_SWIPE));
+    map?.on('dragstart', () => trackEvent(MAP_SWIPE));
   }, [map, mapFullscreenOn]);
 
   useEffect(
