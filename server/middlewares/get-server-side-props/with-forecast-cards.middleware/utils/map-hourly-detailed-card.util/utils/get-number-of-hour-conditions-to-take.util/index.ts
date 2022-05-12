@@ -10,7 +10,10 @@ export const getNumberOfHourConditionsToTake = (
   let numberOfWeatherStateConditions = 0;
   let numberOfHourConditions = 0;
 
-  while (numberOfWeatherStateConditions < NUMBER_OF_FORECAST_HOURS) {
+  while (
+    numberOfWeatherStateConditions < NUMBER_OF_FORECAST_HOURS &&
+    !!hourConditions[numberOfHourConditions]
+  ) {
     if (hourConditions[numberOfHourConditions].variant === WEATHER_STATE) {
       numberOfWeatherStateConditions += 1;
     }
