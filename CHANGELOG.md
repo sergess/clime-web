@@ -1,3 +1,10 @@
+# [1.4.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.5...v1.4.0) (2022-05-16)
+
+
+### Features
+
+* **map swipe:** [CLW-321] fixed map swipe event ([4ce52b7](https://git.herewetest.com/apalon-web/clime-web/commit/4ce52b7f74f9154cd8ee0a4be8ac35d6351dd78c))
+
 ## [1.3.5](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.4...v1.3.5) (2022-05-12)
 
 
