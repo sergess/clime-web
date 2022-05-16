@@ -22,11 +22,6 @@ export class Geocode extends ApiV3Service {
     language,
   }: LocationDataByCoordinatesArguments): Promise<LocationData | null> {
     if (!isLocationValid(location) || !isString(language)) {
-      console.error(
-        `[Geocode.getLocationDataByCoordinates]: location is not valid`,
-        { location, language }
-      );
-
       return null;
     }
 
