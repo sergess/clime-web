@@ -23,7 +23,7 @@ import {
   REDIRECT_POPUP_ANDROID_STORE_LINK,
   REDIRECT_POPUP_IOS_STORE_LINK,
 } from 'client/constants';
-import { redirectToAppPopupOpened } from '../state/atoms';
+import { redirectToAppPopupOpened } from '../state/derivatives';
 
 export const RedirectToAppPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');

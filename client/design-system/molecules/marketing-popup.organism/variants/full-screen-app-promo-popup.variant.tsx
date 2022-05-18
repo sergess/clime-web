@@ -24,7 +24,7 @@ import {
   FULL_SCREEN_POPUP_ANDROID_STORE_LINK,
   FULL_SCREEN_POPUP_IOS_STORE_LINK,
 } from 'client/constants';
-import { redirectToAppPopupOpened } from '../state/atoms';
+import { redirectToAppPopupOpened } from '../state/derivatives';
 
 export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');

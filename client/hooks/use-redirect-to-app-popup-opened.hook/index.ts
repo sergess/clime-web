@@ -2,7 +2,7 @@ import { useAtomValue } from 'jotai/utils';
 import { isDesktop as desktop } from 'react-device-detect';
 
 import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
-import { redirectToAppPopupOpened } from 'client/design-system/molecules/marketing-popup.organism/state/atoms';
+import { redirectToAppPopupOpened } from 'client/design-system/molecules/marketing-popup.organism/state/derivatives';
 
 export const useRedirectToAppPopupOpened = (): boolean => {
   const popupOpened = useAtomValue(redirectToAppPopupOpened);
