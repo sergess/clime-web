@@ -1,3 +1,10 @@
+## [1.5.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.0...v1.5.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* [CLW-325] add check for polar day while checking for night conditions ([4d4f36f](https://git.herewetest.com/apalon-web/clime-web/commit/4d4f36ff14b5af20fc3b7d5ea5ba08c982a412cb))
+
 # [1.5.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.4.0...v1.5.0) (2022-05-16)
 
 # [1.4.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.3.5...v1.4.0) (2022-05-16)
