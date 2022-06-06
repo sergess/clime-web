@@ -7,6 +7,7 @@ import { useCenterPoint } from 'client/design-system/organisms/radar.organism/ho
 const pinIcon = new Icon({
   iconUrl: '/icons/pin-map.svg',
   iconSize: new Point(40, 40),
+  iconAnchor: new Point(20, 40),
 });
 
 export const Pin = (): ReactElement => {
