@@ -1,3 +1,15 @@
+# [1.6.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.2...v1.6.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* [CLW-322] show redirect to app popup once every 12 o'clock ([5bf623c](https://git.herewetest.com/apalon-web/clime-web/commit/5bf623c51e6928e37aba7a54c7adb0dddf4b0f5c))
+
+
+### Features
+
+* [CLW-322] show redirect to app popup once a day ([e194268](https://git.herewetest.com/apalon-web/clime-web/commit/e194268bbd6732f80da53da78c7e8c7aa65fc625))
+
 ## [1.5.2](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.1...v1.5.2) (2022-06-06)
 
 
