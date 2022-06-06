@@ -1,1 +1,1 @@
-export * from './redirect-to-app-popup-opened.atom';
+export * from './last-time-popup-opened.atom';
