@@ -1,3 +1,10 @@
+## [1.5.2](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.1...v1.5.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* **radar:** [CLW-323] add anchor point to pin marker ([af37ecf](https://git.herewetest.com/apalon-web/clime-web/commit/af37ecfb4b028686997d1091965fae064b8b1d3e))
+
 ## [1.5.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.0...v1.5.1) (2022-06-03)
 
 
