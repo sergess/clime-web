@@ -1,3 +1,10 @@
+# [1.7.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.6.0...v1.7.0) (2022-06-10)
+
+
+### Features
+
+* **full screen banner:** [CLW-326] Apply Full Screen Banner by default ([daa4ad9](https://git.herewetest.com/apalon-web/clime-web/commit/daa4ad9d90e79bf84fba6c977d64e4bbcb77e43d))
+
 # [1.6.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.5.2...v1.6.0) (2022-06-06)
 
 
