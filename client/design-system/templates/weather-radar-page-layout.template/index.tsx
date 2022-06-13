@@ -9,6 +9,7 @@ import {
   Footer,
   Header,
   AdvertisingBanner,
+  Breadcrumbs,
 } from 'client/design-system/organisms';
 
 import {
@@ -22,6 +23,7 @@ import { mapFullscreenOnAtom } from 'client/state/atoms';
 
 export const WeatherRadarPageLayout: React.FC = ({
   children,
+  breadcrumbs,
 }: ComponentDefaultProps): ReactElement => {
   const mapFullscreenOn = useAtomValue(mapFullscreenOnAtom);
 
@@ -94,6 +96,9 @@ export const WeatherRadarPageLayout: React.FC = ({
           </Flex>
         </Flex>
       </Box>
+
+      <Breadcrumbs items={breadcrumbs} />
+
       <Footer />
     </>
   );

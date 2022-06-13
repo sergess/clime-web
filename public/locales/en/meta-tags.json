@@ -10,5 +10,11 @@
   "{{locationName}} - Weather Radar | Clime": "{{locationName}} - Weather Radar | Clime",
   "View the local weather radar map to see detected precipitation for {{locationName}}.": "View the local weather radar map to see detected precipitation for {{locationName}}.",
   "Weather Radar App | Clime": "Weather Radar App | Clime",
-  "Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app.": "Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app."
+  "Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app.": "Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app.",
+  "Check Current Weather in Your Location | Clime": "Check Current Weather in Your Location | Clime",
+  "Get weather for today at your location and a local weather forecast for 10 days. Radar map with detected precip. Hourly weather in your area for 48 hours.": "Get weather for today at your location and a local weather forecast for 10 days. Radar map with detected precip. Hourly weather in your area for 48 hours.",
+  "Check Current Weather in {{locationName}} | Clime": "Check Current Weather in {{locationName}} | Clime",
+  "See the 10-day weather forecast in your region with hourly weather for 48 hours. Temperature outside, chance of rain, radar map with detected precip, and more.": "See the 10-day weather forecast in your region with hourly weather for 48 hours. Temperature outside, chance of rain, radar map with detected precip, and more.",
+  "Plan ahead with precise 10-day weather and 2-day hourly weather forecasts by country. Radar map with detected precip, temp outside, wind forecast, and more.": "Plan ahead with precise 10-day weather and 2-day hourly weather forecasts by country. Radar map with detected precip, temp outside, wind forecast, and more.",
+  "View weather by state and region. See 10-day forecast and radar map with detected precip for your city. Hourly weather forecast for 2 days and temp outside.": "View weather by state and region. See 10-day forecast and radar map with detected precip for your city. Hourly weather forecast for 2 days and temp outside."
 }

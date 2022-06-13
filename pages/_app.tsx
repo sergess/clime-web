@@ -28,7 +28,7 @@ const App = ({
   const direction = detectLanguageDirection(locale);
   const theme = extendTheme(climeTheme, { direction });
 
-  const getLayout = Component.getLayout ?? App.getDefaultLayout;
+  const Layout = Component.Layout ?? App.DefaultLayout;
 
   const showAdvertisements = appConfig?.showAdvertisements;
 
@@ -61,7 +61,9 @@ const App = ({
         <LocationDataProvider value={locationData}>
           <ChakraProvider theme={theme}>
             <SWRConfig value={{ fetcher }}>
-              {getLayout(<Component {...restPageProps} />)}
+              <Layout {...restPageProps}>
+                <Component {...restPageProps} />
+              </Layout>
 
               <MarketingPopup />
             </SWRConfig>
@@ -72,8 +74,6 @@ const App = ({
   );
 };
 
-App.getDefaultLayout = function getDefaultLayout(page: ReactElement) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};
+App.DefaultLayout = DefaultLayout;
 
 export default appWithTranslation(App);

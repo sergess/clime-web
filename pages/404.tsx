@@ -46,9 +46,7 @@ const NotFoundPage = (): ReactElement => {
 
 export default NotFoundPage;
 
-NotFoundPage.getLayout = function getLayout(page: ReactElement) {
-  return <ErrorPageLayout>{page}</ErrorPageLayout>;
-};
+NotFoundPage.Layout = ErrorPageLayout;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {

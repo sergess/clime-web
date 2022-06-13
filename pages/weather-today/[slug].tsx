@@ -28,6 +28,7 @@ import {
   mapHourlyCard,
   mapSummaryCard,
   mapDailyCard,
+  withBreadcrumbs,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
 
@@ -144,11 +145,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const breadcrumbs = await withBreadcrumbs(context, locationData);
+
   return {
     props: {
       locationData,
       forecastCards,
       appConfig,
+      breadcrumbs,
       ...translations,
     },
   };

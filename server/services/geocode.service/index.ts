@@ -6,10 +6,12 @@ import { isLocationValid, isString } from 'common/utils';
 import ApiV3Service from 'server/services/api-v3.service';
 
 import {
-  LocationDataBySlugArguments,
+  SlugLanguageArguments,
   LocationDataByCoordinatesArguments,
   AutocompleteArguments,
   SearchArguments,
+  LocationParents,
+  LocationTree,
 } from './types';
 
 /**
@@ -49,7 +51,7 @@ export class Geocode extends ApiV3Service {
   public async getLocationDataBySlug({
     slug,
     language,
-  }: LocationDataBySlugArguments): Promise<LocationData | null> {
+  }: SlugLanguageArguments): Promise<LocationData | null> {
     if (!isString(slug) || !isString(language)) {
       console.error(`[Geocode.getLocationDataBySlug]: slug is missing`, {
         slug,
@@ -131,6 +133,46 @@ export class Geocode extends ApiV3Service {
     }
 
     return locationData;
+  }
+
+  public async getLocationTree({
+    slug,
+    language,
+  }: SlugLanguageArguments): Promise<LocationTree | null> {
+    if (!isString(slug) || !isString(language)) {
+      console.error(`[Geocode.getLocationTree]: slug is missing`, {
+        slug,
+        language,
+      });
+
+      return null;
+    }
+
+    const { data } = await this.callAsync<LocationTree>(
+      `/geocode/children/${language}${slug ? `/${slug}` : ''}`
+    );
+
+    return data;
+  }
+
+  public async getLocationParentsBySlug({
+    slug,
+    language,
+  }: SlugLanguageArguments): Promise<LocationParents | null> {
+    if (!isString(slug) || !isString(language)) {
+      console.error(`[Geocode.getLocationParentsBySlug]: slug is missing`, {
+        slug,
+        language,
+      });
+
+      return null;
+    }
+
+    const { data } = await this.callAsync<LocationParents>(
+      `/geocode/parent/${language}/${slug}`
+    );
+
+    return data;
   }
 }
 

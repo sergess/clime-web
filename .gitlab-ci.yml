@@ -55,7 +55,7 @@ build-dev:
   extends: .build
   environment: dev
   only:
-    - develop
+    - CLW-300
 
 build-staging:
   extends: .build
@@ -83,7 +83,7 @@ deploy-to-gar-dev:
   extends: .deploy-to-gar
   environment: dev
   only:
-    - develop
+    - CLW-300
 
 deploy-to-gar-staging:
   extends: .deploy-to-gar
@@ -133,7 +133,7 @@ deploy-to-cloudrun-dev:
     SlackWebhook: 'https://hooks.slack.com/services/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' #clime-web-builds
     CF_Host: 'web-dev-fcd80c.climeradar.com'
   only:
-    - develop
+    - CLW-300
 
 deploy-to-cloudrun-staging:
   extends: .deploy-to-cloudrun

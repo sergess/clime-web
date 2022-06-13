@@ -50,9 +50,7 @@ const InternalServerErrorPage = (): ReactElement => {
 
 export default InternalServerErrorPage;
 
-InternalServerErrorPage.getLayout = function getLayout(page: ReactElement) {
-  return <ErrorPageLayout>{page}</ErrorPageLayout>;
-};
+InternalServerErrorPage.Layout = ErrorPageLayout;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
