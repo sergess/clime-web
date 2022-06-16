@@ -28,6 +28,9 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
         ? [null, last(breadcrumbs)]
         : takeLast(2, breadcrumbs);
 
+    const locationName = currentLocation?.name ?? '';
+    const radar = currentLocation?.radar ?? false;
+
     return (
       <>
         <Head>
@@ -39,14 +42,14 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
               <meta
                 name="description"
                 content={t(
-                  'Get weather for today at your location and a local weather forecast for 10 days. Radar map with detected precip. Hourly weather in your area for 48 hours.'
+                  'Get weather for today at your location and a local weather forecast for 10 days. Hourly weather in your area for 48 hours, current temp and chance of rain.'
                 )}
               />
             </>
           ) : (
             <title>
               {t('Check Current Weather in {{locationName}} | Clime', {
-                locationName: currentLocation?.name,
+                locationName,
               })}
             </title>
           )}
@@ -55,7 +58,10 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
             <meta
               name="description"
               content={t(
-                'See the 10-day weather forecast in your region with hourly weather for 48 hours. Temperature outside, chance of rain, radar map with detected precip, and more.'
+                radar
+                  ? 'See the 10-day weather forecast in {{locationName}} with hourly weather for 48 hours. Temperature outside, chance of rain, radar map with detected precip, and more.'
+                  : 'See the 10-day weather forecast in {{locationName}} with hourly weather for 48 hours. Temperature outside, chance of rain, wind direction and speed, and more.',
+                { locationName }
               )}
             />
           )}
@@ -64,7 +70,10 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
             <meta
               name="description"
               content={t(
-                'Plan ahead with precise 10-day weather and 2-day hourly weather forecasts by country. Radar map with detected precip, temp outside, wind forecast, and more.'
+                radar
+                  ? 'Plan ahead with precise 10-day weather and 2-day hourly weather forecasts in {{locationName}}. Radar map with detected precip, temp outside, wind forecast, and more.'
+                  : 'Plan ahead with precise 10-day weather and 2-day hourly weather forecasts in {{locationName}}. Temp outside, wind forecast, UV index, sunrise and sunset time, and more.',
+                { locationName }
               )}
             />
           )}
@@ -73,7 +82,10 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
             <meta
               name="description"
               content={t(
-                'View weather by state and region. See 10-day forecast and radar map with detected precip for your city. Hourly weather forecast for 2 days and temp outside.'
+                radar
+                  ? 'View weather by state and region. See 10-day forecast and radar map with detected precip for {{locationName}}. Hourly weather forecast for 2 days and temp outside.'
+                  : 'View weather by state and region. See 10-day forecast for {{locationName}}. Hourly weather forecast for 2 days, current temperature, wind forecast, and more.',
+                { locationName }
               )}
             />
           )}

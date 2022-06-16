@@ -25,6 +25,7 @@ export const withBreadcrumbs = async (
         name: locationData.city as string,
         type: 'city',
         url: `/${locationData.slug}`,
+        radar: false,
       })
     : null;
 };
