@@ -105,7 +105,8 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
                     src="/icons/arrow-50.svg"
                     width={20}
                     height={20}
-                    alt=""
+                    layout="fixed"
+                    alt={previousLocation.name}
                   />
                 </Flex>
 
