@@ -5,7 +5,7 @@ const Breadcrumb = {
         color: 'gray.500',
         fontSize: '0.875rem',
         fontWeight: 500,
-        lineHeight: '0.875rem',
+        lineHeight: '1rem',
       },
       item: {
         flex: 'none',
