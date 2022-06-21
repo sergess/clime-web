@@ -1,3 +1,16 @@
+# [1.8.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.7.0...v1.8.0) (2022-06-21)
+
+
+### Bug Fixes
+
+* **breadcrumbs:** [CLW-329] increase line height for breadcrumbs ([a981605](https://git.herewetest.com/apalon-web/clime-web/commit/a9816055e693b5479eb46e673221b3157338d45e))
+* **breadcrumbs:** [CLW-330] fix back arrow size in locations' sub navi ([8133b54](https://git.herewetest.com/apalon-web/clime-web/commit/8133b54a42028c55ec358a646d76b7d77afc263b))
+
+
+### Features
+
+* **breadcrumbs:** add breadcrumbs and /locations page ([55b0dfb](https://git.herewetest.com/apalon-web/clime-web/commit/55b0dfb2712892ac761591fda5b4f954a85ae386))
+
 # [1.7.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.6.0...v1.7.0) (2022-06-10)
 
 
