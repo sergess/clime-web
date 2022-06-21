@@ -9,7 +9,12 @@ import {
 import dynamic from 'next/dynamic';
 
 import climeTheme from 'client/theme';
-import { AdsenseBanner, Footer, Header } from 'client/design-system/organisms';
+import {
+  AdsenseBanner,
+  Footer,
+  Header,
+  Breadcrumbs,
+} from 'client/design-system/organisms';
 import { TopNavigationBar } from 'client/design-system/molecules';
 
 import { CLIENT_ID, LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
@@ -23,6 +28,7 @@ const AdvertisingBanner = dynamic(
 
 export const DefaultLayout: FC = ({
   children,
+  breadcrumbs,
 }: ComponentDefaultProps): ReactElement => (
   <>
     <Box flex="1 0 auto">
@@ -84,6 +90,9 @@ export const DefaultLayout: FC = ({
         </Flex>
       </Flex>
     </Box>
+
+    <Breadcrumbs items={breadcrumbs} />
+
     <Footer />
   </>
 );

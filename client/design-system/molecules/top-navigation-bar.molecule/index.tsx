@@ -75,7 +75,6 @@ export const TopNavigationBar = (
 
   const climeAppLink = useClimeAppLink();
 
-  // [todo] add i18n git navigation labels
   const navigationOptions = useMemo<NavigationOption[]>(
     () => [
       {

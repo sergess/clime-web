@@ -14,3 +14,6 @@ export * from './forecast-cards';
 export * from './radar-layers';
 export * from './foreca-pid.type';
 export * from './radar-config.type';
+export * from './location-child.type';
+export * from './location-parent.type';
+export * from './location-type.type';

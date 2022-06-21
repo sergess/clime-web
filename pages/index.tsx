@@ -37,6 +37,7 @@ import {
   withForecastCards,
   withLocationData,
   withTranslations,
+  withBreadcrumbs,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
 import { Heading } from '@chakra-ui/react';
@@ -184,11 +185,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const breadcrumbs = await withBreadcrumbs(context, locationData);
+
   return {
     props: {
       locationData,
       forecastCards,
       appConfig,
+      breadcrumbs,
       ...translations,
     },
   };

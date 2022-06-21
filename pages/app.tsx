@@ -150,9 +150,7 @@ const AppPage = (): ReactElement => {
 
 export default AppPage;
 
-AppPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppPageLayout>{page}</AppPageLayout>;
-};
+AppPage.Layout = AppPageLayout;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {

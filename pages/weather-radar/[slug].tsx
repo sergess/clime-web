@@ -14,6 +14,7 @@ import { WeatherRadarPageLayout } from 'client/design-system/templates';
 import {
   withLocationData,
   withTranslations,
+  withBreadcrumbs,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
 import { PromoBanner } from 'client/design-system/organisms';
@@ -61,9 +62,7 @@ const WeatherRadar = (): ReactElement => {
   );
 };
 
-WeatherRadar.getLayout = function getLayout(page: ReactElement) {
-  return <WeatherRadarPageLayout>{page}</WeatherRadarPageLayout>;
-};
+WeatherRadar.Layout = WeatherRadarPageLayout;
 
 export default WeatherRadar;
 
@@ -81,10 +80,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const breadcrumbs = await withBreadcrumbs(context, locationData);
+
   return {
     props: {
       locationData,
       appConfig,
+      breadcrumbs,
       ...translations,
     },
   };
