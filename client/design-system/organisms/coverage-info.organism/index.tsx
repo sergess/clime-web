@@ -14,9 +14,9 @@ import { useTranslation } from 'next-i18next';
 
 import { Card } from 'client/design-system/atoms';
 
-export const CoverageInfo: FC<ComponentDefaultProps> = ({
-  ...componentStyles
-}): ReactElement => {
+export const CoverageInfo: FC<ComponentDefaultProps> = (
+  componentStyles
+): ReactElement => {
   const { t } = useTranslation('coverage-info');
 
   const { isOpen: infoOpened, onToggle: onInfoOpenedToggle } = useDisclosure();
