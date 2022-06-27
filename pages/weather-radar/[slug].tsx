@@ -17,7 +17,7 @@ import {
   withBreadcrumbs,
 } from 'server/middlewares/get-server-side-props';
 import { RemoteConfig } from 'server/services/remote-config.service';
-import { PromoBanner } from 'client/design-system/organisms';
+import { PromoBanner, CoverageInfo } from 'client/design-system/organisms';
 import { mapFullscreenOnAtom } from 'client/state/atoms';
 import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
 
@@ -51,11 +51,15 @@ const WeatherRadar = (): ReactElement => {
         />
       </Head>
       <Radar />
+      <CoverageInfo
+        my={5}
+        mx={mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
+      />
       <PromoBanner
         mx={mapFullscreenOn ? LAYOUT_HORIZONTAL_PADDING : '0'}
         spotId="radarOne"
         className="banner__radar-one"
-        my={5}
+        mb={5}
         display={{ base: 'block', md: 'none' }}
       />
     </>
@@ -70,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const remoteConfig = new RemoteConfig();
   const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
-    withTranslations('meta-tags', 'radar')(context),
+    withTranslations('meta-tags', 'radar', 'coverage-info')(context),
     remoteConfig.getAppConfig(),
   ]);
 
