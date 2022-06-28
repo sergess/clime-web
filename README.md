@@ -1,37 +1,117 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Key technologies
+
+Before proceeding, make sure you have at least basic knowledge of the following technologies:
+  - [Typescript](https://www.typescriptlang.org/docs/);
+  - [React](https://reactjs.org/docs/getting-started.html);
+  - [Next.js](https://nextjs.org/docs).
+
+If not, please have a look at docs first.
 
 ## Getting Started
 
-First, run the development server:
+*Notice: **yarn** will be used in all examples, but you can use any package manager you like*
+
+First, set up pre-commit hooks by running:
 
 ```bash
-npm run dev
-# or
+yarn prepare
+```
+
+Then you'll need to create `.env` file in the root of the project and fill it in.
+You can ask guys from development or devops team to provide you with environment variables.
+
+After that you're ready to install project's dependencies:
+
+```bash
+yarn install
+```
+
+Finally, run the development server:
+
+```bash
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Now you can start editing pages and they'll be auto-updated after editing.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+If you need to create production build, run:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn build
+```
 
-## Learn More
+To run it, simply execute:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To check bundle size you can execute the following command:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+yarn analyze-bundle-size
+```
 
-## Deploy on Vercel
+## Project's structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js is an isomorphic framework for developing server-side applications.
+It runs both on client and server and sometimes it might be hard to distinguish where is client or server code.
+It could lead for example to exposing of server code to the client bundle.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To avoid this we decided to split the code on 3 parts: `client`, `common` and `server`.
+As the name implies, the client code is located in the `client` folder, server code is in `server` and `common` folder is for reusable code which could be exposed to client, but also is used on server-side.
+
+The main idea here is to visually separate server code and prevent it from importing in `common` or `client` parts of the application.
+
+All other parts of the application are pretty standard for every Next.js application. I mean `pages` and `pages/api` conventions. More info could be found in [Next.js Documentation](https://nextjs.org/docs)
+
+### Server
+
+Except for page rendering, our server has a few other primary purposes:
+  - hiding secret keys;
+  - proxying requests to different APIs.
+
+In most cases it's working in a pretty straightforward way. It receives a page request or api request and it tries to proxy it further, get result, prepare 
+the data and return either a rendered page or an api response.
+
+Most commonly used pieces of code are combined together as `middlewares` in purpose of re-usability in future. They could be used across different pages or api handlers. You can find them under `server/middlewares` folder.
+
+All proxy services are located in `server/services` folder. Typically, it's just a class with methods pointing to the certain 3-rd party API endpoints, which should request necessary data and prepare it.
+
+The most interesting is ApiV3 service. It's a base service for contacting weatherlive API v3. It contains all the logic for parcing user-agent, generating signatures and adding it as headers.
+To start using some of the API v3 services you need just to create a new service, extend ApiV3 and make a call using `callAsync` function.
+
+### Common
+
+Typically, `common` folder contains pieces of the code shared between client and server parts of the application.
+Such as constants, types and utils.
+
+### Client
+
+The application's design system is built on top of [atomic design](https://bradfrost.com/blog/post/atomic-web-design/) methodology.
+It fits nicely into the concept of Next.js applications.
+The main building blocks are atoms, using them we can create molecules and organisms. Different reusable layouts could be set up as templates. Finally, in pages we compose all these parts together.
+
+[Chakra UI](https://chakra-ui.com/getting-started) is the main components library.
+The application's theme customization is taking place in `client/theme`.
+Detailed guide on how to customize and grow the application could be found [here](https://chakra-ui.com/docs/styled-system/customize-theme).
+
+For client state management purposes [jotai](https://jotai.org/docs/introduction) and react context API are used.
+
+For server caching state we use [swr](https://swr.vercel.app/docs/getting-started).
+
+## Tests
+
+[jest](https://jestjs.io/docs/getting-started) config and mocks could be found in the root of the project.
+Test files are usually located in `__tests__` folders near the module which should be tested.
+
+To run tests simply execute:
+
+```bash
+yarn test
+```
 
 ## i18n
 
@@ -63,7 +143,38 @@ const YourComponent = {
 
 Full documantation on color modes you can find [here](https://chakra-ui.com/docs/features/color-mode).
 
-## Commit messages
+## Source-control branching model
 
-[Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) spec is used to write commit messages.
-Example of a typical commit message: `type(optional_scope): [ticket_number] description`
+[Trunk-based development model](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development) is used.
+Trunk branch is `master`.
+
+## Deploy
+
+Each pull request merged to `master` triggers a new build. If a build is assembled successfully, it would be deployed on stage environment.
+Deploy to production should be made manually through gitlab interface.
+
+More info regarding CI/CD settings could be found in `.gitlab-ci.yml` or you can ask devops team about it.
+
+Each environment (staging, production, etc) has it's own `.env` file.
+
+## Cache
+
+Cloudflare is used as caching layer in front of the server.
+
+We use standard `Cache-Control` headers to allow caching.
+
+Current config for the majority of static files could be found in `next.config.js`.
+Dynamic pages aren't cached usually, in some cases they could be cached by setting `Cache-Control` directly in page's code.
+
+After each deploy cloudflare's cache is purged.
+
+## Releases
+
+To automate release workflow we use [semantic-release](https://github.com/semantic-release/semantic-release) package.
+It'll parse and analyze each commit message, automatically generate changelogs, update git tags, etc.
+
+You need to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) spec to give `semantic-release` an oportunity to analyze commit messages' meaninigs and fill in changelog in a correct way.
+
+Conventional commit linter is attached as a pre-commit hook.
+
+Example of a conventional commit message: `type(optional_scope): [ticket_number] description`
