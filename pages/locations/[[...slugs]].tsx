@@ -169,7 +169,7 @@ const Locations: FC<{ items: LocationChild[]; breadcrumbs: LocationParent[] }> =
 export default Locations;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader('Cache-Control', 'public, max-age=10'); // 10 seconds
+  context.res.setHeader('Cache-Control', 'public, max-age=10800'); // 3 hours
 
   const { locale, defaultLocale, query } = context;
 
