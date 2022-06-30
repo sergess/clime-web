@@ -1,3 +1,5 @@
+# [1.9.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.8.0...v1.9.0) (2022-06-30)
+
 # [1.8.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.7.0...v1.8.0) (2022-06-21)
 
 
