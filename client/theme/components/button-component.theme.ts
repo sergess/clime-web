@@ -223,6 +223,15 @@ const Button = {
       borderRadius: 12,
       bg: 'white',
     },
+    'coverage-info': {
+      borderRadius: '2xl',
+      bg: 'white',
+      justifyContent: 'space-between',
+      color: 'blue.800',
+      width: 'full',
+      height: '3.5rem',
+      textStyle: '16-semi-bold',
+    },
   },
 };
 

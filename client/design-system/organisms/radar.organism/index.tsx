@@ -43,7 +43,7 @@ export const Radar = (): ReactElement => {
   const radarHeight = useMemo(
     () =>
       !mapFullscreenOn
-        ? { base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: 'full' }
+        ? { base: `calc(75vh - ${MOBILE_HEADER_HEIGHT}px)`, lg: '760px' }
         : {
             base: `calc(${height}px - ${MOBILE_HEADER_HEIGHT}px)`,
             lg: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`,
