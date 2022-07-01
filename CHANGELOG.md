@@ -1,3 +1,11 @@
+# [1.10.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.9.0...v1.10.0) (2022-07-01)
+
+
+### Features
+
+* **coverage info:** [WT-1656] coverage info card ([67a1acb](https://git.herewetest.com/apalon-web/clime-web/commit/67a1acb7341ac3a453d55154ad21b87e4eaafa41))
+* **fixed comment:** [WT-1656] fixed comment ([8eedc5d](https://git.herewetest.com/apalon-web/clime-web/commit/8eedc5dbea097e018f45e8dcb684dd9cf2ca0cc2))
+
 # [1.9.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.8.0...v1.9.0) (2022-06-30)
 
 # [1.8.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.7.0...v1.8.0) (2022-06-21)
