@@ -157,6 +157,11 @@ More info regarding CI/CD settings could be found in `.gitlab-ci.yml` or you can
 
 Each environment (staging, production, etc) has it's own `.env` file.
 
+Logs from server are collected in Cloud Run console. You can ask devops team to provide you with permissions if you need to have a look at logs.
+
+In case there are issues on server side, Next.js has it's own global error handling mechanism. So, it should catch an error and show 500 page.
+If for some reason Next.js fails to catch an error and server is crushed, supervisor in Cloud Run should restart the server.
+
 ## Cache
 
 Cloudflare is used as caching layer in front of the server.
