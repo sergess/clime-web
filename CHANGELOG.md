@@ -1,3 +1,10 @@
+## [1.10.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.10.0...v1.10.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* [WT-1690] cookie banner appearance ([571df16](https://git.herewetest.com/apalon-web/clime-web/commit/571df1645f7ff96033e76a0419b87752b689a135))
+
 # [1.10.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.9.0...v1.10.0) (2022-07-01)
 
 
