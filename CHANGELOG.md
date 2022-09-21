@@ -1,3 +1,10 @@
+# [1.11.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.10.1...v1.11.0) (2022-09-21)
+
+
+### Features
+
+* **footer urls:** [WT-1800] Clime changes because of new publisher ([2f71f4c](https://git.herewetest.com/apalon-web/clime-web/commit/2f71f4c98b8e04e623f5d54398cdc65724d422b9))
+
 ## [1.10.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.10.0...v1.10.1) (2022-07-27)
 
 
