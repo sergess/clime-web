@@ -76,7 +76,7 @@ export const Footer = (): ReactElement => {
         >
           <Box>
             <Link
-              href="https://weatherornotapps.com/eula"
+              href="https://climeradar.com/eula"
               d="inline-block"
               pe={['12', null, '10']}
               mb={['6', null, '0']}
@@ -87,7 +87,7 @@ export const Footer = (): ReactElement => {
               {t('EULA')}
             </Link>
             <Link
-              href="mailto:support@weatherornotapps.com"
+              href="mailto:support@climeradar.com"
               d="inline-block"
               pe={['12', null, '10']}
               mb={['6', null, '0']}
@@ -97,7 +97,7 @@ export const Footer = (): ReactElement => {
               {t('Support')}
             </Link>
             <Link
-              href="https://weatherornotapps.com/privacyPolicy"
+              href="https://climeradar.com/privacyPolicy"
               d="inline-block"
               pe={['12', null, '10']}
               mb={['6', null, '0']}
@@ -108,7 +108,7 @@ export const Footer = (): ReactElement => {
               {t('Privacy policy')}
             </Link>
             <Link
-              href="https://weatherornotapps.com/privacyPolicy#h"
+              href="https://climeradar.com/privacyPolicy#h"
               d="inline-block"
               pe={['12', null, '10']}
               mb={['6', null, '0']}
