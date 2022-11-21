@@ -1,3 +1,10 @@
+# [1.12.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.11.0...v1.12.0) (2022-11-21)
+
+
+### Features
+
+* **CPRA:** [WT-1871] update to CA Privacy Law (climeradar.com) ([5cca63c](https://git.herewetest.com/apalon-web/clime-web/commit/5cca63ca8ff2a4e0e52279472b465a4d9de9cda3))
+
 # [1.11.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.10.1...v1.11.0) (2022-09-21)
 
 
