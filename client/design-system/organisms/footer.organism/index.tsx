@@ -63,7 +63,7 @@ export const Footer = (): ReactElement => {
             color="white"
             opacity="0.5"
           >
-            {t('© 2022 Clime. All rights reserved.')}
+            {t('© 2022 Apalon. All rights reserved.')}
           </Box>
           <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: 2 }}>
             <Download />
@@ -76,7 +76,7 @@ export const Footer = (): ReactElement => {
         >
           <Box>
             <Link
-              href="https://climeradar.com/eula"
+              href="https://climeradar.com/terms"
               d="inline-block"
               pe={['12', null, '10']}
               mb={['6', null, '0']}
@@ -84,7 +84,7 @@ export const Footer = (): ReactElement => {
               isExternal
               rel="nofollow"
             >
-              {t('EULA')}
+              {t('Terms')}
             </Link>
             <Link
               href="mailto:support@climeradar.com"
@@ -137,9 +137,17 @@ export const Footer = (): ReactElement => {
             opacity="0.2"
           />
           <Box pt={['5', null, '10']} color="white" opacity="0.5">
-            {t(
-              'All trademarks and brand names belong to their respective owners. Use of third party trademarks does not represent endorsement.'
-            )}
+            Clime is part of the Apalon family of brands. See more at{' '}
+            <Link
+              href="https://apalon.com/"
+              textDecoration="underline"
+              isExternal
+              color="white"
+            >
+              Apalon.com
+            </Link>
+            . All trademarks and brand names belong to their respective owners.
+            Use of third party trademarks does not represent endorsement.
           </Box>
         </Box>
       </Container>
