@@ -63,7 +63,7 @@ export const Footer = (): ReactElement => {
             color="white"
             opacity="0.5"
           >
-            {t('© 2022 Apalon. All rights reserved.')}
+            {t('© 2023 Apalon. All rights reserved.')}
           </Box>
           <Box order={{ base: 2, md: 3 }} mt={{ base: '-6px', md: 2 }}>
             <Download />
