@@ -1,3 +1,12 @@
+## [1.12.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.0...v1.12.1) (2023-01-16)
+
+
+### Bug Fixes
+
+* **node:** up node ver ([be84578](https://git.herewetest.com/apalon-web/clime-web/commit/be845783da6aebc8dbc87e78f7fb2e540b488ff8))
+* **year:** updated a year in copyright ([c493c56](https://git.herewetest.com/apalon-web/clime-web/commit/c493c5662e634dc0df5ac536fee6f76458bf2355))
+* **year:** updated a year in copyright ([e481809](https://git.herewetest.com/apalon-web/clime-web/commit/e48180904260f5cbc4c3271927a902f46fc82ae9))
+
 # [1.12.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.11.0...v1.12.0) (2022-11-21)
 
 
