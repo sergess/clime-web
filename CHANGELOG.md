@@ -1,3 +1,10 @@
+## [1.12.3](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.2...v1.12.3) (2023-02-21)
+
+
+### Bug Fixes
+
+* **tile url:** set target param for middleware ([6a06f35](https://git.herewetest.com/apalon-web/clime-web/commit/6a06f358ebe48e740576715a30ecca43df7996ae))
+
 ## [1.12.2](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.1...v1.12.2) (2023-02-21)
 
 
