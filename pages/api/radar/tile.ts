@@ -10,10 +10,11 @@ const TWO_HOURS = 2 * 60 * 60;
 
 export const tileHandler = createProxyMiddleware({
   logLevel: process.env.NODE_ENV === 'production' ? 'silent' : 'warn',
-  target:
+  target: `${
     process.env.NODE_ENV === 'production'
-      ? process.env.API_BASE_URL
-      : 'https://api-new.weatherlive.info',
+      ? 'https://api.weatherlive.info'
+      : 'https://api-new.weatherlive.info'
+  }`,
   headers: {
     Connection: 'keep-alive',
   },
