@@ -1,3 +1,10 @@
+## [1.12.5](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.4...v1.12.5) (2023-02-21)
+
+
+### Bug Fixes
+
+* **tile url:** was added test envmode ([9af269c](https://git.herewetest.com/apalon-web/clime-web/commit/9af269c9fcd80c62a13346232b62536d706927cd))
+
 ## [1.12.4](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.3...v1.12.4) (2023-02-21)
 
 
