@@ -6,23 +6,17 @@ import {
   generateSignature,
 } from 'server/services/api-v3.service/utils';
 
-const TWO_HOURS = process.env.NODE_ENV === 'production' ? 2 * 60 * 60 : 0;
+const TWO_HOURS = 0; // 2 * 60 * 60
 
 export const tileHandler = createProxyMiddleware({
   logLevel: process.env.NODE_ENV === 'production' ? 'silent' : 'warn',
-  target: `${
-    process.env.NODE_ENV === 'production'
-      ? 'https://api.weatherlive.info'
-      : 'https://api-new.weatherlive.info'
-  }`,
+  target: 'https://api-new.weatherlive.info',
   headers: {
     Connection: 'keep-alive',
   },
   pathRewrite: (_, req) => {
     const { c, frame, updated, layer, x, y, z } = req.query;
-    return `/${
-      process.env.NODE_ENV === 'production' ? 'meteoradar' : 'meteoradartest'
-    }/map/frc/tile/${layer}/${z}/${x}/${y}/${frame}/${updated}/${c}`;
+    return `/meteoradartest/map/frc/tile/${layer}/${z}/${x}/${y}/${frame}/${updated}/${c}`;
   },
   changeOrigin: true,
   onError(err, _, res) {
