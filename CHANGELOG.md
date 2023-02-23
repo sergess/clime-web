@@ -1,3 +1,10 @@
+## [1.12.6](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.5...v1.12.6) (2023-02-23)
+
+
+### Bug Fixes
+
+* **cache time:** set cache max-age ([f9fa082](https://git.herewetest.com/apalon-web/clime-web/commit/f9fa0824058ad153786a650895611e345e007935))
+
 ## [1.12.5](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.4...v1.12.5) (2023-02-21)
 
 
