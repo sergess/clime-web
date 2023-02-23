@@ -1,3 +1,10 @@
+## [1.12.7](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.6...v1.12.7) (2023-02-23)
+
+
+### Bug Fixes
+
+* **tile:** hardcode api url(tile) ([79a5324](https://git.herewetest.com/apalon-web/clime-web/commit/79a532430126ff3e961400f77aefa227cff62ed6))
+
 ## [1.12.6](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.5...v1.12.6) (2023-02-23)
 
 
