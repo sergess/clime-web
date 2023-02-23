@@ -6,7 +6,7 @@ import {
   generateSignature,
 } from 'server/services/api-v3.service/utils';
 
-const TWO_HOURS = 2 * 60 * 60;
+const TWO_HOURS = process.env.NODE_ENV === 'production' ? 2 * 60 * 60 : 0;
 
 export const tileHandler = createProxyMiddleware({
   logLevel: process.env.NODE_ENV === 'production' ? 'silent' : 'warn',
