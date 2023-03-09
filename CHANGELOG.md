@@ -1,3 +1,10 @@
+# [1.14.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.13.0...v1.14.0) (2023-03-09)
+
+
+### Features
+
+* **universal links:** fixed path (.well-known/) ([71904aa](https://git.herewetest.com/apalon-web/clime-web/commit/71904aa90cf4275a6cb990eb43aa02b1832eb3d5))
+
 # [1.13.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.12.7...v1.13.0) (2023-03-09)
 
 
