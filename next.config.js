@@ -63,4 +63,13 @@ module.exports = withBundleAnalyzer({
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/applink/:slug*',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 });
