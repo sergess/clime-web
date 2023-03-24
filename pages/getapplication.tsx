@@ -13,7 +13,7 @@ import { ANDROID_STORE_LINK, IOS_STORE_LINK } from 'client/constants';
 import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
 
 const GetApplicationPage = (): ReactElement => {
-  const { t } = useTranslation(['clime-app', 'meta-tags']);
+  const { t } = useTranslation(['clime-app', 'meta-tags', 'common']);
   return (
     <>
       <Head>
@@ -64,7 +64,9 @@ const GetApplicationPage = (): ReactElement => {
         textAlign={{ base: 'center', lg: 'left' }}
         pt={{ base: '6', lg: '5' }}
       >
-        {t('Please try again from your mobile device, or download Clime.')}
+        {t(
+          'The Clime app delivers essential weather data and timely alerts to your device. Check it out!'
+        )}
       </Text>
       <Flex
         pt={{ base: '8', lg: '5' }}
@@ -92,47 +94,136 @@ const GetApplicationPage = (): ReactElement => {
         </NextLink>
       </Flex>
       <Flex
-        display={{ base: 'none', lg: 'flex' }}
-        pt="10"
-        alignItems="center"
-        flexDirection="row"
+        mt={10}
+        alignItems="flex-start"
+        justifyContent="flex-start"
+        flexDirection={{ base: 'column', lg: 'row' }}
+        w="fit-content"
+        mx={{ base: 'auto', lg: '0' }}
       >
-        <Flex
-          flex="none"
-          p={2.5}
-          borderRadius="12px"
-          border="2px solid rgba(45, 232, 134, 0.2)"
-          maxW="auto"
-        >
-          <Image
-            src="/icons/qr-code.svg"
-            width={150}
-            height={150}
-            priority
-            alt="QR"
-          />
-        </Flex>
-        <Box ps="8" textAlign="left" pt="0">
-          <Trans i18nKey="scanTheQRCode" t={t}>
-            <Text
-              color="#2DE886"
-              fontSize="24px"
-              lineHeight="32px"
-              fontWeight="600"
-            >
-              Scan the QR code
-            </Text>
+        <Flex flexDirection="column" pe={{ base: '0', lg: '6' }}>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_map.svg"
+                layout="fill"
+                alt={t('Advanced precipitation forecast map')}
+              />
+            </Box>
             <Text
               color="white"
-              fontSize="24px"
-              lineHeight="32px"
-              fontWeight="500"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
             >
-              with your device to download
-              <br /> the Clime mobile app.
+              {t('Advanced precipitation forecast map')}
             </Text>
-          </Trans>
-        </Box>
+          </Flex>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_hurricane.svg"
+                layout="fill"
+                alt={t('Hurricane tracker')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('Hurricane tracker')}
+            </Text>
+          </Flex>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_lightning.svg"
+                layout="fill"
+                alt={t('Lightning tracker')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('Lightning tracker')}
+            </Text>
+          </Flex>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_rainscope.svg"
+                layout="fill"
+                alt={t('RainScope: min-by-min precip outlook')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('RainScope: min-by-min precip outlook')}
+            </Text>
+          </Flex>
+        </Flex>
+        <Flex flexDirection="column">
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_14day.svg"
+                layout="fill"
+                alt={t('14-day hourly forecast')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('14-day hourly forecast')}
+            </Text>
+          </Flex>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic_wildfires.svg"
+                layout="fill"
+                alt={t('Fires and hotspots map')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('Fires and hotspots map')}
+            </Text>
+          </Flex>
+          <Flex align="center" mb={3.5}>
+            <Box me={2.5} boxSize="6" pos="relative">
+              <Image
+                src="/icons/ic-aqi.svg"
+                layout="fill"
+                alt={t('Air quality index')}
+              />
+            </Box>
+            <Text
+              color="white"
+              fontSize={14}
+              lineHeight="14px"
+              fontWeight="600"
+            >
+              {t('Air quality index')}
+            </Text>
+          </Flex>
+        </Flex>
       </Flex>
     </>
   );
@@ -145,7 +236,11 @@ GetApplicationPage.Layout = GetApplicationPageLayout;
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
     ...(!!locale &&
-      (await serverSideTranslations(locale, ['clime-app', 'meta-tags']))),
+      (await serverSideTranslations(locale, [
+        'clime-app',
+        'meta-tags',
+        'common',
+      ]))),
   },
   revalidate: REVALIDATE_FOR_STATIC_GENERATED_PAGES,
 });
