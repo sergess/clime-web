@@ -1,3 +1,10 @@
+# [1.15.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.14.0...v1.15.0) (2023-03-17)
+
+
+### Features
+
+* **redirect:** [NRPI-9596] /applink/* to home page ([270d9b7](https://git.herewetest.com/apalon-web/clime-web/commit/270d9b70e9667ad42a12499054be57cd8ae07d32))
+
 # [1.14.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.13.0...v1.14.0) (2023-03-09)
 
 
