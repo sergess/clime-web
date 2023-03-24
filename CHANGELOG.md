@@ -1,3 +1,11 @@
+# [1.16.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.15.0...v1.16.0) (2023-03-24)
+
+
+### Features
+
+* **redirect:** [CLW-332] redirect /applink/* to stub page ([e50f3a0](https://git.herewetest.com/apalon-web/clime-web/commit/e50f3a0de4b6464fbb9692a536a5c8b6c46e4256))
+* **universal links:** [CLW-332] setup redirect to getapppage ([d36834c](https://git.herewetest.com/apalon-web/clime-web/commit/d36834c94265eb9f09f4bb565dde907b42d990dc))
+
 # [1.15.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.14.0...v1.15.0) (2023-03-17)
 
 
