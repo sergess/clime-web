@@ -1,4 +1,6 @@
 {
   "preciseWeather": "<0>Precise weather,<br /> <1>precisely</1> <2>for you</2></0>",
-  "scanTheQRCode": "<0>Scan the QR code</0> <1>with your device to download<br /> the Clime mobile app.</1>"
+  "scanTheQRCode": "<0>Scan the QR code</0> <1>with your device to download<br /> the Clime mobile app.</1>",
+  "youNeedApp": "<0>You need the <1>Clime</1> app to open this link</0>",
+  "The Clime app delivers essential weather data and timely alerts to your device. Check it out!": "The Clime app delivers essential weather data and timely alerts to your device. Check it out!"
 }

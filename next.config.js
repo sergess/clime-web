@@ -67,7 +67,7 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: '/applink/:slug*',
-        destination: '/',
+        destination: '/getapplication',
         permanent: true,
       },
     ];
