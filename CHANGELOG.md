@@ -1,3 +1,10 @@
+# [1.17.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.16.0...v1.17.0) (2023-04-12)
+
+
+### Features
+
+* **apple-association:** was updated apple association file + set up header for it ([c68c4ae](https://git.herewetest.com/apalon-web/clime-web/commit/c68c4ae5a952bae29c02796ee8f1cd58688a5577))
+
 # [1.16.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.15.0...v1.16.0) (2023-03-24)
 
 
