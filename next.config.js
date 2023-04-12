@@ -61,6 +61,15 @@ module.exports = withBundleAnalyzer({
           },
         ],
       },
+      {
+        source: '/.well-known/apple-app-site-association',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
+      },
     ];
   },
   async redirects() {

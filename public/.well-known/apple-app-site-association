@@ -5,7 +5,7 @@
                 "appIDs": [ "9JUVGJ9JRL.com.apalonapps.radarfree" ],
                 "components": [
                     {
-                        "/": "/applink/*"
+                        "/": "*"
                     }
                 ]
             }
