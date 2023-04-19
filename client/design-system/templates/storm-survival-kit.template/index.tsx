@@ -14,25 +14,25 @@ export const StormSurvivalKitPageLayout: React.FC = ({
         h="100%"
         bg={{
           base: "#0F1527 url('/bg-storm-mob.jpg')",
-          lg: "#0F1527 url('/bg-storm-desk.jpg')",
+          md: "#0F1527 url('/bg-storm-desk.jpg')",
         }}
-        bgPosition={{ base: 'center top', lg: 'center top' }}
-        bgSize={{ base: 'cover', lg: '2560px 2184px' }}
+        bgPosition={{ base: 'center top', md: 'center top' }}
+        bgSize={{ base: 'cover', md: '2560px 2184px' }}
         bgRepeat="no-repeat"
         justify="center"
         overflow="hidden"
-        px={{ base: '2.5', lg: '0' }}
-        pb={{ base: '6', lg: '20' }}
+        px={{ base: '2.5', md: '0' }}
+        pb={{ base: '6', md: '20' }}
       >
         <Flex
           maxW="container.xl"
           w="full"
-          pt={{ base: '10', lg: '60px' }}
+          pt={{ base: '10', md: '60px' }}
           justify="space-between"
-          align={{ base: 'center', lg: 'flex-start' }}
-          flexDirection={{ base: 'column', lg: 'row' }}
+          align={{ base: 'center', md: 'flex-start' }}
+          flexDirection={{ base: 'column', md: 'row' }}
         >
-          <Flex w="full" flexDirection="column" pe={{ base: '0', lg: '10' }}>
+          <Flex w="full" flexDirection="column">
             {children}
           </Flex>
         </Flex>
