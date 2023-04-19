@@ -334,7 +334,7 @@ const StormSurvivalKitPage = (): ReactElement => {
                   color: 'white',
                   background:
                     'linear-gradient(180deg, #FAC310 0%, #FF8C1A 100%)',
-                  'box-shadow': '0 2px 8px rgba(234, 67, 67, 0.2)',
+                  'box-shadow': '0 2px 8px rgba(250, 195, 16, 0.2)',
                   'border-radius': '6px',
                   'text-align': 'center',
                   margin: '0 10px 0 0',
@@ -419,7 +419,7 @@ const StormSurvivalKitPage = (): ReactElement => {
                   color: 'white',
                   background:
                     'linear-gradient(180deg, #FAC310 0%, #FF8C1A 100%)',
-                  'box-shadow': '0 2px 8px rgba(234, 67, 67, 0.2)',
+                  'box-shadow': '0 2px 8px rgba(250, 195, 16, 0.2)',
                   'border-radius': '6px',
                   'text-align': 'center',
                   margin: '0 10px 0 0',
