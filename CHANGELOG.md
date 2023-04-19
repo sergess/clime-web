@@ -1,3 +1,10 @@
+# [1.18.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.17.0...v1.18.0) (2023-04-19)
+
+
+### Features
+
+* **AASA:** [NRPI-9808] was added exclusions to the AASA file ([5e4c24d](https://git.herewetest.com/apalon-web/clime-web/commit/5e4c24d190dec9ddde7f4e80733b674e02e71841))
+
 # [1.17.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.16.0...v1.17.0) (2023-04-12)
 
 
