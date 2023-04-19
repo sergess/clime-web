@@ -1,3 +1,11 @@
+# [1.19.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.18.0...v1.19.0) (2023-04-19)
+
+
+### Features
+
+* **storm-survival-kit:** [WT-2043] storm-survival-kit ([26b9bab](https://git.herewetest.com/apalon-web/clime-web/commit/26b9bab18831fb5d0ed5c4959d805a754c0133b2))
+* **storm-survival-kit:** [WT-2043] storm-survival-kit page ([8542ab1](https://git.herewetest.com/apalon-web/clime-web/commit/8542ab19e6d881036eb6371c70680fe78997207a))
+
 # [1.18.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.17.0...v1.18.0) (2023-04-19)
 
 
