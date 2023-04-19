@@ -38,7 +38,7 @@ const StormSurvivalKitPage = (): ReactElement => {
       </Head>
       <Flex
         mx="auto"
-        mb={{ base: '40px', lg: '60px' }}
+        mb={{ base: '40px', md: '60px' }}
         w={{ base: '169px', md: '224px' }}
         h={{ base: '38px', md: '50px' }}
         position="relative"
@@ -54,22 +54,22 @@ const StormSurvivalKitPage = (): ReactElement => {
         <Heading
           as="h1"
           color="white"
-          fontSize={{ base: '24px', lg: '32px' }}
-          lineHeight={{ base: '28px', lg: '40px' }}
+          fontSize={{ base: '24px', md: '32px' }}
+          lineHeight={{ base: '28px', md: '40px' }}
           fontWeight="700"
           textAlign="center"
-          mb={{ base: '4', lg: '8' }}
+          mb={{ base: '4', md: '8' }}
         >
           Storm preparedness:
           <br /> Essential items for your survival kit
         </Heading>
         <Text
           color="white"
-          fontSize={{ base: '14px', lg: '18px' }}
-          lineHeight={{ base: '18px', lg: '24px' }}
+          fontSize={{ base: '14px', md: '18px' }}
+          lineHeight={{ base: '18px', md: '24px' }}
           fontWeight="400"
           textAlign="center"
-          mb={{ base: '4', lg: '8' }}
+          mb={{ base: '4', md: '8' }}
         >
           Weather apps like{' '}
           <NextLink href="/" passHref>
@@ -88,11 +88,11 @@ const StormSurvivalKitPage = (): ReactElement => {
         </Text>
         <Text
           color="white"
-          fontSize={{ base: '14px', lg: '18px' }}
-          lineHeight={{ base: '18px', lg: '24px' }}
+          fontSize={{ base: '14px', md: '18px' }}
+          lineHeight={{ base: '18px', md: '24px' }}
           fontWeight="400"
           textAlign="center"
-          mb={{ base: '60px', lg: '20' }}
+          mb={{ base: '60px', md: '20' }}
         >
           But what about an emergency kit to prepare before the storm? We can
           help with that, too — read on to learn more.
@@ -100,8 +100,8 @@ const StormSurvivalKitPage = (): ReactElement => {
         <Heading
           as="h2"
           color="white"
-          fontSize={{ base: '20px', lg: '24px' }}
-          lineHeight={{ base: '24px', lg: '30px' }}
+          fontSize={{ base: '20px', md: '24px' }}
+          lineHeight={{ base: '24px', md: '30px' }}
           fontWeight="600"
           textAlign="center"
           mb="4"
@@ -113,11 +113,11 @@ const StormSurvivalKitPage = (): ReactElement => {
         </Heading>
         <Text
           color="white"
-          fontSize={{ base: '14px', lg: '18px' }}
-          lineHeight={{ base: '18px', lg: '24px' }}
+          fontSize={{ base: '14px', md: '18px' }}
+          lineHeight={{ base: '18px', md: '24px' }}
           fontWeight="400"
           textAlign="center"
-          mb={{ base: '5', lg: '4' }}
+          mb={{ base: '5', md: '4' }}
         >
           A storm preparedness survival kit should contain essential items that
           will help you and your family weather the storm and its aftermath.
@@ -130,14 +130,14 @@ const StormSurvivalKitPage = (): ReactElement => {
           bg="linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.1) 100%)"
           borderRadius="16px"
           boxShadow="inset 0 2px 20px rgba(255, 255, 255, 0.05)"
-          mb={{ base: '60px', lg: '20' }}
+          mb={{ base: '60px', md: '20' }}
         >
           <OrderedList
             color="white"
             ms="0"
             display="flex"
             flexFlow="column wrap"
-            maxH={{ base: '100%', lg: '350px' }}
+            maxH={{ base: '100%', md: '350px' }}
             w="100%"
             css={{
               'align-content': 'space-between',
@@ -149,7 +149,7 @@ const StormSurvivalKitPage = (): ReactElement => {
                 'font-size': '14px',
                 'line-height': '18px',
                 'max-width': '320px',
-                [`@media not screen and (min-width: ${climeTheme.breakpoints.lg})`]:
+                [`@media not screen and (min-width: ${climeTheme.breakpoints.md})`]:
                   {
                     'max-width': '100%',
                   },
@@ -266,8 +266,8 @@ const StormSurvivalKitPage = (): ReactElement => {
         <Heading
           as="h2"
           color="white"
-          fontSize={{ base: '20px', lg: '24px' }}
-          lineHeight={{ base: '24px', lg: '30px' }}
+          fontSize={{ base: '20px', md: '24px' }}
+          lineHeight={{ base: '24px', md: '30px' }}
           fontWeight="600"
           textAlign="center"
           mb="4"
@@ -279,8 +279,8 @@ const StormSurvivalKitPage = (): ReactElement => {
         </Heading>
         <Text
           color="white"
-          fontSize={{ base: '14px', lg: '18px' }}
-          lineHeight={{ base: '18px', lg: '24px' }}
+          fontSize={{ base: '14px', md: '18px' }}
+          lineHeight={{ base: '18px', md: '24px' }}
           fontWeight="400"
           textAlign="center"
           mb="5"
@@ -290,23 +290,23 @@ const StormSurvivalKitPage = (): ReactElement => {
         </Text>
         <Flex
           justify="space-between"
-          flexDirection={{ base: 'column', lg: 'unset' }}
+          flexDirection={{ base: 'column', md: 'unset' }}
         >
           <Box
-            maxW={{ base: '100%', lg: '352px' }}
+            maxW={{ base: '100%', md: '352px' }}
             bg="linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.1) 100%)"
             boxShadow="inset 0 2px 20px rgba(255, 255, 255, 0.05)"
             borderRadius="16px"
             px="4"
             pt="6"
             pb="2"
-            mb={{ base: '5', lg: '0' }}
+            mb={{ base: '5', md: '0' }}
           >
             <Text
               textAlign="center"
               pb="4"
-              fontSize={{ base: '20px', lg: '20px' }}
-              lineHeight={{ base: '24px', lg: '24px' }}
+              fontSize={{ base: '20px', md: '20px' }}
+              lineHeight={{ base: '24px', md: '24px' }}
               fontWeight="600"
               color="white"
             >
@@ -379,7 +379,7 @@ const StormSurvivalKitPage = (): ReactElement => {
             </OrderedList>
           </Box>
           <Box
-            maxW={{ base: '100%', lg: '352px' }}
+            maxW={{ base: '100%', md: '352px' }}
             bg="linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.1) 100%)"
             boxShadow="inset 0 2px 20px rgba(255, 255, 255, 0.05)"
             borderRadius="16px"
@@ -390,8 +390,8 @@ const StormSurvivalKitPage = (): ReactElement => {
             <Text
               textAlign="center"
               pb="4"
-              fontSize={{ base: '20px', lg: '20px' }}
-              lineHeight={{ base: '24px', lg: '24px' }}
+              fontSize={{ base: '20px', md: '20px' }}
+              lineHeight={{ base: '24px', md: '24px' }}
               fontWeight="600"
               color="white"
             >
@@ -460,8 +460,8 @@ const StormSurvivalKitPage = (): ReactElement => {
           </Box>
         </Flex>
         <Flex
-          mt={{ base: '60px', lg: '80px' }}
-          flexDirection={{ base: 'column', lg: 'unset' }}
+          mt={{ base: '60px', md: '80px' }}
+          flexDirection={{ base: 'column', md: 'unset' }}
         >
           <Box w="100%">
             <Heading
@@ -547,9 +547,9 @@ const StormSurvivalKitPage = (): ReactElement => {
           </Box>
           <Box
             flex="none"
-            ml={{ base: 'auto', lg: '4' }}
-            mr={{ base: 'auto', lg: '0' }}
-            mt={{ base: '10', lg: '0' }}
+            ml={{ base: 'auto', md: '4' }}
+            mr={{ base: 'auto', md: '0' }}
+            mt={{ base: '10', md: '0' }}
           >
             <Image
               src="/img-storm-block4.png"
