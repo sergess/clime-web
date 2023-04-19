@@ -13,21 +13,21 @@ export const StormSurvivalKitPageLayout: React.FC = ({
         w="full"
         h="100%"
         bg={{
-          base: "#0F1527 url('/bg-storm-desk.jpg')",
-          md: "#0F1527 url('/bg-storm-desk.jpg')",
+          base: "#0F1527 url('/bg-storm-mob.jpg')",
+          lg: "#0F1527 url('/bg-storm-desk.jpg')",
         }}
-        bgPosition={{ base: 'center top', md: 'center top' }}
-        bgSize={{ base: 'cover', md: '2560px 2184px' }}
+        bgPosition={{ base: 'center top', lg: 'center top' }}
+        bgSize={{ base: 'cover', lg: '2560px 2184px' }}
         bgRepeat="no-repeat"
         justify="center"
         overflow="hidden"
         px={{ base: '2.5', lg: '0' }}
-        pb="16"
+        pb={{ base: '6', lg: '20' }}
       >
         <Flex
           maxW="container.xl"
           w="full"
-          pt={{ base: '6', lg: '60px' }}
+          pt={{ base: '10', lg: '60px' }}
           justify="space-between"
           align={{ base: 'center', lg: 'flex-start' }}
           flexDirection={{ base: 'column', lg: 'row' }}
