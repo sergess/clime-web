@@ -6,7 +6,23 @@
                 "components": [
                     {
                         "/": "*"
-                    }
+                    },
+                    {
+                        "/": "/terms",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/privacyPolicy",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/app",
+                        "exclude": true
+                    },
+                    {
+                        "/": "/getapplication",
+                        "exclude": true
+                    },
                 ]
             }
         ]
