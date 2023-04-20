@@ -5,24 +5,24 @@
                 "appIDs": [ "9JUVGJ9JRL.com.apalonapps.radarfree" ],
                 "components": [
                     {
-                        "/": "*"
-                    },
-                    {
                         "/": "/terms",
                         "exclude": true
                     },
                     {
-                        "/": "/privacyPolicy",
+                        "/": "/privacyPolicy/*",
                         "exclude": true
                     },
                     {
-                        "/": "/app",
+                        "/": "/app/",
                         "exclude": true
                     },
                     {
-                        "/": "/getapplication",
+                        "#": "getapplication",
                         "exclude": true
                     },
+                    {
+                        "/": "*"
+                    }
                 ]
             }
         ]
