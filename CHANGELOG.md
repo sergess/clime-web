@@ -1,3 +1,10 @@
+# [1.22.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.21.0...v1.22.0) (2023-04-20)
+
+
+### Features
+
+* **storm-survival-kit:** [WT-2043] image quality to 85 ([b1ca3c4](https://git.herewetest.com/apalon-web/clime-web/commit/b1ca3c417d90aba27a094b479723d5de60675044))
+
 # [1.21.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.20.0...v1.21.0) (2023-04-19)
 
 
