@@ -556,6 +556,7 @@ const StormSurvivalKitPage = (): ReactElement => {
               width={341}
               height={428}
               alt="Clime radar"
+              quality={85}
             />
           </Box>
         </Flex>
