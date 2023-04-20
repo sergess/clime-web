@@ -1,3 +1,10 @@
+# [1.24.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.23.0...v1.24.0) (2023-04-20)
+
+
+### Features
+
+* **apple-association:** apple-association ([8abdb6a](https://git.herewetest.com/apalon-web/clime-web/commit/8abdb6a33551a212fbc64ab55f28197e28c672d2))
+
 # [1.23.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.22.0...v1.23.0) (2023-04-20)
 
 
