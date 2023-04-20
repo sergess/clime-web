@@ -21,6 +21,10 @@
                         "exclude": true
                     },
                     {
+                       "/": "/storm-survival-kit",
+                       "exclude": true
+                    },
+                    {
                         "/": "*"
                     }
                 ]
