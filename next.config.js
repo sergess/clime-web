@@ -75,7 +75,7 @@ module.exports = withBundleAnalyzer({
   async redirects() {
     return [
       {
-        source: '/applink/:slug*',
+        source: '/uni/:slug*',
         destination: '/getapplication',
         permanent: true,
       },

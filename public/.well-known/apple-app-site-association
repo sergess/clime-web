@@ -5,27 +5,7 @@
                 "appIDs": [ "9JUVGJ9JRL.com.apalonapps.radarfree" ],
                 "components": [
                     {
-                        "/": "/terms",
-                        "exclude": true
-                    },
-                    {
-                        "/": "/privacyPolicy",
-                        "exclude": true
-                    },
-                    {
-                        "/": "/app",
-                        "exclude": true
-                    },
-                    {
-                        "/": "/getapplication",
-                        "exclude": true
-                    },
-                    {
-                       "/": "/storm-survival-kit",
-                       "exclude": true
-                    },
-                    {
-                        "/": "*"
+                        "/": "/uni/*"
                     }
                 ]
             }
