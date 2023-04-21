@@ -1,3 +1,10 @@
+# [1.26.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.25.0...v1.26.0) (2023-04-21)
+
+
+### Features
+
+* **apple-association:** apple-association + redirect conf ([fa4add2](https://git.herewetest.com/apalon-web/clime-web/commit/fa4add2280eb49e9b4a82c66f3b11d4f67ac9cbc))
+
 # [1.25.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.24.0...v1.25.0) (2023-04-20)
 
 
