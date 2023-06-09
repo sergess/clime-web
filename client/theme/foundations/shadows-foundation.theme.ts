@@ -14,6 +14,13 @@ const shadows = {
     '0px 2px 2px rgba(26, 96, 179, 0.2), inset 0px -1px 0px rgba(60, 131, 232, 0.1)',
   'radar-map':
     '0px 4px 8px rgba(26, 96, 179, 0.1), inset 0px -2px 0px rgba(60, 131, 232, 0.1)',
+  list: '0px 4px 8px rgba(26, 96, 179, 0.1), inset 0px -2px 0px rgba(60, 131, 232, 0.1)',
+  'home-carousel-button':
+    '0px 2.10526px 2.10526px rgba(26, 96, 179, 0.2), inset 0px -1.05263px 0px rgba(60, 131, 232, 0.1)',
+  'red-card':
+    '0px 6px 12px rgba(0, 0, 0, 0.2), inset 0px -2px 2px rgba(0, 0, 0, 0.2)',
+  'blue-card':
+    '0px 4px 8px rgba(0, 0, 0, 0.2), inset 0px -2px 2px rgba(0, 0, 0, 0.2)',
 };
 
 export default shadows;

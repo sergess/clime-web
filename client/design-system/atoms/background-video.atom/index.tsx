@@ -3,10 +3,7 @@ import { ComponentDefaultProps } from '@chakra-ui/react';
 
 export const BackgroundVideo: FC<{
   poster: string;
-  source: {
-    src: string;
-    type: string;
-  };
+  source: string;
   autoPlay?: boolean;
   controls?: boolean;
   loop?: boolean;
@@ -33,7 +30,7 @@ export const BackgroundVideo: FC<{
     playsInline={playsInline}
     preload={preload}
   >
-    <source src={source.src} type={source.type} />
+    <source src={source} />
   </video>
 );
 
