@@ -309,6 +309,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
               zIndex="2"
               top="calc(50% - 40px)"
               left={{ base: '-20px', md: '0' }}
+              d={{ base: 'inline-flex', md: 'none' }}
               icon={
                 <Flex transform="rotate(180deg)">
                   <Image
@@ -328,6 +329,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
               zIndex="2"
               top="calc(50% - 40px)"
               right={{ base: '-20px', md: '0' }}
+              d={{ base: 'inline-flex', md: 'none' }}
               icon={
                 <Flex>
                   <Image
@@ -636,6 +638,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
               pos="absolute"
               zIndex="2"
               top="calc(50% - 40px)"
+              d={{ base: 'inline-flex', lg: 'none' }}
               icon={
                 <Flex transform="rotate(180deg)">
                   <Image
@@ -655,6 +658,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
               zIndex="2"
               top="calc(50% - 40px)"
               right={0}
+              d={{ base: 'inline-flex', lg: 'none' }}
               icon={
                 <Flex>
                   <Image
@@ -916,7 +920,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
           </Flex>
           <Flex
             pt={{ base: '5', sm: '10', lg: '0' }}
-            maxW={580}
+            maxW={{ base: '294', sm: '580' }}
             w="100%"
             justify="center"
           >
@@ -943,7 +947,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
         >
           <Flex
             pt={{ base: '10', lg: '0' }}
-            maxW={580}
+            maxW={{ base: '294', sm: '580' }}
             w="100%"
             justify="center"
           >

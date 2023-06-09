@@ -1,6 +1,6 @@
 import { ReactElement, FC, useCallback } from 'react';
 import { Swiper } from 'swiper/react';
-import { Navigation, Pagination, EffectFade, Autoplay } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper as SwiperClass } from 'swiper/types';
 
 import 'swiper/css';
@@ -31,10 +31,11 @@ export const Carousel: FC<{
   return (
     <Swiper
       spaceBetween={spaceBetween}
-      modules={[Navigation, Pagination, Autoplay, EffectFade]}
+      modules={[Navigation, Pagination, Autoplay]}
       slidesPerView={slidesPerView}
       slidesPerGroup={slidesPerGroup}
       onActiveIndexChange={onSetActiveSwiperIndex}
+      rewind
       autoplay={{
         delay: 5000,
         disableOnInteraction: false,
