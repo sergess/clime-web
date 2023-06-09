@@ -182,6 +182,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
               textAlign={{ base: 'center', lg: 'left' }}
             >
               <Heading
+                as="h1"
                 lineHeight={{ base: '36px', sm: '62px' }}
                 fontSize={{ base: '32px', sm: '52px' }}
                 color="blue.800"
