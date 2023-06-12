@@ -1,3 +1,10 @@
+# [1.28.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.27.0...v1.28.0) (2023-06-12)
+
+
+### Features
+
+* **home page:** [WT-2071] TodayWeatherBanner component + navigation fix ([b523bed](https://git.herewetest.com/apalon-web/clime-web/commit/b523bedbe91dd2f61c22328a9454adf725791ed3))
+
 # [1.27.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.26.0...v1.27.0) (2023-06-12)
 
 
