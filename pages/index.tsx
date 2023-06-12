@@ -1,9 +1,6 @@
 import React, {
-  FC,
   ReactElement,
   useEffect,
-  memo,
-  FunctionComponent,
   useRef,
   MutableRefObject,
   useState,
@@ -12,13 +9,11 @@ import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { Box, Flex, Heading, IconButton, Text } from '@chakra-ui/react';
 import climeTheme from 'client/theme';
 import { SwiperSlide } from 'swiper/react';
 
-import { ForecastCardsProvider } from 'client/state/contexts/forecast-cards.context';
 import { HomePageLayout } from 'client/design-system/templates';
 import { Carousel, TopNavigationBar } from 'client/design-system/molecules';
 import {
@@ -45,8 +40,8 @@ import {
   EXACT_LATITUDE_COOKIE,
   EXACT_LONGITUDE_COOKIE,
 } from 'common/constants';
-import { LAYOUT_HORIZONTAL_PADDING, WEATHER_TODAY } from 'client/constants';
-import { ForecastCards, ForecastCard } from 'common/types';
+import { LAYOUT_HORIZONTAL_PADDING } from 'client/constants';
+import { ForecastCard } from 'common/types';
 
 import {
   mapDailyCard,
@@ -67,10 +62,7 @@ const Download = dynamic(
   }
 );
 
-const Index: FC<{ forecastCards: ForecastCards }> & {
-  Layout?: FunctionComponent;
-} = memo(({ forecastCards }): ReactElement => {
-  const router = useRouter();
+const Index = (): ReactElement => {
   const { cookies, setCookie } = useCookies([
     EXACT_LATITUDE_COOKIE,
     EXACT_LONGITUDE_COOKIE,
@@ -93,12 +85,8 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
       !latitudeCookie &&
       !longitudeCookie
     ) {
-      const { slug } = exactLocationData;
-
       setCookie(EXACT_LATITUDE_COOKIE, `${locationFromBrowser?.latitude}`);
       setCookie(EXACT_LONGITUDE_COOKIE, `${locationFromBrowser?.longitude}`);
-
-      router.push(`/${WEATHER_TODAY}/${slug}`);
     }
   }, [
     hasMounted,
@@ -127,7 +115,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
   const isVisible = useElementOnView(ref);
 
   return (
-    <ForecastCardsProvider value={forecastCards}>
+    <>
       <Head>
         <title>{t('Local & World Weather Forecast | Clime')}</title>
         <meta
@@ -220,6 +208,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
                     height={570}
                     alt="Clime radar"
                     quality={85}
+                    priority
                   />
                 }
                 animation={`${firstHomeImage} infinite 5s linear`}
@@ -234,6 +223,7 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
                     height={570}
                     alt="Clime radar"
                     quality={85}
+                    priority
                   />
                 }
                 animation={`${secondHomeImage} infinite 5s linear`}
@@ -1152,9 +1142,9 @@ const Index: FC<{ forecastCards: ForecastCards }> & {
           </Flex>
         </Flex>
       </Flex>
-    </ForecastCardsProvider>
+    </>
   );
-});
+};
 
 Index.displayName = 'Index';
 

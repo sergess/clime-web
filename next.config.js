@@ -79,6 +79,11 @@ module.exports = withBundleAnalyzer({
         destination: '/getapplication',
         permanent: true,
       },
+      {
+        source: '/app',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 });
