@@ -13,3 +13,4 @@ export * from './detailed-forecast-carousel-slide.molecule';
 export * from './detailed-forecast-carousel.molecule';
 export * from './detailed-forecast-chart.molecule';
 export * from './marketing-popup.organism';
+export * from './carousel.molecule';

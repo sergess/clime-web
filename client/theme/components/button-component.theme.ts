@@ -232,6 +232,28 @@ const Button = {
       height: '3.5rem',
       textStyle: '16-semi-bold',
     },
+    'home-carousel-button': {
+      bg: 'white',
+      h: '48px',
+      w: '48px',
+      minW: '48px',
+      borderRadius: '12px',
+      px: '0',
+      boxShadow: 'home-carousel-button',
+
+      _hover: {
+        bg: 'white',
+      },
+
+      _active: {
+        bg: 'white',
+      },
+
+      _disabled: {
+        opacity: 0,
+        cursor: 'default',
+      },
+    },
   },
 };
 

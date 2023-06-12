@@ -19,3 +19,4 @@ export * from './use-optimize-experiment-by-id.hook';
 export * from './use-redirect-to-app-popup-opened.hook';
 export * from './use-window-dimensions.hook';
 export * from './use-formatted-date.hook';
+export * from './use-element-on-view.hook';

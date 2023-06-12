@@ -10,3 +10,5 @@ export * from './state-text-row.atom';
 export * from './hour-condition-icon.atom';
 export * from './background-image.atom';
 export * from './background-video.atom';
+export * from './animated-element.atom';
+export * from './screen-phone.atom';
