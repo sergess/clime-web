@@ -1,20 +1,21 @@
 import React, { ReactElement, useCallback } from 'react';
 import { Box, Container, Link, Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 
 import { ClientOnly } from 'client/design-system/atoms';
+import { TodayWeatherBanner } from 'client/design-system/organisms/header.organism/molecules';
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
   LAYOUT_HORIZONTAL_PADDING,
 } from 'client/constants';
+import { isCurrentRoute } from 'client/design-system/molecules/top-navigation-bar.molecule/utils';
 
 import { useUiState } from './hooks';
-
-import { HeaderBanner } from './molecules';
 
 const Search = dynamic(
   () => import('client/design-system/organisms/search.organism')
@@ -50,6 +51,9 @@ export const Header = (): ReactElement => {
     }
     onSearchOpen();
   }, [settingsOpened]);
+
+  const router = useRouter();
+  const isHomeRoute = isCurrentRoute(router.asPath, '/');
 
   return (
     <Box
@@ -123,7 +127,7 @@ export const Header = (): ReactElement => {
               />
             )}
           </ClientOnly>
-          <HeaderBanner />
+          {isHomeRoute && <TodayWeatherBanner />}
         </Box>
       </Container>
     </Box>

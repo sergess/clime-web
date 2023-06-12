@@ -78,6 +78,11 @@ export const TopNavigationBar = (
   const navigationOptions = useMemo<NavigationOption[]>(
     () => [
       {
+        label: t('Clime App'),
+        path: '/',
+        external: false,
+      },
+      {
         label: t('Today'),
         path: urlSlug && `/${WEATHER_TODAY}/${urlSlug}`,
         external: false,
@@ -86,11 +91,6 @@ export const TopNavigationBar = (
         label: t('Hourly'),
         path: urlSlug && `/${HOURLY_WEATHER}/${urlSlug}`,
         external: false,
-      },
-      {
-        label: t('Clime App'),
-        path: climeAppLink,
-        external: true,
       },
       {
         label: t('10-day forecast'),
