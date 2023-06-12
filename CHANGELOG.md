@@ -1,3 +1,12 @@
+# [1.27.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.26.0...v1.27.0) (2023-06-12)
+
+
+### Features
+
+* **home page:** [WT-2071] home page ([e3fd1e3](https://git.herewetest.com/apalon-web/clime-web/commit/e3fd1e387295ab9c51fc612383b11d16ebe62718))
+* **home page:** [WT-2071] seo fixes ([a7112f8](https://git.herewetest.com/apalon-web/clime-web/commit/a7112f87ff26d0c55a50f611da11906a0634c831))
+* **home page:** [WT-2071] upgrade swiper dep, style fixes ([a4a3037](https://git.herewetest.com/apalon-web/clime-web/commit/a4a30374316fca2d46c64a02ee5a0c5964a53886))
+
 # [1.26.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.25.0...v1.26.0) (2023-04-21)
 
 
