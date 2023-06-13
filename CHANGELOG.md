@@ -1,3 +1,10 @@
+# [1.30.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.29.0...v1.30.0) (2023-06-13)
+
+
+### Features
+
+* **home page:** [WT-2071] ScreenPhone component + styles ([54fdcc8](https://git.herewetest.com/apalon-web/clime-web/commit/54fdcc83ce1c4a6e3229ab5cdbfd5c78d446d355))
+
 # [1.29.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.28.0...v1.29.0) (2023-06-13)
 
 
