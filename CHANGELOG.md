@@ -1,3 +1,10 @@
+# [1.29.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.28.0...v1.29.0) (2023-06-13)
+
+
+### Features
+
+* **home page:** [WT-2071]  added animation to forecast block ([29ac128](https://git.herewetest.com/apalon-web/clime-web/commit/29ac12866a73d1a268f26b4e1a5bd0e557786ad4))
+
 # [1.28.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.27.0...v1.28.0) (2023-06-12)
 
 
