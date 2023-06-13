@@ -42,7 +42,7 @@ const textStyles = {
   },
   '24-content-semi-bold': {
     fontSize: '1.5rem',
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: '2rem',
   },
   '24-content-medium': {

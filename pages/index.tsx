@@ -286,7 +286,7 @@ const Index = (): ReactElement => {
           </Text>
           <Flex
             mx="auto"
-            maxW={{ base: '294', md: '630' }}
+            maxW={{ base: '334', md: '670' }}
             mt={{ base: '8', sm: '10' }}
             pos="relative"
             css={{
@@ -302,7 +302,7 @@ const Index = (): ReactElement => {
               pos="absolute"
               zIndex="2"
               top="calc(50% - 40px)"
-              left={{ base: '-20px', md: '0' }}
+              left={{ base: '-10px', md: '0' }}
               d={{ base: 'inline-flex', md: 'none' }}
               icon={
                 <Flex transform="rotate(180deg)">
@@ -322,7 +322,7 @@ const Index = (): ReactElement => {
               pos="absolute"
               zIndex="2"
               top="calc(50% - 40px)"
-              right={{ base: '-20px', md: '0' }}
+              right={{ base: '-10px', md: '0' }}
               d={{ base: 'inline-flex', md: 'none' }}
               icon={
                 <Flex>
@@ -345,8 +345,8 @@ const Index = (): ReactElement => {
               bottom={{ base: '80px', lg: 'auto' }}
               top={{ base: 'auto', lg: '24' }}
               transform={{
-                base: 'translateX(-3%)',
-                md: 'translateX(-4%)',
+                base: 'translateX(2%)',
+                md: 'translateX(2%)',
                 lg: 'translateX(-71%)',
               }}
               w={{ base: '320px', lg: '340px' }}
@@ -434,8 +434,8 @@ const Index = (): ReactElement => {
               top={{ base: 'auto', lg: '44' }}
               right={0}
               transform={{
-                base: 'translateX(5%)',
-                md: 'translateX(2%)',
+                base: 'translateX(-2%)',
+                md: 'translateX(1%)',
                 lg: 'translateX(71%)',
               }}
               w={{ base: '320px', lg: '340px' }}
@@ -523,7 +523,7 @@ const Index = (): ReactElement => {
               spaceBetween={screenWidthSmallerThanMedium ? 0 : 20}
             >
               <SwiperSlide>
-                <Box w={294} pos="relative">
+                <Box w={334} pos="relative" p={5}>
                   <ScreenPhone
                     screen={
                       <BackgroundVideo
@@ -536,7 +536,7 @@ const Index = (): ReactElement => {
                 </Box>
               </SwiperSlide>
               <SwiperSlide>
-                <Box w={294}>
+                <Box w={334} p={5}>
                   <ScreenPhone
                     screen={
                       <Image
@@ -695,6 +695,7 @@ const Index = (): ReactElement => {
                     textAlign="center"
                     color="gray.600"
                     pt={3}
+                    pb={5}
                     textStyle={{
                       base: '16-medium-card',
                       lg: '18-content-medium',
@@ -736,6 +737,7 @@ const Index = (): ReactElement => {
                     textAlign="center"
                     color="gray.600"
                     pt={3}
+                    pb={5}
                     textStyle={{
                       base: '16-medium-card',
                       lg: '18-content-medium',
@@ -778,6 +780,7 @@ const Index = (): ReactElement => {
                     textAlign="center"
                     color="gray.600"
                     pt={3}
+                    pb={5}
                     textStyle={{
                       base: '16-medium-card',
                       lg: '18-content-medium',
@@ -988,7 +991,7 @@ const Index = (): ReactElement => {
                 base: '24-content-semi-bold',
                 sm: '32-home-heading',
               }}
-              color="gray.600"
+              color="gray.800"
             >
               Don’t throw caution to the wind.
             </Text>

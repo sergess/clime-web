@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const ScreenPhone: FC<{ screen: ReactElement } & ComponentDefaultProps> =
   ({ screen, ...rest }): ReactElement => (
-    <Box pos="relative" {...rest}>
+    <Box pos="relative" {...rest} boxShadow="device" borderRadius="58px">
       <Box letterSpacing={0} wordSpacing={0} fontSize={0}>
         <Image src="/img-index-phone.png" width={334} height={680} />
       </Box>
