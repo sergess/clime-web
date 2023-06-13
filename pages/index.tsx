@@ -114,6 +114,9 @@ const Index = (): ReactElement => {
 
   const isVisible = useElementOnView(ref);
 
+  const refForecastBox = useRef() as MutableRefObject<HTMLDivElement>;
+  const isVisibleForecastBox = useElementOnView(refForecastBox);
+
   return (
     <>
       <Head>
@@ -612,6 +615,7 @@ const Index = (): ReactElement => {
             Reliable rain forecast and real-time rain radar.
           </Heading>
           <Flex
+            ref={refForecastBox}
             mx="auto"
             mt={{ base: '5', md: '10' }}
             pos="relative"
@@ -671,7 +675,13 @@ const Index = (): ReactElement => {
               onActiveIndexChange={() => {}}
             >
               <SwiperSlide>
-                <Flex align="center" flexDirection="column" maxW="380px">
+                <Flex
+                  align="center"
+                  flexDirection="column"
+                  maxW="380px"
+                  transition={{ lg: 'opacity 1s linear' }}
+                  opacity={{ lg: `${isVisibleForecastBox ? 1 : 0.2}` }}
+                >
                   <Heading
                     as="h3"
                     textAlign="center"
@@ -706,7 +716,13 @@ const Index = (): ReactElement => {
                 </Flex>
               </SwiperSlide>
               <SwiperSlide>
-                <Flex align="center" flexDirection="column" maxW="380px">
+                <Flex
+                  align="center"
+                  flexDirection="column"
+                  maxW="380px"
+                  transition={{ lg: 'opacity 1s linear 2s' }}
+                  opacity={{ lg: `${isVisibleForecastBox ? 1 : 0.2}` }}
+                >
                   <Heading
                     as="h3"
                     textAlign="center"
@@ -742,7 +758,13 @@ const Index = (): ReactElement => {
                 </Flex>
               </SwiperSlide>
               <SwiperSlide>
-                <Flex align="center" flexDirection="column" maxW="380px">
+                <Flex
+                  align="center"
+                  flexDirection="column"
+                  maxW="380px"
+                  transition={{ lg: 'opacity 1s linear 4s' }}
+                  opacity={{ lg: `${isVisibleForecastBox ? 1 : 0.2}` }}
+                >
                   <Heading
                     as="h3"
                     textAlign="center"
