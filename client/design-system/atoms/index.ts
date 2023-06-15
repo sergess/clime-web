@@ -12,3 +12,5 @@ export * from './background-image.atom';
 export * from './background-video.atom';
 export * from './animated-element.atom';
 export * from './screen-phone.atom';
+export * from './get-clime-app-button.atom';
+export * from './get-clime-app-overlay.atom';

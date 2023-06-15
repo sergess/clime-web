@@ -1,17 +1,19 @@
 import React, { ReactElement, FC } from 'react';
 import {
   ComponentDefaultProps,
-  LinkBox,
   Text,
   Flex,
   Box,
   LinkOverlay,
-  Button,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
+import {
+  GetClimeAppButton,
+  GetClimeAppOverlay,
+} from 'client/design-system/atoms';
 import { useClimeAppLink } from 'client/hooks';
 
 export const AdvertisingBanner: FC<ComponentDefaultProps> = (
@@ -21,7 +23,7 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = (
   const { t } = useTranslation('banners');
 
   return (
-    <LinkBox
+    <GetClimeAppOverlay
       borderRadius={16}
       d="flex"
       flexDirection="column"
@@ -93,11 +95,11 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = (
             <Image
               src="/icons/ic_rainscope.svg"
               layout="fill"
-              alt={t('RainScope')}
+              alt={t('RainScope (minute-by-minute precipitation)')}
             />
           </Box>
           <Text color="white" fontSize={14} lineHeight="14px" fontWeight="600">
-            {t('RainScope')}
+            {t('RainScope (minute-by-minute precipitation)')}
           </Text>
         </Flex>
         <Flex align="center" mb={3.5}>
@@ -105,11 +107,11 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = (
             <Image
               src="/icons/ic_wildfires.svg"
               layout="fill"
-              alt={t('Fires and Hotspots Map')}
+              alt={t('Fire and Hotspot Map')}
             />
           </Box>
           <Text color="white" fontSize={14} lineHeight="14px" fontWeight="600">
-            {t('Fires and Hotspots Map')}
+            {t('Fire and Hotspot Map')}
           </Text>
         </Flex>
         <Flex align="center" mb={3.5}>
@@ -163,12 +165,12 @@ export const AdvertisingBanner: FC<ComponentDefaultProps> = (
       </Box>
       <NextLink href={climeAppLink} passHref>
         <LinkOverlay as="a" isExternal>
-          <Button w="140px" variant="marketing-banner-button">
-            {t('Get Clime App')}
-          </Button>
+          <GetClimeAppButton w="140px" variant="marketing-banner-button">
+            {t('Download Clime')}
+          </GetClimeAppButton>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </GetClimeAppOverlay>
   );
 };
 

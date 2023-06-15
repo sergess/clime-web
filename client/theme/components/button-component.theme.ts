@@ -204,7 +204,6 @@ const Button = {
       fontSize: '0.875rem',
       fontWeight: 700,
       lineHeight: '0.875rem',
-      textTransform: 'uppercase',
 
       _hover: {
         bgGradient: 'linear(to-b, #FFEA31 -0.18%, #FF9B04 99.82%)',

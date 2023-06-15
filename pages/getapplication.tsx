@@ -158,7 +158,7 @@ const GetApplicationPage = (): ReactElement => {
               <Image
                 src="/icons/ic_rainscope.svg"
                 layout="fill"
-                alt={t('RainScope: min-by-min precip outlook')}
+                alt={t('RainScope (minute-by-minute precipitation)')}
               />
             </Box>
             <Text
@@ -167,7 +167,7 @@ const GetApplicationPage = (): ReactElement => {
               lineHeight="14px"
               fontWeight="600"
             >
-              {t('RainScope: min-by-min precip outlook')}
+              {t('RainScope (minute-by-minute precipitation)')}
             </Text>
           </Flex>
         </Flex>
@@ -194,7 +194,7 @@ const GetApplicationPage = (): ReactElement => {
               <Image
                 src="/icons/ic_wildfires.svg"
                 layout="fill"
-                alt={t('Fires and hotspots map')}
+                alt={t('Fire and Hotspot Map')}
               />
             </Box>
             <Text
@@ -203,7 +203,7 @@ const GetApplicationPage = (): ReactElement => {
               lineHeight="14px"
               fontWeight="600"
             >
-              {t('Fires and hotspots map')}
+              {t('Fire and Hotspot Map')}
             </Text>
           </Flex>
           <Flex align="center" mb={3.5}>

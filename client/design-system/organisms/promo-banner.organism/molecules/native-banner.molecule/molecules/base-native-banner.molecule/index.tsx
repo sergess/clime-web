@@ -1,16 +1,18 @@
 import React, { ReactElement, FC } from 'react';
 import {
   Box,
-  Button,
   ComponentDefaultProps,
-  LinkBox,
   LinkOverlay,
   Text,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { useClimeAppLink } from 'client/hooks';
-import { BackgroundImage } from 'client/design-system/atoms';
+import {
+  BackgroundImage,
+  GetClimeAppButton,
+  GetClimeAppOverlay,
+} from 'client/design-system/atoms';
 import { DEFAULT_BANNER_BORDER_RADIUS } from 'client/design-system/organisms/promo-banner.organism/constants';
 
 export const BaseNativeBanner: FC<
@@ -34,7 +36,7 @@ export const BaseNativeBanner: FC<
   const climeAppLink = useClimeAppLink();
 
   return (
-    <LinkBox
+    <GetClimeAppOverlay
       {...componentStyles}
       data-banner-id={banner}
       data-spot-name={spotId}
@@ -56,12 +58,12 @@ export const BaseNativeBanner: FC<
       </Box>
       <NextLink href={climeAppLink} passHref>
         <LinkOverlay as="a" isExternal>
-          <Button w="280px" variant="cta" mb={5}>
+          <GetClimeAppButton w="280px" variant="cta" mb={5}>
             {buttonText}
-          </Button>
+          </GetClimeAppButton>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </GetClimeAppOverlay>
   );
 };
 

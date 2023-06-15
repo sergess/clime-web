@@ -1,7 +1,10 @@
 import React, { FC, ReactElement } from 'react';
-import { ComponentDefaultProps, Flex, LinkBox } from '@chakra-ui/react';
+import { ComponentDefaultProps, Flex } from '@chakra-ui/react';
 
-import { BackgroundImage } from 'client/design-system/atoms';
+import {
+  BackgroundImage,
+  GetClimeAppOverlay,
+} from 'client/design-system/atoms';
 import {
   DEFAULT_BANNER_HEIGHT,
   DEFAULT_BANNER_BORDER_RADIUS,
@@ -20,7 +23,7 @@ export const BaseMarketingBanner: FC<
   children,
   ...bannerDefaultProps
 }): ReactElement => (
-  <LinkBox
+  <GetClimeAppOverlay
     {...bannerDefaultProps}
     borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
     h={DEFAULT_BANNER_HEIGHT}
@@ -39,7 +42,7 @@ export const BaseMarketingBanner: FC<
     >
       {children}
     </Flex>
-  </LinkBox>
+  </GetClimeAppOverlay>
 );
 
 export default BaseMarketingBanner;

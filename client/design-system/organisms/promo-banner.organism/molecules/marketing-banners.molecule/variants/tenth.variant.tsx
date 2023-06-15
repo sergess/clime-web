@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import {
-  Button,
   ComponentDefaultProps,
   Flex,
   LinkOverlay,
@@ -9,6 +8,7 @@ import {
 import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
 
+import { GetClimeAppButton } from 'client/design-system/atoms';
 import { useClimeAppLink } from 'client/hooks';
 
 import { BaseMarketingBanner } from '../molecules';
@@ -63,9 +63,14 @@ export const MarketingBannerTenth = ({
       </Flex>
       <NextLink href={climeAppLink} passHref>
         <LinkOverlay as="a" isExternal>
-          <Button w="140px" variant="marketing-banner-button" mb={4} mx={4}>
-            {t('Get Clime App')}
-          </Button>
+          <GetClimeAppButton
+            w="140px"
+            variant="marketing-banner-button"
+            mb={4}
+            mx={4}
+          >
+            {t('Download Clime')}
+          </GetClimeAppButton>
         </LinkOverlay>
       </NextLink>
     </BaseMarketingBanner>
