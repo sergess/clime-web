@@ -1,3 +1,10 @@
+# [1.31.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.30.0...v1.31.0) (2023-06-15)
+
+
+### Features
+
+* **logic:** [WT-2086] Changes in site logic ([b6fd515](https://git.herewetest.com/apalon-web/clime-web/commit/b6fd51556512afae57687f6f9cc014d6a096d0ac))
+
 # [1.30.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.29.0...v1.30.0) (2023-06-13)
 
 
