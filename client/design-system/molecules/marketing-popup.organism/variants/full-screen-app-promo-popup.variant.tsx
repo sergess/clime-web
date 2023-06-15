@@ -1,8 +1,7 @@
-import React, { ReactElement, FC, useEffect, useCallback, useRef } from 'react';
+import React, { ReactElement, FC, useEffect, useCallback } from 'react';
 import { useAtom } from 'jotai';
 import {
   Text,
-  Button,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -11,30 +10,19 @@ import {
   ModalFooter,
   ModalCloseButton,
   Flex,
+  Box,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
-import NextLink from 'next/link';
 
 import { trackEvent } from 'client/services';
-import { useClimeAppLink } from 'client/hooks';
+import { Download } from 'client/design-system/molecules/download.molecule';
 import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
 import { CLIME_FULL_SCREEN_VIEWED } from 'client/services/analytics.service/constants';
-import {
-  FULL_SCREEN_POPUP_ANDROID_STORE_LINK,
-  FULL_SCREEN_POPUP_IOS_STORE_LINK,
-} from 'client/constants';
 import { redirectToAppPopupOpened } from '../state/derivatives';
 
 export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
   const { t } = useTranslation('common');
-
-  const goToAppButtonRef = useRef(null);
-
-  const climeAppLink = useClimeAppLink(
-    FULL_SCREEN_POPUP_IOS_STORE_LINK,
-    FULL_SCREEN_POPUP_ANDROID_STORE_LINK
-  );
 
   const [popupOpened, setPopupOpened] = useAtom(redirectToAppPopupOpened);
 
@@ -58,7 +46,6 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
       isOpen={popupOpened}
       onClose={onClosePopup}
       closeOnOverlayClick={false}
-      initialFocusRef={goToAppButtonRef}
     >
       <ModalOverlay bg="rgba(15, 21, 39, 0.8)" />
       <ModalContent
@@ -181,7 +168,7 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
                   lineHeight="0.875rem"
                   fontWeight="600"
                 >
-                  {t('RainScope: min-by-min precip outlook')}
+                  {t('RainScope (minute-by-minute precipitation)')}
                 </Text>
               </Flex>
               <Flex align="center" mb={2.5} ps={{ base: 2.5, lg: 0 }}>
@@ -217,7 +204,7 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
                   lineHeight="0.875rem"
                   fontWeight="600"
                 >
-                  {t('Fires and hotspots map')}
+                  {t('Fire and hotspot map')}
                 </Text>
               </Flex>
               <Flex align="center" ps={{ base: 2.5, lg: 0 }}>
@@ -245,12 +232,57 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
               mt={-28}
               mb={-12}
             >
-              <Image
-                src="/full-screen-popup-img.png"
-                width={384}
-                height={480}
-                alt="Weather tracker"
-              />
+              <Box pos="relative">
+                <Image
+                  src="/img-popup-banner.png"
+                  width={384}
+                  height={480}
+                  alt="QR Code"
+                />
+                <Box
+                  w={240}
+                  pos="absolute"
+                  top="121px"
+                  textAlign="center"
+                  left="calc(50% - 120px)"
+                >
+                  <Box
+                    mx="auto"
+                    border="2px solid #2DE886"
+                    w={180}
+                    borderRadius="xl"
+                    p={2}
+                    letterSpacing={0}
+                    wordSpacing={0}
+                    fontSize={0}
+                  >
+                    <Image
+                      src="/qr-code-banner.png"
+                      width={160}
+                      height={160}
+                      alt="QR"
+                    />
+                  </Box>
+                  <Text
+                    pt={5}
+                    color="#2DE886"
+                    fontSize="1.25rem"
+                    fontWeight={600}
+                    lineHeight="1.5rem"
+                  >
+                    {t('Scan the QR code')}
+                  </Text>
+                  <Text
+                    color="white"
+                    fontSize="1rem"
+                    fontWeight={500}
+                    lineHeight="1.25rem"
+                    pt={2}
+                  >
+                    {t('with your device to download the Clime mobile app.')}
+                  </Text>
+                </Box>
+              </Box>
             </Flex>
           </Flex>
         </ModalBody>
@@ -260,17 +292,7 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
           justifyContent={{ base: 'center', lg: 'flex-start' }}
           className="marketing-popup__controls"
         >
-          <NextLink href={climeAppLink} passHref>
-            <Button
-              ref={goToAppButtonRef}
-              as="a"
-              variant="cta"
-              w="100%"
-              maxW="308px"
-            >
-              {t('Get Clime app')}
-            </Button>
-          </NextLink>
+          <Download />
         </ModalFooter>
       </ModalContent>
     </Modal>

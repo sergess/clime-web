@@ -1,7 +1,7 @@
 {
-  "Get Clime App": "Get Clime App",
+  "Download Clime": "Download Clime",
   "Hurricane Tracker": "Hurricane Tracker",
-  "Fires and Hotspots Map": "Fires and Hotspots Map",
+  "Fire and hotspot map": "Fire and hotspot map",
   "Lightning Tracker": "Lightning Tracker",
   "Advanced Precipitation Forecast Map": "Advanced Precipitation Forecast Map",
   "Temperature Forecast Map": "Temperature Forecast Map",
@@ -31,9 +31,11 @@
   "Air Quality Index": "Air Quality Index",
   "Thunderstorm Notifications": "Thunderstorm Notifications",
   "Weather Radar": "Weather Radar",
-  "To-the-minute precip forecast": "To-the-minute precip forecast",
+  "Min-by-min precipitation forecast": "Min-by-min precipitation forecast",
   "Prep for both": "Prep for both",
   "Get Clime app" : "Get Clime app",
   "Explore weather radar": "Explore weather radar",
-  "Today’s Weather": "Today’s Weather"
+  "Today’s Weather": "Today’s Weather",
+  "Scan the QR code": "Scan the QR code",
+  "with your device to download the Clime mobile app.": "with your device to download the Clime mobile app."
 }

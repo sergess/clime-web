@@ -1,10 +1,8 @@
 import React, { ReactElement } from 'react';
 import {
   Box,
-  Button,
   ComponentDefaultProps,
   Flex,
-  LinkBox,
   LinkOverlay,
   Text,
 } from '@chakra-ui/react';
@@ -12,6 +10,10 @@ import NextLink from 'next/link';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 
+import {
+  GetClimeAppButton,
+  GetClimeAppOverlay,
+} from 'client/design-system/atoms';
 import { useClimeAppLink } from 'client/hooks';
 import {
   DEFAULT_BANNER_HEIGHT,
@@ -28,7 +30,7 @@ export const MarketingBannerEleventh = ({
   const { t } = useTranslation('banners');
 
   return (
-    <LinkBox
+    <GetClimeAppOverlay
       {...bannerDefaultProps}
       borderRadius={DEFAULT_BANNER_BORDER_RADIUS}
       d="flex"
@@ -73,7 +75,7 @@ export const MarketingBannerEleventh = ({
           fontWeight="500"
           pb={1.5}
         >
-          {t('To-the-minute precip forecast')}
+          {t('Min-by-min precipitation forecast')}
         </Text>
         <Box>
           <Image
@@ -87,12 +89,17 @@ export const MarketingBannerEleventh = ({
       </Flex>
       <NextLink href={climeAppLink} passHref>
         <LinkOverlay as="a" isExternal>
-          <Button w="140px" variant="marketing-banner-button" mb={4} mx={4}>
-            {t('Get Clime App')}
-          </Button>
+          <GetClimeAppButton
+            w="140px"
+            variant="marketing-banner-button"
+            mb={4}
+            mx={4}
+          >
+            {t('Download Clime')}
+          </GetClimeAppButton>
         </LinkOverlay>
       </NextLink>
-    </LinkBox>
+    </GetClimeAppOverlay>
   );
 };
 

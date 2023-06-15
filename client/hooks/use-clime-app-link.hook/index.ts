@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { isMobile as mobile, isIOS as ios } from 'react-device-detect';
 
-import { IOS_STORE_LINK, ANDROID_STORE_LINK, APP } from 'client/constants';
+import { IOS_STORE_LINK, ANDROID_STORE_LINK } from 'client/constants';
 
 import { useHasMounted } from '../use-has-mounted.hook';
 
@@ -13,14 +13,14 @@ export const useClimeAppLink = (
 
   return useMemo(() => {
     if (!hasMounted) {
-      return `/${APP}`;
+      return `/`;
     }
 
     if (mobile) {
       return ios ? iosStoreLink : androidStoreLink;
     }
 
-    return `/${APP}`;
+    return `/`;
   }, [hasMounted, mobile, ios]);
 };
 

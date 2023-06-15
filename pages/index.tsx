@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next';
 import { Box, Flex, Heading, IconButton, Text } from '@chakra-ui/react';
 import climeTheme from 'client/theme';
 import { SwiperSlide } from 'swiper/react';
+import { useAtom } from 'jotai';
 
 import { HomePageLayout } from 'client/design-system/templates';
 import { Carousel, TopNavigationBar } from 'client/design-system/molecules';
@@ -26,6 +27,7 @@ import {
   secondHomeImage,
   sliderHomeImages,
 } from 'client/design-system/atoms/animated-element.atom/keyframes';
+import { redirectToAppPopupOpened as appPopupOpened } from 'client/design-system/molecules/marketing-popup.organism/state/derivatives';
 import {
   useHasMounted,
   useCookies,
@@ -117,6 +119,8 @@ const Index = (): ReactElement => {
   const refForecastBox = useRef() as MutableRefObject<HTMLDivElement>;
   const isVisibleForecastBox = useElementOnView(refForecastBox);
 
+  const [, setPopupOpened] = useAtom(appPopupOpened);
+
   return (
     <>
       <Head>
@@ -178,7 +182,8 @@ const Index = (): ReactElement => {
                 fontSize={{ base: '32px', sm: '52px' }}
                 color="blue.800"
               >
-                Precise weather <Text color="blue.500">Precisely for you</Text>
+                Precise weather,{' '}
+                <Text color="blue.500">precisely for you.</Text>
               </Heading>
               <Text
                 textStyle={{
@@ -188,12 +193,29 @@ const Index = (): ReactElement => {
                 color="gray.600"
                 py={{ base: '1.25rem', sm: '2.5rem', lg: '3.5rem' }}
               >
-                Use the weather sharing feature to warn your family and friends
-                about severe weather and message them about current weather
-                conditions on social media or via private messages.
+                Get Clime for an all-in-one weather assistant right on your
+                device! Stay prepared for upcoming weather with real-time radar
+                images, insightful precipitation forecasts, severe weather
+                warnings, hurricane and lightning trackers, and accurate daily
+                weather data.
               </Text>
               <Flex justify={{ base: 'center', lg: 'flex-start' }}>
                 <Download />
+                {!screenWidthSmallerThanLarge && (
+                  <IconButton
+                    onClick={() => setPopupOpened(true)}
+                    ms={5}
+                    aria-label="QR Code"
+                    icon={
+                      <Image
+                        src="/icons/qr-button.png"
+                        width={125}
+                        height={40}
+                        alt=""
+                      />
+                    }
+                  />
+                )}
               </Flex>
             </Box>
             <Flex
@@ -528,7 +550,7 @@ const Index = (): ReactElement => {
                     screen={
                       <BackgroundVideo
                         containerStyles={{ objectFit: 'cover', height: '100%' }}
-                        poster="/video-poster-index-b2-1.png"
+                        poster="/video-poster-index-b2-1.jpg"
                         source="/video-index-b2-1.mp4"
                       />
                     }
@@ -563,7 +585,7 @@ const Index = (): ReactElement => {
         >
           <Flex mt={{ base: '10', lg: '0' }} maxW={580} w="100%" align="center">
             <BackgroundVideo
-              poster="/video-poster-index-b3.png"
+              poster="/video-poster-index-b3.jpg"
               source="/video-index-b3.mp4"
             />
           </Flex>
@@ -587,7 +609,7 @@ const Index = (): ReactElement => {
               color="gray.600"
             >
               Don’t guess the weather!
-              <br /> Rely on Clime for yearl-round weather forecasts for your
+              <br /> Rely on Clime for year-round weather forecasts for your
               location and across the world.
             </Text>
           </Flex>
@@ -709,7 +731,7 @@ const Index = (): ReactElement => {
                     screen={
                       <BackgroundVideo
                         containerStyles={{ objectFit: 'cover', height: '100%' }}
-                        poster="/video-poster-index-b4-1.png"
+                        poster="/video-poster-index-b4-1.jpg"
                         source="/video-index-b4-1.mp4"
                       />
                     }
@@ -749,11 +771,10 @@ const Index = (): ReactElement => {
                   <ScreenPhone
                     w={294}
                     screen={
-                      <Image
-                        src="/img-index-b4-2a.jpg"
-                        layout="fill"
-                        alt=""
-                        quality={85}
+                      <BackgroundVideo
+                        containerStyles={{ objectFit: 'cover', height: '100%' }}
+                        poster="/video-poster-index-b4-2.jpg"
+                        source="/video-index-b4-2.mp4"
                       />
                     }
                   />
@@ -791,11 +812,10 @@ const Index = (): ReactElement => {
                   <ScreenPhone
                     w={294}
                     screen={
-                      <Image
-                        src="/img-index-b4-3a.jpg"
-                        layout="fill"
-                        alt=""
-                        quality={85}
+                      <BackgroundVideo
+                        containerStyles={{ objectFit: 'cover', height: '100%' }}
+                        poster="/video-poster-index-b4-3.jpg"
+                        source="/video-index-b4-3.mp4"
                       />
                     }
                   />
@@ -1093,7 +1113,7 @@ const Index = (): ReactElement => {
             >
               Use the weather sharing feature to warn your family and friends
               about severe weather and message them about current weather
-              conditions on social media or in chats.
+              conditions on social media or via private messages.
             </Text>
           </Flex>
           <Flex
@@ -1106,7 +1126,7 @@ const Index = (): ReactElement => {
             <AnimatedElement
               node={
                 <Image
-                  src="/img_index_b7-1.png"
+                  src="/img-index-b7-1.png"
                   width={580}
                   height={600}
                   alt="Clime radar"
@@ -1119,7 +1139,7 @@ const Index = (): ReactElement => {
             <AnimatedElement
               node={
                 <Image
-                  src="/img_index_b7-2.png"
+                  src="/img-index-b7-2.png"
                   width={580}
                   height={600}
                   alt="Clime radar"
@@ -1135,7 +1155,7 @@ const Index = (): ReactElement => {
             <AnimatedElement
               node={
                 <Image
-                  src="/img_index_b7-3.png"
+                  src="/img-index-b7-3.png"
                   width={580}
                   height={600}
                   alt="Clime radar"
@@ -1151,7 +1171,7 @@ const Index = (): ReactElement => {
             <AnimatedElement
               node={
                 <Image
-                  src="/img_index_b7-4.png"
+                  src="/img-index-b7-4.png"
                   width={580}
                   height={600}
                   alt="Clime radar"
