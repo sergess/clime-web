@@ -655,6 +655,7 @@ const Index = (): ReactElement => {
               pos="absolute"
               zIndex="2"
               top="50%"
+              left="-12px"
               d={{ base: 'inline-flex', lg: 'none' }}
               icon={
                 <Flex transform="rotate(180deg)">
@@ -674,7 +675,7 @@ const Index = (): ReactElement => {
               pos="absolute"
               zIndex="2"
               top="50%"
-              right={0}
+              right="-12px"
               d={{ base: 'inline-flex', lg: 'none' }}
               icon={
                 <Flex>
@@ -952,7 +953,7 @@ const Index = (): ReactElement => {
             </Box>
           </Flex>
           <Flex
-            pt={{ base: '5', sm: '10', lg: '0' }}
+            pt={{ base: '10', lg: '0' }}
             maxW={{ base: '294', sm: '580' }}
             w="100%"
             justify="center"
