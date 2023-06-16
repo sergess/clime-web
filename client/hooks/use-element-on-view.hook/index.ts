@@ -8,7 +8,9 @@ export const useElementOnView = (
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       {
         root: null,
@@ -19,7 +21,7 @@ export const useElementOnView = (
 
     const currentElement = ref?.current;
 
-    if (currentElement) {
+    if (currentElement && !isVisible) {
       observer.observe(currentElement);
     }
 

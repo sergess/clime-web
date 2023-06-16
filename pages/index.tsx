@@ -283,7 +283,7 @@ const Index = (): ReactElement => {
         <Box
           maxW="container.xl"
           w="full"
-          pt={{ base: '12', sm: '16', lg: '33' }}
+          pt={{ base: '60px', lg: '120' }}
           ref={ref}
         >
           <Heading
@@ -299,7 +299,7 @@ const Index = (): ReactElement => {
             of severe weather
           </Heading>
           <Text
-            pt={4}
+            pt={3}
             textAlign="center"
             textStyle={{ base: '16-weather-detail', sm: '20-content-medium' }}
             color="gray.600"
@@ -309,7 +309,7 @@ const Index = (): ReactElement => {
           <Flex
             mx="auto"
             maxW={{ base: '334', md: '670' }}
-            mt={{ base: '8', sm: '10' }}
+            mt={{ base: '3', sm: '3' }}
             pos="relative"
             css={{
               '& .swiper': {
@@ -480,7 +480,7 @@ const Index = (): ReactElement => {
                   <Image
                     src="/icons/ic-wildfire-card.png"
                     width={32}
-                    height={32}
+                    height={39}
                     alt="Hurricane tracker"
                   />
                 </Flex>
@@ -654,7 +654,7 @@ const Index = (): ReactElement => {
               variant="home-carousel-button"
               pos="absolute"
               zIndex="2"
-              top="calc(50% - 40px)"
+              top="50%"
               d={{ base: 'inline-flex', lg: 'none' }}
               icon={
                 <Flex transform="rotate(180deg)">
@@ -673,7 +673,7 @@ const Index = (): ReactElement => {
               variant="home-carousel-button"
               pos="absolute"
               zIndex="2"
-              top="calc(50% - 40px)"
+              top="50%"
               right={0}
               d={{ base: 'inline-flex', lg: 'none' }}
               icon={
@@ -947,10 +947,7 @@ const Index = (): ReactElement => {
                 boxShadow="list"
               >
                 <Box sx={{ backgroundPosition: '0 100%!important' }} />
-                <Text>
-                  Monitor the current position and projected path of hurricanes
-                  on the map
-                </Text>
+                <Text>Get hourly precipitation outlook</Text>
               </Flex>
             </Box>
           </Flex>
@@ -990,6 +987,7 @@ const Index = (): ReactElement => {
             <ScreenPhone
               screen={
                 <BackgroundVideo
+                  containerStyles={{ objectFit: 'cover', height: '100%' }}
                   poster="/video-poster-index-b6.jpg"
                   source="/video-index-b6.mp4"
                 />
@@ -1133,7 +1131,7 @@ const Index = (): ReactElement => {
                   quality={85}
                 />
               }
-              animation={`20s linear infinite ${sliderHomeImages}`}
+              animation={`16s linear infinite ${sliderHomeImages}`}
               opacity={0}
             />
             <AnimatedElement
@@ -1146,7 +1144,7 @@ const Index = (): ReactElement => {
                   quality={85}
                 />
               }
-              animation={`20s linear 5s infinite ${sliderHomeImages}`}
+              animation={`16s linear 4s infinite ${sliderHomeImages}`}
               pos="absolute"
               opacity={0}
               top={0}
@@ -1162,7 +1160,7 @@ const Index = (): ReactElement => {
                   quality={85}
                 />
               }
-              animation={`20s linear 10s infinite ${sliderHomeImages}`}
+              animation={`16s linear 8s infinite ${sliderHomeImages}`}
               pos="absolute"
               opacity={0}
               top={0}
@@ -1178,7 +1176,7 @@ const Index = (): ReactElement => {
                   quality={85}
                 />
               }
-              animation={`20s linear 15s infinite ${sliderHomeImages}`}
+              animation={`16s linear 12s infinite ${sliderHomeImages}`}
               pos="absolute"
               opacity={0}
               top={0}
