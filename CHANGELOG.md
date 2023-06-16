@@ -1,3 +1,10 @@
+# [1.32.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.31.0...v1.32.0) (2023-06-16)
+
+
+### Features
+
+* **logic:** [WT-2086] fixed styles + new images ([1d0d4d1](https://git.herewetest.com/apalon-web/clime-web/commit/1d0d4d155ddf4fa327ee0ac6d0e3306d55eb687f))
+
 # [1.31.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.30.0...v1.31.0) (2023-06-15)
 
 
