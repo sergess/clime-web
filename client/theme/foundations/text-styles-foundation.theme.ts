@@ -61,7 +61,7 @@ const textStyles = {
     lineHeight: '1.5rem',
   },
   '18-content-medium': {
-    fontSize: '19px',
+    fontSize: '18px',
     fontWeight: 500,
     lineHeight: '1.25rem',
   },
