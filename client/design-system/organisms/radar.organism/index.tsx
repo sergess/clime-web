@@ -10,6 +10,7 @@ import {
   LAYOUT_HORIZONTAL_PADDING,
 } from 'client/constants';
 
+import { InfoCard } from 'client/design-system/molecules';
 import { mapFullscreenOnAtom } from 'client/state/atoms';
 import { useWindowDimensions } from 'client/hooks';
 import { trackEvent } from 'client/services';
@@ -77,6 +78,7 @@ export const Radar = (): ReactElement => {
       display="flex"
       flexDirection="column"
     >
+      {!mapFullscreenOn && <InfoCard />}
       <Box
         flex={1}
         position="relative"
