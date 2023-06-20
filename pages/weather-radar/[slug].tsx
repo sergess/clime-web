@@ -74,7 +74,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const remoteConfig = new RemoteConfig();
   const [locationData, translations, appConfig] = await Promise.all([
     withLocationData({ autolocation: false })(context),
-    withTranslations('meta-tags', 'radar', 'coverage-info')(context),
+    withTranslations(
+      'meta-tags',
+      'radar',
+      'coverage-info',
+      'card-info'
+    )(context),
     remoteConfig.getAppConfig(),
   ]);
 

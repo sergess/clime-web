@@ -253,6 +253,27 @@ const Button = {
         cursor: 'default',
       },
     },
+    'card-info': {
+      bg: 'white',
+      h: '24px',
+      w: '24px',
+      minW: '24px',
+      borderRadius: 'full',
+      px: '0',
+
+      _hover: {
+        bg: 'white',
+      },
+
+      _active: {
+        bg: 'white',
+      },
+
+      _disabled: {
+        opacity: 0,
+        cursor: 'default',
+      },
+    },
   },
 };
 
