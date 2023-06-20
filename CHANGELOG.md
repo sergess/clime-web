@@ -1,3 +1,10 @@
+# [1.34.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.33.0...v1.34.0) (2023-06-20)
+
+
+### Features
+
+* **Weather Radar page:** [WT-2076] Update the Weather Radar page ([8200f6d](https://git.herewetest.com/apalon-web/clime-web/commit/8200f6d9a0b963310363aee09cb5cd1d6cb20025))
+
 # [1.33.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.32.0...v1.33.0) (2023-06-16)
 
 
