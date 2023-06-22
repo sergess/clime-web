@@ -1,3 +1,10 @@
+# [1.35.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.34.0...v1.35.0) (2023-06-22)
+
+
+### Features
+
+* **legal team:** [WT-2086] legal team comments ([0474125](https://git.herewetest.com/apalon-web/clime-web/commit/04741256e06726baf0547543929aeb48c3ce9eae))
+
 # [1.34.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.33.0...v1.34.0) (2023-06-20)
 
 
