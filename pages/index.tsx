@@ -193,7 +193,7 @@ const Index = (): ReactElement => {
                 color="gray.600"
                 py={{ base: '1.25rem', sm: '2.5rem', lg: '3.5rem' }}
               >
-                Get Clime for an all-in-one weather assistant right on your
+                Get Clime&reg; for an all-in-one weather assistant right on your
                 device! Stay prepared for upcoming weather with real-time radar
                 images, insightful precipitation forecasts, severe weather
                 warnings, hurricane and lightning trackers, and accurate daily
@@ -796,7 +796,7 @@ const Index = (): ReactElement => {
                     fontSize={{ base: '20px', lg: '24px' }}
                     color="blue.500"
                   >
-                    RainScope
+                    RainScope&reg;
                   </Heading>
                   <Text
                     textAlign="center"
