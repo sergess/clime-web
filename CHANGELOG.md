@@ -1,3 +1,10 @@
+# [1.36.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.35.0...v1.36.0) (2023-07-06)
+
+
+### Features
+
+* **aso:** [WT-2096] removed h1 tag on weather radar pages ([17760b2](https://git.herewetest.com/apalon-web/clime-web/commit/17760b2b9f8487c0e11c80ecab7e74ec18eb3753))
+
 # [1.35.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.34.0...v1.35.0) (2023-06-22)
 
 
