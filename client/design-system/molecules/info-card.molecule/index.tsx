@@ -74,7 +74,7 @@ export const InfoCard: FC<ComponentDefaultProps> = (
             align="center"
             justify="space-between"
           >
-            <Text as="h1" color="blue.500" textStyle="16-semi-bold">
+            <Text color="blue.500" textStyle="16-semi-bold">
               {t('{{locationName}} Weather Radar', { locationName })}
             </Text>
             <IconButton
