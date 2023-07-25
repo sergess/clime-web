@@ -1,3 +1,10 @@
+# [1.37.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.36.0...v1.37.0) (2023-07-25)
+
+
+### Features
+
+* **AB Tasty:** [MW-9] Add AB Tasty to Clime ([104092a](https://git.herewetest.com/apalon-web/clime-web/commit/104092ab356a92ae4956f7eebfa1c2acb73e1d35))
+
 # [1.36.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.35.0...v1.36.0) (2023-07-06)
 
 
