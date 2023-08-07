@@ -50,6 +50,11 @@ const textStyles = {
     fontWeight: 500,
     lineHeight: '1.75rem',
   },
+  '20-content-normal': {
+    fontSize: '1.25rem',
+    fontWeight: 400,
+    lineHeight: '1.75rem',
+  },
   '20-content-medium': {
     fontSize: '1.25rem',
     fontWeight: 500,
@@ -89,6 +94,11 @@ const textStyles = {
     fontSize: '1rem',
     fontWeight: 500,
     lineHeight: '1rem',
+  },
+  '16-content-normal': {
+    fontSize: '1rem',
+    fontWeight: 400,
+    lineHeight: '1.75rem',
   },
   '16-medium-card': {
     fontSize: '1rem',

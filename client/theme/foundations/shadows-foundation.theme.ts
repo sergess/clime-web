@@ -24,6 +24,8 @@ const shadows = {
   device: '0px 4px 20px rgba(26, 96, 179, 0.12)',
   'card-info':
     'box-shadow: 0px 4px 8px rgba(26, 96, 179, 0.1), inset 0px -2px 0px rgba(60, 131, 232, 0.1)',
+  'precise-box':
+    '0px 3.3081910610198975px 16.54095458984375px 0px rgba(26, 96, 179, 0.12)',
 };
 
 export default shadows;

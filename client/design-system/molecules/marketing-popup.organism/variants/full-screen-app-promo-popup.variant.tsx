@@ -17,7 +17,6 @@ import { useTranslation } from 'next-i18next';
 
 import { trackEvent } from 'client/services';
 import { Download } from 'client/design-system/molecules/download.molecule';
-import { useAppConfig } from 'client/state/contexts/app-config.context/hooks';
 import { CLIME_FULL_SCREEN_VIEWED } from 'client/services/analytics.service/constants';
 import { redirectToAppPopupOpened } from '../state/derivatives';
 
@@ -30,16 +29,9 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
     setPopupOpened(false);
   }, []);
 
-  const appConfig = useAppConfig();
-
-  const showRedirectToAppPopup = appConfig?.showRedirectToAppPopup;
-
   useEffect(() => {
-    if (popupOpened && showRedirectToAppPopup)
-      trackEvent(CLIME_FULL_SCREEN_VIEWED);
-  }, [popupOpened, showRedirectToAppPopup]);
-
-  if (!showRedirectToAppPopup) return null;
+    if (popupOpened) trackEvent(CLIME_FULL_SCREEN_VIEWED);
+  }, [popupOpened]);
 
   return (
     <Modal
