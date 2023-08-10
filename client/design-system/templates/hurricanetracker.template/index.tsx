@@ -13,24 +13,25 @@ export const HurricaneTrackerPageLayout: React.FC = ({
         w="full"
         h="100%"
         bg={{
-          base: "#f4f8fb url('/bg-hurricane.jpg')",
-          md: "#f4f8fb url('/bg-hurricane.jpg')",
+          base: "#F7F8FA url('/bg-hurricane-mob.png')",
+          sm: "#f8f9fd url('/bg-hurricane-table.jpg')",
+          xl: "#f4f8fb url('/bg-hurricane.jpg')",
         }}
-        bgPosition={{ base: 'center top', md: 'center top' }}
-        bgSize={{ base: 'cover', md: '2560px 1628px' }}
-        bgRepeat={{ base: 'no-repeat', md: 'no-repeat' }}
+        bgPosition={{ base: 'center top', sm: 'center top', xl: 'center top' }}
+        bgSize={{ base: 'contain', sm: 'cover', xl: '2560px 1628px' }}
+        bgRepeat={{ base: 'no-repeat', sm: 'no-repeat', xl: 'no-repeat' }}
         justify="center"
         overflow="hidden"
-        px={{ base: '2.5', md: '0' }}
-        pb={{ base: '6', md: '20' }}
+        px={{ base: '4', xl: '4' }}
+        pb={{ base: '14', xl: '20' }}
       >
         <Flex
           maxW="1268px"
           w="full"
-          pt={{ base: '10', md: '31px' }}
+          pt={{ base: '8', xl: '31px' }}
           justify="space-between"
-          align={{ base: 'center', md: 'flex-start' }}
-          flexDirection={{ base: 'column', md: 'row' }}
+          align={{ base: 'center', xl: 'flex-start' }}
+          flexDirection={{ base: 'column', xl: 'row' }}
         >
           <Flex w="full" flexDirection="column">
             {children}
