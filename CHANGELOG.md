@@ -1,3 +1,10 @@
+# [1.39.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.38.0...v1.39.0) (2023-08-10)
+
+
+### Features
+
+* **hurricanetracker:** [WT-2105] hurricanetracker page(mob) ([6e63980](https://git.herewetest.com/apalon-web/clime-web/commit/6e639807a31c2fb75d738a90f10b5cd7eea303d6))
+
 # [1.38.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.37.0...v1.38.0) (2023-08-07)
 
 
