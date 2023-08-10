@@ -16,39 +16,45 @@ export const Carousel: FC<{
     prevEl: string;
     nextEl: string;
   };
+  carousel?: boolean;
 }> = ({
   slidesPerView,
   slidesPerGroup = 1,
   onActiveIndexChange,
   spaceBetween = 20,
   navigation,
+  carousel = true,
   children,
 }): ReactElement => {
   const onSetActiveSwiperIndex = useCallback(({ activeIndex }: SwiperClass) => {
     onActiveIndexChange(activeIndex);
   }, []);
 
-  return (
-    <Swiper
-      spaceBetween={spaceBetween}
-      modules={[Navigation, Pagination, Autoplay]}
-      slidesPerView={slidesPerView}
-      slidesPerGroup={slidesPerGroup}
-      onActiveIndexChange={onSetActiveSwiperIndex}
-      rewind
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      navigation={navigation}
-      threshold={20}
-    >
-      {children}
-    </Swiper>
-  );
+  if (carousel) {
+    return (
+      <Swiper
+        spaceBetween={spaceBetween}
+        modules={[Navigation, Pagination, Autoplay]}
+        slidesPerView={slidesPerView}
+        slidesPerGroup={slidesPerGroup}
+        onActiveIndexChange={onSetActiveSwiperIndex}
+        rewind
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={navigation}
+        threshold={20}
+      >
+        {children}
+      </Swiper>
+    );
+  }
+
+  return <>{children}</>;
 };
 
 export default Carousel;
