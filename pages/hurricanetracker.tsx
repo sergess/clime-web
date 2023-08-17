@@ -417,9 +417,9 @@ const HurricaneTrackerPage = (): ReactElement => {
                       fontSize={0}
                     >
                       <Image
-                        src="/precise-weather-screen.png"
+                        src="/precise-weather-screen-n.png"
                         width={216}
-                        height={304}
+                        height={292}
                         alt=""
                         quality={85}
                       />

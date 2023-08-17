@@ -247,9 +247,10 @@ export const FullScreenAppPromoPopup: FC = (): ReactElement | null => {
                     letterSpacing={0}
                     wordSpacing={0}
                     fontSize={0}
+                    overflow="hidden"
                   >
                     <Image
-                      src="/qr-code-banner.png"
+                      src="/qr-code-banner-n.png"
                       width={160}
                       height={160}
                       alt="QR"
