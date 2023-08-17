@@ -1,3 +1,10 @@
+## [1.39.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.39.0...v1.39.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **LP fixes:** [WT-2112] LP fixes ([622e97c](https://git.herewetest.com/apalon-web/clime-web/commit/622e97c57bbdc5bf6a3018c6e71f02fdbc3ff4e0))
+
 # [1.39.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.38.0...v1.39.0) (2023-08-10)
 
 
