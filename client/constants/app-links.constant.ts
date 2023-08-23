@@ -1,8 +1,8 @@
 export const WEB_FUNNEL_LINK = 'https://app.climeradar.com/';
 export const IOS_STORE_LINK =
-  'https://app.adjust.com/124ex421?pt_source_type=web';
+  'https://app.adjust.com/13orj1rn_13hcxibm?pt_source_type=web';
 export const ANDROID_STORE_LINK =
-  'https://app.adjust.com/127tq56l?pt_source_type=web';
+  'https://app.adjust.com/13orj1rn_13hcxibm?pt_source_type=web';
 export const REDIRECT_POPUP_IOS_STORE_LINK = 'https://app.adjust.com/q6v8fgq';
 export const REDIRECT_POPUP_ANDROID_STORE_LINK =
   'https://app.adjust.com/fr4to5t';
