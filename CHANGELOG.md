@@ -1,3 +1,10 @@
+## [1.39.3](https://git.herewetest.com/apalon-web/clime-web/compare/v1.39.2...v1.39.3) (2023-08-23)
+
+
+### Bug Fixes
+
+* **adjust links:** [WT-2114] links were updated ([576c7ed](https://git.herewetest.com/apalon-web/clime-web/commit/576c7ed4777db24a1508254f4fbf78e5bf605abf))
+
 ## [1.39.2](https://git.herewetest.com/apalon-web/clime-web/compare/v1.39.1...v1.39.2) (2023-08-18)
 
 
