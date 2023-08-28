@@ -1,3 +1,10 @@
+# [1.41.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.40.0...v1.41.0) (2023-08-28)
+
+
+### Features
+
+* **links:** store links ([9f71d0f](https://git.herewetest.com/apalon-web/clime-web/commit/9f71d0feea5d07372009bd13e9a9bf2df7f8d6c8))
+
 # [1.40.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.39.3...v1.40.0) (2023-08-24)
 
 
