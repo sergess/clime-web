@@ -1,3 +1,10 @@
+# [1.44.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.43.1...v1.44.0) (2023-10-12)
+
+
+### Features
+
+* **robots:** [MW-45] robots.txt(Google-Extended) ([24aa873](https://git.herewetest.com/apalon-web/clime-web/commit/24aa8737666b1814bc89ad48b288daba3a388c35))
+
 ## [1.43.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.43.0...v1.43.1) (2023-10-12)
 
 
