@@ -10,7 +10,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-import { Box, Flex, Heading, IconButton, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, Text, Link } from '@chakra-ui/react';
 import climeTheme from 'client/theme';
 import { SwiperSlide } from 'swiper/react';
 import { useAtom } from 'jotai';
@@ -260,6 +260,94 @@ const Index = (): ReactElement => {
           </Flex>
         </Box>
       </Flex>
+      <Box maxW="container.xl" w="full" py="6" px="5">
+        <Text textStyle="16-bold-card" color="blue.500" align="center" pb="5">
+          Featured in
+        </Text>
+        <Flex
+          alignItems="center"
+          overflowX="auto"
+          mx="auto"
+          w="fit-content"
+          css={{
+            '&::-webkit-scrollbar': {
+              width: 0,
+              height: 0,
+              display: 'none',
+              gap: '80px',
+            },
+          }}
+          sx={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            gap: '80px',
+            '@media screen and (max-width: 619px)': {
+              gap: '20px',
+            },
+          }}
+        >
+          <Link
+            href="https://www.tomsguide.com/round-up/best-weather-apps"
+            isExternal
+            flexShrink={0}
+          >
+            <Image
+              src="/icons/toms-guide.svg"
+              height={30}
+              width={169}
+              alt="Tom's guide"
+            />
+          </Link>
+          <Link
+            href="https://www.cnet.com/tech/services-and-software/best-weather-app/"
+            isExternal
+            flexShrink={0}
+          >
+            <Image
+              src="/icons/cnet-2022.svg"
+              height={24}
+              width={106}
+              alt="CNET"
+            />
+          </Link>
+          <Link
+            href="https://www.lifewire.com/best-hurricane-tracker-apps-4175205"
+            isExternal
+            flexShrink={0}
+          >
+            <Image
+              src="/icons/lifewire.svg"
+              height={24}
+              width={102}
+              alt="Lifewire"
+            />
+          </Link>
+          <Link
+            href="https://www.makeuseof.com/apps-prepare-hurricane-season-big-storms/"
+            isExternal
+            flexShrink={0}
+          >
+            <Image
+              src="/icons/makeuseof.svg"
+              height={30}
+              width={101}
+              alt="Make use of"
+            />
+          </Link>
+          <Link
+            href="https://www.pnj.com/story/weather/hurricanes/2023/05/16/best-hurricane-tracker-weather-wind-alerts-five-smartphone-apps/70219638007/"
+            isExternal
+            flexShrink={0}
+          >
+            <Image
+              src="/icons/pensacola-news-journal.png"
+              height={30}
+              width={99}
+              alt="Pensacola News Journal"
+            />
+          </Link>
+        </Flex>
+      </Box>
       <Flex
         as="section"
         w="full"
@@ -283,7 +371,7 @@ const Index = (): ReactElement => {
         <Box
           maxW="container.xl"
           w="full"
-          pt={{ base: '60px', lg: '120' }}
+          pt={{ base: '60px', lg: '70px' }}
           ref={ref}
         >
           <Heading
