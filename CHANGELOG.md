@@ -1,3 +1,11 @@
+# [1.43.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.42.0...v1.43.0) (2023-10-12)
+
+
+### Features
+
+* **media block:** [WT-2124] media block ([0a3c376](https://git.herewetest.com/apalon-web/clime-web/commit/0a3c376b9b20b752f288690585e0d419e9cd5673))
+* **node:** [WT-2124] node v 18.17 ([6b7d687](https://git.herewetest.com/apalon-web/clime-web/commit/6b7d687608b0feec61ad48556f08162d2c35f423))
+
 # [1.42.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.41.0...v1.42.0) (2023-08-28)
 
 
