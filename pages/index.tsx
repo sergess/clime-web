@@ -260,7 +260,7 @@ const Index = (): ReactElement => {
           </Flex>
         </Box>
       </Flex>
-      <Box maxW="container.xl" w="full" py="6" px="5">
+      <Box maxW="container.xl" w="full" py="6" px="5" mx="auto">
         <Text textStyle="16-bold-card" color="blue.500" align="center" pb="5">
           Featured in
         </Text>
