@@ -23,7 +23,7 @@ before_script:
 
 create-release:
   stage: release
-  image: node:18.13
+  image: node:18.17
   before_script:
     - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
   script:
