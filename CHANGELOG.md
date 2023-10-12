@@ -1,3 +1,10 @@
+## [1.43.1](https://git.herewetest.com/apalon-web/clime-web/compare/v1.43.0...v1.43.1) (2023-10-12)
+
+
+### Bug Fixes
+
+* **style:** [WT-2124] centered features box ([e434f45](https://git.herewetest.com/apalon-web/clime-web/commit/e434f4570490722c3d49440d7a73330334d9db63))
+
 # [1.43.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.42.0...v1.43.0) (2023-10-12)
 
 
