@@ -84,6 +84,26 @@ module.exports = withBundleAnalyzer({
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/tiktok',
+        destination: 'https://app.adjust.com/ydpm2fv_m5xq9id',
+        permanent: true,
+      },
+      {
+        source: '/x',
+        destination: 'https://app.adjust.com/89d3346_mpcu14f',
+        permanent: true,
+      },
+      {
+        source: '/instagram',
+        destination: 'https://app.adjust.com/ht7wyld_gy6iyj2',
+        permanent: true,
+      },
+      {
+        source: '/facebook',
+        destination: 'https://app.adjust.com/bfnn1sb_wj034q2',
+        permanent: true,
+      },
     ];
   },
 });
