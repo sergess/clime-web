@@ -1,3 +1,10 @@
+# [1.45.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.44.0...v1.45.0) (2023-10-24)
+
+
+### Features
+
+* **set up redirects:** [MW-63] redirects for Social Media Profiles ([c9286ae](https://git.herewetest.com/apalon-web/clime-web/commit/c9286ae6d5e0f4d099bbe9630bf28b07a788526a))
+
 # [1.44.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.43.1...v1.44.0) (2023-10-12)
 
 
