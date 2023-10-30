@@ -107,17 +107,6 @@ export const Footer = (): ReactElement => {
             >
               {t('Privacy policy')}
             </Link>
-            <Link
-              href="https://climeradar.com/privacyPolicy#h"
-              d="inline-block"
-              pe={['12', null, '10']}
-              mb={['6', null, '0']}
-              color="white"
-              isExternal
-              rel="nofollow"
-            >
-              {t('California Privacy Rights')}
-            </Link>
             <Box
               className="ot-sdk-show-settings"
               d="inline-block"
