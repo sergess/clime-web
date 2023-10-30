@@ -1,3 +1,10 @@
+# [1.46.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.45.0...v1.46.0) (2023-10-30)
+
+
+### Features
+
+* **onetrust:** [MW-33] onetrust footer link ([50e0a4f](https://git.herewetest.com/apalon-web/clime-web/commit/50e0a4f916f4c6928216fb3305a56708480ffefb))
+
 # [1.45.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.44.0...v1.45.0) (2023-10-24)
 
 
