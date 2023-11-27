@@ -1,3 +1,11 @@
+# [1.47.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.46.0...v1.47.0) (2023-11-27)
+
+
+### Features
+
+* **clime-app:** [WT-2129] new landing page ([db74c5e](https://git.herewetest.com/apalon-web/clime-web/commit/db74c5e1aad5b8c29d90fb510b40ebfa9586b663))
+* **clime-app:** [WT-2129] seo ([df95a4b](https://git.herewetest.com/apalon-web/clime-web/commit/df95a4b9c2e35c8cd9bd2c60c6e51de6b71ffda0))
+
 # [1.46.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.45.0...v1.46.0) (2023-10-30)
 
 
