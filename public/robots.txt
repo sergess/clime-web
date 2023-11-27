@@ -7,5 +7,6 @@ Disallow: /
 User-agent: *
 Allow: /
 Disallow: /news
+Disallow: /climeapp
 
 Sitemap: https://climeradar.com/sitemaps/sitemap.xml

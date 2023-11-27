@@ -98,6 +98,12 @@ const textStyles = {
     lineHeight: '1.5rem',
     fontFamily: 'manrope',
   },
+  '20-monserat-800': {
+    fontSize: '1.25rem',
+    fontWeight: 800,
+    lineHeight: '1.5rem',
+    fontFamily: 'monserat',
+  },
   '20-content-normal': {
     fontSize: '1.25rem',
     fontWeight: 400,
@@ -153,6 +159,12 @@ const textStyles = {
     fontWeight: 500,
     lineHeight: '1.25rem',
   },
+  '16-regular': {
+    fontSize: '1rem',
+    fontWeight: 600,
+    lineHeight: '1.5rem',
+    fontFamily: 'monserat',
+  },
   '14-bold': {
     fontSize: '0.875rem',
     fontWeight: 700,
@@ -172,6 +184,12 @@ const textStyles = {
     fontSize: '0.875rem',
     fontWeight: 500,
     lineHeight: '0.875rem',
+  },
+  '14-regular': {
+    fontSize: '0.875rem',
+    fontWeight: 400,
+    lineHeight: '1.5rem',
+    fontFamily: 'monserat',
   },
   '12-bold': {
     fontSize: '0.75rem',
