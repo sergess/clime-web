@@ -17,11 +17,11 @@ const ClimeAppPage = (): ReactElement => {
   return (
     <>
       <Head>
-        <title>{t('Weather Radar App | Clime')}</title>
+        <title>{t('Clime: all-in-one weather tracker and live radar')}</title>
         <meta
           name="description"
           content={t(
-            'Consider Clime your personal weather assistant with hourly weather, local radar and precip forecast maps, hurricane and wildfire tracking – all in one app.'
+            'Get accurate weather forecasts with real-time radar, hurricane and lightning trackers, interactive maps, precipitation forecasts, weather alerts, and more.'
           )}
         />
         <link
