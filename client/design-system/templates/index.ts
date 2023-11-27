@@ -6,3 +6,4 @@ export * from './get-application-page-layout.template';
 export * from './storm-survival-kit.template';
 export * from './home-page-layout.template';
 export * from './hurricanetracker.template';
+export * from './clime-app.template';

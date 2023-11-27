@@ -56,6 +56,20 @@ const Link = {
         color: 'orange.400',
       },
     },
+    download: {
+      bg: '#2DE886',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textStyle: '20-monserat-800',
+      textDecoration: 'none',
+      borderRadius: '12px',
+      letterSpacing: '0.4px',
+
+      _hover: {
+        textDecoration: 'none',
+      },
+    },
   },
 };
 
