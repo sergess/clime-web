@@ -85,8 +85,30 @@ export const ClimeAppPageLayout: React.FC = ({
               me={{ base: '-10%', lg: '0px' }}
               mt={{ base: '4', lg: '0' }}
               display={{ base: 'none', lg: 'block' }}
+              position="relative"
             >
               <Image src="/pic-clime-app.png" width={590} height={565} alt="" />
+              <Box position="absolute" top="330px" right="61px" zIndex="3">
+                <Image src="/frame.png" width={160} height={27} alt="" />
+              </Box>
+              <Box
+                position="absolute"
+                top="191px"
+                right="61px"
+                borderRadius="6px"
+                overflow="hidden"
+                fontSize={0}
+                sx={{
+                  clipPath: 'polygon(27px 0, 100% 0, 100% 100%, 0 145%)',
+                }}
+              >
+                <Image
+                  src="/сlime-hurricanecard.gif"
+                  width={167}
+                  height={165}
+                  alt=""
+                />
+              </Box>
             </Box>
           </Flex>
         </Box>
