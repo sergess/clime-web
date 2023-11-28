@@ -1,3 +1,10 @@
+# [1.50.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.49.0...v1.50.0) (2023-11-28)
+
+
+### Features
+
+* **clime-app:** [WT-2129] styles ([6e68a58](https://git.herewetest.com/apalon-web/clime-web/commit/6e68a584510413149d414a6888f8c013f02c2936))
+
 # [1.49.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.48.0...v1.49.0) (2023-11-28)
 
 
