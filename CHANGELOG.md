@@ -1,3 +1,10 @@
+# [1.48.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.47.0...v1.48.0) (2023-11-28)
+
+
+### Features
+
+* **clime-app:** [WT-2129] implemented animation ([02637ce](https://git.herewetest.com/apalon-web/clime-web/commit/02637ce27e59e3a5a23e3a6d77ee901494a691cf))
+
 # [1.47.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.46.0...v1.47.0) (2023-11-27)
 
 
