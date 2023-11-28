@@ -88,7 +88,7 @@ export const ClimeAppPageLayout: React.FC = ({
               position="relative"
             >
               <Image src="/pic-clime-app.png" width={590} height={565} alt="" />
-              <Box position="absolute" top="330px" right="61px" zIndex="3">
+              <Box position="absolute" top="330px" right="58px" zIndex="3">
                 <Image src="/frame.png" width={160} height={27} alt="" />
               </Box>
               <Box
