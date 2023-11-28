@@ -93,8 +93,8 @@ export const ClimeAppPageLayout: React.FC = ({
               </Box>
               <Box
                 position="absolute"
-                top="191px"
-                right="61px"
+                top="183px"
+                right="56px"
                 borderRadius="6px"
                 overflow="hidden"
                 fontSize={0}
@@ -104,8 +104,8 @@ export const ClimeAppPageLayout: React.FC = ({
               >
                 <Image
                   src="/сlime-hurricanecard.gif"
-                  width={167}
-                  height={165}
+                  width={171}
+                  height={169}
                   alt=""
                 />
               </Box>
