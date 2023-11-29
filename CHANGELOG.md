@@ -1,3 +1,10 @@
+# [1.51.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.50.0...v1.51.0) (2023-11-29)
+
+
+### Features
+
+* **clime-app:** [WT-2129] quality form image ([20e7621](https://git.herewetest.com/apalon-web/clime-web/commit/20e7621563c2c0635fe9227b460e8e8612b2ba1e))
+
 # [1.50.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.49.0...v1.50.0) (2023-11-28)
 
 
