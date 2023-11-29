@@ -87,9 +87,21 @@ export const ClimeAppPageLayout: React.FC = ({
               display={{ base: 'none', lg: 'block' }}
               position="relative"
             >
-              <Image src="/pic-clime-app.png" width={590} height={565} alt="" />
+              <Image
+                src="/pic-clime-app.png"
+                width={590}
+                height={565}
+                alt=""
+                quality={100}
+              />
               <Box position="absolute" top="323px" right="58px" zIndex="3">
-                <Image src="/frame.png" width={160} height={27} alt="" />
+                <Image
+                  src="/frame.png"
+                  width={160}
+                  height={27}
+                  alt=""
+                  quality={100}
+                />
               </Box>
               <Box
                 position="absolute"
@@ -106,6 +118,7 @@ export const ClimeAppPageLayout: React.FC = ({
                   src="/сlime-hurricanecard.gif"
                   width={171}
                   height={169}
+                  quality={100}
                   alt=""
                 />
               </Box>

@@ -170,7 +170,13 @@ const ClimeAppPage = (): ReactElement => {
         </Flex>
       </Grid>
       <Box mx="-2.5rem" display={{ base: 'block', lg: 'none' }} mt="38px">
-        <Image src="/pic-clime-app-mob.png" width={375} height={382} alt="" />
+        <Image
+          src="/pic-clime-app-mob.png"
+          width={375}
+          height={382}
+          alt=""
+          quality={100}
+        />
       </Box>
       <NextLink href={IOS_STORE_LINK} passHref>
         <Link href={IOS_STORE_LINK} isExternal width="fit-content" my={10}>
