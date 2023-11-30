@@ -89,12 +89,12 @@ export const ClimeAppPageLayout: React.FC = ({
             >
               <Image
                 src="/pic-clime-appv.png"
-                width={590}
-                height={565}
+                width={600}
+                height={541}
                 alt=""
                 quality={100}
               />
-              <Box position="absolute" top="323px" right="58px" zIndex="3">
+              <Box position="absolute" top="312px" right="60px" zIndex="3">
                 <Image
                   src="/frame.png"
                   width={160}
@@ -105,13 +105,14 @@ export const ClimeAppPageLayout: React.FC = ({
               </Box>
               <Box
                 position="absolute"
-                top="183px"
-                right="56px"
+                top="176px"
+                right="58px"
                 borderRadius="6px"
+                height="162px"
                 overflow="hidden"
                 fontSize={0}
                 sx={{
-                  clipPath: 'polygon(27px 0, 100% 0, 100% 100%, 0 160%)',
+                  clipPath: 'polygon(25px 0, 100% 0, 100% 100%, 0 150%)',
                 }}
               >
                 <Image

@@ -173,7 +173,7 @@ const ClimeAppPage = (): ReactElement => {
         <Image
           src="/pic-clime-app-mobv.png"
           width={375}
-          height={382}
+          height={371}
           alt=""
           quality={100}
         />
