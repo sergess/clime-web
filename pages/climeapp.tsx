@@ -171,7 +171,7 @@ const ClimeAppPage = (): ReactElement => {
       </Grid>
       <Box mx="-2.5rem" display={{ base: 'block', lg: 'none' }} mt="38px">
         <Image
-          src="/pic-clime-app-mob.png"
+          src="/pic-clime-app-mobv.png"
           width={375}
           height={382}
           alt=""
