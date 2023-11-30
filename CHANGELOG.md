@@ -1,3 +1,10 @@
+# [1.54.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.53.0...v1.54.0) (2023-11-30)
+
+
+### Features
+
+* **clime-app:** [WT-2129] new store url ([22d1b1d](https://git.herewetest.com/apalon-web/clime-web/commit/22d1b1d65e6f4af25b9cf93ac5cb038ffa5d1ffc))
+
 # [1.53.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.52.0...v1.53.0) (2023-11-30)
 
 
