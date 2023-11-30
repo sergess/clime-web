@@ -8,7 +8,6 @@ import NextLink from 'next/link';
 import Head from 'next/head';
 
 import { ClimeAppPageLayout } from 'client/design-system/templates';
-import { IOS_STORE_LINK } from 'client/constants';
 
 import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
 
@@ -71,9 +70,12 @@ const ClimeAppPage = (): ReactElement => {
         </Text>{' '}
         <br /> weather tracker
       </Heading>
-      <NextLink href={IOS_STORE_LINK} passHref>
+      <NextLink
+        href="https://app.adjust.com/124ex421?pt_source_type=web"
+        passHref
+      >
         <Link
-          href={IOS_STORE_LINK}
+          href="https://app.adjust.com/124ex421?pt_source_type=web"
           isExternal
           variant="download"
           maxWidth="320px"
@@ -178,8 +180,16 @@ const ClimeAppPage = (): ReactElement => {
           quality={100}
         />
       </Box>
-      <NextLink href={IOS_STORE_LINK} passHref>
-        <Link href={IOS_STORE_LINK} isExternal width="fit-content" my={10}>
+      <NextLink
+        href="https://app.adjust.com/124ex421?pt_source_type=web"
+        passHref
+      >
+        <Link
+          href="https://app.adjust.com/124ex421?pt_source_type=web"
+          isExternal
+          width="fit-content"
+          my={10}
+        >
           <Image
             src="/icons/app-store.svg"
             width={143}
