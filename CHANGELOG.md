@@ -1,3 +1,10 @@
+# [1.56.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.55.0...v1.56.0) (2023-12-01)
+
+
+### Features
+
+* **clime-app:** [WT-2129] changed footer store link ([1e81421](https://git.herewetest.com/apalon-web/clime-web/commit/1e81421eb323e192f641e8cf816b6cc6ae3a7df7))
+
 # [1.55.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.54.0...v1.55.0) (2023-12-01)
 
 
