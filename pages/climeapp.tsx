@@ -10,7 +10,7 @@ import Head from 'next/head';
 import { ClimeAppPageLayout } from 'client/design-system/templates';
 
 import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
-import { STORE_LINK_UAC } from 'client/constants';
+import { STORE_LINK_UAC, UNIVERSAL_STORE_LINK } from 'client/constants';
 
 const ClimeAppPage = (): ReactElement => {
   const { t } = useTranslation(['meta-tags']);
@@ -71,9 +71,9 @@ const ClimeAppPage = (): ReactElement => {
         </Text>{' '}
         <br /> weather tracker
       </Heading>
-      <NextLink href={STORE_LINK_UAC} passHref>
+      <NextLink href={UNIVERSAL_STORE_LINK} passHref>
         <Link
-          href={STORE_LINK_UAC}
+          href={UNIVERSAL_STORE_LINK}
           isExternal
           variant="download"
           maxWidth="320px"

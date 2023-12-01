@@ -12,7 +12,7 @@ import {
 
 export const Download = (): ReactElement => {
   const router = useRouter();
-  const isSomePage = router?.asPath === '/climeapp';
+  const isSomePage = router?.pathname === '/climeapp';
 
   if (mobile) {
     return ios ? (
