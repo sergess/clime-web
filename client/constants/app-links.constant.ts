@@ -12,3 +12,5 @@ export const FULL_SCREEN_POPUP_ANDROID_STORE_LINK =
   'https://app.adjust.com/a8rqpq5';
 export const STORE_LINK_UAC =
   'https://app.adjust.com/124ex421?pt_source_type=web';
+export const UNIVERSAL_STORE_LINK =
+  'https://app.adjust.com/124ex421_127tq56l?pt_source_type=web';
