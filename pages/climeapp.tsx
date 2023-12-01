@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { ClimeAppPageLayout } from 'client/design-system/templates';
 
 import { REVALIDATE_FOR_STATIC_GENERATED_PAGES } from 'common/constants';
+import { STORE_LINK_UAC } from 'client/constants';
 
 const ClimeAppPage = (): ReactElement => {
   const { t } = useTranslation(['meta-tags']);
@@ -70,12 +71,9 @@ const ClimeAppPage = (): ReactElement => {
         </Text>{' '}
         <br /> weather tracker
       </Heading>
-      <NextLink
-        href="https://app.adjust.com/124ex421?pt_source_type=web"
-        passHref
-      >
+      <NextLink href={STORE_LINK_UAC} passHref>
         <Link
-          href="https://app.adjust.com/124ex421?pt_source_type=web"
+          href={STORE_LINK_UAC}
           isExternal
           variant="download"
           maxWidth="320px"
@@ -180,16 +178,8 @@ const ClimeAppPage = (): ReactElement => {
           quality={100}
         />
       </Box>
-      <NextLink
-        href="https://app.adjust.com/124ex421?pt_source_type=web"
-        passHref
-      >
-        <Link
-          href="https://app.adjust.com/124ex421?pt_source_type=web"
-          isExternal
-          width="fit-content"
-          my={10}
-        >
+      <NextLink href={STORE_LINK_UAC} passHref>
+        <Link href={STORE_LINK_UAC} isExternal width="fit-content" my={10}>
           <Image
             src="/icons/app-store.svg"
             width={143}

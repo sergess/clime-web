@@ -10,3 +10,5 @@ export const FULL_SCREEN_POPUP_IOS_STORE_LINK =
   'https://app.adjust.com/tpvmze8';
 export const FULL_SCREEN_POPUP_ANDROID_STORE_LINK =
   'https://app.adjust.com/a8rqpq5';
+export const STORE_LINK_UAC =
+  'https://app.adjust.com/124ex421?pt_source_type=web';
