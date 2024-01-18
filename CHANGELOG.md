@@ -1,3 +1,11 @@
+# [1.57.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.56.0...v1.57.0) (2024-01-18)
+
+
+### Features
+
+* **abtasty:** abtasty was removed ([4760363](https://git.herewetest.com/apalon-web/clime-web/commit/47603632c1d8308e0a2d1c30f26e3ae50894b159))
+* **abtasty:** abtasty was removed + node vers up ([49d2049](https://git.herewetest.com/apalon-web/clime-web/commit/49d2049285acaa9ca5b89aec752dcdf42d9e04bc))
+
 # [1.56.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.55.0...v1.56.0) (2023-12-01)
 
 
