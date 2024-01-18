@@ -1,3 +1,10 @@
+# [1.61.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.60.0...v1.61.0) (2024-01-18)
+
+
+### Features
+
+* **semantic-release:** semantic-release@^22.0.0 ([72d41a5](https://git.herewetest.com/apalon-web/clime-web/commit/72d41a5ac8b0ea7f1081cff9fc88e1ce59a6c467))
+
 # [1.60.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.59.0...v1.60.0) (2024-01-18)
 
 
