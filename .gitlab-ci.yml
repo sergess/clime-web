@@ -23,7 +23,7 @@ before_script:
 
 create-release:
   stage: release
-  image: node:20-alpine3.18
+  image: node:20.8.1
   before_script:
     - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
   script:
