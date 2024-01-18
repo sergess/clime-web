@@ -23,9 +23,9 @@ before_script:
 
 create-release:
   stage: release
-  image: node:20.8.1
+  image: node:18.17
   before_script:
-    - npm -g install semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
+    - npm -g install semantic-release@^22.0.0 @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab
   script:
     - npx semantic-release
   only:
