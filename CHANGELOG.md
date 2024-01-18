@@ -1,3 +1,10 @@
+# [1.60.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.59.0...v1.60.0) (2024-01-18)
+
+
+### Features
+
+* **dockerfile:** dockerfile ([978607a](https://git.herewetest.com/apalon-web/clime-web/commit/978607ad6fda466efd72e3b26d3a04dd9ddb711c))
+
 # [1.59.0](https://git.herewetest.com/apalon-web/clime-web/compare/v1.58.0...v1.59.0) (2024-01-18)
 
 
