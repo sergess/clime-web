@@ -36,7 +36,6 @@ const App = ({
 
   return (
     <>
-      <Script src="https://try.abtasty.com/372640a057a21dde66a82873bef9094e.js" />
       <Script
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
